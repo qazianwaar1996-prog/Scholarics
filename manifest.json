@@ -1,0 +1,57 @@
+{
+  "name": "Study Metrics",
+  "short_name": "StudyMetrics",
+  "description": "Free academic tools and calculators for students. GPA calculator, Pomodoro timer, grade predictor, and more.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "any",
+  "lang": "en",
+  "categories": ["education", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "GPA Calculator",
+      "short_name": "GPA",
+      "description": "Calculate your GPA instantly",
+      "url": "/gpa.html",
+      "icons": [{ "src": "images/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Pomodoro Timer",
+      "short_name": "Pomodoro",
+      "description": "Focus timer with breaks",
+      "url": "/pomodoro.html",
+      "icons": [{ "src": "images/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Your student dashboard",
+      "url": "/dashboard.html",
+      "icons": [{ "src": "images/favicon.svg", "sizes": "any" }]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "studymetrics",
+  "version": "2.0.0",
+  "description": "StudyMetrics — Academic Tools & AI (Cloudflare Pages + Functions)",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev . --compatibility-date=2024-11-01",
+    "deploy": "wrangler pages deploy .",
+    "test": "wrangler pages dev . --compatibility-date=2024-11-01 --port 8788"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

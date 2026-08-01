@@ -1,0 +1,5 @@
+# Cloudflare Pages _redirects
+# IMPORTANT: do NOT add "/* /:splat.html 200" — that Netlify-style rule rewrites
+# every request (including css/js/images) by appending ".html", which 404s all
+# static assets on Cloudflare. The site links to *.html directly, so clean-URL
+# rewrites are unnecessary and have been removed.

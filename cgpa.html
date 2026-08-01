@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE">
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGPA Calculator — Study Metrics</title>
+<meta name="description" content="Free cumulative GPA calculator. Combine your semester GPAs and credit hours to calculate your overall CGPA instantly. No signup required.">
+<link rel="canonical" href="https://studymetrics.app/cgpa.html">
+<link rel="preload" href="css/style.css" as="style">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Study Metrics">
+<meta property="og:title" content="CGPA Calculator — Study Metrics">
+<meta property="og:description" content="Calculate your cumulative GPA across multiple semesters.">
+<meta property="og:url" content="https://studymetrics.app/cgpa.html">
+<meta property="og:image" content="https://studymetrics.app/images/og-image.png">
+<meta name="twitter:site" content="@studymetrics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://studymetrics.app/images/og-image.png">
+<meta name="twitter:title" content="CGPA Calculator — Study Metrics">
+<meta name="twitter:description" content="Calculate your cumulative GPA across multiple semesters.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<link rel="stylesheet" href="css/premium.css">
+<link rel="stylesheet" href="css/personalization.css">
+<link rel="stylesheet" href="css/content-platform.css">
+<link rel="stylesheet" href="css/calculators.css">
+<link rel="stylesheet" href="css/country-selector.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Study Metrics","url":"https://studymetrics.app/","logo":"https://studymetrics.app/images/favicon.svg","sameAs":[]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://studymetrics.app/"},{"@type":"ListItem","position":2,"name":"CGPA Calculator","item":"https://studymetrics.app/cgpa.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is CGPA different from GPA?","acceptedAnswer":{"@type":"Answer","text":"GPA usually refers to your performance in a single term, while CGPA represents your average across your entire degree or multiple terms."}},{"@type":"Question","name":"What if I don't know my credits?","acceptedAnswer":{"@type":"Answer","text":"If all your semesters have the same weight, you can enter \"1\" for the credits in every row."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CGPA Calculator","url":"https://studymetrics.app/cgpa.html","description":"Free cumulative GPA calculator. Combine your semester GPAs and credit hours to calculate your overall CGPA instantly. No signup required.","applicationCategory":"EducationalApplication","isAccessibleForFree":true,"operatingSystem":"All"}</script>
+<link rel="stylesheet" href="css/ai-assistant.css">
+<link rel="stylesheet" href="css/consent.css">
+
+<link rel="stylesheet" href="css/studymetrics-v2.css">
+<script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-head">
+  <nav class="wrap nav">
+    <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+    <div class="nav-links"><a href="study-guides.html">Guides</a>
+        <a href="index.html#tools">Tools</a>
+        <a href="cgpa.html" class="on">CGPA</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+    </div>
+    <div class="nav-cta">
+        <a href="academic-resources.html" class="btn btn-ghost">All tools</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+  </nav>
+</header>
+<main id="main-content">
+
+<section class="tool-head">
+  <div class="grid-bg"></div>
+  <div class="wrap reveal">
+    <div class="crumb"><a href="index.html">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg><span>CGPA Calculator</span></div>
+    <div class="calc-kicker" aria-label="CGPA Calculator tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>CGPA Calculator</div>
+    <h1>CGPA Calculator</h1>
+    <p>Combine your semester GPAs and credits to calculate your cumulative average. Everything updates live as you type and saves automatically.</p>
+  </div>
+</section>
+
+<div class="wrap reveal">
+  <div class="tool-layout">
+    <div class="calc-main">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Your semesters</h2>
+          <button class="btn btn-ghost" id="addRow">Add semester</button>
+        </div>
+        <div class="rows-credits">
+          <div class="rows-head"><span>Semester name</span><span>GPA</span><span>Credits</span><span></span></div>
+          <div id="rows"></div>
+        </div>
+        <div class="calc-actions">
+          <button class="btn btn-primary" id="addRow2">Add another semester</button>
+          <button class="btn btn-danger" id="clearAll">Clear all data</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-rail">
+      <div class="gpa-hero">
+        <div class="label">Cumulative GPA</div>
+        <div class="gpa-big tnum" id="cgpaOut">0.00</div>
+        <div class="gpa-sub" id="cgpaClass">Add a semester to begin</div>
+        <div class="gpa-meta">
+          <div><div class="n tnum" id="mSem">0</div><div class="l">Semesters</div></div>
+          <div><div class="n tnum" id="mCredits">0</div><div class="l">Total Credits</div></div>
+        </div>
+        <div class="result-btn-row">
+          <button class="btn" id="shareBtn" aria-label="Copy result to clipboard">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+          <button class="btn" id="copyLinkBtn" aria-label="Copy a shareable link to this result">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Copy link
+          </button>
+          <button class="btn" id="pdfBtn" aria-label="Download result as PDF">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </button>
+        </div>
+        <div id="smConvResult" class="sm-conv-result" aria-live="polite" aria-label="Equivalent grade in your country"></div>
+      </div>
+      
+      <div class="scale-note">
+        <b>Pro tip:</b> We use a weighted average. This means semesters with more credit hours have a bigger impact on your CGPA.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap reveal">
+  <div class="prose">
+    <h2>How CGPA is calculated</h2>
+    <p>Your Cumulative Grade Point Average (CGPA) is the weighted mean of all your semester GPAs. The formula used is:</p>
+    <p><code>CGPA = Σ(Semester GPA × Semester Credits) / Σ(Total Credits)</code></p>
+    <div class="faq">
+      <details open><summary>Is CGPA different from GPA?</summary><p>GPA usually refers to your performance in a single term, while CGPA represents your average across your entire degree or multiple terms.</p></details>
+      <details><summary>What if I don't know my credits?</summary><p>If all your semesters have the same weight, you can enter "1" for the credits in every row.</p></details>
+    </div>
+  </div>
+</div>
+
+
+<div class="wrap reveal">
+  <div class="sec-head" style="margin-bottom:var(--s3)"><span class="kicker">Keep going</span><h2>Related calculators</h2></div>
+  <div class="tools-grid">
+      <a href="gpa-converter.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Global GPA Converter</h3>
+        <p>Convert grades from 30+ countries to US 4.0 or reverse. Export PDF.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>GPA Calculator</h3>
+        <p>Calculate semester GPA from letter grades, percentages, or points.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="semester-gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <h3>Semester GPA</h3>
+        <p>Pick letter grades from a dropdown — your semester GPA updates live.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="target-gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>Target GPA</h3>
+        <p>Find the GPA needed in remaining credits to hit your degree goal.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+  </div>
+</div>
+
+
+<section class="related" aria-labelledby="relHeading">
+  <div class="wrap">
+    <h2 id="relHeading" style="font-size:var(--step-md);margin-bottom:var(--s3)">Related Tools</h2>
+    <div class="tools-grid">
+      <a href="gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>GPA Calculator</h3><p>Single-term GPA calculator</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="semester-gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3>Semester GPA</h3><p>Term-by-term tracking</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="target-gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>Target GPA</h3><p>GPA needed to hit your goal</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="gpa-converter.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>GPA Converter</h3><p>Convert across countries</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="backToTop" role="button" aria-label="Back to top" tabindex="0">↑</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h4>GPA &amp; Grades</h4>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+        <a href="percentage-to-gpa.html">% to GPA</a>
+        <a href="gpa-to-percentage.html">GPA to %</a>
+      </div>
+      <div class="foot-col">
+        <h4>Grade Tools</h4>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="assignment-weight.html">Assignment Weight</a>
+        <a href="class-average.html">Class Average</a>
+        <a href="percentage-calculator.html">Percentage</a>
+      </div>
+      <div class="foot-col">
+        <h4>Planning</h4>
+        <a href="attendance-calculator.html">Attendance</a>
+        <a href="study-time.html">Study Time</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="scientific-calculator.html">Scientific Calc</a>
+        <a href="basic-calculator.html">Basic Calc</a>
+        <a href="word-counter.html">Word Counter</a>
+      </div>
+      <div class="foot-col">
+        <h4>Guides &amp; Company</h4>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="academic-resources.html">Academic Resources</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="ai.html">StudyMetrics AI</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Study Metrics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/script.js"></script>
+<script defer src="js/sm-shell.js"></script>
+<script defer src="js/personalization.js"></script>
+<script defer src="js/share-links.js"></script>
+<script defer src="js/cgpa.js"></script>
+<script defer src="js/grading-systems.js"></script>
+<script defer src="js/country-selector.js"></script>
+<script defer src="js/premium.js"></script>
+<script defer src="js/calculators.js"></script>
+<script defer src="js/content-platform.js"></script>
+
+
+<!-- Ad: Rectangle -->
+<div class="ad-slot rect" aria-label="Advertisement">
+  <div class="ad-label">Advertisement</div>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+    data-ad-slot="RECT_SLOT_ID"
+    data-ad-format="rectangle"
+    data-full-width-responsive="false"></ins>
+</div>
+<script defer src="js/ai-service.js"></script>
+<script defer src="js/ai-assistant.js"></script>
+
+<script defer src="js/analytics.js"></script>
+<script defer src="js/consent.js"></script>
+<script defer src="js/email-capture.js"></script>
+<script src="js/pwa.js" defer></script>
+</body>
+</html>

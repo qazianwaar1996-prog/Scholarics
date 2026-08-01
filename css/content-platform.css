@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Study Metrics — content platform additions (Phase 6.2)
+   Additive only: reuses existing custom properties (--accent, --ink-2, etc.)
+   so it inherits both the default and .premium themes automatically.
+   ========================================================================== */
+
+/* Reading progress bar (article/guide pages) */
+#readProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent-strong);
+  z-index: 60;
+  transition: width .08s linear;
+}
+
+/* Copy-link button next to article/guide H1 */
+.article-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: var(--s4);
+  position: relative;
+}
+.copy-link-btn.copied { color: var(--ok, #10b981); border-color: var(--ok, #10b981); }
+
+/* Guide / resource index cards (reuses .tool visual language for consistency) */
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: var(--s4); }
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  transition: border-color .18s var(--ease), transform .18s;
+}
+.guide-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+.guide-card .tag { font-size: var(--step-xs); font-weight: 600; color: var(--accent-strong); text-transform: uppercase; letter-spacing: .05em; }
+.guide-card h3 { font-size: var(--step-md); letter-spacing: -.01em; }
+.guide-card p { font-size: var(--step-sm); color: var(--ink-2); line-height: 1.5; flex: 1; }
+body.premium .guide-card { background: var(--p-surface-2); border-color: var(--p-border); }
+body.premium .guide-card:hover { border-color: var(--p-border-2); }
+
+/* Site search box (homepage + resource hubs) */
+.site-search { position: relative; max-width: 420px; }
+.site-search input { padding-left: 42px; }
+.site-search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--ink-3); pointer-events: none; }
+.site-search-empty { padding: var(--s5); text-align: center; color: var(--ink-3); font-size: var(--step-sm); display: none; }
+
+/* Print button reuses .btn — no extra rule needed */
+
+@media (max-width: 640px) {
+  .guide-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Phase 6.3 — Accessibility & SEO additions
+   ========================================================================== */
+
+/* Skip-to-content link (accessibility + Core Web Vitals) */
+.skip-link {
+  position: absolute;
+  top: -120%;
+  left: var(--s3, 0.75rem);
+  z-index: 10000;
+  padding: 0.5rem 1rem;
+  background: var(--accent-strong, #4f46e5);
+  color: #fff;
+  font-size: var(--step-sm, 0.875rem);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 var(--r-md, 6px) var(--r-md, 6px);
+  transition: top 0.12s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent-strong, #4f46e5);
+  outline-offset: 2px;
+}

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE">
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — Study Metrics</title>
+<meta name="description" content="Manage your Study Metrics profile, preferences, theme, study statistics and achievements.">
+<link rel="canonical" href="https://studymetrics.app/profile.html">
+<link rel="preload" href="css/style.css" as="style">
+<link rel="preload" href="css/studymetrics-v2.css" as="style">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Study Metrics">
+<meta property="og:title" content="Profile — Study Metrics">
+<meta property="og:description" content="Manage your Study Metrics profile, preferences, theme, study statistics and achievements.">
+<meta property="og:url" content="https://studymetrics.app/profile.html">
+<meta property="og:image" content="https://studymetrics.app/images/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<link rel="stylesheet" href="css/premium.css">
+<link rel="stylesheet" href="css/personalization.css">
+<link rel="stylesheet" href="css/studymetrics-v2.css">
+<link rel="stylesheet" href="css/consent.css">
+<script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+  .prof-hero{display:flex;align-items:center;gap:20px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--rxl);box-shadow:var(--shadow-sm);margin-bottom:20px}
+  .prof-avatar-wrap{position:relative;flex-shrink:0}
+  .prof-avatar-btn{width:80px;height:80px;border-radius:22px;background:linear-gradient(135deg,var(--gold),var(--gold-strong,#a97c14));display:grid;place-items:center;font-size:34px;font-weight:700;color:#1a1509;border:none;cursor:pointer;transition:opacity .15s}
+  .prof-avatar-btn:hover{opacity:.85}
+  .prof-hero-info h1{font-size:22px;font-weight:700;color:var(--ink);margin:0 0 4px}
+  .prof-hero-info p{font-size:13px;color:var(--ink-3);margin:0}
+  .prof-sections{display:flex;flex-direction:column;gap:14px}
+  .prof-section{background:var(--card);border:1px solid var(--border);border-radius:var(--rxl);box-shadow:var(--shadow-sm);overflow:hidden}
+  .prof-sec-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+  .prof-sec-head h2{font-size:14px;font-weight:700;color:var(--ink);margin:0;flex:1}
+  .prof-sec-head svg{color:var(--ink-3);flex-shrink:0}
+  .prof-sec-ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+  .prof-sec-body{padding:20px}
+  .prof-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-subtle,rgba(0,0,0,.05))}
+  .prof-row:last-child{border-bottom:none;padding-bottom:0}
+  .prof-row:first-child{padding-top:0}
+  .prof-row-label{font-size:13px;color:var(--ink-2);font-weight:500}
+  .prof-row-value{font-size:13px;color:var(--ink);font-weight:600;text-align:right}
+  .prof-input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:12px;font-size:14px;color:var(--ink);background:var(--card-2,#faf9f5);box-sizing:border-box;font-family:inherit}
+  .prof-input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .prof-label{display:block;font-size:11px;font-weight:600;color:var(--ink-3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+  .prof-field{margin-bottom:16px}
+  .prof-field:last-child{margin-bottom:0}
+  .prof-theme-btns{display:flex;gap:8px}
+  .prof-theme-btn{flex:1;padding:9px 6px;border:1.5px solid var(--border);border-radius:10px;background:var(--card-2);color:var(--ink-2);font-size:12.5px;font-weight:600;cursor:pointer;text-align:center;transition:border-color .15s,color .15s,background .15s;font-family:inherit}
+  .prof-theme-btn.active,.prof-theme-btn:hover{border-color:var(--gold);color:var(--gold-strong);background:var(--gold-bg,rgba(197,150,44,.08))}
+  .prof-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .prof-stat{background:var(--card-2,#faf9f5);border-radius:12px;padding:14px 12px;text-align:center}
+  .prof-stat .n{font-size:22px;font-weight:700;color:var(--ink)}
+  .prof-stat .l{font-size:11px;color:var(--ink-3);margin-top:3px;font-weight:500}
+  .prof-badge-grid{display:flex;flex-wrap:wrap;gap:10px}
+  .prof-badge{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:30px;font-size:12.5px;font-weight:600;background:var(--card-2);border:1px solid var(--border)}
+  .prof-badge.earned{background:linear-gradient(135deg,var(--gold-bg,rgba(197,150,44,.12)),var(--card-2));border-color:var(--gold);color:var(--gold-strong)}
+  .prof-badge.locked{opacity:.45;filter:grayscale(1)}
+  .prof-caret{transition:transform .2s;margin-left:auto;flex-shrink:0;color:var(--ink-3)}
+  .prof-section.open .prof-caret{transform:rotate(180deg)}
+  .prof-sec-body{display:none}
+  .prof-section.open .prof-sec-body{display:block}
+  .prof-save-btn{width:100%;padding:11px;border:none;border-radius:12px;background:var(--gold);color:#1a1509;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s;margin-top:4px}
+  .prof-save-btn:hover{opacity:.88}
+  .prof-link-list a{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border-subtle,rgba(0,0,0,.05));font-size:13px;color:var(--ink-2);text-decoration:none;font-weight:500;transition:color .15s}
+  .prof-link-list a:last-child{border-bottom:none;padding-bottom:0}
+  .prof-link-list a:first-child{padding-top:0}
+  .prof-link-list a:hover{color:var(--ink)}
+  .prof-link-list a svg{flex-shrink:0;color:var(--ink-3)}
+  .prof-chevron{color:var(--ink-3)}
+  .prof-version{text-align:center;font-size:11px;color:var(--ink-3);margin-top:8px}
+  @media(max-width:520px){.prof-stat-grid{grid-template-columns:repeat(3,1fr)}.prof-hero{flex-direction:column;text-align:center;align-items:center}}
+</style>
+</head>
+<body class="sm2">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="sm2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
+
+<div class="sm2-app">
+<aside class="sm2-side">
+  <div class="sm2-side-brand">
+    <a href="index.html" class="sm2-logo" aria-label="Study Metrics home">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="8" fill="var(--gold)"/><path d="M6 20 10.5 10 14 16.5 17 12 21 20" stroke="#1a1509" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Study Metrics</span>
+    </a>
+  </div>
+  <nav class="sm2-nav" aria-label="Primary">
+    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg> Home</a>
+    <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> All Calculators</a>
+    <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg> Dashboard</a>
+    <a href="ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg> AI Tutor</a>
+    <a href="notes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg> Notes</a>
+    <a href="flashcards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg> Flashcards</a>
+    <a href="grading-guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Countries &amp; Grades</a>
+    <div class="sm2-nav-sep"></div>
+    <a href="profile.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg> Profile</a>
+  </nav>
+  <div class="sm2-side-ai">
+    <h4>AI Tutor <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;display:inline;color:var(--gold-strong)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg></h4>
+    <p>Ask anything about academics. Get instant answers.</p>
+    <a href="ai.html" class="sm2-btn sm2-btn-primary">Ask AI</a>
+  </div>
+  <div class="sm2-side-foot">
+    <img src="images/avatar.svg" alt="Profile">
+    <span class="nm">Profile</span>
+    <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+    <a href="profile.html" class="sm2-icon-btn" aria-label="Profile" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></a>
+  </div>
+</aside>
+
+<div class="sm2-main">
+  <header class="sm2-top">
+    <button class="sm2-icon-btn sm2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="sm2-search">
+      <svg class="s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+      <input type="search" id="sm2Search" placeholder="Search tools… (⌘K)" aria-label="Search tools">
+      <kbd class="sm2-kbd" aria-hidden="true">⌘K</kbd>
+    </div>
+    <div class="sm2-top-tools">
+      <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+      <img class="sm2-avatar" src="images/avatar.svg" alt="Profile">
+    </div>
+  </header>
+
+  <main class="sm2-content" id="main-content">
+    <div style="margin-bottom:20px">
+      <h1 style="font-size:22px;font-weight:700;color:var(--ink);margin:0 0 4px">Your Profile</h1>
+      <p style="font-size:13px;color:var(--ink-3);margin:0">Manage your preferences, statistics and account settings.</p>
+    </div>
+
+    <!-- Hero -->
+    <div class="prof-hero">
+      <div class="prof-avatar-wrap">
+        <button class="prof-avatar-btn" id="profAvatarBtn" aria-label="Edit display name" title="Click to edit profile">?</button>
+      </div>
+      <div class="prof-hero-info">
+        <h1 id="profHeroName">Student</h1>
+        <p id="profHeroSub">Study Metrics Member · Free Plan</p>
+      </div>
+    </div>
+
+    <div class="prof-sections">
+
+      <!-- 1. Profile Overview -->
+      <div class="prof-section open" id="profSecOverview">
+        <div class="prof-sec-head" onclick="toggleSec('profSecOverview')">
+          <span class="prof-sec-ico" style="background:rgba(99,102,241,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--violet,#6366f1)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></span>
+          <h2>Profile Overview</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-field">
+            <label class="prof-label" for="profName">Display Name</label>
+            <input id="profName" class="prof-input" type="text" placeholder="Your name" maxlength="40" autocomplete="name">
+          </div>
+          <button class="prof-save-btn" onclick="saveProfile()">Save Profile</button>
+        </div>
+      </div>
+
+      <!-- 2. Personalization -->
+      <div class="prof-section open" id="profSecPersonal">
+        <div class="prof-sec-head" onclick="toggleSec('profSecPersonal')">
+          <span class="prof-sec-ico" style="background:rgba(197,150,44,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-strong,#a97c14)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span>
+          <h2>Personalization</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-field">
+            <span class="prof-label">Theme</span>
+            <div class="prof-theme-btns">
+              <button class="prof-theme-btn" id="themeLight" onclick="setTheme('light')">☀️ Light</button>
+              <button class="prof-theme-btn" id="themeDark" onclick="setTheme('dark')">🌙 Dark</button>
+              <button class="prof-theme-btn" id="themeSystem" onclick="setTheme('system')">⚙️ System</button>
+            </div>
+          </div>
+          <div class="prof-field">
+            <span class="prof-label">Country / Grading Scale</span>
+            <div class="prof-row" style="padding:0">
+              <span class="prof-row-label" id="profCountryLabel">Not set</span>
+              <a href="grading-guide.html" style="font-size:12.5px;color:var(--gold-strong);font-weight:600;text-decoration:none">Change →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Preferences -->
+      <div class="prof-section" id="profSecPrefs">
+        <div class="prof-sec-head" onclick="toggleSec('profSecPrefs')">
+          <span class="prof-sec-ico" style="background:rgba(34,197,94,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ok,#22c55e)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h2>Preferences</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-row">
+            <span class="prof-row-label">GPA Scale</span>
+            <span class="prof-row-value" id="prefGpaScale">4.0</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Default Semester</span>
+            <span class="prof-row-value" id="prefSemester">—</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Study Goal (hrs/day)</span>
+            <span class="prof-row-value" id="prefStudyGoal">—</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Pomodoro Duration</span>
+            <span class="prof-row-value" id="prefPomodoro">25 min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Study Statistics -->
+      <div class="prof-section" id="profSecStats">
+        <div class="prof-sec-head" onclick="toggleSec('profSecStats')">
+          <span class="prof-sec-ico" style="background:rgba(59,130,246,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue,#3b82f6)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg></span>
+          <h2>Study Statistics</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-stat-grid" style="margin-bottom:16px">
+            <div class="prof-stat"><div class="n" id="statCalcs">0</div><div class="l">Calcs Run</div></div>
+            <div class="prof-stat"><div class="n" id="statNotes">0</div><div class="l">Notes</div></div>
+            <div class="prof-stat"><div class="n" id="statFlash">0</div><div class="l">Flashcard Decks</div></div>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Current GPA</span>
+            <span class="prof-row-value" id="statGpa">—</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">CGPA</span>
+            <span class="prof-row-value" id="statCgpa">—</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Tools visited</span>
+            <span class="prof-row-value" id="statVisits">0</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Goals set</span>
+            <span class="prof-row-value" id="statGoals">0</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Deadlines tracked</span>
+            <span class="prof-row-value" id="statDeadlines">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Achievements -->
+      <div class="prof-section" id="profSecAchieve">
+        <div class="prof-sec-head" onclick="toggleSec('profSecAchieve')">
+          <span class="prof-sec-ico" style="background:rgba(234,179,8,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-strong,#a97c14)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16M11 5H6v7a6 6 0 0 0 12 0V5h-5"/><path d="M11 5V2M13 5V2"/></svg></span>
+          <h2>Achievements</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-badge-grid" id="achieveBadges">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Account -->
+      <div class="prof-section" id="profSecAccount">
+        <div class="prof-sec-head" onclick="toggleSec('profSecAccount')">
+          <span class="prof-sec-ico" style="background:rgba(239,68,68,.08)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--err,#ef4444)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <h2>Account</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-row">
+            <span class="prof-row-label">Plan</span>
+            <span class="prof-row-value">Free</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Data storage</span>
+            <span class="prof-row-value">Local only</span>
+          </div>
+          <div class="prof-row">
+            <span class="prof-row-label">Account type</span>
+            <span class="prof-row-value">Guest (no login required)</span>
+          </div>
+          <div style="margin-top:14px">
+            <button onclick="clearAllData()" style="width:100%;padding:10px;border:1.5px solid var(--err,#ef4444);border-radius:12px;background:transparent;color:var(--err,#ef4444);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Clear All Local Data</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Privacy & About -->
+      <div class="prof-section" id="profSecAbout">
+        <div class="prof-sec-head" onclick="toggleSec('profSecAbout')">
+          <span class="prof-sec-ico" style="background:rgba(100,116,139,.10)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
+          <h2>Privacy &amp; About</h2>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <div class="prof-link-list">
+            <a href="privacy-policy.html">Privacy Policy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" width="16" height="16" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+            <a href="terms-and-conditions.html">Terms &amp; Conditions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" width="16" height="16" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+            <a href="disclaimer.html">Disclaimer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" width="16" height="16" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+            <a href="about.html">About Study Metrics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" width="16" height="16" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+            <a href="contact.html">Contact &amp; Feedback <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" width="16" height="16" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+          </div>
+          <div class="prof-version" id="profVersion">Study Metrics · Free · v2.2</div>
+        </div>
+      </div>
+
+      <!-- 8. Command Center (separate section, preserved) -->
+      <div class="prof-section" id="profSecCmd" style="border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)">
+        <div class="prof-sec-head" onclick="toggleSec('profSecCmd')">
+          <span class="prof-sec-ico" style="background:rgba(197,150,44,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-strong,#a97c14)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></span>
+          <h2>Command Center</h2>
+          <span style="font-size:10.5px;font-weight:700;color:var(--gold-strong);background:rgba(197,150,44,.12);padding:2px 8px;border-radius:20px;margin-right:6px">Dashboard</span>
+          <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="prof-sec-body">
+          <p style="font-size:13px;color:var(--ink-2);margin:0 0 14px">Your goals, deadlines, GPA trend and recent activity live in the full Command Center dashboard.</p>
+          <a href="dashboard.html" class="sm2-btn sm2-btn-primary" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" width="16" height="16" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg>
+            Open Dashboard
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /prof-sections -->
+  </main>
+</div><!-- /sm2-main -->
+</div><!-- /sm2-app -->
+
+<nav class="sm2-bottomnav" aria-label="Mobile">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
+  <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
+  <a href="ai.html" class="ai"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>W</span><span>AI</span></a>
+  <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
+  <a href="profile.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
+</nav>
+
+<script>
+function sm2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sm_theme',n);}catch(e){}if(window.SM&&SM.toast){SM.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
+
+function toggleSec(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.toggle('open');
+}
+
+function get(k,fb){try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;}}
+function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+function setTheme(t){
+  var theme=t==='system'?(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;
+  document.documentElement.setAttribute('data-theme',theme);
+  try{localStorage.setItem('sm_theme',t==='system'?'':theme);}catch(e){}
+  document.querySelectorAll('.prof-theme-btn').forEach(function(b){b.classList.remove('active');});
+  var map={light:'themeLight',dark:'themeDark',system:'themeSystem'};
+  var btn=document.getElementById(map[t]);
+  if(btn)btn.classList.add('active');
+  if(window.SM&&SM.toast)SM.toast(t==='system'?'⚙️ System theme':'theme'==='dark'?'🌙 Dark on':'☀️ Light on','info');
+}
+
+function saveProfile(){
+  var inp=document.getElementById('profName');
+  if(!inp)return;
+  var n=inp.value.trim().slice(0,40);
+  set('sm_dash_name',n);
+  renderHero(n);
+  document.querySelectorAll('.sm2-side-foot .nm').forEach(function(el){el.textContent=n||'Profile';});
+  if(window.SM&&SM.toast)SM.toast('Profile saved ✓','success');
+}
+
+function renderHero(name){
+  var initial=(name||'').trim().charAt(0).toUpperCase()||'?';
+  var btn=document.getElementById('profAvatarBtn');
+  var h=document.getElementById('profHeroName');
+  if(btn)btn.textContent=initial;
+  if(h)h.textContent=name||'Student';
+}
+
+function clearAllData(){
+  if(!confirm('Clear all Study Metrics data from this browser? This cannot be undone.'))return;
+  try{localStorage.clear();}catch(e){}
+  if(window.SM&&SM.toast)SM.toast('All data cleared','info');
+  setTimeout(function(){location.reload();},800);
+}
+
+function renderAchievements(stats){
+  var badges=[
+    {icon:'🎯',label:'First Calculation',key:'calcs',threshold:1},
+    {icon:'📊',label:'10 Calcs Run',key:'calcs',threshold:10},
+    {icon:'📝',label:'First Note',key:'notes',threshold:1},
+    {icon:'🃏',label:'First Flashcard Deck',key:'flash',threshold:1},
+    {icon:'🌍',label:'Country Explorer',key:'country',threshold:1},
+    {icon:'🎓',label:'Goal Setter',key:'goals',threshold:1},
+    {icon:'⏰',label:'Deadline Tracker',key:'deadlines',threshold:1},
+    {icon:'🌙',label:'Night Owl',key:'visits',threshold:5},
+  ];
+  var container=document.getElementById('achieveBadges');
+  if(!container)return;
+  container.innerHTML=badges.map(function(b){
+    var earned=(stats[b.key]||0)>=b.threshold;
+    return '<div class="prof-badge '+(earned?'earned':'locked')+'"><span style="font-size:18px">'+b.icon+'</span><span>'+b.label+'</span></div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  var name=get('sm_dash_name','')||'';
+  var inp=document.getElementById('profName');
+  if(inp)inp.value=name;
+  renderHero(name);
+
+  // Theme button active state
+  var saved=localStorage.getItem('sm_theme')||'';
+  var cur=saved===''?'system':(saved==='dark'?'dark':'light');
+  var map2={light:'themeLight',dark:'themeDark',system:'themeSystem'};
+  var activeBtn=document.getElementById(map2[cur]);
+  if(activeBtn)activeBtn.classList.add('active');
+
+  // Country
+  var country=get('sm_selected_country','')||get('sm_grading_country','')||'';
+  var cl=document.getElementById('profCountryLabel');
+  if(cl)cl.textContent=country||'Not set';
+
+  // Statistics
+  var recent=get('sm_dash_recent',[])||[];
+  var notes=get('sm2_notes',[])||[];
+  var flash=get('sm2_fc_decks',[])||[];
+  var goals=get('sm2_goals',[])||[];
+  var deadlines=get('sm2_deadlines',[])||[];
+  var gpaResult=get('sm_gpa_result',null);
+  var cgpaResult=get('sm_cgpa_result',null);
+  var pomDur=get('sm_pom_work',25)||25;
+
+  var calcsRun=parseInt(get('sm_calcs_run',0)||0,10);
+
+  function setText(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
+  setText('statCalcs',calcsRun||recent.length||0);
+  setText('statNotes',Array.isArray(notes)?notes.length:0);
+  setText('statFlash',Array.isArray(flash)?flash.length:0);
+  setText('statVisits',recent.length);
+  setText('statGoals',Array.isArray(goals)?goals.length:0);
+  setText('statDeadlines',Array.isArray(deadlines)?deadlines.length:0);
+  setText('statGpa',gpaResult?parseFloat(gpaResult).toFixed(2)+'':'—');
+  setText('statCgpa',cgpaResult?parseFloat(cgpaResult).toFixed(2)+'':'—');
+  setText('prefPomodoro',pomDur+' min');
+
+  // GPA scale from localStorage
+  var scale=get('sm_gpa_scale','4.0')||'4.0';
+  setText('prefGpaScale',scale);
+
+  renderAchievements({
+    calcs:calcsRun||recent.length,
+    notes:Array.isArray(notes)?notes.length:0,
+    flash:Array.isArray(flash)?flash.length:0,
+    country:country?1:0,
+    goals:Array.isArray(goals)?goals.length:0,
+    deadlines:Array.isArray(deadlines)?deadlines.length:0,
+    visits:recent.length
+  });
+
+  // Bind avatar button to save-profile section
+  var avatarBtn=document.getElementById('profAvatarBtn');
+  if(avatarBtn){
+    avatarBtn.addEventListener('click',function(){
+      var sec=document.getElementById('profSecOverview');
+      if(sec){sec.classList.add('open');sec.scrollIntoView({behavior:'smooth',block:'nearest'});}
+      var ni=document.getElementById('profName');
+      if(ni)setTimeout(function(){ni.focus();},200);
+    });
+  }
+});
+</script>
+<script defer src="js/script.js"></script>
+<script defer src="js/personalization.js"></script>
+<script defer src="js/premium.js"></script>
+<script defer src="js/sm-shell.js"></script>
+<script defer src="js/sm-v2-features.js"></script>
+<script defer src="js/analytics.js"></script>
+<script defer src="js/consent.js"></script>
+<script defer src="js/email-capture.js"></script>
+<script src="js/pwa.js" defer></script>
+</body>
+</html>

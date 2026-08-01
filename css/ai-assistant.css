@@ -1,0 +1,223 @@
+/* ============================================================
+   ai-assistant.css — "Ask AI" integration for all calculators
+   Injects a compact AI panel beneath each result rail.
+   ============================================================ */
+
+/* ── Trigger button ─────────────────────────────────────────── */
+.ask-ai-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 11px 16px;
+  margin-top: var(--s4);
+  border-radius: var(--r-md);
+  font-size: var(--step-sm);
+  font-weight: 600;
+  color: var(--accent-strong);
+  background: var(--accent-dim);
+  border: 1.5px solid oklch(.6 .19 32 / .25);
+  cursor: pointer;
+  transition: background .15s var(--ease), border-color .15s, transform .12s;
+  font-family: inherit;
+}
+.ask-ai-btn:hover {
+  background: oklch(.6 .19 32 / .18);
+  border-color: oklch(.6 .19 32 / .45);
+  transform: translateY(-1px);
+}
+.ask-ai-btn:active { transform: scale(.97); }
+.ask-ai-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+.ask-ai-btn .ask-ai-sparkle {
+  font-size: .9em;
+  line-height: 1;
+}
+
+/* ── Inline AI panel ────────────────────────────────────────── */
+.calc-ai-panel {
+  margin-top: var(--s4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  animation: aiPanelIn .22s var(--ease);
+}
+@keyframes aiPanelIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Panel header ────────────────────────────────────────────── */
+.calc-ai-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s3) var(--s4);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-soft);
+  gap: var(--s3);
+}
+.calc-ai-head-left {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.calc-ai-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  flex-shrink: 0;
+}
+.calc-ai-dot.loading {
+  background: var(--warn);
+  animation: ai-pulse .9s ease-in-out infinite;
+}
+@keyframes ai-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .35; }
+}
+.calc-ai-title {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.calc-ai-close {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border-radius: 7px;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background .12s, color .12s;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+}
+.calc-ai-close:hover { background: var(--surface); color: var(--ink); }
+.calc-ai-close svg { width: 14px; height: 14px; }
+
+/* ── Response body ───────────────────────────────────────────── */
+.calc-ai-body {
+  padding: var(--s4);
+  font-size: var(--step-sm);
+  line-height: 1.7;
+  color: var(--ink);
+  max-height: 340px;
+  overflow-y: auto;
+}
+.calc-ai-body::-webkit-scrollbar { width: 5px; }
+.calc-ai-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Typing dots ─────────────────────────────────────────────── */
+.calc-ai-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: var(--s3) 0;
+}
+.calc-ai-typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  animation: ai-bounce .85s ease-in-out infinite;
+}
+.calc-ai-typing span:nth-child(2) { animation-delay: .14s; }
+.calc-ai-typing span:nth-child(3) { animation-delay: .28s; }
+@keyframes ai-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+  30%           { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ── Error state ─────────────────────────────────────────────── */
+.calc-ai-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s2);
+  color: var(--danger);
+  font-size: var(--step-sm);
+  padding: var(--s3) 0;
+}
+.calc-ai-error svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; }
+
+/* ── Markdown inside response ────────────────────────────────── */
+.calc-ai-body strong { font-weight: 600; }
+.calc-ai-body em { font-style: italic; }
+.calc-ai-body code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: .8em;
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--accent-strong);
+}
+.calc-ai-body ul, .calc-ai-body ol {
+  padding-left: var(--s5);
+  display: flex; flex-direction: column; gap: 3px;
+  margin: var(--s2) 0;
+}
+.calc-ai-body li { line-height: 1.6; }
+.calc-ai-body p { margin: var(--s2) 0; }
+.calc-ai-body p:first-child { margin-top: 0; }
+.calc-ai-body p:last-child { margin-bottom: 0; }
+.calc-ai-body h3, .calc-ai-body h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-base);
+  letter-spacing: -.02em;
+  margin: var(--s3) 0 var(--s2);
+}
+
+/* ── Footer (copy + follow-up) ───────────────────────────────── */
+.calc-ai-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: var(--s3) var(--s4);
+  border-top: 1px solid var(--border-soft);
+  background: var(--surface-2);
+  flex-wrap: wrap;
+}
+.calc-ai-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .13s var(--ease);
+  font-family: inherit;
+}
+.calc-ai-copy-btn:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.calc-ai-copy-btn svg { width: 11px; height: 11px; }
+
+.calc-ai-chat-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color .13s;
+}
+.calc-ai-chat-link:hover { color: var(--accent-strong); }
+.calc-ai-chat-link svg { width: 12px; height: 12px; }
+
+/* ── No-result placeholder ───────────────────────────────────── */
+.calc-ai-placeholder {
+  color: var(--ink-3);
+  font-size: var(--step-sm);
+  padding: var(--s3) 0;
+  font-style: italic;
+}

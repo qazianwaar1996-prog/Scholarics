@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE">
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Calculator — Study Metrics</title>
+<meta name="description" content="Free attendance percentage calculator. See your current attendance, how many classes you can skip, or how many you must attend to recover.">
+<link rel="canonical" href="https://studymetrics.app/attendance-calculator.html">
+<link rel="preload" href="css/style.css" as="style">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Study Metrics">
+<meta property="og:title" content="Attendance Calculator — Study Metrics">
+<meta property="og:description" content="See your attendance percentage and how many classes you can safely skip.">
+<meta property="og:url" content="https://studymetrics.app/attendance-calculator.html">
+<meta property="og:image" content="https://studymetrics.app/images/og-image.png">
+<meta name="twitter:site" content="@studymetrics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://studymetrics.app/images/og-image.png">
+<meta name="twitter:title" content="Attendance Calculator — Study Metrics">
+<meta name="twitter:description" content="See your attendance percentage and how many classes you can safely skip.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<link rel="stylesheet" href="css/premium.css">
+<link rel="stylesheet" href="css/personalization.css">
+<link rel="stylesheet" href="css/content-platform.css">
+<link rel="stylesheet" href="css/calculators.css">
+<link rel="stylesheet" href="css/country-selector.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Study Metrics","url":"https://studymetrics.app/","logo":"https://studymetrics.app/images/favicon.svg","sameAs":[]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://studymetrics.app/"},{"@type":"ListItem","position":2,"name":"Attendance Calculator","item":"https://studymetrics.app/attendance-calculator.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many classes can I skip?","acceptedAnswer":{"@type":"Answer","text":"If your percentage is above the requirement, we calculate the maximum number of future classes you can miss without dropping below the limit."}},{"@type":"Question","name":"How do I recover my attendance?","acceptedAnswer":{"@type":"Answer","text":"If you're below the limit, we calculate the exact number of consecutive classes you must attend to pull your average back up."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Attendance Calculator","url":"https://studymetrics.app/attendance-calculator.html","description":"Free attendance percentage calculator. See your current attendance, how many classes you can skip, or how many you must attend to recover.","applicationCategory":"EducationalApplication","isAccessibleForFree":true,"operatingSystem":"All"}</script>
+<link rel="stylesheet" href="css/ai-assistant.css">
+<link rel="stylesheet" href="css/consent.css">
+
+<link rel="stylesheet" href="css/studymetrics-v2.css">
+<script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-head">
+  <nav class="wrap nav">
+    <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+    <div class="nav-links"><a href="study-guides.html">Guides</a>
+        <a href="index.html#tools">Tools</a>
+        <a href="attendance-calculator.html" class="on">Attendance</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+    </div>
+    <div class="nav-cta">
+        <a href="academic-resources.html" class="btn btn-ghost">All tools</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+  </nav>
+</header>
+<main id="main-content">
+
+<section class="tool-head">
+  <div class="grid-bg"></div>
+  <div class="wrap reveal">
+    <div class="crumb"><a href="index.html">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg><span>Attendance Calculator</span></div>
+    <div class="calc-kicker" aria-label="Attendance tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Attendance</div>
+    <h1>Attendance Calculator</h1>
+    <p>Track your current percentage and find out exactly how many classes you can safely skip or need to attend to hit your goal.</p>
+  </div>
+</section>
+
+<div class="wrap reveal">
+  <div class="tool-layout wide-rail">
+    <div class="calc-main">
+      <div class="panel">
+        <div class="inputs">
+          <div class="pair">
+            <div class="field">
+                <label for="attended">Classes attended</label>
+                <input class="input lg tnum" id="attended" type="number" min="0" placeholder="e.g. 42">
+                <div class="hint">Total sessions you attended</div>
+            </div>
+            <div class="field">
+                <label for="held">Total classes held</label>
+                <input class="input lg tnum" id="held" type="number" min="0" placeholder="e.g. 50">
+                <div class="hint">Total sessions conducted</div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="req">Required attendance</label>
+            <div class="input-unit">
+                <input class="input lg tnum" id="req" type="number" min="0" max="100" value="75">
+                <span class="unit">%</span>
+            </div>
+            <div class="hint">Minimum percentage needed (usually 75%)</div>
+          </div>
+          <div class="calc-actions">
+            <button id="resetBtn" class="btn btn-ghost">Reset Fields</button>
+            <button class="btn btn-ghost" id="pdfBtn" aria-label="Download result as PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          PDF
+        </button>
+        <button id="shareBtn" class="btn btn-ghost" aria-label="Copy attendance result">Copy Result</button>
+        <button id="attCopyLink" class="btn btn-ghost" aria-label="Copy a shareable link to this result">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Copy Link
+        </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-rail">
+      <div class="ring-card">
+        <div class="ring">
+          <svg width="180" height="180" viewBox="0 0 180 180">
+            <circle cx="90" cy="90" r="78" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="12"/>
+            <circle id="ringArc" cx="90" cy="90" r="78" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" stroke-dasharray="490" stroke-dashoffset="490" style="transition: stroke-dashoffset .6s ease;"/>
+          </svg>
+          <div class="mid"><span class="pct tnum" id="pct">—</span><span class="lbl">current</span></div>
+        </div>
+        <div class="ring-status" id="status">Enter your numbers</div>
+      </div>
+      <div class="verdict info" id="verdict">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span id="verdictText">Enter your class details to see your verdict.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap reveal">
+  <div class="prose">
+    <h2>How it works</h2>
+    <p>Your attendance is calculated as <code>(Attended / Total) × 100</code>. Most institutions require a specific minimum to remain eligible for exams.</p>
+    <div class="faq">
+      <details open><summary>How many classes can I skip?</summary><p>If your percentage is above the requirement, we calculate the maximum number of future classes you can miss without dropping below the limit.</p></details>
+      <details><summary>How do I recover my attendance?</summary><p>If you're below the limit, we calculate the exact number of consecutive classes you must attend to pull your average back up.</p></details>
+    </div>
+  </div>
+</div>
+
+
+<div class="wrap reveal">
+  <div class="sec-head" style="margin-bottom:var(--s3)"><span class="kicker">Keep going</span><h2>Related calculators</h2></div>
+  <div class="tools-grid">
+      <a href="attendance-goal.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Attendance Goal</h3>
+        <p>How many more classes must you attend to hit your required percentage?</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="attendance-percentage.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+        <h3>Attendance Percentage</h3>
+        <p>Quick attendance % calculator with compliance check and absence counter.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>GPA Calculator</h3>
+        <p>Calculate semester GPA from letter grades, percentages, or points.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="grade-calculator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></div>
+        <h3>Grade Calculator</h3>
+        <p>Weight assignments, quizzes and exams to see your current course average.</p>
+        <span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+  </div>
+</div>
+
+
+<section class="related" aria-labelledby="relHeading">
+  <div class="wrap">
+    <h2 id="relHeading" style="font-size:var(--step-md);margin-bottom:var(--s3)">Related Tools</h2>
+    <div class="tools-grid">
+      <a href="attendance-goal.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3>Attendance Goal</h3><p>Classes needed to hit target</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="attendance-percentage.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3>Attendance Percentage</h3><p>Calculate your attendance %</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="study-schedule.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <h3>Study Schedule</h3><p>Plan your study sessions</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="pomodoro.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+        <h3>Pomodoro Timer</h3><p>Stay focused while studying</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="backToTop" role="button" aria-label="Back to top" tabindex="0">↑</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h4>GPA &amp; Grades</h4>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+        <a href="percentage-to-gpa.html">% to GPA</a>
+        <a href="gpa-to-percentage.html">GPA to %</a>
+      </div>
+      <div class="foot-col">
+        <h4>Grade Tools</h4>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="assignment-weight.html">Assignment Weight</a>
+        <a href="class-average.html">Class Average</a>
+        <a href="percentage-calculator.html">Percentage</a>
+      </div>
+      <div class="foot-col">
+        <h4>Planning</h4>
+        <a href="attendance-calculator.html">Attendance</a>
+        <a href="study-time.html">Study Time</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="scientific-calculator.html">Scientific Calc</a>
+        <a href="basic-calculator.html">Basic Calc</a>
+        <a href="word-counter.html">Word Counter</a>
+      </div>
+      <div class="foot-col">
+        <h4>Guides &amp; Company</h4>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="academic-resources.html">Academic Resources</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="ai.html">StudyMetrics AI</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Study Metrics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/script.js"></script>
+<script defer src="js/sm-shell.js"></script>
+<script defer src="js/personalization.js"></script>
+<script defer src="js/share-links.js"></script>
+<script defer src="js/attendance-calculator.js"></script>
+<script defer src="js/grading-systems.js"></script>
+<script defer src="js/country-selector.js"></script>
+<script defer src="js/premium.js"></script>
+<script defer src="js/calculators.js"></script>
+<script defer src="js/content-platform.js"></script>
+
+
+<!-- Ad: Rectangle -->
+<div class="ad-slot rect" aria-label="Advertisement">
+  <div class="ad-label">Advertisement</div>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+    data-ad-slot="RECT_SLOT_ID"
+    data-ad-format="rectangle"
+    data-full-width-responsive="false"></ins>
+</div>
+<script defer src="js/ai-service.js"></script>
+<script defer src="js/ai-assistant.js"></script>
+
+<script defer src="js/analytics.js"></script>
+<script defer src="js/consent.js"></script>
+<script defer src="js/email-capture.js"></script>
+<script src="js/pwa.js" defer></script>
+</body>
+</html>
