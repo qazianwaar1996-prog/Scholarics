@@ -1,5 +1,6 @@
 # StudyMetrics on Cloudflare Pages
 
+
 The entire site runs on **Cloudflare Pages**: static assets from the repo root +
 edge API from the `functions/` directory. **No Express, no Node server, no
 Railway/Render/Formspree** — only Cloudflare + Google Gemini.
