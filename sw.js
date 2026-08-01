@@ -20,8 +20,8 @@
    ============================================================ */
 'use strict';
 
-var CACHE_NAME  = 'sm-static-v2.6';
-var HTML_CACHE  = 'sm-pages-v2.6';
+var CACHE_NAME  = 'sm-static-v3.0';
+var HTML_CACHE  = 'sm-pages-v3.0';
 /* Relative to the SW location so it works on a root domain (studymetrics.app)
    AND on a project subpath (github.io/<repo>/). */
 var OFFLINE_URL = 'index.html';
