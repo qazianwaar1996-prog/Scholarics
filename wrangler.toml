@@ -11,8 +11,7 @@ pages_build_output_dir = "."
 # RESEND_API_KEY — are set via `npx wrangler pages secret put <NAME>`
 # or the Pages dashboard (Settings → Environment variables) and are
 # NEVER written here.
-[vars]
-GEMINI_MODEL = "gemini-2.0-flash"
+
 # EMAIL_FROM = "StudyMetrics <noreply@yourdomain.com>"
 # EMAIL_TO   = "you@yourdomain.com"
 
