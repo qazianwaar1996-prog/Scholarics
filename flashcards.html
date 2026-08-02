@@ -166,7 +166,40 @@ body.sm2-shell .fc-page{padding-top:24px}
 <main id="main-content" class="sm2-content">
 
   <!-- DECK LIST VIEW -->
-  <div id="fcDeckListView" class="fc-deck-list-view">
+  <!-- Coming Soon Banner -->
+  <div style="max-width:680px;margin:0 auto 60px;text-align:center;padding:48px 24px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:oklch(.95 .08 280/.15);border:1px solid oklch(.6 .19 280/.3);border-radius:999px;padding:6px 18px;margin-bottom:28px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#a78bfa;display:inline-block;animation:pulse 2s infinite"></span>
+      <span style="font-size:.8rem;font-weight:600;color:#a78bfa;letter-spacing:.05em;text-transform:uppercase">Coming Soon</span>
+    </div>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;">AI Flashcards are almost here</h2>
+    <p style="font-size:1rem;color:var(--ink-2);line-height:1.7;margin-bottom:36px;">Create smart flashcard decks instantly from any topic or notes — powered by Google Gemini. Study smarter with spaced repetition and AI-generated questions.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px;text-align:left;">
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">🃏</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">AI Generation</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Create decks from any topic instantly</div>
+      </div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">🔁</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Spaced Repetition</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Smart review scheduling</div>
+      </div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">📖</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Any Subject</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Science, history, languages & more</div>
+      </div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">📱</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Mobile Friendly</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Study anywhere, anytime</div>
+      </div>
+    </div>
+    <a href="index.html#tools" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;">Explore Free Tools →</a>
+  </div>
+
+  <div id="fcDeckListView" class="fc-deck-list-view" style="display:none">
 
     <div class="fc-decks-head">
       <h1>My Flashcard Decks</h1>
