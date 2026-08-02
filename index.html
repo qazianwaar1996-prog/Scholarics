@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE">
-<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+<meta name="google-site-verification" content="PASTE_GSC_CODE_HERE">
+<meta name="msvalidate.01" content="PASTE_BING_CODE_HERE">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
 <meta name="description" content="25+ free student academic tools: GPA calculator, CGPA, grade predictor, Pomodoro timer, attendance tracker, study planner, and more. No signup required.">
 <link rel="canonical" href="https://studymetrics.app/">
 <!-- Critical Path Preloads -->
-<link rel="preload" href="css/style.css" as="style">
-<link rel="preload" href="css/studymetrics-v2.css" as="style">
+<link rel="preload" href="css/style.css?v=2.0" as="style">
+<link rel="preload" href="css/studymetrics-v2.css?v=2.0" as="style">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="apple-touch-icon" href="images/favicon.svg">
 <meta property="og:locale" content="en_US">
@@ -21,27 +21,28 @@
 <meta property="og:title" content="Study Metrics — Free Tools for Students">
 <meta property="og:description" content="GPA converter, calculators, and study tools. No signup, no limits.">
 <meta property="og:url" content="https://studymetrics.app/">
-<meta property="og:image" content="https://studymetrics.app/images/og-image.png">
+<meta property="og:image" content="https://studymetrics.app/images/og-image.webp">
 <meta name="twitter:site" content="@studymetrics">
+<meta name="twitter:creator" content="@studymetrics">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Study Metrics — Free Tools for Students">
 <meta name="twitter:description" content="GPA converter, calculators, and study tools. No signup, no limits.">
-<meta name="twitter:image" content="https://studymetrics.app/images/og-image.png">
+<meta name="twitter:image" content="https://studymetrics.app/images/og-image.webp">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Study Metrics","url":"https://studymetrics.app/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://studymetrics.app/academic-resources.html?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Study Metrics really free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every calculator on Study Metrics is completely free, with no signup, subscription, or usage limits. The site is supported by unobtrusive advertising, not by charging students."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No. None of our tools require an account or login. Open any calculator and start entering your grades — your results appear instantly."}},{"@type":"Question","name":"Which countries' grading scales are supported?","acceptedAnswer":{"@type":"Answer","text":"The Global GPA Converter supports 30+ national and university grading scales, including percentage, letter-grade, and 4.0/5.0/10.0-point systems, converting in both directions."}},{"@type":"Question","name":"Is my data stored or shared with anyone?","acceptedAnswer":{"@type":"Answer","text":"No. Your grades and calculations are processed entirely in your browser and are never sent to a server or stored by us."}},{"@type":"Question","name":"How accurate are the calculators?","acceptedAnswer":{"@type":"Answer","text":"Each tool follows the standard weighting and conversion formulas most universities use, though it's worth double-checking anything official against your own institution's grading policy."}},{"@type":"Question","name":"Can I use these tools on my phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every calculator is built mobile-first and works the same on phones, tablets, and desktops."}}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/print.css" media="print">
-<link rel="stylesheet" href="css/premium.css">
-<link rel="stylesheet" href="css/personalization.css">
-<link rel="stylesheet" href="css/content-platform.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2.0">
+<link rel="stylesheet" href="css/print.css?v=2.0" media="print">
+<link rel="stylesheet" href="css/premium.css?v=2.0">
+<link rel="stylesheet" href="css/personalization.css?v=2.0">
+<link rel="stylesheet" href="css/content-platform.css?v=2.0">
 <!-- Non-Critical Consent Banner CSS Loaded Asynchronously -->
-<link rel="stylesheet" href="css/consent.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="css/studymetrics-v2.css">
+<link rel="stylesheet" href="css/consent.css?v=2.0" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/studymetrics-v2.css?v=2.0">
 <script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body class="sm2">
@@ -131,7 +132,10 @@
         <div class="sm2-hero-r">
           <div class="sm2-statcards">
             <!-- Optimized Critical Hero Image Load -->
-            <img class="sm2-hero-illu" src="images/hero-illustration.png" alt="" aria-hidden="true" fetchpriority="high">
+            <picture>
+              <source srcset="images/hero-illustration.webp" type="image/webp">
+              <img class="sm2-hero-illu" src="images/hero-illustration.png" alt="" aria-hidden="true" fetchpriority="high">
+            </picture>
             <div class="sm2-statcard big">
               <div class="sm2-sc-top"><span>GPA</span> <svg viewBox="0 0 130 44" fill="none" aria-hidden="true" style="width:120px;height:38px"><polyline points="2,38 18,30 32,34 48,22 64,26 80,14 96,18 112,6 128,10" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--spark-gold)"/><circle cx="128" cy="10" r="2.6" fill="var(--gold)"/></svg></div>
               <div class="sm2-sc-val">3.75</div>
@@ -279,7 +283,7 @@ function openPremium(){
     +'<div style="background:var(--card-2,#faf9f5);border:1px solid var(--border);border-radius:14px;padding:16px">'
     +'<p style="font-size:12.5px;font-weight:600;color:var(--ink-3);margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em">Get Early Access</p>'
     +'<div style="display:flex;gap:8px">'
-    +'<input id="premiumEmail" type="email" placeholder="your@email.com" style="flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:13.5px;background:var(--card);color:var(--ink);font-family:inherit">'
+    +'<input id="premiumEmail" type="email" placeholder="your@email.com" aria-label="Email address" style="flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:13.5px;background:var(--card);color:var(--ink);font-family:inherit">'
     +'<button onclick="submitPremiumEmail()" style="padding:10px 16px;background:var(--gold);color:#1a1509;border:none;border-radius:10px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;white-space:nowrap">Notify Me</button>'
     +'</div>'
     +'</div>'
@@ -306,15 +310,15 @@ function submitPremiumEmail(){
 document.body.classList.remove('premium');
 try{new MutationObserver(function(){if(document.body.classList.contains('premium'))document.body.classList.remove('premium');}).observe(document.body,{attributes:true,attributeFilter:['class']});}catch(e){}
 </script>
-<script defer src="js/script.js"></script>
+<script defer src="js/script.js?v=2.0"></script>
 <!-- Optimized Script Loads (Removed Redundant country data & content platform scripts on the homepage) -->
-<script defer src="js/personalization.js"></script>
-<script defer src="js/premium.js"></script>
-<script defer src="js/sm-shell.js"></script>
-<script defer src="js/sm-v2-features.js"></script>
-<script defer src="js/analytics.js"></script>
-<script defer src="js/consent.js"></script>
-<script defer src="js/email-capture.js"></script>
-<script src="js/pwa.js" defer></script>
+<script defer src="js/personalization.js?v=2.0"></script>
+<script defer src="js/premium.js?v=2.0"></script>
+<script defer src="js/sm-shell.js?v=2.0"></script>
+<script defer src="js/sm-v2-features.js?v=2.0"></script>
+<script defer src="js/analytics.js?v=2.0"></script>
+<script defer src="js/consent.js?v=2.0"></script>
+<script defer src="js/email-capture.js?v=2.0"></script>
+<script src="js/pwa.js?v=2.0" defer></script>
 </body>
                                                                                                                                                                                                                                                                                                                      </html> 

@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE">
-<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+<meta name="google-site-verification" content="PASTE_GSC_CODE_HERE">
+<meta name="msvalidate.01" content="PASTE_BING_CODE_HERE">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profile — Study Metrics</title>
 <meta name="description" content="Manage your Study Metrics profile, preferences, theme, study statistics and achievements.">
 <link rel="canonical" href="https://studymetrics.app/profile.html">
-<link rel="preload" href="css/style.css" as="style">
-<link rel="preload" href="css/studymetrics-v2.css" as="style">
+<link rel="preload" href="css/style.css?v=2.0" as="style">
+<link rel="preload" href="css/studymetrics-v2.css?v=2.0" as="style">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="apple-touch-icon" href="images/favicon.svg">
 <meta property="og:type" content="website">
@@ -19,16 +19,16 @@
 <meta property="og:title" content="Profile — Study Metrics">
 <meta property="og:description" content="Manage your Study Metrics profile, preferences, theme, study statistics and achievements.">
 <meta property="og:url" content="https://studymetrics.app/profile.html">
-<meta property="og:image" content="https://studymetrics.app/images/og-image.png">
+<meta property="og:image" content="https://studymetrics.app/images/og-image.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/print.css" media="print">
-<link rel="stylesheet" href="css/premium.css">
-<link rel="stylesheet" href="css/personalization.css">
-<link rel="stylesheet" href="css/studymetrics-v2.css">
-<link rel="stylesheet" href="css/consent.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2.0">
+<link rel="stylesheet" href="css/print.css?v=2.0" media="print">
+<link rel="stylesheet" href="css/premium.css?v=2.0">
+<link rel="stylesheet" href="css/personalization.css?v=2.0">
+<link rel="stylesheet" href="css/studymetrics-v2.css?v=2.0">
+<link rel="stylesheet" href="css/consent.css?v=2.0">
 <script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
   .prof-hero{display:flex;align-items:center;gap:20px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--rxl);box-shadow:var(--shadow-sm);margin-bottom:20px}
@@ -110,7 +110,7 @@
     <a href="ai.html" class="sm2-btn sm2-btn-primary">Ask AI</a>
   </div>
   <div class="sm2-side-foot">
-    <img src="images/avatar.svg" alt="Profile">
+    <img loading="lazy" src="images/avatar.svg" alt="Profile">
     <span class="nm">Profile</span>
     <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
     <a href="profile.html" class="sm2-icon-btn" aria-label="Profile" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></a>
@@ -127,7 +127,7 @@
     </div>
     <div class="sm2-top-tools">
       <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
-      <img class="sm2-avatar" src="images/avatar.svg" alt="Profile">
+      <img loading="lazy" class="sm2-avatar" src="images/avatar.svg" alt="Profile">
     </div>
   </header>
 
@@ -477,14 +477,14 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 });
 </script>
-<script defer src="js/script.js"></script>
-<script defer src="js/personalization.js"></script>
-<script defer src="js/premium.js"></script>
-<script defer src="js/sm-shell.js"></script>
-<script defer src="js/sm-v2-features.js"></script>
-<script defer src="js/analytics.js"></script>
-<script defer src="js/consent.js"></script>
-<script defer src="js/email-capture.js"></script>
-<script src="js/pwa.js" defer></script>
+<script defer src="js/script.js?v=2.0"></script>
+<script defer src="js/personalization.js?v=2.0"></script>
+<script defer src="js/premium.js?v=2.0"></script>
+<script defer src="js/sm-shell.js?v=2.0"></script>
+<script defer src="js/sm-v2-features.js?v=2.0"></script>
+<script defer src="js/analytics.js?v=2.0"></script>
+<script defer src="js/consent.js?v=2.0"></script>
+<script defer src="js/email-capture.js?v=2.0"></script>
+<script src="js/pwa.js?v=2.0" defer></script>
 </body>
 </html>

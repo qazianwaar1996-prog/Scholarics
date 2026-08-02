@@ -24,7 +24,7 @@
   /* ── Service Worker registration ── */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      // Service worker disabled
+      navigator.serviceWorker.register('sw.js')
         .then(function (reg) {
           /* Check for updates once per hour */
           setInterval(function () { reg.update(); }, 60 * 60 * 1000);

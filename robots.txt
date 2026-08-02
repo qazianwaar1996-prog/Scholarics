@@ -1,10 +1,9 @@
 # Study Metrics robots.txt
-# Replace studymetrics.app with your real domain before publishing.
 
 User-agent: *
 Allow: /
 Disallow: /404.html
-Disallow: /LAUNCH-CHECKLIST.md
+Disallow: /*.md
 
 # Allow Google's ad crawler full access
 User-agent: Mediapartners-Google

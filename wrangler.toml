@@ -12,8 +12,8 @@ pages_build_output_dir = "."
 # or the Pages dashboard (Settings → Environment variables) and are
 # NEVER written here.
 
-# EMAIL_FROM = "StudyMetrics <noreply@yourdomain.com>"
-# EMAIL_TO   = "you@yourdomain.com"
+EMAIL_FROM = "StudyMetrics <noreply@studymetrics.app>"
+EMAIL_TO   = "hello@studymetrics.app"
 
 # Optional KV namespaces (improve rate-limit durability and store
 # submissions if no email provider is configured). Create them, then

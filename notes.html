@@ -16,13 +16,13 @@
 <meta name="robots" content="noindex, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/print.css" media="print">
-<link rel="stylesheet" href="css/premium.css">
-<link rel="stylesheet" href="css/personalization.css">
-<link rel="stylesheet" href="css/consent.css">
-<link rel="stylesheet" href="css/studymetrics-v2.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2.0">
+<link rel="stylesheet" href="css/print.css?v=2.0" media="print">
+<link rel="stylesheet" href="css/premium.css?v=2.0">
+<link rel="stylesheet" href="css/personalization.css?v=2.0">
+<link rel="stylesheet" href="css/consent.css?v=2.0">
+<link rel="stylesheet" href="css/studymetrics-v2.css?v=2.0">
 <script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* ── Notes App Layout ── */
@@ -116,7 +116,7 @@ body.sm2-shell main#main-content{padding:0}
       <a href="ai.html" class="sm2-btn sm2-btn-primary">Ask AI</a>
     </div>
     <div class="sm2-side-foot">
-      <img src="images/avatar.svg" alt="Profile">
+      <img loading="lazy" src="images/avatar.svg" alt="Profile">
       <span class="nm">Profile</span>
       <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
       <a href="profile.html" class="sm2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
@@ -139,7 +139,7 @@ body.sm2-shell main#main-content{padding:0}
       <div class="sm2-top-tools">
         <button class="sm2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sm2-dot"></span></button>
         <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
-        <img class="sm2-avatar" src="images/avatar.svg" alt="Profile">
+        <img loading="lazy" class="sm2-avatar" src="images/avatar.svg" alt="Profile">
       </div>
     </header>
 <main id="main-content" class="sm2-content">
@@ -177,9 +177,9 @@ body.sm2-shell main#main-content{padding:0}
 
     <div id="notesEditorInner" style="display:none;flex-direction:column;height:100%">
       <div class="notes-editor-head">
-        <input type="text" class="notes-title-input" id="noteTitle" placeholder="Note title…" maxlength="120">
+        <input type="text" class="notes-title-input" id="noteTitle" placeholder="Note title…" maxlength="120" aria-label="Note title">
         <select class="notes-tag-select" id="noteTag" aria-label="Category">
-          <option value="">No tag</option>
+          <option value=">No tag</option>
           <option value="Math">Math</option>
           <option value="Science">Science</option>
           <option value="English">English</option>
@@ -278,13 +278,13 @@ body.sm2-shell main#main-content{padding:0}
   </div>
 </footer>
 
-<script defer src="js/script.js"></script>
-<script defer src="js/sm-shell.js"></script>
-<script defer src="js/personalization.js"></script>
-<script defer src="js/premium.js"></script>
-<script defer src="js/sm-v2-features.js"></script>
-<script defer src="js/analytics.js"></script>
-<script defer src="js/consent.js"></script>
+<script defer src="js/script.js?v=2.0"></script>
+<script defer src="js/sm-shell.js?v=2.0"></script>
+<script defer src="js/personalization.js?v=2.0"></script>
+<script defer src="js/premium.js?v=2.0"></script>
+<script defer src="js/sm-v2-features.js?v=2.0"></script>
+<script defer src="js/analytics.js?v=2.0"></script>
+<script defer src="js/consent.js?v=2.0"></script>
 
 <script>
 function sm2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sm_theme',n);}catch(e){}if(window.SM&&SM.toast){SM.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
@@ -418,7 +418,7 @@ window.SM2Notes = (function(){
     var body = document.getElementById('noteBody');
     if(!n||!body) return;
     var w = window.open('','_blank','width=700,height=600');
-    w.document.write('<html><head><title>'+((n.title||'Note')).replace(/</g,'&lt;')+'</title></head><body style="font-family:Georgia,serif;max-width:700px;margin:40px auto;line-height:1.7;color:#111"><h1 style="font-size:22px;border-bottom:1px solid #ddd;padding-bottom:10px">'+((n.title||'Untitled')).replace(/</g,'&lt;')+'</h1>'+body.innerHTML+'<script src="js/pwa.js" defer><\/script>\n</body></html>');
+    w.document.write('<html><head><title>'+((n.title||'Note')).replace(/</g,'&lt;')+'</title></head><body style="font-family:Georgia,serif;max-width:700px;margin:40px auto;line-height:1.7;color:#111"><h1 style="font-size:22px;border-bottom:1px solid #ddd;padding-bottom:10px">'+((n.title||'Untitled')).replace(/</g,'&lt;')+'</h1>'+body.innerHTML+'<script src="js/pwa.js?v=2.0" defer><\/script>\n</body></html>');
     w.document.close(); w.print();
   }
 
@@ -474,8 +474,8 @@ window.NotesFmt = {
   redo: function(){ document.execCommand('redo'); document.getElementById('noteBody').focus(); },
 };
 </script>
-<script defer src="js/email-capture.js"></script>
-<script src="js/pwa.js" defer></script>
+<script defer src="js/email-capture.js?v=2.0"></script>
+<script src="js/pwa.js?v=2.0" defer></script>
 <nav class="sm2-bottomnav" aria-label="Mobile">
   <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
   <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
