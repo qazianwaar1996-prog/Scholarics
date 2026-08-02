@@ -12,6 +12,7 @@ pages_build_output_dir = "."
 # or the Pages dashboard (Settings → Environment variables) and are
 # NEVER written here.
 
+[vars]
 EMAIL_FROM = "StudyMetrics <noreply@studymetrics.app>"
 EMAIL_TO   = "hello@studymetrics.app"
 

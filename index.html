@@ -302,29 +302,42 @@ function openPremium(){
 }
 function submitPremiumEmail(){
   var inp=document.getElementById('premiumEmail');
-  if(!inp||!inp.value.includes('@')){if(window.SM&&SM.toast)SM.toast('Please enter a valid email','error');return;}
+  var email=inp?inp.value.trim():'';
+  if(!inp||!email||!inp.checkValidity()){
+    if(window.SM&&SM.toast)SM.toast('Please enter a valid email address.','error');
+    else alert('Please enter a valid email address.');
+    if(inp)inp.focus();
+    return;
+  }
   // Connect to backend /api/waitlist (production-ready, keeps modal UI unchanged)
   var btn=document.querySelector('#sm2modalPremium button[onclick="submitPremiumEmail()"]');
   if(btn){btn.textContent='Sending…';btn.disabled=true;}
   fetch('/api/waitlist',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({email:inp.value.trim(),source:'premium-modal',page:window.location.pathname})
+    body:JSON.stringify({email:email,source:'premium-modal',page:window.location.pathname})
   }).then(function(res){
-    return res.json().catch(function(){return {ok:res.ok,message:'Thanks! You\'re on the Premium waitlist.'};});
+    return res.json().catch(function(){return {ok:res.ok,error:res.ok?'':'Unexpected server response.'};})
+      .then(function(data){data=data||{};data._status=res.status;data._ok=res.ok;return data;});
   }).then(function(data){
-    var msg=data&&data.message?data.message:'Thanks! You\'re on the Premium waitlist.';
+    var ok=!!(data&&data._ok&&data.ok!==false);
+    var msg=(data&&(data.message||data.error))||(ok?'Thanks! You\'re on the Premium waitlist.':'We could not save your email. Please try again shortly.');
     if(window.SM&&SM.toast){
-      if(data&&data.duplicate){SM.toast('You\'re already on the list! We\'ll notify you at launch 🎉','success');}
-      else if(data&&data.ok){SM.toast(msg,'success');}
-      else{SM.toast('Something went wrong. Please try again shortly.','error');}
+      if(ok&&data&&data.duplicate){SM.toast('You\'re already on the list! We\'ll notify you at launch 🎉','success');}
+      else if(ok){SM.toast(msg,'success');}
+      else{SM.toast(msg,'error');}
     } else {
       alert(msg);
     }
-    var overlay=document.getElementById('sm2modalPremium');
-    if(overlay){setTimeout(function(){overlay.remove();},(data&&data.duplicate?1200:800));}
+    if(ok){
+      var overlay=document.getElementById('sm2modalPremium');
+      if(overlay){setTimeout(function(){overlay.remove();},(data&&data.duplicate?1200:800));}
+    } else if(btn){
+      btn.textContent='Notify Me';btn.disabled=false;
+    }
   }).catch(function(err){
-    if(window.SM&&SM.toast)SM.toast('Could not connect — please try again later.','error');
+    var msg='Could not connect — please try again later.';
+    if(window.SM&&SM.toast)SM.toast(msg,'error');
     else alert('Could not connect. Please try again later.');
     if(btn){btn.textContent='Notify Me';btn.disabled=false;}
   });
