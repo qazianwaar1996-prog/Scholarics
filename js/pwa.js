@@ -45,7 +45,7 @@
           });
         })
         .catch(function (err) {
-          console.warn('[PWA] SW registration failed:', err);
+
         });
 
       /* Detect when the SW controlling this page changes (e.g. clients.claim)

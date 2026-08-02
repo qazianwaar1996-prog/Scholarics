@@ -13,31 +13,49 @@
     });
   }
   function initValidationStates () {
-    qsa('.input.lg[type=number]').forEach(function (inp) {
-      function check () {
-        if (inp.value === '') {
-          inp.classList.remove('is-valid', 'is-error');
-          return;
-        }
-        var val = parseFloat(inp.value);
-        var min = parseFloat(inp.min);
-        var max = parseFloat(inp.max);
-        var valid = !isNaN(val);
-        if (!isNaN(min)) valid = valid && val >= min;
-        if (!isNaN(max)) valid = valid && val <= max;
-        if (valid) {
-          inp.classList.add('is-valid');
-          inp.classList.remove('is-error');
-        } else {
-          inp.classList.add('is-error');
-          inp.classList.remove('is-valid');
-        }
+    function check (inp) {
+      if(inp.type !== 'number') return;
+      var existingMsg = inp.parentElement.querySelector('.val-msg');
+      if (inp.value === '') {
+        inp.classList.remove('is-valid', 'is-error');
+        if(existingMsg) existingMsg.remove();
+        return;
       }
-      inp.addEventListener('input',  check);
-      inp.addEventListener('blur',   check);
-      inp.addEventListener('change', check);
-      if (inp.value !== '') check();
-    });
+      var val = parseFloat(inp.value);
+      var min = isNaN(parseFloat(inp.min)) ? -Infinity : parseFloat(inp.min);
+      var max = isNaN(parseFloat(inp.max)) ? Infinity : parseFloat(inp.max);
+      
+      if (val > 999999) { val = 999999; inp.value = 999999; }
+      
+      var valid = !isNaN(val);
+      if (min !== -Infinity) valid = valid && val >= min;
+      if (max !== Infinity) valid = valid && val <= max;
+
+      if (valid) {
+        inp.classList.add('is-valid');
+        inp.classList.remove('is-error');
+        if(existingMsg) existingMsg.remove();
+      } else {
+        inp.classList.add('is-error');
+        inp.classList.remove('is-valid');
+        if(!existingMsg) {
+           existingMsg = document.createElement('div');
+           existingMsg.className = 'val-msg';
+           existingMsg.style.cssText = 'color:#ef4444;font-size:12px;margin-top:4px;font-weight:500;';
+           inp.parentElement.appendChild(existingMsg);
+        }
+        if(isNaN(val)) existingMsg.textContent = 'Invalid number.';
+        else if(val < min) existingMsg.textContent = 'Minimum is ' + min + '.';
+        else if(val > max) existingMsg.textContent = 'Maximum is ' + max + '.';
+        else existingMsg.textContent = 'Invalid input.';
+      }
+    }
+    
+    document.body.addEventListener('input', function(e) { if(e.target.tagName==='INPUT') check(e.target); });
+    document.body.addEventListener('blur', function(e) { if(e.target.tagName==='INPUT') check(e.target); }, true);
+    document.body.addEventListener('change', function(e) { if(e.target.tagName==='INPUT') check(e.target); });
+    
+    qsa('input[type=number]').forEach(check);
   }
   function initResultFlash () {
     if (pRM) return;
