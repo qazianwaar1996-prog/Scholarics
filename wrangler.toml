@@ -17,20 +17,35 @@ EMAIL_FROM = "StudyMetrics <noreply@studymetrics.app>"
 EMAIL_TO   = "hello@studymetrics.app"
 
 # KV namespaces for rate limiting, submissions, and waitlist.
-# Create them via:
-#   npx wrangler kv namespace create RATE_LIMIT_KV
-#   npx wrangler kv namespace create SUBMISSIONS
-#   npx wrangler kv namespace create WAITLIST_KV
-# Then uncomment the bindings below and paste the IDs, or bind via dashboard.
-
-[[kv_namespaces]]
-binding = "RATE_LIMIT_KV"
-id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-[[kv_namespaces]]
-binding = "SUBMISSIONS"
-id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-[[kv_namespaces]]
-binding = "WAITLIST_KV"
-id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#
+# ⚠️ DEPLOY BLOCKER FIXED: the bindings below must stay COMMENTED OUT until
+# real namespace IDs exist. Placeholder IDs (e.g. "xxxx…") make every
+# Cloudflare Pages deployment FAIL with "KV namespace not found".
+#
+# Two ways to enable KV (either works):
+#
+# A) Dashboard (recommended): Pages project → Settings → Functions →
+#    KV namespace bindings → add RATE_LIMIT_KV / SUBMISSIONS / WAITLIST_KV.
+#    No code change needed; bindings set in the dashboard override this file.
+#
+# B) wrangler.toml: create the namespaces
+#      npx wrangler kv namespace create RATE_LIMIT_KV
+#      npx wrangler kv namespace create SUBMISSIONS
+#      npx wrangler kv namespace create WAITLIST_KV
+#    then uncomment below and paste the REAL IDs the command prints:
+#
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "PASTE_REAL_ID_HERE"
+#
+# [[kv_namespaces]]
+# binding = "SUBMISSIONS"
+# id = "PASTE_REAL_ID_HERE"
+#
+# [[kv_namespaces]]
+# binding = "WAITLIST_KV"
+# id = "PASTE_REAL_ID_HERE"
+#
+# Until KV is bound, the app still works: rate limiting falls back to
+# best-effort in-memory limiting, and the waitlist returns a clear
+# "database not configured" message instead of failing the whole deploy.
