@@ -1,0 +1,61 @@
+{
+  "name": "waitlist",
+  "description": "Premium waitlist subscriptions for StudyMetrics v2",
+  "version": "1.0.0",
+  "created": "2026-08-03",
+  "environment": "Cloudflare Workers (Pages Functions) + KV (optional file fallback for local dev)",
+  "schema": [
+    {
+      "field": "email",
+      "type": "string",
+      "required": true,
+      "constraints": "unique, max 320 chars, normalized lowercase",
+      "index": "primary (key: waitlist:<email>)"
+    },
+    {
+      "field": "timestamp",
+      "type": "integer",
+      "required": true,
+      "constraints": "Unix epoch ms",
+      "default": "Date.now()"
+    },
+    {
+      "field": "source",
+      "type": "string",
+      "required": false,
+      "constraints": "max 128 chars, sanitized",
+      "default": "premium-modal"
+    },
+    {
+      "field": "page",
+      "type": "string",
+      "required": false,
+      "constraints": "max 256 chars, sanitized URL path",
+      "default": "unknown"
+    },
+    {
+      "field": "id",
+      "type": "string",
+      "required": true,
+      "constraints": "unique UUID-style identifier",
+      "format": "wl_<timestamp>_<random>"
+    },
+    {
+      "field": "ip",
+      "type": "string",
+      "required": false,
+      "constraints": "max 45 chars, sanitized",
+      "default": "unknown"
+    }
+  ],
+  "indexes": [
+    "waitlist:<email> (primary, unique, duplicate check)",
+    "waitlist:record:<id> (secondary lookup)"
+  ],
+  "kv_namespace": {
+    "binding_name": "WAITLIST_KV",
+    "fallback_binding": "SUBMISSIONS",
+    "ttl_seconds": 315360000,
+    "description": "Create via: npx wrangler kv:namespace create WAITLIST_KV"
+  }
+}

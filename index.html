@@ -303,9 +303,31 @@ function openPremium(){
 function submitPremiumEmail(){
   var inp=document.getElementById('premiumEmail');
   if(!inp||!inp.value.includes('@')){if(window.SM&&SM.toast)SM.toast('Please enter a valid email','error');return;}
-  if(window.SM&&SM.toast)SM.toast('You\'re on the list! We\'ll notify you at launch 🎉','success');
-  var overlay=document.getElementById('sm2modalPremium');
-  if(overlay)setTimeout(function(){overlay.remove();},1200);
+  // Connect to backend /api/waitlist (production-ready, keeps modal UI unchanged)
+  var btn=document.querySelector('#sm2modalPremium button[onclick="submitPremiumEmail()"]');
+  if(btn){btn.textContent='Sending…';btn.disabled=true;}
+  fetch('/api/waitlist',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({email:inp.value.trim(),source:'premium-modal',page:window.location.pathname})
+  }).then(function(res){
+    return res.json().catch(function(){return {ok:res.ok,message:'Thanks! You\'re on the Premium waitlist.'};});
+  }).then(function(data){
+    var msg=data&&data.message?data.message:'Thanks! You\'re on the Premium waitlist.';
+    if(window.SM&&SM.toast){
+      if(data&&data.duplicate){SM.toast('You\'re already on the list! We\'ll notify you at launch 🎉','success');}
+      else if(data&&data.ok){SM.toast(msg,'success');}
+      else{SM.toast('Something went wrong. Please try again shortly.','error');}
+    } else {
+      alert(msg);
+    }
+    var overlay=document.getElementById('sm2modalPremium');
+    if(overlay){setTimeout(function(){overlay.remove();},(data&&data.duplicate?1200:800));}
+  }).catch(function(err){
+    if(window.SM&&SM.toast)SM.toast('Could not connect — please try again later.','error');
+    else alert('Could not connect. Please try again later.');
+    if(btn){btn.textContent='Notify Me';btn.disabled=false;}
+  });
 }
 document.body.classList.remove('premium');
 try{new MutationObserver(function(){if(document.body.classList.contains('premium'))document.body.classList.remove('premium');}).observe(document.body,{attributes:true,attributeFilter:['class']});}catch(e){}

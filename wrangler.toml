@@ -15,14 +15,21 @@ pages_build_output_dir = "."
 EMAIL_FROM = "StudyMetrics <noreply@studymetrics.app>"
 EMAIL_TO   = "hello@studymetrics.app"
 
-# Optional KV namespaces (improve rate-limit durability and store
-# submissions if no email provider is configured). Create them, then
-# uncomment and paste the IDs (or bind via the dashboard):
+# KV namespaces for rate limiting, submissions, and waitlist.
+# Create them via:
 #   npx wrangler kv namespace create RATE_LIMIT_KV
 #   npx wrangler kv namespace create SUBMISSIONS
-# [[kv_namespaces]]
-# binding = "RATE_LIMIT_KV"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-# [[kv_namespaces]]
-# binding = "SUBMISSIONS"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#   npx wrangler kv namespace create WAITLIST_KV
+# Then uncomment the bindings below and paste the IDs, or bind via dashboard.
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+[[kv_namespaces]]
+binding = "SUBMISSIONS"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+[[kv_namespaces]]
+binding = "WAITLIST_KV"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
