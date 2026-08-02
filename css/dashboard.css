@@ -159,6 +159,7 @@
   align-items: center;
   gap: var(--s4);
   min-width: 200px;
+  max-width: 100%;
 }
 .db-stat-ring {
   position: relative;
@@ -184,16 +185,20 @@
   letter-spacing: -.02em;
   color: var(--ink);
 }
-.db-stat-info { flex: 1; }
+.db-stat-info { flex: 1; min-width: 0; }
 .db-stat-label {
   font-size: var(--step-sm);
   font-weight: 600;
   color: var(--ink);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 .db-stat-sub {
   font-size: var(--step-xs);
   color: var(--ink-3);
   margin-top: 3px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 .db-stat-badge {
   font-size: var(--step-xs);
@@ -201,6 +206,8 @@
   margin-top: var(--s2);
   text-transform: uppercase;
   letter-spacing: .04em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 .db-stat-empty {
   display: flex;
@@ -280,10 +287,11 @@
 }
 .db-course-row {
   display: grid;
-  grid-template-columns: 1fr 44px 1fr 44px;
+  grid-template-columns: minmax(0, 1fr) 44px minmax(44px, 1fr) 44px;
   align-items: center;
   gap: var(--s2);
   font-size: var(--step-xs);
+  min-width: 0;
 }
 .db-course-name {
   color: var(--ink-2);
@@ -302,6 +310,7 @@
   background: var(--border);
   border-radius: 20px;
   overflow: hidden;
+  min-width: 0;
 }
 .db-course-bar-fill {
   height: 100%;
@@ -587,10 +596,11 @@
 
 @media (max-width: 560px) {
   .db-nav-btn { padding: 12px 12px; font-size: var(--step-xs); }
+  .db-course-row { grid-template-columns: minmax(0, 1fr) 40px minmax(42px, .85fr) 40px; gap: 5px; }
   .db-calcs-grid { grid-template-columns: 1fr; }
   .db-fav-grid { grid-template-columns: 1fr; }
   .db-qa-grid { grid-template-columns: 1fr 1fr; }
-  .db-stat-card { min-width: 100%; }
+  .db-stat-card { min-width: 100%; width: 100%; }
   .db-stats-bar { flex-direction: column; }
   .db-gpa-summary { flex-direction: column; align-items: center; text-align: center; }
   .db-gpa-label-row { justify-content: center; }

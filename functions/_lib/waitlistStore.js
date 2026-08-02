@@ -7,18 +7,34 @@
  * Production setup: bind KV namespaces via wrangler.toml or dashboard.
  */
 
-function getKVBinding(env) {
+function getKVInfo(env) {
   if (!env) return null;
-  return env.WAITLIST_KV || env.SUBMISSIONS || null;
+  var bindings = [
+    ['WAITLIST_KV', env.WAITLIST_KV],
+    ['SUBMISSIONS', env.SUBMISSIONS]
+  ];
+  for (var i = 0; i < bindings.length; i++) {
+    var name = bindings[i][0];
+    var kv = bindings[i][1];
+    if (kv && typeof kv.get === 'function' && typeof kv.put === 'function') return { name: name, kv: kv };
+    if (kv) console.error('[WAITLIST] Invalid KV binding for ' + name + ': expected Cloudflare KV namespace with get/put methods.');
+  }
+  return null;
+}
+
+function getKVBinding(env) {
+  var info = getKVInfo(env);
+  return info && info.kv;
 }
 
 export async function initWaitlistDB(env) {
   /** Creates the minimum schema entry in the bound KV namespace and logs initialization. */
-  var kv = getKVBinding(env);
+  var info = getKVInfo(env);
+  var kv = info && info.kv;
   var meta = {
     schema_version: '1.0.0',
     initialized_at: new Date().toISOString(),
-    namespace: kv ? (env.WAITLIST_KV ? 'WAITLIST_KV' : 'SUBMISSIONS') : 'none',
+    namespace: info ? info.name : 'none',
     instruction: kv ? 'Schema ready (KV bound).' : 'No KV namespace bound. Create one: npx wrangler kv:namespace create WAITLIST_KV  — then add binding to wrangler.toml or dashboard.'
   };
   if (kv) {
@@ -56,7 +72,8 @@ export async function storeWaitlist(env, email, meta) {
     throw new Error('Invalid email address.');
   }
 
-  var kv = getKVBinding(env);
+  var info = getKVInfo(env);
+  var kv = info && info.kv;
   var id = meta && meta.id ? meta.id : ('wl_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8));
   var record = {
     email: cleanedEmail,
@@ -77,8 +94,8 @@ export async function storeWaitlist(env, email, meta) {
   try {
     await kv.put('waitlist:' + cleanedEmail, JSON.stringify(record), { expirationTtl: 60 * 60 * 24 * 365 * 10 });
     await kv.put('waitlist:record:' + id, JSON.stringify(record), { expirationTtl: 60 * 60 * 24 * 365 * 10 });
-    console.info('[WAITLIST] Entry stored:', id, cleanedEmail, 'namespace:', env.WAITLIST_KV ? 'WAITLIST_KV' : 'SUBMISSIONS');
-    return { stored: true, id: id, namespace: env.WAITLIST_KV ? 'WAITLIST_KV' : 'SUBMISSIONS', method: 'kv' };
+    console.info('[WAITLIST] Entry stored:', id, cleanedEmail, 'namespace:', info.name);
+    return { stored: true, id: id, namespace: info.name, method: 'kv' };
   } catch (e) {
     console.error('[WAITLIST] Storage error:', e.message);
     throw new Error('Could not save to the waitlist database. Please try again shortly.');

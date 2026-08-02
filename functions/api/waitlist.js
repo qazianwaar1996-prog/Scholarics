@@ -1,4 +1,4 @@
-import { withApi, json } from '../_lib/http.js';
+import { withApi, json, corsHeaders } from '../_lib/http.js';
 import { requireEmail, clean, str } from '../_lib/validate.js';
 import { isDuplicate, storeWaitlist, initWaitlistDB, logWaitlistEvent } from '../_lib/waitlistStore.js';
 
@@ -15,6 +15,10 @@ import { isDuplicate, storeWaitlist, initWaitlistDB, logWaitlistEvent } from '..
  * - No secrets exposed in responses
  * - Cloudflare Pages Functions compatible (ESM, no Node-specific APIs)
  */
+
+export const onRequestOptions = async ({ request }) => {
+  return new Response(null, { status: 204, headers: corsHeaders(request, { corsMethods: 'POST, OPTIONS' }) });
+};
 
 export const onRequestPost = withApi(async ({ body, env, request }) => {
   // Initialize schema (no-op if KV is bound; logs and sets meta if missing)
@@ -74,7 +78,8 @@ export const onRequestPost = withApi(async ({ body, env, request }) => {
     });
   } catch (e) {
     logWaitlistEvent(env, 'waitlist_storage_failed', { email: email, error: e.message, ip: clientIP });
-    return json({ ok: false, error: e.message || 'Something went wrong. Please try again shortly.' }, 500);
+    try { console.error('[WAITLIST] Storage failed:', e && (e.stack || e.message || e)); } catch (logErr) {}
+    return json({ ok: false, error: 'We could not save your subscription right now. Please try again shortly.' }, 500);
   }
 
   // Success logging
@@ -96,4 +101,4 @@ export const onRequestPost = withApi(async ({ body, env, request }) => {
     id: result.id,
     stored: result.stored
   }, 201);
-}, { limit: 5, scope: 'waitlist' });
+}, { limit: 5, scope: 'waitlist', cors: true, corsMethods: 'POST, OPTIONS' });

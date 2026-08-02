@@ -11,6 +11,33 @@ export function badRequest(message) {
   return json({ error: message || 'Invalid request.' }, 400);
 }
 
+export function corsHeaders(request, opts) {
+  opts = opts || {};
+  var origin = request && request.headers ? request.headers.get('Origin') : '';
+  var allowed = opts.corsOrigins || [];
+  var allowOrigin = '*';
+  if (origin && allowed.length) {
+    allowOrigin = allowed.indexOf(origin) !== -1 ? origin : allowed[0];
+  } else if (origin && opts.reflectOrigin) {
+    allowOrigin = origin;
+  }
+  var headers = {
+    'Access-Control-Allow-Origin': allowOrigin,
+    'Access-Control-Allow-Methods': opts.corsMethods || 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': opts.corsHeaders || 'Content-Type, Accept',
+    'Access-Control-Max-Age': String(opts.corsMaxAge || 86400)
+  };
+  if (allowOrigin !== '*') headers.Vary = 'Origin';
+  return headers;
+}
+
+function addHeaders(response, headers) {
+  if (!headers || !Object.keys(headers).length) return response;
+  var out = new Headers(response.headers);
+  Object.keys(headers).forEach(function (k) { out.set(k, headers[k]); });
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers: out });
+}
+
 /** Cloudflare sets cf-connecting-ip; fall back to x-forwarded-for. */
 export function getClientIP(request) {
   var cf = request.headers.get('cf-connecting-ip');
@@ -33,24 +60,29 @@ export function withApi(handler, opts) {
     var request = context.request;
     var env = context.env;
     var ip = getClientIP(request);
+    var extraHeaders = opts.cors ? corsHeaders(request, opts) : {};
 
     var allowed = await rateLimit(env, (opts.scope || 'api') + ':' + ip, opts.limit && { limit: opts.limit });
     if (!allowed) {
-      return json({ error: 'Too many requests. Please slow down and try again shortly.' }, 429, { 'Retry-After': '60' });
+      return json({ ok: false, error: 'Too many requests. Please slow down and try again shortly.' }, 429, Object.assign({ 'Retry-After': '60' }, extraHeaders));
     }
 
     var body;
     try {
       body = await request.json();
     } catch (e) {
-      return badRequest('Invalid JSON body.');
+      return json({ ok: false, error: 'Invalid JSON body.' }, 400, extraHeaders);
     }
 
     try {
-      return await handler({ body: body || {}, env: env, request: request, context: context });
+      var response = await handler({ body: body || {}, env: env, request: request, context: context });
+      return opts.cors ? addHeaders(response, extraHeaders) : response;
     } catch (err) {
       var mapped = toHttpError(err);
-      return json({ error: mapped.message }, mapped.status);
+      try {
+        console.error('[API]', opts.scope || 'api', mapped.status, (err && (err.code || err.message)) || err, err && (err.detail || err.stack || ''));
+      } catch (e) {}
+      return json({ ok: false, error: mapped.message }, mapped.status, extraHeaders);
     }
   };
 }
