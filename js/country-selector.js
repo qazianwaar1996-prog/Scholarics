@@ -1,7 +1,7 @@
 window.SM_COUNTRY = (function () {
   "use strict";
   if (typeof window.SM_GRADING === "undefined") {
-    console.warn("country-selector: SM_GRADING not loaded.");
+
     return { current: function() { return null; }, onChange: function() {} };
   }
   var G        = window.SM_GRADING;

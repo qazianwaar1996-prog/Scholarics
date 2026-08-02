@@ -603,3 +603,29 @@ body.premium{opacity:1!important}
   color: var(--ok, #22c55e) !important;
   cursor: default;
 }
+
+@media (max-width: 767px) {
+  .sm2-premium-form {
+    flex-direction: column;
+  }
+  .sm2-premium-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .sm2-tool h3, .sm-pers-card-name, .db-fav-name, .db-qa-name, .value h3, .db-calc-name {
+    white-space: normal !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 13px !important;
+  }
+}
+.sm2-tool {
+  height: 100%;
+}
+.sm2-tool p {
+  flex-grow: 1;
+}

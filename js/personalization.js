@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   if (typeof window.SM === 'undefined') {
-    console.warn('personalization.js: SM not found. Load script.js first.');
+
     return;
   }
   var store = SM.store;
