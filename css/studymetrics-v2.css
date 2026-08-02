@@ -607,9 +607,25 @@ body.premium{opacity:1!important}
 @media (max-width: 767px) {
   .sm2-premium-form {
     flex-direction: column;
+    width: 100%;
   }
   .sm2-premium-form button {
     width: 100%;
+  }
+  .sm2-chips {
+    flex-wrap: wrap;
+  }
+  .sm2-chip {
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .sm2-sc-val {
+    font-size: 32px !important;
+    margin: 4px 0 2px !important;
+  }
+  .sm2-sc-label {
+    font-size: 11px !important;
+    white-space: nowrap;
   }
 }
 
