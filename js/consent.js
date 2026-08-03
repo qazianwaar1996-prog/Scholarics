@@ -12,6 +12,9 @@
   }
   var adsLoaded = false;
   function loadAds() {
+    /* Avoid a failed third-party request until a real AdSense publisher ID
+       is configured for production. */
+    if (!/^ca-pub-[0-9]+$/.test(PUB_ID)) return;
     if (adsLoaded) return;
     adsLoaded = true;
     var s = document.createElement('script');

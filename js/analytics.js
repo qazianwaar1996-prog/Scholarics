@@ -25,6 +25,8 @@
 
   /* ── Load gtag.js ─────────────────────────────────────────── */
   function loadGA4() {
+    /* Do not request Google's endpoint with the repository placeholder. */
+    if (!/^G-[A-Z0-9]+$/i.test(GA_ID)) return;
     if (window._ga4Loaded) return;
     window._ga4Loaded = true;
 
