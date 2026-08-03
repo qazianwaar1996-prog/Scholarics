@@ -297,7 +297,7 @@ img, video, iframe, embed, object, canvas, svg {
 /* The <picture> element wrapping sm2-hero-illu lives inside
    .sm2-statcards. When .sm2-statcards switches to display:grid,
    the <picture> still occupies a grid slot unless hidden. */
-@media (max-width: 980px) {
+@media (max-width: 1024px) {
   .sm2-statcards picture {
     display: none !important;
   }
