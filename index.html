@@ -301,6 +301,20 @@ function openPremium(){
   box.innerHTML=html;
   overlay.appendChild(box);
   document.body.appendChild(overlay);
+  var form=document.getElementById('premiumWaitlistForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      submitPremiumEmail();
+    });
+  }
+  var btn=document.getElementById('premiumNotifyButton');
+  if(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      submitPremiumEmail();
+    });
+  }
   overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove();});
   document.addEventListener('keydown',function onEsc(e){if(e.key==='Escape'){overlay.remove();document.removeEventListener('keydown',onEsc);}});
   setTimeout(function(){var ei=document.getElementById('premiumEmail');if(ei)ei.focus();},100);
@@ -323,6 +337,7 @@ function submitPremiumEmail(){
   var gotcha=document.getElementById('premiumGotcha');
   var btn=document.getElementById('premiumNotifyButton');
   if(!inp)return;
+  if(inp.disabled)return;
   var email=(inp.value||'').trim();
   var valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if(!valid){showPremiumWaitlistMessage('Please enter a valid email address.','error');inp.focus();return;}
