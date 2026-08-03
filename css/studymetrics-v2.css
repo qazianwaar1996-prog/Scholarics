@@ -194,12 +194,17 @@ body.sm2 #db-welcome{display:none}
 .sm2-statcards{position:relative;height:100%;min-height:320px}
 .sm2-statcard{position:absolute;display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border:1px solid var(--glass-brd);border-radius:var(--rlg);padding:14px 16px;box-shadow:var(--shadow-lg)}
-.sm2-statcard.sm2-statcard-primary{top:0;right:0;width:min(54%,260px);z-index:10}
-.sm2-statcard.mid{bottom:0;left:0;width:min(40%,150px);z-index:11}
-.sm2-statcard.mid2{bottom:0;right:0;width:min(40%,150px);z-index:11}
+/* hero card: original size/proportions restored (58% / 260px cap).
+   z-index kept from the overlap fix so it always stacks above the mid cards. */
+.sm2-statcard.sm2-statcard-primary{top:0;right:0;width:min(58%,260px);z-index:10}
+.sm2-statcard.mid{bottom:0;left:0;width:min(44%,150px);z-index:11}
+.sm2-statcard.mid2{bottom:0;right:0;width:min(44%,150px);z-index:11}
 .sm2-sc-top{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;overflow:hidden}
-/* Sparkline SVGs in card header: never overflow their container */
-.sm2-sc-top svg{flex-shrink:0;max-width:100%;height:auto}
+/* Sparkline SVGs in card header: never overflow their container.
+   Allowed to shrink (min-width:0) so at narrow card widths the graph scales
+   down inside the header instead of being clipped by the overflow:hidden. */
+.sm2-sc-top svg{flex:0 1 auto;min-width:0;max-width:100%;height:auto}
+.sm2-sc-top span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sm2-sc-val{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--ink);line-height:1.1;position:static;margin-bottom:6px}
 .sm2-statcard.sm2-statcard-primary .sm2-sc-val{font-size:44px;margin:6px 0 6px}
 .sm2-statcard.mid .sm2-sc-val,.sm2-statcard.mid2 .sm2-sc-val{font-size:26px;margin:4px 0 6px}
@@ -449,8 +454,22 @@ body.sm2 .sm2-app *,body.sm2 .sm2-bottomnav *{-webkit-text-fill-color:currentCol
   .sm2-hero-r{min-height:0;margin-top:16px}
   .sm2-statcards{position:static;height:auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .sm2-statcard{display:flex !important;flex-direction:column !important;position:static !important;width:auto !important;inset:auto !important}
-  .sm2-statcard.sm2-statcard-primary{grid-column:1 / -1}
-  .sm2-statcard.sm2-statcard-primary .sm2-sc-val{font-size:38px}
+  /* HERO CARD (stacked): keeps its full display size — spans the whole row,
+     keeps the 44px value and the larger padding, so it stays visually
+     dominant over the two smaller cards. Nothing is shrunk; the fit is
+     solved purely by content flow (row wrap + baseline alignment), which
+     also consumes the horizontal space instead of leaving it empty. */
+  .sm2-statcard.sm2-statcard-primary{
+    grid-column:1 / -1;
+    padding:18px 20px;
+    flex-flow:row wrap !important;
+    align-items:baseline;
+    column-gap:14px;
+  }
+  .sm2-statcard.sm2-statcard-primary .sm2-sc-top{flex:0 0 100%;margin-bottom:2px}
+  .sm2-statcard.sm2-statcard-primary .sm2-sc-val{flex:0 0 auto;font-size:44px;line-height:1.05;margin:8px 0 0}
+  .sm2-statcard.sm2-statcard-primary .sm2-sc-label{flex:0 1 auto;margin:0}
+  .sm2-statcard.sm2-statcard-primary .sm2-sc-delta{flex:0 0 auto;margin:0 0 0 auto}
   .sm2-hero-illu{display:none}
 }
 @media(max-width:480px){
