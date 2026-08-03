@@ -1,0 +1,33 @@
+/* Calculator tool cards: keep the compact icon proportions used by the
+   original calculator grid. This file is loaded after the shared theme so
+   the shared homepage icon size cannot enlarge calculator icons. */
+.tool-ico {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 10px;
+}
+
+.tool-ico svg {
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+  flex: 0 0 18px;
+}
+
+@media (max-width: 480px) {
+  .tool-ico {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .tool-ico svg {
+    width: 17px;
+    height: 17px;
+    max-width: 17px;
+    max-height: 17px;
+    flex-basis: 17px;
+  }
+}
