@@ -188,10 +188,10 @@ body.sm2 #db-welcome{display:none}
 .sm2-chips{display:flex;flex-wrap:wrap;gap:8px}
 .sm2-chip{font-size:12.5px;font-weight:500;color:var(--ink-2);padding:6px 13px;border-radius:var(--rpill);background:var(--card-2);border:1px solid var(--border);transition:.15s}
 .sm2-chip:hover{border-color:var(--gold-line);color:var(--gold-strong);background:var(--gold-soft)}
-.sm2-hero-r{position:relative;z-index:2;min-height:250px}
+.sm2-hero-r{position:relative;z-index:2;min-height:320px}
 
 /* floating stat cards in hero */
-.sm2-statcards{position:relative;height:100%;min-height:250px}
+.sm2-statcards{position:relative;height:100%;min-height:320px}
 .sm2-statcard{position:absolute;display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border:1px solid var(--glass-brd);border-radius:var(--rlg);padding:14px 16px;box-shadow:var(--shadow-lg)}
 .sm2-statcard.big{top:0;right:0;width:min(58%,260px);z-index:3}
@@ -319,7 +319,7 @@ body.sm2 #db-welcome{display:none}
   body.sm2.nav-open .sm2-scrim{opacity:1;visibility:visible}
   .sm2-hamburger{display:grid}
   .sm2-hero{grid-template-columns:1fr}
-  .sm2-hero-r{min-height:230px;margin-top:8px}
+  .sm2-hero-r{min-height:0;margin-top:8px}
   .sm2-panels{grid-template-columns:1fr}
   .sm2-stats{grid-template-columns:repeat(3,1fr);gap:18px 0;padding:20px 8px}
   .sm2-stat:nth-child(1)::before,.sm2-stat:nth-child(4)::before{display:none}
@@ -445,7 +445,7 @@ body.sm2 .sm2-grid{align-items:start}
 /* robust: neutralize any inherited gradient/transparent text-fill inside the app */
 body.sm2 .sm2-app *,body.sm2 .sm2-bottomnav *{-webkit-text-fill-color:currentColor}
 /* mobile hero: stack stat cards instead of absolute overlap */
-@media(max-width:640px){
+@media(max-width:980px){
   .sm2-hero-r{min-height:0;margin-top:16px}
   .sm2-statcards{position:static;height:auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .sm2-statcard{display:flex !important;flex-direction:column !important;position:static !important;width:auto !important;inset:auto !important}
