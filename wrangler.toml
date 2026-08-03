@@ -1,0 +1,35 @@
+# ─────────────────────────────────────────────────────────────
+# Cloudflare Pages configuration for StudyMetrics
+# Static site is served from the repo root; the `functions/` directory
+# provides the edge API (Gemini AI + email + bug report).
+# ─────────────────────────────────────────────────────────────
+name = "studymetricsv-2"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "."
+
+# Non-secret vars (edit as needed). SECRETS — GEMINI_API_KEY,
+# RESEND_API_KEY — are set via `npx wrangler pages secret put <NAME>`
+# or the Pages dashboard (Settings → Environment variables) and are
+# NEVER written here.
+
+EMAIL_FROM = "StudyMetrics <noreply@studymetrics.app>"
+EMAIL_TO   = "hello@studymetrics.app"
+
+# KV namespaces:
+#   SUBMISSIONS      — subscriber list + dedup store (required for
+#                      duplicate-prevention in /api/subscribe).
+#   RATE_LIMIT_KV   — durable rate-limit counters (optional; falls
+#                      back to in-memory if not bound).
+#
+# Create them:
+#   npx wrangler kv namespace create SUBMISSIONS
+#   npx wrangler kv namespace create RATE_LIMIT_KV
+#
+# Then paste the returned IDs below and uncomment:
+# [[kv_namespaces]]
+# binding = "SUBMISSIONS"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"

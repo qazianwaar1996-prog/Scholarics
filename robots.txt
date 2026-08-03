@@ -1,0 +1,28 @@
+# Study Metrics robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /*.md
+
+# Allow Google's ad crawler full access
+User-agent: Mediapartners-Google
+Allow: /
+
+# Allow image crawling for rich results
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Allow Bing's ad crawler
+User-agent: adidxbot
+Allow: /
+
+# Crawl-delay hint for less aggressive bots
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://studymetrics.app/sitemap.xml

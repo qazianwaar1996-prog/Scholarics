@@ -1,0 +1,167 @@
+/* ============================================================
+   country-selector.css — Study Metrics Phase 5
+   Styles for the country picker widget and grading guide.
+   Additive only — no existing rules overridden.
+   Scoped to .sm-country-* classes.
+   ============================================================ */
+
+/* ── Navbar country wrapper ─────────────────────────────────── */
+.sm-country-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;   /* never compress off-screen in the nav flex row */
+}
+
+/* ── Country select dropdown ────────────────────────────────── */
+.sm-country-select {
+  font-size: .78rem;
+  padding: 6px 28px 6px 10px;
+  border-radius: 10px;
+  width: 172px;          /* fixed width so flex never squeezes it */
+  max-width: 172px;
+  min-width: 120px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Premium dark overrides */
+body.premium .sm-country-select {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--p-ink-2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 14px;
+  transition: border-color .2s, background-color .2s;
+}
+body.premium .sm-country-select:hover {
+  border-color: rgba(124,58,237,.4);
+  background-color: rgba(124,58,237,.1);
+  color: var(--p-ink);
+}
+body.premium .sm-country-select:focus {
+  outline: none;
+  border-color: var(--g1);
+  box-shadow: 0 0 0 3px rgba(124,58,237,.18);
+}
+
+/* ── Scale badge ─────────────────────────────────────────────── */
+.sm-scale-badge {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .03em;
+}
+body.premium .sm-scale-badge {
+  background: rgba(124,58,237,.14);
+  border: 1px solid rgba(124,58,237,.25);
+  color: #a78bfa;
+}
+
+/* ── Conversion result line under result cards ───────────────── */
+#smConvResult {
+  font-size: .82rem;
+  text-align: center;
+  margin-top: 10px;
+  min-height: 18px;
+  transition: color .3s;
+}
+body.premium #smConvResult { color: rgba(255,255,255,.55); }
+
+/* ── Guide page: reference table ─────────────────────────────── */
+.ref-table td,
+.ref-table th {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: var(--step-sm);
+  vertical-align: middle;
+}
+.ref-table td:first-child { font-weight: 500; }
+body.premium .ref-table td,
+body.premium .ref-table th { border-color: rgba(255,255,255,.05); color: var(--p-ink-2); }
+body.premium .ref-table td:first-child { color: var(--p-ink); }
+body.premium .ref-table tr:hover td { background: rgba(124,58,237,.07); }
+
+/* ── Country card grid overrides ─────────────────────────────── */
+#smAllCountries .rel-card {
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) var(--s4);
+  cursor: pointer;
+  transition: border-color .2s, transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+#smAllCountries .rel-card:hover {
+  transform: translateY(-2px);
+}
+body.premium #smAllCountries .rel-card:hover {
+  border-color: rgba(124,58,237,.3);
+}
+
+/* ── Region list ─────────────────────────────────────────────── */
+#smRegionList div:last-child { border-bottom: none; }
+
+/* ── Active country highlight ────────────────────────────────── */
+#smAllCountries .rel-card.active-country {
+  border-color: var(--accent-strong);
+  background: var(--accent-dim);
+}
+body.premium #smAllCountries .rel-card.active-country {
+  border-color: rgba(124,58,237,.5);
+  background: rgba(124,58,237,.12);
+}
+
+/* ── Responsive: hide country selector on very small screens ─── */
+/* Between 860px and 1024px: shrink the select to save space */
+@media (max-width: 1024px) and (min-width: 861px) {
+  .sm-country-select { width: 140px; max-width: 140px; font-size: .74rem; }
+}
+
+/* Below 860px: nav-links collapse to hamburger menu.
+   Hide the country picker from .nav-cta (too cramped next to hamburger).
+   It remains accessible via the dedicated .sm-country-picker on each page. */
+@media (max-width: 860px) {
+  .sm-country-wrap { display: none; }
+}
+
+
+/* ── Mobile inline picker (injected into .tool-head .wrap) ─────
+   Visible only on ≤860px when the nav picker is hidden.         */
+.sm-country-inline {
+  display: none;                 /* hidden on desktop — nav picker handles it */
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.sm-country-inline::before {
+  content: "Grading system:";
+  font-size: .75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--ink-3);
+}
+.sm-country-inline .sm-country-select {
+  width: 100%;
+  max-width: 220px;
+}
+body.premium .sm-country-inline::before { color: var(--p-ink-3); }
+
+@media (max-width: 860px) {
+  .sm-country-inline { display: flex; }  /* show on mobile when nav picker hides */
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sm-country-select { transition: none; }
+  #smConvResult      { transition: none; }
+}
+
+/* ── High contrast ───────────────────────────────────────────── */
+@media (prefers-contrast: high) {
+  body.premium .sm-country-select { border-width: 2px; }
+  body.premium .sm-scale-badge    { border-width: 2px; }
+}

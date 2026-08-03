@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards — StudyMetrics</title>
+<meta name="description" content="Create and study flashcards in your browser. Flip cards, track your progress, and master any subject. No account required.">
+<link rel="canonical" href="https://studymetrics.app/flashcards.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<meta property="og:title" content="Flashcards — StudyMetrics">
+<meta property="og:description" content="Create and study flashcards in your browser. No account required.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2.0">
+<link rel="stylesheet" href="css/print.css?v=2.0" media="print">
+<link rel="stylesheet" href="css/premium.css?v=2.0">
+<link rel="stylesheet" href="css/personalization.css?v=2.0">
+<link rel="stylesheet" href="css/consent.css?v=2.0">
+<link rel="stylesheet" href="css/studymetrics-v2.css?v=2.0">
+<script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* ── Flashcard App ── */
+.fc-page{max-width:920px;margin:0 auto;padding:24px 20px 80px}
+body.sm2-shell .fc-page{padding-top:24px}
+
+/* Deck list */
+.fc-decks-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.fc-decks-head h1{font-size:24px;font-weight:700;color:var(--ink)}
+.fc-decks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.fc-deck-card{background:var(--surface,#fff);border:1px solid var(--border);border-radius:18px;padding:20px;cursor:pointer;transition:box-shadow .14s,border-color .14s;position:relative}
+.fc-deck-card:hover{box-shadow:var(--shadow);border-color:var(--gold-line,var(--gold))}
+.fc-deck-card .fc-deck-icon{width:40px;height:40px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+.fc-deck-card .fc-deck-name{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.fc-deck-card .fc-deck-count{font-size:12px;color:var(--ink-3)}
+.fc-deck-card .fc-deck-progress{margin-top:10px;height:5px;border-radius:4px;background:var(--card-2,#f0efea);overflow:hidden}
+.fc-deck-card .fc-deck-progress i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-strong,#a97c14))}
+.fc-deck-del{position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;color:var(--ink-3);font-size:16px;line-height:1;padding:4px;border-radius:6px;opacity:0;transition:opacity .12s}
+.fc-deck-card:hover .fc-deck-del{opacity:1}
+
+/* Study mode */
+.fc-study{display:none}
+.fc-study.active{display:block}
+.fc-study-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.fc-study-head h2{font-size:20px;font-weight:700;color:var(--ink);flex:1}
+.fc-progress-bar{height:6px;border-radius:4px;background:var(--card-2,#f0efea);overflow:hidden;margin-bottom:20px}
+.fc-progress-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-strong,#a97c14));transition:width .3s}
+
+/* Flip card */
+.fc-card-wrap{perspective:1200px;height:280px;margin-bottom:20px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fc-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.fc-card.flipped{transform:rotateY(180deg)}
+.fc-card-face{position:absolute;inset:0;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:var(--shadow,0 8px 24px rgba(0,0,0,.08))}
+.fc-card-front{background:var(--surface,#fff);border:1px solid var(--border)}
+.fc-card-back{background:linear-gradient(140deg,var(--gold-soft),var(--surface,#fff));border:1px solid var(--gold-line,var(--gold));transform:rotateY(180deg)}
+.fc-card-side{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:16px}
+.fc-card-text{font-size:clamp(16px,3vw,22px);font-weight:600;color:var(--ink);line-height:1.5;max-width:100%;word-break:break-word}
+.fc-card-hint{font-size:13px;color:var(--ink-3);margin-top:12px}
+
+/* Rating buttons */
+.fc-rating{display:flex;gap:10px;justify-content:center;margin-bottom:16px}
+.fc-rating-btn{flex:1;max-width:120px;padding:12px;border-radius:13px;border:1px solid;font-size:13.5px;font-weight:700;cursor:pointer;transition:transform .1s,box-shadow .12s;font-family:inherit}
+.fc-rating-btn:active{transform:translateY(1px)}
+.fc-btn-wrong{background:rgba(209,80,60,.1);border-color:rgba(209,80,60,.3);color:#d1503c}
+.fc-btn-wrong:hover{background:rgba(209,80,60,.18)}
+.fc-btn-hard{background:rgba(201,138,18,.1);border-color:rgba(201,138,18,.3);color:var(--warn,#c98a12)}
+.fc-btn-hard:hover{background:rgba(201,138,18,.18)}
+.fc-btn-good{background:var(--ok-dim,rgba(47,158,91,.12));border-color:rgba(47,158,91,.3);color:var(--ok,#2f9e5b)}
+.fc-btn-good:hover{background:rgba(47,158,91,.2)}
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fc-nav button{background:var(--surface,#fff);border:1px solid var(--border);border-radius:11px;padding:9px 18px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--ink);transition:background .12s,border-color .12s;font-family:inherit}
+.fc-nav button:hover{background:var(--card-2,#faf9f5);border-color:var(--gold)}
+.fc-counter{font-size:13px;color:var(--ink-3);min-width:80px;text-align:center}
+
+/* Results screen */
+.fc-results{display:none;text-align:center;padding:32px}
+.fc-results.active{display:block}
+.fc-results-ring{font-size:48px;margin-bottom:12px}
+.fc-results h3{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.fc-results p{font-size:14px;color:var(--ink-2);margin-bottom:24px}
+.fc-results-stats{display:flex;gap:16px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.fc-result-stat{padding:14px 20px;border-radius:13px;min-width:80px}
+
+/* Card editor */
+.fc-editor{background:var(--surface,#fff);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:20px}
+.fc-editor h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px}
+.fc-card-rows{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow-y:auto;margin-bottom:14px}
+.fc-card-rows::-webkit-scrollbar{width:4px}
+.fc-card-rows::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.fc-card-row{display:grid;grid-template-columns:1fr 1fr 36px;gap:10px;align-items:center}
+.fc-card-input{padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--ink);background:var(--card-2,#faf9f5);font-family:inherit;width:100%;box-sizing:border-box}
+.fc-card-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.fc-del-row{background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;color:var(--ink-3);font-size:16px;width:36px;height:36px;display:grid;place-items:center;line-height:1;transition:background .12s}
+.fc-del-row:hover{background:rgba(209,80,60,.1);color:#d1503c;border-color:rgba(209,80,60,.3)}
+
+/* Deck section toggle */
+.fc-section{margin-bottom:30px}
+.fc-deck-list-view{display:block}
+.fc-study-view{display:none}
+.fc-study-view.active,.fc-deck-list-view.hidden{display:none!important}
+.fc-study-view:not(.hidden){display:block!important}
+</style>
+  <link rel="stylesheet" href="css/sm-prelaunch-fixes.css?v=2.1">
+</head>
+<body class="sm2">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="sm2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
+<div class="sm2-app">
+<aside class="sm2-side">
+    <a href="index.html" class="sm2-brand">
+      <span class="sm2-logo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.6 4 6.4v5.4c0 4.6 3.3 8.2 8 9.6 4.7-1.4 8-5 8-9.6V6.4L12 2.6Z" stroke="#e6bd63" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.4 12.2 2.6 2.6 4.6-5.2" stroke="#e6bd63" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>StudyMetrics
+    </a>
+    <nav class="sm2-nav" aria-label="Primary">
+      <a href="index.html" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg> Home</a>
+      <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> All Calculators</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg> Dashboard</a>
+      <a href="ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg> AI Tutor <span class="sm2-badge">NEW</span></a>
+      <a href="paraphraser.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> AI Paraphraser <span class="sm2-badge">NEW</span></a>
+      <a href="study-schedule.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg> Study Planner</a>
+      <a href="notes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg> Notes</a>
+      <a href="flashcards.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg> Flashcards</a>
+      <a href="grading-guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Countries &amp; Grades</a>
+      <a href="study-guides.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2 2 0 0 1 6 3.5h13v14H6a2 2 0 0 0-2 2V5.5Z"/><path d="M4 19.5a2 2 0 0 1 2-2h13v3H6a2 2 0 0 1-2-1Z"/></svg> Resources</a>
+      <a href="gpa-improvement-planner.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg> Goals</a>
+      <div class="sm2-nav-sep"></div>
+      <a href="dashboard.html#favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14.6 9l6 .8-4.4 4.2 1.1 6L12 17.2 6.7 20l1.1-6L3.4 9.8 9.4 9 12 3.5Z"/></svg> Favorites</a>
+      <a href="dashboard.html#recent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Recent</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg> Profile</a>
+    </nav>
+    <div class="sm2-side-ai">
+      <h4>AI Tutor <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;display:inline;color:var(--gold-strong)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg></h4>
+      <p>Ask anything about academics. Get instant answers.</p>
+      <a href="ai.html" class="sm2-btn sm2-btn-primary">Ask AI</a>
+    </div>
+    <div class="sm2-side-foot">
+      <img loading="lazy" src="images/avatar.svg" alt="Profile">
+      <span class="nm">Profile</span>
+      <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+      <a href="profile.html" class="sm2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
+    </div>
+  </aside>
+  <div class="sm2-main">
+    <header class="sm2-top">
+      <button class="sm2-icon-btn sm2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="sm2-search">
+        <svg class="s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" id="sm2Search" placeholder="Search calculators or tools…" aria-label="Search">
+        <span class="sm2-kbd">⌘K</span>
+      </div>
+      <nav class="sm2-top-nav" aria-label="Secondary">
+        <a href="index.html#tools">Calculators</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="ai.html">AI Tutor</a>
+        <a href="academic-resources.html">Resources</a>
+      </nav>
+      <div class="sm2-top-tools">
+        <button class="sm2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sm2-dot"></span></button>
+        <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+        <img loading="lazy" class="sm2-avatar" src="images/avatar.svg" alt="Profile">
+      </div>
+    </header>
+<main id="main-content" class="sm2-content">
+
+  <!-- DECK LIST VIEW -->
+  <!-- Coming Soon Banner -->
+  <div style="max-width:680px;margin:0 auto 60px;text-align:center;padding:48px 24px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:oklch(.95 .08 280/.15);border:1px solid oklch(.6 .19 280/.3);border-radius:999px;padding:6px 18px;margin-bottom:28px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#a78bfa;display:inline-block;animation:pulse 2s infinite"></span>
+      <span style="font-size:.8rem;font-weight:600;color:#a78bfa;letter-spacing:.05em;text-transform:uppercase">Coming Soon</span>
+    </div>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;">AI Flashcards are almost here</h2>
+    <p style="font-size:1rem;color:var(--ink-2);line-height:1.7;margin-bottom:36px;">Create smart flashcard decks instantly from any topic or notes — powered by Google Gemini. Study smarter with spaced repetition and AI-generated questions.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px;text-align:left;">
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">🃏</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">AI Generation</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Create decks from any topic instantly</div>
+      </div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">🔁</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Spaced Repetition</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Smart review scheduling</div>
+      </div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">📖</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Any Subject</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Science, history, languages & more</div>
+      </div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:1.4rem;margin-bottom:8px;">📱</div>
+        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Mobile Friendly</div>
+        <div style="font-size:.8rem;color:var(--ink-2);">Study anywhere, anytime</div>
+      </div>
+    </div>
+    <a href="index.html#tools" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;">Explore Free Tools →</a>
+  </div>
+
+  <div id="fcDeckListView" class="fc-deck-list-view" style="display:none">
+
+    <div class="fc-decks-head">
+      <h1>My Flashcard Decks</h1>
+      <button id="btnNewDeck" class="sm2-btn sm2-btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        New Deck
+      </button>
+    </div>
+
+    <div class="fc-decks-grid" id="fcDecksGrid">
+      <!-- Decks rendered here by JS -->
+    </div>
+
+    <!-- Editor for creating/editing a deck -->
+    <div class="fc-editor" id="fcEditor" style="display:none;margin-top:24px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <h3 id="fcEditorTitle" style="margin:0">New Deck</h3>
+        <button onclick="SM2FC.cancelEdit()" style="background:none;border:none;cursor:pointer;color:var(--ink-3);font-size:20px;line-height:1">×</button>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <label style="font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:6px">Deck Name</label>
+          <input id="fcDeckName" class="fc-card-input" type="text" placeholder="e.g. Biology Chapter 3" maxlength="60" aria-label="Deck name">
+        </div>
+        <div style="min-width:120px">
+          <label style="font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:6px">Icon</label>
+          <select id="fcDeckIcon" class="fc-card-input" style="cursor:pointer">
+            <option value="📚">📚 Study</option>
+            <option value="🔬">🔬 Science</option>
+            <option value="🧮">🧮 Math</option>
+            <option value="📖">📖 Reading</option>
+            <option value="🌍">🌍 Geography</option>
+            <option value="🧠">🧠 Memory</option>
+            <option value="⚗️">⚗️ Chemistry</option>
+            <option value="📐">📐 Engineering</option>
+            <option value="💻">💻 CS</option>
+            <option value="🎭">🎭 Humanities</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 36px;gap:10px;margin-bottom:8px">
+        <div style="font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em">Question / Front</div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em">Answer / Back</div>
+        <div></div>
+      </div>
+      <div class="fc-card-rows" id="fcCardRows"></div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="btnAddCardRow" class="sm2-btn sm2-btn-ghost" style="font-size:12.5px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Add Card
+        </button>
+        <button id="btnSaveDeck" class="sm2-btn sm2-btn-primary">Save Deck</button>
+        <button onclick="SM2FC.cancelEdit()" class="sm2-btn sm2-btn-ghost">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDY VIEW -->
+  <div id="fcStudyView" style="display:none">
+    <div class="fc-study-head">
+      <button id="fcBackBtn" class="sm2-btn sm2-btn-ghost" style="font-size:12.5px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+        All Decks
+      </button>
+      <h2 id="fcStudyDeckName">Study</h2>
+      <button id="fcShuffleBtn" class="sm2-btn sm2-btn-ghost" style="font-size:12.5px">🔀 Shuffle</button>
+    </div>
+
+    <div class="fc-progress-bar"><i id="fcProgressBar" style="width:0%"></i></div>
+
+    <!-- Card -->
+    <div class="fc-card-wrap" id="fcCardWrap" onclick="SM2FC.flip()" role="button" aria-label="Flip card" tabindex="0">
+      <div class="fc-card" id="fcCard">
+        <div class="fc-card-face fc-card-front">
+          <div class="fc-card-side">Question</div>
+          <div class="fc-card-text" id="fcFrontText">—</div>
+          <div class="fc-card-hint">Tap to reveal answer</div>
+        </div>
+        <div class="fc-card-face fc-card-back">
+          <div class="fc-card-side">Answer</div>
+          <div class="fc-card-text" id="fcBackText">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating (hidden until flipped) -->
+    <div class="fc-rating" id="fcRating" style="display:none">
+      <button class="fc-rating-btn fc-btn-wrong" onclick="SM2FC.rate('wrong')">✗ Wrong</button>
+      <button class="fc-rating-btn fc-btn-hard" onclick="SM2FC.rate('hard')">~ Hard</button>
+      <button class="fc-rating-btn fc-btn-good" onclick="SM2FC.rate('good')">✓ Got it</button>
+    </div>
+
+    <div class="fc-nav">
+      <button id="fcPrevBtn" onclick="SM2FC.prev()">← Prev</button>
+      <span class="fc-counter" id="fcCounter">1 / 1</span>
+      <button id="fcNextBtn" onclick="SM2FC.next()">Next →</button>
+    </div>
+
+    <!-- Results -->
+    <div class="fc-results" id="fcResults">
+      <div class="fc-results-ring" id="fcResultsRing">🎉</div>
+      <h3 id="fcResultsTitle">Session Complete!</h3>
+      <p id="fcResultsMsg">Keep studying to improve your score.</p>
+      <div class="fc-results-stats">
+        <div class="fc-result-stat" style="background:var(--ok-dim,rgba(47,158,91,.12));color:var(--ok,#2f9e5b)">
+          <div style="font-size:28px;font-weight:700" id="fcResGood">0</div>
+          <div style="font-size:12px;font-weight:600">Got it</div>
+        </div>
+        <div class="fc-result-stat" style="background:rgba(201,138,18,.1);color:var(--warn,#c98a12)">
+          <div style="font-size:28px;font-weight:700" id="fcResHard">0</div>
+          <div style="font-size:12px;font-weight:600">Hard</div>
+        </div>
+        <div class="fc-result-stat" style="background:rgba(209,80,60,.1);color:#d1503c">
+          <div style="font-size:28px;font-weight:700" id="fcResWrong">0</div>
+          <div style="font-size:12px;font-weight:600">Wrong</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button onclick="SM2FC.restartStudy()" class="sm2-btn sm2-btn-primary">🔄 Study Again</button>
+        <button onclick="SM2FC.studyWrong()" class="sm2-btn sm2-btn-ghost" id="fcStudyWrongBtn">✗ Study Wrong Only</button>
+        <button onclick="SM2FC.backToDecks()" class="sm2-btn sm2-btn-ghost">Back to Decks</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /fc-page -->
+</main>
+</div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h4>GPA &amp; Grades</h4>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+      </div>
+      <div class="foot-col">
+        <h4>Grade Tools</h4>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="attendance-calculator.html">Attendance</a>
+      </div>
+      <div class="foot-col">
+        <h4>Productivity</h4>
+        <a href="notes.html">Notes</a>
+        <a href="flashcards.html">Flashcards</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="ai.html">AI Tutor</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 Study Metrics. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script defer src="js/script.js?v=2.0"></script>
+<script defer src="js/sm-shell.js?v=2.0"></script>
+<script defer src="js/personalization.js?v=2.0"></script>
+<script defer src="js/premium.js?v=2.0"></script>
+<script defer src="js/sm-v2-features.js?v=2.0"></script>
+<script defer src="js/analytics.js?v=2.0"></script>
+<script defer src="js/consent.js?v=2.0"></script>
+
+<script>
+function sm2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sm_theme',n);}catch(e){}if(window.SM&&SM.toast){SM.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
+
+window.SM2FC = (function(){
+  'use strict';
+  var DECKS_KEY = 'sm2_fc_decks';
+  var store = {
+    get: function(k,fb){ try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;} },
+    set: function(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+  };
+
+  var decks=[], editDeckId=null, studyDeckId=null, studyCards=[], studyIdx=0, isFlipped=false;
+  var scores={good:0,hard:0,wrong:0}, wrongCards=[];
+  var editCardRows=[];
+
+  function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+  function load(){ decks=store.get(DECKS_KEY,[]); if(!decks.length) seedDecks(); }
+  function save(){ store.set(DECKS_KEY,decks); }
+
+  function seedDecks(){
+    decks=[
+      {id:uid(),name:'Biology Basics',icon:'🔬',cards:[
+        {id:uid(),front:'What is photosynthesis?',back:'The process plants use to convert sunlight, CO₂, and water into glucose and oxygen.'},
+        {id:uid(),front:'What is the powerhouse of the cell?',back:'The mitochondria — they generate ATP through cellular respiration.'},
+        {id:uid(),front:'Define osmosis',back:'The movement of water molecules through a semipermeable membrane from a region of high to low water concentration.'},
+        {id:uid(),front:'What is DNA?',back:'Deoxyribonucleic acid — a molecule that carries genetic instructions for development, functioning, and reproduction.'},
+      ],progress:{good:0,hard:0,wrong:0}},
+      {id:uid(),name:'Math Formulas',icon:'🧮',cards:[
+        {id:uid(),front:'Area of a circle',back:'A = πr²  (where r is the radius)'},
+        {id:uid(),front:'Quadratic formula',back:'x = (−b ± √(b²−4ac)) / 2a'},
+        {id:uid(),front:'Pythagorean theorem',back:'a² + b² = c²  (for a right-angled triangle)'},
+        {id:uid(),front:'What is the derivative of sin(x)?',back:'cos(x)'},
+      ],progress:{good:0,hard:0,wrong:0}},
+    ];
+    save();
+  }
+
+  function renderDecks(){
+    var grid=document.getElementById('fcDecksGrid');
+    if(!grid) return;
+    if(!decks.length){
+      grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--ink-3)"><div style="font-size:40px;margin-bottom:12px">📚</div><p style="font-size:14px">No decks yet. Click <b>New Deck</b> to create your first flashcard set.</p></div>';
+      return;
+    }
+    grid.innerHTML=decks.map(function(d){
+      var total=d.cards.length, done=(d.progress&&d.progress.good)||0;
+      var pct=total?Math.round((done/total)*100):0;
+      return '<div class="fc-deck-card" onclick="SM2FC.startStudy(\''+d.id+'\')" role="button" tabindex="0" aria-label="Study '+escHtml(d.name)+'">'
+        +'<div class="fc-deck-icon">'+d.icon+'</div>'
+        +'<div class="fc-deck-name">'+escHtml(d.name)+'</div>'
+        +'<div class="fc-deck-count">'+total+' card'+(total!==1?'s':'')
+        +(done?' · '+done+' mastered':'')+'</div>'
+        +'<div class="fc-deck-progress"><i style="width:'+pct+'%"></i></div>'
+        +'<button class="fc-deck-del" onclick="event.stopPropagation();SM2FC.deleteDeck(\''+d.id+'\')" title="Delete deck" aria-label="Delete deck">×</button>'
+        +'<button style="position:absolute;bottom:14px;right:14px;background:none;border:none;cursor:pointer;font-size:12px;color:var(--ink-3);padding:4px 8px;border-radius:7px;background:var(--card-2,#f0efea)" onclick="event.stopPropagation();SM2FC.editDeck(\''+d.id+'\')" title="Edit deck">✎ Edit</button>'
+        +'</div>';
+    }).join('');
+    grid.querySelectorAll('.fc-deck-card').forEach(function(el){
+      el.addEventListener('keydown',function(e){if(e.key==='Enter')SM2FC.startStudy(el.dataset.id||el.querySelector('[onclick*="startStudy"]')?.getAttribute('onclick')?.match(/'([^']+)'/)?.[1]);});
+    });
+  }
+
+  function showEditor(deck){
+    editDeckId=deck?deck.id:null;
+    document.getElementById('fcEditorTitle').textContent=deck?'Edit Deck':'New Deck';
+    document.getElementById('fcDeckName').value=deck?deck.name:'';
+    document.getElementById('fcDeckIcon').value=deck?deck.icon:'📚';
+    editCardRows=deck?deck.cards.map(function(c){return{id:c.id,front:c.front,back:c.back};}):[];
+    if(!editCardRows.length) addCardRow();
+    renderCardRows();
+    document.getElementById('fcEditor').style.display='';
+    document.getElementById('fcEditor').scrollIntoView({behavior:'smooth'});
+  }
+
+  function addCardRow(front,back){
+    editCardRows.push({id:uid(),front:front||'',back:back||''});
+    renderCardRows();
+  }
+
+  function renderCardRows(){
+    var container=document.getElementById('fcCardRows');
+    if(!container) return;
+    container.innerHTML=editCardRows.map(function(r,i){
+      return '<div class="fc-card-row" data-idx="'+i+'">'
+        +'<input class="fc-card-input" type="text" placeholder="Question…" value="'+escHtml(r.front)+'" oninput="SM2FC._updateRow('+i+',\'front\',this.value)" aria-label="Card '+( i+1)+' question">'
+        +'<input class="fc-card-input" type="text" placeholder="Answer…" value="'+escHtml(r.back)+'" oninput="SM2FC._updateRow('+i+',\'back\',this.value)" aria-label="Card '+(i+1)+' answer">'
+        +'<button class="fc-del-row" onclick="SM2FC._delRow('+i+')" aria-label="Remove card">×</button>'
+        +'</div>';
+    }).join('');
+  }
+  window.SM2FC = window.SM2FC||{};
+  window.SM2FC._updateRow=function(i,field,val){if(editCardRows[i])editCardRows[i][field]=val;};
+  window.SM2FC._delRow=function(i){editCardRows.splice(i,1);if(!editCardRows.length)addCardRow();else renderCardRows();};
+
+  function saveDeck(){
+    var name=(document.getElementById('fcDeckName').value||'').trim();
+    var icon=document.getElementById('fcDeckIcon').value||'📚';
+    if(!name){if(window.SM)SM.toast('Please enter a deck name','error');return;}
+    var cards=editCardRows.filter(function(r){return r.front.trim()||r.back.trim();}).map(function(r){return{id:r.id,front:r.front.trim(),back:r.back.trim()};});
+    if(!cards.length){if(window.SM)SM.toast('Please add at least one card','error');return;}
+    if(editDeckId){
+      decks=decks.map(function(d){return d.id===editDeckId?Object.assign({},d,{name:name,icon:icon,cards:cards}):d;});
+    } else {
+      decks.unshift({id:uid(),name:name,icon:icon,cards:cards,progress:{good:0,hard:0,wrong:0}});
+    }
+    save(); cancelEdit(); renderDecks();
+    if(window.SM)SM.toast(editDeckId?'Deck updated ✓':'Deck created ✓','success');
+  }
+  function cancelEdit(){ editDeckId=null; editCardRows=[]; document.getElementById('fcEditor').style.display='none'; }
+
+  function deleteDeck(id){
+    var d=decks.find(function(x){return x.id===id;}); if(!d) return;
+    if(!confirm('Delete "'+d.name+'"? This cannot be undone.')) return;
+    decks=decks.filter(function(x){return x.id!==id;}); save(); renderDecks();
+    if(window.SM)SM.toast('Deck deleted','info');
+  }
+
+  function editDeck(id){
+    var d=decks.find(function(x){return x.id===id;}); if(d) showEditor(d);
+  }
+
+  function startStudy(id){
+    var d=decks.find(function(x){return x.id===id;}); if(!d||!d.cards.length) return;
+    studyDeckId=id;
+    studyCards=d.cards.slice();
+    scores={good:0,hard:0,wrong:0}; wrongCards=[];
+    studyIdx=0; isFlipped=false;
+    document.getElementById('fcStudyDeckName').textContent=d.name;
+    document.getElementById('fcResults').classList.remove('active');
+    document.getElementById('fcDeckListView').style.display='none';
+    document.getElementById('fcStudyView').style.display='';
+    showCard();
+  }
+
+  function showCard(){
+    var card=studyCards[studyIdx];
+    if(!card){ showResults(); return; }
+    isFlipped=false;
+    var fc=document.getElementById('fcCard');
+    if(fc){fc.classList.remove('flipped');}
+    document.getElementById('fcFrontText').textContent=card.front||'—';
+    document.getElementById('fcBackText').textContent=card.back||'—';
+    document.getElementById('fcRating').style.display='none';
+    var total=studyCards.length;
+    document.getElementById('fcCounter').textContent=(studyIdx+1)+' / '+total;
+    document.getElementById('fcProgressBar').style.width=(((studyIdx)/total)*100).toFixed(1)+'%';
+  }
+
+  function flip(){
+    if(studyIdx>=studyCards.length) return;
+    isFlipped=!isFlipped;
+    var fc=document.getElementById('fcCard');
+    if(fc){ if(isFlipped)fc.classList.add('flipped'); else fc.classList.remove('flipped'); }
+    document.getElementById('fcRating').style.display=isFlipped?'flex':'none';
+  }
+
+  function rate(score){
+    var card=studyCards[studyIdx];
+    if(!card) return;
+    scores[score]=(scores[score]||0)+1;
+    if(score==='wrong'||score==='hard') wrongCards.push(card);
+    next();
+  }
+
+  function next(){
+    studyIdx++;
+    if(studyIdx>=studyCards.length){ showResults(); return; }
+    showCard();
+  }
+
+  function prev(){
+    if(studyIdx>0){ studyIdx--; showCard(); }
+  }
+
+  function shuffle(){
+    studyCards=studyCards.slice().sort(function(){return Math.random()-.5;});
+    studyIdx=0; scores={good:0,hard:0,wrong:0}; wrongCards=[];
+    showCard();
+    if(window.SM)SM.toast('Cards shuffled 🔀','info');
+  }
+
+  function showResults(){
+    document.getElementById('fcProgressBar').style.width='100%';
+    document.getElementById('fcResults').classList.add('active');
+    document.getElementById('fcResGood').textContent=scores.good||0;
+    document.getElementById('fcResHard').textContent=scores.hard||0;
+    document.getElementById('fcResWrong').textContent=scores.wrong||0;
+    var total=studyCards.length;
+    var pct=total?Math.round(((scores.good||0)/total)*100):0;
+    var ring=pct>=80?'🏆':pct>=60?'⭐':'💪';
+    document.getElementById('fcResultsRing').textContent=ring;
+    document.getElementById('fcResultsTitle').textContent=pct>=80?'Excellent work!':pct>=60?'Good job!':'Keep practising!';
+    document.getElementById('fcResultsMsg').textContent='You got '+(scores.good||0)+' of '+total+' cards correct ('+pct+'%).';
+    document.getElementById('fcStudyWrongBtn').style.display=wrongCards.length?'':'none';
+    // Save progress
+    decks=decks.map(function(d){ return d.id===studyDeckId?Object.assign({},d,{progress:{good:scores.good||0,hard:scores.hard||0,wrong:scores.wrong||0}}):d; });
+    save();
+  }
+
+  function restartStudy(){ var id=studyDeckId; if(id) startStudy(id); }
+  function studyWrong(){ if(!wrongCards.length) return; studyCards=wrongCards.slice(); studyIdx=0; scores={good:0,hard:0,wrong:0}; wrongCards=[]; document.getElementById('fcResults').classList.remove('active'); showCard(); }
+  function backToDecks(){ document.getElementById('fcStudyView').style.display='none'; document.getElementById('fcDeckListView').style.display=''; renderDecks(); }
+
+  function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function init(){
+    load(); renderDecks();
+    var btnNew=document.getElementById('btnNewDeck');
+    var btnAdd=document.getElementById('btnAddCardRow');
+    var btnSave=document.getElementById('btnSaveDeck');
+    var fcBackBtn=document.getElementById('fcBackBtn');
+    var fcShuffle=document.getElementById('fcShuffleBtn');
+    var fcWrap=document.getElementById('fcCardWrap');
+
+    if(btnNew) btnNew.addEventListener('click',function(){showEditor(null);});
+    if(btnAdd) btnAdd.addEventListener('click',function(){addCardRow();});
+    if(btnSave) btnSave.addEventListener('click',saveDeck);
+    if(fcBackBtn) fcBackBtn.addEventListener('click',backToDecks);
+    if(fcShuffle) fcShuffle.addEventListener('click',shuffle);
+    if(fcWrap) fcWrap.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();flip();}});
+    document.addEventListener('keydown',function(e){
+      if(document.getElementById('fcStudyView').style.display==='none') return;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') next();
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp') prev();
+      if(e.key===' '){e.preventDefault();flip();}
+      if(e.key==='1') rate('wrong');
+      if(e.key==='2') rate('hard');
+      if(e.key==='3') rate('good');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',init);
+  return{startStudy:startStudy,editDeck:editDeck,deleteDeck:deleteDeck,flip:flip,rate:rate,next:next,prev:prev,restartStudy:restartStudy,studyWrong:studyWrong,backToDecks:backToDecks,cancelEdit:cancelEdit,_updateRow:window.SM2FC&&window.SM2FC._updateRow,_delRow:window.SM2FC&&window.SM2FC._delRow};
+})();
+</script>
+<script defer src="js/email-capture.js?v=2.0"></script>
+<script src="js/pwa.js?v=2.0" defer></script>
+<nav class="sm2-bottomnav" aria-label="Mobile">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
+  <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
+  <a href="ai.html" class="ai"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>W</span><span>AI</span></a>
+  <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
+  <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
+</nav>
+</body>
+</html>

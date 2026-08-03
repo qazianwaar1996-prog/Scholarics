@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="PASTE_GSC_CODE_HERE">
+<meta name="msvalidate.01" content="PASTE_BING_CODE_HERE">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade Predictor — Study Metrics</title>
+<meta name="description" content="Predict your final grade based on completed assignments. Add components with weights and see your projected course grade instantly.">
+<link rel="canonical" href="https://studymetrics.app/grade-predictor.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Study Metrics">
+<meta property="og:title" content="Grade Predictor — Study Metrics">
+<meta property="og:description" content="Predict your final grade based on completed assignments. Add components with weights and see your projected course grade instantly.">
+<meta property="og:url" content="https://studymetrics.app/grade-predictor.html">
+<meta property="og:image" content="https://studymetrics.app/images/og-image.webp">
+<meta name="twitter:site" content="@studymetrics">
+<meta name="twitter:creator" content="@studymetrics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://studymetrics.app/images/og-image.webp">
+<meta name="twitter:title" content="Grade Predictor — Study Metrics">
+<meta name="twitter:description" content="Predict your final grade based on completed assignments. Add components with weights and see your projected course grade instantly.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Grade Predictor","url":"https://studymetrics.app/grade-predictor.html","applicationCategory":"EducationalApplication","isAccessibleForFree":true,"operatingSystem":"All","description":"Predict your final grade based on completed assignments. Add components with weights and see your projected course grade instantly."}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2.0">
+<link rel="stylesheet" href="css/print.css?v=2.0" media="print">
+<link rel="stylesheet" href="css/premium.css?v=2.0">
+<link rel="stylesheet" href="css/personalization.css?v=2.0">
+<link rel="stylesheet" href="css/content-platform.css?v=2.0">
+<link rel="stylesheet" href="css/calculators.css?v=2.0">
+<link rel="stylesheet" href="css/country-selector.css?v=2.0">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Study Metrics","url":"https://studymetrics.app/","logo":"https://studymetrics.app/images/favicon.svg","sameAs":[]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if my weights do not add up to 100%?","acceptedAnswer":{"@type":"Answer","text":"The calculator normalises based on entered weights. If you have 60% of your grade entered, the prediction is based on that portion. The weight note below the rows shows your current total."}},{"@type":"Question","name":"Can I add ungraded future components?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 leave the Score field empty. The predictor will show your standing on completed work and estimate the minimum you need on remaining work to hit target grades."}}]}</script>
+<link rel="stylesheet" href="css/ai-assistant.css?v=2.0">
+<link rel="stylesheet" href="css/consent.css?v=2.0">
+
+<link rel="stylesheet" href="css/studymetrics-v2.css?v=2.0">
+<script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="stylesheet" href="css/sm-prelaunch-fixes.css?v=2.1">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header class="site-head">
+  <nav class="wrap nav">
+    <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+    <div class="nav-links"><a href="study-guides.html">Guides</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="index.html#how">How it works</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+    </div>
+    <div class="nav-cta">
+      <a href="academic-resources.html" class="btn btn-ghost">All tools</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<main id="main-content">
+<section class="tool-head">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      <span>Grade Predictor</span>
+    </nav>
+    <div class="calc-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Grade Predictor</div>
+    <h1>Grade Predictor</h1>
+    <p>Enter your grades on completed assignments and exams. The predictor shows your current standing and forecasts your final course grade.</p>
+  </div>
+</section>
+<div class="wrap reveal">
+  <div class="tool-layout wide-rail">
+    <div class="calc-main">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Grade Components</h2>
+          <div class="calc-actions">
+            <button class="btn btn-primary" id="gpAddRow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add Component</button>
+            <button class="btn btn-ghost" id="gpReset">Reset</button>
+          </div>
+        </div>
+        <div class="rows-head" style="display:grid;grid-template-columns:1fr 90px 90px 44px;gap:var(--s3);padding:0 var(--s3) var(--s2);font-size:var(--step-xs);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600" aria-hidden="true">
+          <span>Component</span><span>Score %</span><span>Weight %</span><span></span>
+        </div>
+        <div id="gpRows" role="list" aria-label="Grade components"></div>
+        <div id="gpWeightNote" class="weight-note" style="margin-top:var(--s4);padding:var(--s3);border-radius:var(--r-md);font-size:var(--step-sm)"></div>
+        <div class="prose tight" style="margin-top:var(--s6)">
+          <h2>How grade prediction works</h2>
+          <p>Each component is weighted. Your predicted grade = Σ(Score × Weight) ÷ Σ(Entered Weights). Components with no score entered are excluded from the prediction.</p>
+          <div class="faq"><details open><summary>What if my weights do not add up to 100%?</summary><p>The calculator normalises based on entered weights. If you have 60% of your grade entered, the prediction is based on that portion. The weight note below the rows shows your current total.</p></details>
+<details><summary>Can I add ungraded future components?</summary><p>Yes — leave the Score field empty. The predictor will show your standing on completed work and estimate the minimum you need on remaining work to hit target grades.</p></details>
+</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-rail">
+      <div class="res-hero" aria-live="polite">
+        <div class="label">Predicted Grade</div>
+        <div class="res-big tnum" id="gpPredOut">—</div>
+        <div class="res-sub" id="gpLetterOut"></div>
+        <div class="gpa-meta">
+          <div><div class="n tnum" id="gpWeightCovered">0%</div><div class="l">Weight Covered</div></div>
+          <div><div class="n tnum" id="gpComponents">0</div><div class="l">Components</div></div>
+        </div>
+        <div class="result-btn-row">
+          <button class="btn" id="gpShare" aria-label="Copy result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+          <button class="btn" id="pdfBtn" aria-label="Print PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>
+        </div>
+        <div id="smConvResult" class="sm-conv-result" aria-live="polite" aria-label="Equivalent grade in your country"></div>
+      </div>
+      <div class="scale-note info"><b>Need a specific grade?</b> Use <a href="final-exam-calculator.html">Final Exam Calculator</a> to find the exam score you need.</div>
+    </div>
+  </div>
+</div>
+<section class="related" aria-labelledby="relHead">
+  <div class="wrap">
+    <h2 id="relHead" style="font-size:var(--step-md);margin-bottom:var(--s3)">Related Tools</h2>
+    <div class="tools-grid">
+      <a href="grade-calculator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></div>
+        <h3>Grade Calculator</h3><p>Weighted grade calculator</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="final-exam-calculator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Final Exam Calc</h3><p>Score needed on final</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="assignment-weight.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <h3>Assignment Weight</h3><p>Check component weights</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></div>
+        <h3>GPA Calculator</h3><p>Convert grade to GPA</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+<div id="backToTop" role="button" aria-label="Back to top" tabindex="0">↑</div>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h4>GPA &amp; Grades</h4>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+        <a href="percentage-to-gpa.html">% to GPA</a>
+        <a href="gpa-to-percentage.html">GPA to %</a>
+      </div>
+      <div class="foot-col">
+        <h4>Grade Tools</h4>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="assignment-weight.html">Assignment Weight</a>
+        <a href="class-average.html">Class Average</a>
+        <a href="percentage-calculator.html">Percentage</a>
+      </div>
+      <div class="foot-col">
+        <h4>Planning</h4>
+        <a href="attendance-calculator.html">Attendance</a>
+        <a href="study-time.html">Study Time</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="scientific-calculator.html">Scientific Calc</a>
+        <a href="basic-calculator.html">Basic Calc</a>
+        <a href="word-counter.html">Word Counter</a>
+      </div>
+      <div class="foot-col">
+        <h4>Guides &amp; Company</h4>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="academic-resources.html">Academic Resources</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="ai.html">StudyMetrics AI</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Study Metrics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+<script defer src="js/script.js?v=2.0"></script>
+<script defer src="js/sm-shell.js?v=2.0"></script>
+<script defer src="js/personalization.js?v=2.0"></script>
+<script defer src="js/grade-predictor.js?v=2.0"></script>
+<script defer src="js/grading-systems.js?v=2.0"></script>
+<script defer src="js/country-selector.js?v=2.0"></script>
+<script defer src="js/premium.js?v=2.0"></script>
+<script defer src="js/calculators.js?v=2.0"></script>
+<script defer src="js/content-platform.js?v=2.0"></script>
+
+
+<!-- Ad: Rectangle -->
+<div class="ad-slot rect" aria-label="Advertisement">
+  <div class="ad-label">Advertisement</div>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+    data-ad-slot="RECT_SLOT_ID"
+    data-ad-format="rectangle"
+    data-full-width-responsive="false"></ins>
+</div>
+<script defer src="js/ai-service.js?v=2.0"></script>
+<script defer src="js/ai-assistant.js?v=2.0"></script>
+
+<script defer src="js/analytics.js?v=2.0"></script>
+<script defer src="js/consent.js?v=2.0"></script>
+<script defer src="js/email-capture.js?v=2.0"></script>
+<script src="js/pwa.js?v=2.0" defer></script>
+</body>
+</html>

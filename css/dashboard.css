@@ -1,0 +1,597 @@
+/* ============================================================
+   STUDY METRICS — Student Dashboard
+   css/dashboard.css  |  Phase 7.1
+   Scoped to .db-* prefix. Zero overrides to existing rules.
+   All values from existing CSS custom properties.
+   ============================================================ */
+
+/* ── Section nav ────────────────────────────────────────────── */
+.db-section-nav {
+  position: sticky;
+  top: 68px;
+  z-index: 40;
+  background: color-mix(in oklch, var(--bg) 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.db-section-nav .wrap {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.db-section-nav .wrap::-webkit-scrollbar { display: none; }
+
+.db-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 18px;
+  font-size: var(--step-sm);
+  font-weight: 500;
+  color: var(--ink-3);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .16s var(--ease), border-color .16s var(--ease);
+  background: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+.db-nav-btn svg { width: 14px; height: 14px; }
+.db-nav-btn:hover { color: var(--ink); }
+.db-nav-btn.active {
+  color: var(--accent-strong);
+  border-bottom-color: var(--accent-strong);
+}
+
+/* ── Page body ──────────────────────────────────────────────── */
+.db-body {
+  padding: var(--s7) 0 var(--s9);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s7);
+}
+
+/* ── Section wrappers ───────────────────────────────────────── */
+.db-section {
+  scroll-margin-top: 120px;
+}
+.db-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--s5);
+  gap: var(--s4);
+}
+.db-section-head h2 {
+  font-size: var(--step-lg);
+  letter-spacing: -.02em;
+}
+.db-section-head .db-section-link {
+  font-size: var(--step-sm);
+  font-weight: 600;
+  color: var(--accent-strong);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.db-section-head .db-section-link svg { width: 13px; height: 13px; }
+.db-section-head .db-section-link:hover { opacity: .75; }
+
+/* ── Welcome card ───────────────────────────────────────────── */
+.db-welcome-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  position: relative;
+}
+.db-welcome-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 55%);
+  pointer-events: none;
+}
+.db-welcome-inner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s6);
+  padding: var(--s7);
+  flex-wrap: wrap;
+}
+.db-welcome-text { flex: 1; min-width: 240px; }
+.db-greeting {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-xl);
+  letter-spacing: -.025em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+.db-name { color: var(--accent-strong); }
+.db-name-edit {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  color: var(--ink-3);
+  border-radius: var(--r-sm);
+  transition: color .15s, background .15s;
+}
+.db-name-edit svg { width: 15px; height: 15px; }
+.db-name-edit:hover { color: var(--accent-strong); background: var(--accent-dim); }
+.db-date {
+  font-size: var(--step-sm);
+  color: var(--ink-3);
+  margin-top: var(--s2);
+}
+.db-motivation {
+  font-size: var(--step-sm);
+  color: var(--ink-2);
+  margin-top: var(--s4);
+  padding: var(--s3) var(--s4);
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  display: inline-block;
+}
+
+/* ── Stat cards (in welcome) ────────────────────────────────── */
+.db-stats-bar {
+  display: flex;
+  gap: var(--s4);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.db-stat-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s4) var(--s5);
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  min-width: 200px;
+}
+.db-stat-ring {
+  position: relative;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+}
+.db-stat-ring svg {
+  width: 72px;
+  height: 72px;
+}
+.db-stat-ring-val {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.db-stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.db-stat-info { flex: 1; }
+.db-stat-label {
+  font-size: var(--step-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+.db-stat-sub {
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+  margin-top: 3px;
+}
+.db-stat-badge {
+  font-size: var(--step-xs);
+  font-weight: 600;
+  margin-top: var(--s2);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.db-stat-empty {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Two-column layout ──────────────────────────────────────── */
+.db-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s5);
+  align-items: start;
+}
+
+/* ── GPA / CGPA history panels ──────────────────────────────── */
+.db-gpa-summary {
+  display: flex;
+  gap: var(--s5);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.db-gpa-ring-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+}
+.db-gpa-ring-wrap svg {
+  width: 100px;
+  height: 100px;
+}
+.db-gpa-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+.db-gpa-big {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.db-gpa-sub {
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+}
+.db-gpa-details { flex: 1; min-width: 0; }
+.db-gpa-label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s3);
+  flex-wrap: wrap;
+}
+.db-gpa-standing {
+  font-weight: 700;
+  font-size: var(--step-sm);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.db-gpa-meta {
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+}
+
+/* Course rows */
+.db-course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.db-course-row {
+  display: grid;
+  grid-template-columns: 1fr 44px 1fr 44px;
+  align-items: center;
+  gap: var(--s2);
+  font-size: var(--step-xs);
+}
+.db-course-name {
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.db-course-grade {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.db-course-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.db-course-bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width .6s var(--ease);
+}
+.db-course-pts {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  text-align: right;
+}
+.db-course-more {
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+  text-align: center;
+  padding: var(--s2) 0;
+}
+.db-panel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--step-sm);
+  font-weight: 600;
+  color: var(--accent-strong);
+  margin-top: var(--s4);
+  transition: gap .16s var(--ease);
+}
+.db-panel-link:hover { gap: 9px; }
+.db-panel-link svg { width: 14px; height: 14px; }
+
+/* ── Recent calculations grid ───────────────────────────────── */
+.db-calcs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  gap: var(--s3);
+}
+.db-calc-card {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: transform .18s var(--ease), border-color .18s, box-shadow .18s;
+}
+.db-calc-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-3);
+  box-shadow: var(--shadow);
+}
+.db-calc-indicator {
+  width: 4px;
+  height: 44px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.db-calc-body { flex: 1; min-width: 0; }
+.db-calc-tool {
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+  margin-bottom: 2px;
+}
+.db-calc-result {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-md);
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.db-calc-sub {
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.db-calc-arrow {
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+.db-calc-arrow svg { width: 14px; height: 14px; }
+
+/* ── Recently visited ───────────────────────────────────────── */
+.db-visits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.db-visit-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 10px var(--s4);
+  border-radius: var(--r-md);
+  transition: background .15s;
+}
+.db-visit-row:hover { background: var(--surface-2); }
+.db-visit-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.db-visit-name {
+  flex: 1;
+  font-size: var(--step-sm);
+  font-weight: 500;
+  color: var(--ink);
+}
+.db-visit-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+.db-visit-time svg { width: 12px; height: 12px; }
+.db-visit-arrow {
+  color: var(--border);
+  flex-shrink: 0;
+  transition: color .15s, transform .15s var(--ease);
+}
+.db-visit-arrow svg { width: 14px; height: 14px; }
+.db-visit-row:hover .db-visit-arrow {
+  color: var(--accent-strong);
+  transform: translateX(3px);
+}
+
+/* ── Favorites ──────────────────────────────────────────────── */
+.db-fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: var(--s3);
+}
+.db-fav-card {
+  display: flex;
+  align-items: center;
+  background: var(--accent-dim);
+  border: 1px solid oklch(.6 .19 32 / .2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: box-shadow .18s;
+}
+.db-fav-card:hover { box-shadow: 0 2px 12px oklch(.6 .19 32 / .15); }
+.db-fav-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px var(--s4);
+  min-width: 0;
+}
+.db-fav-name {
+  font-size: var(--step-sm);
+  font-weight: 600;
+  color: var(--accent-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.db-fav-arrow { color: var(--accent-strong); opacity: .5; }
+.db-fav-arrow svg { width: 13px; height: 13px; }
+.db-fav-star {
+  padding: 11px var(--s3);
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: color .15s;
+  border-left: 1px solid oklch(.6 .19 32 / .15);
+}
+.db-fav-star svg { width: 15px; height: 15px; }
+.db-fav-star.active { color: var(--gold); }
+.db-fav-star:hover { color: var(--accent-strong); }
+
+/* ── Quick Access ───────────────────────────────────────────── */
+.db-qa-group { margin-bottom: var(--s6); }
+.db-qa-cat {
+  font-size: var(--step-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ink-3);
+  margin-bottom: var(--s3);
+}
+.db-qa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr));
+  gap: var(--s2);
+}
+.db-qa-card {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color .15s, box-shadow .15s;
+}
+.db-qa-card:hover {
+  border-color: var(--ink-3);
+  box-shadow: 0 2px 8px oklch(.4 .02 55 / .06);
+}
+.db-qa-link {
+  flex: 1;
+  padding: 9px var(--s3);
+  min-width: 0;
+}
+.db-qa-name {
+  font-size: var(--step-sm);
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.db-qa-star {
+  padding: 9px var(--s3);
+  color: var(--border);
+  flex-shrink: 0;
+  border-left: 1px solid var(--border-soft);
+  transition: color .15s, background .15s;
+}
+.db-qa-star svg { width: 14px; height: 14px; }
+.db-qa-star:hover { color: var(--gold); background: var(--surface-2); }
+.db-qa-star.active { color: var(--gold); }
+
+/* ── Empty state ────────────────────────────────────────────── */
+.db-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s3);
+  padding: var(--s7) var(--s5);
+  text-align: center;
+}
+.db-empty-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--border);
+}
+.db-empty-icon svg { width: 40px; height: 40px; }
+.db-empty-msg {
+  font-weight: 600;
+  font-size: var(--step-md);
+  color: var(--ink-2);
+}
+.db-empty-sub {
+  font-size: var(--step-sm);
+  color: var(--ink-3);
+  max-width: 36ch;
+  line-height: 1.5;
+}
+
+/* ── Settings strip ─────────────────────────────────────────── */
+.db-settings-strip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s3);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--border-soft);
+  margin-top: var(--s7);
+}
+.db-settings-strip p {
+  flex: 1;
+  font-size: var(--step-sm);
+  color: var(--ink-3);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .db-cols { grid-template-columns: 1fr; }
+  .db-welcome-inner { padding: var(--s5); }
+  .db-stats-bar { gap: var(--s3); }
+  .db-stat-card { min-width: 0; flex: 1; }
+  .db-greeting { font-size: var(--step-lg); }
+}
+
+@media (max-width: 560px) {
+  .db-nav-btn { padding: 12px 12px; font-size: var(--step-xs); }
+  .db-calcs-grid { grid-template-columns: 1fr; }
+  .db-fav-grid { grid-template-columns: 1fr; }
+  .db-qa-grid { grid-template-columns: 1fr 1fr; }
+  .db-stat-card { min-width: 100%; }
+  .db-stats-bar { flex-direction: column; }
+  .db-gpa-summary { flex-direction: column; align-items: center; text-align: center; }
+  .db-gpa-label-row { justify-content: center; }
+}

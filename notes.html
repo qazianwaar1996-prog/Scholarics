@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes — StudyMetrics</title>
+<meta name="description" content="Your personal academic notebook. Create, search, and organise study notes — saved to your browser, no account needed.">
+<link rel="canonical" href="https://studymetrics.app/notes.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+<meta property="og:title" content="Notes — StudyMetrics">
+<meta property="og:description" content="Your personal academic notebook. Create, search, and organise study notes.">
+<meta property="og:url" content="https://studymetrics.app/notes.html">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2.0">
+<link rel="stylesheet" href="css/print.css?v=2.0" media="print">
+<link rel="stylesheet" href="css/premium.css?v=2.0">
+<link rel="stylesheet" href="css/personalization.css?v=2.0">
+<link rel="stylesheet" href="css/consent.css?v=2.0">
+<link rel="stylesheet" href="css/studymetrics-v2.css?v=2.0">
+<script>(function(){try{var t=localStorage.getItem('sm_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* ── Notes App Layout ── */
+.notes-app{display:grid;grid-template-columns:300px 1fr;gap:0;height:calc(100vh - 66px);overflow:hidden}
+@media(max-width:900px){.notes-app{grid-template-columns:1fr;height:auto}}
+
+/* Sidebar */
+.notes-sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--panel,#fff)}
+.notes-sidebar-head{padding:16px 16px 12px;border-bottom:1px solid var(--border);flex:none}
+.notes-sidebar-head h2{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.notes-search-wrap{position:relative}
+.notes-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--ink-3)}
+.notes-search{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--border);border-radius:10px;font-size:13px;background:var(--card-2,#faf9f5);color:var(--ink);box-sizing:border-box}
+.notes-search:focus{outline:none;border-color:var(--gold-line,var(--gold));box-shadow:0 0 0 3px var(--gold-soft)}
+.notes-list{flex:1;overflow-y:auto;padding:8px}
+.notes-list::-webkit-scrollbar{width:4px}
+.notes-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.notes-item{padding:11px 13px;border-radius:11px;cursor:pointer;transition:background .12s;border:1px solid transparent;margin-bottom:4px}
+.notes-item:hover{background:var(--card-2,#faf9f5)}
+.notes-item.active{background:var(--gold-soft);border-color:var(--gold-line,var(--gold))}
+.notes-item-title{font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notes-item-preview{font-size:12px;color:var(--ink-3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notes-item-meta{display:flex;align-items:center;gap:8px;margin-top:5px}
+.notes-item-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--info-dim,rgba(47,111,224,.12));color:var(--info,#2f6fe0)}
+.notes-item-date{font-size:10.5px;color:var(--ink-3)}
+
+/* Editor */
+.notes-editor{display:flex;flex-direction:column;overflow:hidden;background:var(--app-bg,#f6f5f2)}
+.notes-editor-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--panel,#fff);flex:none}
+.notes-title-input{flex:1;border:none;background:transparent;font-size:18px;font-weight:700;color:var(--ink);font-family:inherit;outline:none}
+.notes-title-input::placeholder{color:var(--ink-3)}
+.notes-tag-select{padding:5px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;background:var(--card-2,#faf9f5);color:var(--ink);cursor:pointer;outline:none}
+.notes-tag-select:focus{border-color:var(--gold)}
+.notes-toolbar{padding:8px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:4px;background:var(--panel,#fff);flex:none;flex-wrap:wrap}
+.notes-tb-btn{padding:5px 9px;border-radius:7px;border:none;background:transparent;cursor:pointer;font-size:13px;color:var(--ink-2);font-family:inherit;font-weight:600;transition:background .12s;line-height:1.2}
+.notes-tb-btn:hover{background:var(--card-2,#faf9f5);color:var(--ink)}
+.notes-tb-sep{width:1px;height:16px;background:var(--border);margin:0 4px}
+.notes-body{flex:1;overflow-y:auto;padding:20px}
+.notes-textarea{width:100%;min-height:100%;border:none;background:transparent;font-size:14.5px;color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.7;resize:none;outline:none;box-sizing:border-box}
+.notes-textarea::placeholder{color:var(--ink-3)}
+.notes-footer{padding:10px 20px;border-top:1px solid var(--border);font-size:11.5px;color:var(--ink-3);display:flex;align-items:center;gap:16px;background:var(--panel,#fff);flex:none}
+
+/* Empty state */
+.notes-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--ink-3);padding:40px}
+.notes-empty svg{width:56px;height:56px;margin-bottom:16px;opacity:.4}
+.notes-empty h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.notes-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
+
+/* Mobile: hide editor pane initially */
+@media(max-width:900px){
+  .notes-sidebar{height:auto;min-height:0}
+  .notes-editor{min-height:500px}
+  .notes-app{gap:0}
+}
+
+/* v2 shell override for notes page */
+body.sm2-shell .notes-app{height:calc(100vh - 126px)}
+body.sm2-shell main#main-content{padding:0}
+</style>
+  <link rel="stylesheet" href="css/sm-prelaunch-fixes.css?v=2.1">
+</head>
+<body class="sm2">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="sm2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
+<div class="sm2-app">
+<aside class="sm2-side">
+    <a href="index.html" class="sm2-brand">
+      <span class="sm2-logo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.6 4 6.4v5.4c0 4.6 3.3 8.2 8 9.6 4.7-1.4 8-5 8-9.6V6.4L12 2.6Z" stroke="#e6bd63" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.4 12.2 2.6 2.6 4.6-5.2" stroke="#e6bd63" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>StudyMetrics
+    </a>
+    <nav class="sm2-nav" aria-label="Primary">
+      <a href="index.html" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg> Home</a>
+      <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> All Calculators</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg> Dashboard</a>
+      <a href="ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg> AI Tutor <span class="sm2-badge">NEW</span></a>
+      <a href="paraphraser.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> AI Paraphraser <span class="sm2-badge">NEW</span></a>
+      <a href="study-schedule.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg> Study Planner</a>
+      <a href="notes.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg> Notes</a>
+      <a href="flashcards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg> Flashcards</a>
+      <a href="grading-guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Countries &amp; Grades</a>
+      <a href="study-guides.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2 2 0 0 1 6 3.5h13v14H6a2 2 0 0 0-2 2V5.5Z"/><path d="M4 19.5a2 2 0 0 1 2-2h13v3H6a2 2 0 0 1-2-1Z"/></svg> Resources</a>
+      <a href="gpa-improvement-planner.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg> Goals</a>
+      <div class="sm2-nav-sep"></div>
+      <a href="dashboard.html#favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14.6 9l6 .8-4.4 4.2 1.1 6L12 17.2 6.7 20l1.1-6L3.4 9.8 9.4 9 12 3.5Z"/></svg> Favorites</a>
+      <a href="dashboard.html#recent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Recent</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg> Profile</a>
+    </nav>
+    <div class="sm2-side-ai">
+      <h4>AI Tutor <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;display:inline;color:var(--gold-strong)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg></h4>
+      <p>Ask anything about academics. Get instant answers.</p>
+      <a href="ai.html" class="sm2-btn sm2-btn-primary">Ask AI</a>
+    </div>
+    <div class="sm2-side-foot">
+      <img loading="lazy" src="images/avatar.svg" alt="Profile">
+      <span class="nm">Profile</span>
+      <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+      <a href="profile.html" class="sm2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
+    </div>
+  </aside>
+  <div class="sm2-main">
+    <header class="sm2-top">
+      <button class="sm2-icon-btn sm2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="sm2-search">
+        <svg class="s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" id="sm2Search" placeholder="Search calculators or tools…" aria-label="Search">
+        <span class="sm2-kbd">⌘K</span>
+      </div>
+      <nav class="sm2-top-nav" aria-label="Secondary">
+        <a href="index.html#tools">Calculators</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="ai.html">AI Tutor</a>
+        <a href="academic-resources.html">Resources</a>
+      </nav>
+      <div class="sm2-top-tools">
+        <button class="sm2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sm2-dot"></span></button>
+        <button class="sm2-icon-btn sm-theme-toggle" onclick="sm2Theme()" aria-label="Toggle theme"><svg class="sm-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+        <img loading="lazy" class="sm2-avatar" src="images/avatar.svg" alt="Profile">
+      </div>
+    </header>
+<main id="main-content" class="sm2-content">
+<div class="notes-app" id="notesApp">
+
+  <!-- Sidebar: note list -->
+  <aside class="notes-sidebar">
+    <div class="notes-sidebar-head">
+      <h2>
+        My Notes
+        <button id="btnNewNote" class="sm2-btn sm2-btn-primary" style="font-size:12px;padding:6px 12px;border-radius:9px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          New
+        </button>
+      </h2>
+      <div class="notes-search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" class="notes-search" id="notesSearch" placeholder="Search notes…" aria-label="Search notes">
+      </div>
+    </div>
+    <div class="notes-list" id="notesList" role="list" aria-label="Notes"></div>
+  </aside>
+
+  <!-- Editor -->
+  <div class="notes-editor" id="notesEditor">
+    <div class="notes-empty" id="notesEmptyState">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg>
+      <h3>No note selected</h3>
+      <p>Select a note from the list or click <strong>New</strong> to create one. Notes are saved automatically to your browser.</p>
+      <button class="sm2-btn sm2-btn-primary" onclick="document.getElementById('btnNewNote').click()" style="margin-top:16px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Create First Note
+      </button>
+    </div>
+
+    <div id="notesEditorInner" style="display:none;flex-direction:column;height:100%">
+      <div class="notes-editor-head">
+        <input type="text" class="notes-title-input" id="noteTitle" placeholder="Note title…" maxlength="120" aria-label="Note title">
+        <select class="notes-tag-select" id="noteTag" aria-label="Category">
+          <option value=">No tag</option>
+          <option value="Math">Math</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+          <option value="History">History</option>
+          <option value="CS">CS</option>
+          <option value="Physics">Physics</option>
+          <option value="Chemistry">Chemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="Economics">Economics</option>
+          <option value="Other">Other</option>
+        </select>
+        <button id="btnDeleteNote" class="sm2-icon-btn" title="Delete note" aria-label="Delete note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+      <div class="notes-toolbar" role="toolbar" aria-label="Text formatting">
+        <button class="notes-tb-btn" onclick="NotesFmt.exec('bold')" title="Bold"><b>B</b></button>
+        <button class="notes-tb-btn" onclick="NotesFmt.exec('italic')" title="Italic"><i>I</i></button>
+        <button class="notes-tb-btn" onclick="NotesFmt.exec('underline')" title="Underline" style="text-decoration:underline">U</button>
+        <div class="notes-tb-sep"></div>
+        <button class="notes-tb-btn" onclick="NotesFmt.heading()" title="Heading">H1</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.list('ul')" title="Bullet list">• List</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.list('ol')" title="Numbered list">1. List</button>
+        <div class="notes-tb-sep"></div>
+        <button class="notes-tb-btn" onclick="NotesFmt.highlight()" title="Highlight">🖊 Highlight</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.code()" title="Code block">&lt;/&gt;</button>
+        <div class="notes-tb-sep"></div>
+        <button class="notes-tb-btn" onclick="NotesFmt.undo()" title="Undo">↩</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.redo()" title="Redo">↪</button>
+        <div style="flex:1"></div>
+        <button class="notes-tb-btn" onclick="SM2Notes.copyNote()" title="Copy note text">📋 Copy</button>
+        <button class="notes-tb-btn" onclick="SM2Notes.printNote()" title="Print">🖨 Print</button>
+      </div>
+      <div class="notes-body">
+        <div id="noteBody" class="notes-textarea" contenteditable="true"
+             role="textbox" aria-multiline="true" aria-label="Note content"
+             style="min-height:300px;outline:none"
+             data-placeholder="Start writing your note…"></div>
+      </div>
+      <div class="notes-footer">
+        <span id="notesWordCount">0 words</span>
+        <span id="notesCharCount">0 characters</span>
+        <span id="notesSavedAt" style="margin-left:auto">Not saved</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+</div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Study&nbsp;Metrics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h4>GPA &amp; Grades</h4>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+      </div>
+      <div class="foot-col">
+        <h4>Grade Tools</h4>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="attendance-calculator.html">Attendance</a>
+      </div>
+      <div class="foot-col">
+        <h4>Productivity</h4>
+        <a href="notes.html">Notes</a>
+        <a href="flashcards.html">Flashcards</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="ai.html">AI Tutor</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Study Metrics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/script.js?v=2.0"></script>
+<script defer src="js/sm-shell.js?v=2.0"></script>
+<script defer src="js/personalization.js?v=2.0"></script>
+<script defer src="js/premium.js?v=2.0"></script>
+<script defer src="js/sm-v2-features.js?v=2.0"></script>
+<script defer src="js/analytics.js?v=2.0"></script>
+<script defer src="js/consent.js?v=2.0"></script>
+
+<script>
+function sm2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sm_theme',n);}catch(e){}if(window.SM&&SM.toast){SM.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
+
+/* ── Notes App Logic ── */
+window.SM2Notes = (function(){
+  'use strict';
+  var NOTES_KEY = 'sm2_notes';
+  var store = {
+    get: function(k,fb){ try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;} },
+    set: function(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+  };
+  var notes = [];
+  var activeId = null;
+  var saveTimer = null;
+
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+  function load(){ notes = store.get(NOTES_KEY, []); }
+  function save(){ store.set(NOTES_KEY, notes); }
+
+  function getActive(){ return notes.find(function(n){return n.id===activeId;}); }
+
+  function renderList(filter){
+    var list = document.getElementById('notesList');
+    if(!list) return;
+    filter = (filter||'').toLowerCase();
+    var visible = filter ? notes.filter(function(n){
+      return (n.title+' '+(n.body||'')).toLowerCase().indexOf(filter) !== -1;
+    }) : notes.slice();
+    if(!visible.length){
+      list.innerHTML = '<div style="padding:20px;text-align:center;font-size:13px;color:var(--ink-3)">' + (filter ? 'No matching notes' : 'No notes yet — click New to create one') + '</div>';
+      return;
+    }
+    list.innerHTML = visible.map(function(n){
+      var preview = (n.body||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,80);
+      var date = new Date(n.updated).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      return '<div class="notes-item'+(n.id===activeId?' active':'')+'" data-id="'+n.id+'" role="listitem" tabindex="0" aria-selected="'+(n.id===activeId)+'">'
+        +'<div class="notes-item-title">'+(n.title||'Untitled')+'</div>'
+        +(preview?'<div class="notes-item-preview">'+preview+'</div>':'')
+        +'<div class="notes-item-meta">'
+        +(n.tag?'<span class="notes-item-tag">'+n.tag+'</span>':'')
+        +'<span class="notes-item-date">'+date+'</span>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+    list.querySelectorAll('.notes-item').forEach(function(el){
+      el.addEventListener('click',function(){openNote(el.dataset.id);});
+      el.addEventListener('keydown',function(e){if(e.key==='Enter')openNote(el.dataset.id);});
+    });
+  }
+
+  function openNote(id){
+    activeId = id;
+    var n = getActive();
+    if(!n) return;
+    document.getElementById('notesEmptyState').style.display='none';
+    var inner = document.getElementById('notesEditorInner');
+    inner.style.display='flex';
+    document.getElementById('noteTitle').value = n.title||'';
+    document.getElementById('noteTag').value = n.tag||'';
+    var body = document.getElementById('noteBody');
+    body.innerHTML = n.body||'';
+    updateCounts();
+    renderList(document.getElementById('notesSearch').value);
+  }
+
+  function newNote(){
+    var n = {id:uid(),title:'',body:'',tag:'',created:Date.now(),updated:Date.now()};
+    notes.unshift(n);
+    save();
+    openNote(n.id);
+    document.getElementById('noteTitle').focus();
+  }
+
+  function scheduleAutosave(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(autosave, 800);
+  }
+  function autosave(){
+    var n = getActive(); if(!n) return;
+    n.title = document.getElementById('noteTitle').value.trim()||'Untitled';
+    n.body  = document.getElementById('noteBody').innerHTML;
+    n.tag   = document.getElementById('noteTag').value;
+    n.updated = Date.now();
+    // move to top
+    notes = [n].concat(notes.filter(function(x){return x.id!==n.id;}));
+    save();
+    renderList(document.getElementById('notesSearch').value);
+    var el = document.getElementById('notesSavedAt');
+    if(el) el.textContent = 'Saved ' + new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  function deleteNote(){
+    var n = getActive(); if(!n) return;
+    if(!confirm('Delete "' + (n.title||'Untitled') + '"? This cannot be undone.')) return;
+    notes = notes.filter(function(x){return x.id!==n.id;});
+    save(); activeId = null;
+    document.getElementById('notesEmptyState').style.display='';
+    document.getElementById('notesEditorInner').style.display='none';
+    renderList();
+  }
+
+  function updateCounts(){
+    var body = document.getElementById('noteBody');
+    if(!body) return;
+    var text = body.innerText||body.textContent||'';
+    var words = text.trim().split(/\s+/).filter(function(w){return w;}).length;
+    var el1 = document.getElementById('notesWordCount');
+    var el2 = document.getElementById('notesCharCount');
+    if(el1) el1.textContent = words + ' word' + (words!==1?'s':'');
+    if(el2) el2.textContent = text.length + ' char' + (text.length!==1?'s':'');
+  }
+
+  function copyNote(){
+    var body = document.getElementById('noteBody');
+    var n = getActive();
+    if(!body||!n) return;
+    var text = (n.title||'Untitled') + '\n\n' + (body.innerText||body.textContent||'');
+    navigator.clipboard && navigator.clipboard.writeText(text).then(function(){
+      if(window.SM) SM.toast('Note copied to clipboard!','success');
+    }).catch(function(){
+      var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');if(window.SM)SM.toast('Copied!','success');}catch(e){}
+      ta.remove();
+    });
+  }
+
+  function printNote(){
+    var n = getActive();
+    var body = document.getElementById('noteBody');
+    if(!n||!body) return;
+    var w = window.open('','_blank','width=700,height=600');
+    w.document.write('<html><head><title>'+((n.title||'Note')).replace(/</g,'&lt;')+'</title></head><body style="font-family:Georgia,serif;max-width:700px;margin:40px auto;line-height:1.7;color:#111"><h1 style="font-size:22px;border-bottom:1px solid #ddd;padding-bottom:10px">'+((n.title||'Untitled')).replace(/</g,'&lt;')+'</h1>'+body.innerHTML+'<script src="js/pwa.js?v=2.0" defer><\/script>\n</body></html>');
+    w.document.close(); w.print();
+  }
+
+  function init(){
+    load();
+    renderList();
+    var btnNew    = document.getElementById('btnNewNote');
+    var btnDelete = document.getElementById('btnDeleteNote');
+    var searchEl  = document.getElementById('notesSearch');
+    var titleEl   = document.getElementById('noteTitle');
+    var tagEl     = document.getElementById('noteTag');
+    var bodyEl    = document.getElementById('noteBody');
+
+    if(btnNew)    btnNew.addEventListener('click',newNote);
+    if(btnDelete) btnDelete.addEventListener('click',deleteNote);
+    if(searchEl)  searchEl.addEventListener('input',function(){renderList(this.value);});
+    if(titleEl)   titleEl.addEventListener('input',scheduleAutosave);
+    if(tagEl)     tagEl.addEventListener('change',scheduleAutosave);
+    if(bodyEl){
+      bodyEl.addEventListener('input',function(){updateCounts();scheduleAutosave();});
+      // Placeholder
+      bodyEl.addEventListener('focus',function(){if(!this.innerHTML.trim())this.innerHTML='';});
+      if(!bodyEl.innerHTML) bodyEl.setAttribute('data-empty','1');
+    }
+
+    // placeholder via CSS
+    var style = document.createElement('style');
+    style.textContent='#noteBody:empty:before{content:attr(data-placeholder);color:var(--ink-3);pointer-events:none}';
+    document.head.appendChild(style);
+
+    // Open most recent note if exists
+    if(notes.length) openNote(notes[0].id);
+  }
+
+  document.addEventListener('DOMContentLoaded',init);
+  return { copyNote:copyNote, printNote:printNote };
+})();
+
+/* ── Formatting commands ── */
+window.NotesFmt = {
+  exec: function(cmd){ document.execCommand(cmd,false,null); document.getElementById('noteBody').focus(); },
+  heading: function(){
+    var sel=window.getSelection();
+    var text=sel&&sel.toString();
+    if(text) document.execCommand('formatBlock',false,'h3');
+    else document.execCommand('insertHTML',false,'<h3>Heading</h3><p><br></p>');
+    document.getElementById('noteBody').focus();
+  },
+  list: function(type){ document.execCommand(type==='ol'?'insertOrderedList':'insertUnorderedList',false,null); document.getElementById('noteBody').focus(); },
+  highlight: function(){ document.execCommand('hiliteColor',false,'#fff3b0'); document.getElementById('noteBody').focus(); },
+  code: function(){ document.execCommand('insertHTML',false,'<code style="background:var(--card-2,#f0efea);padding:2px 6px;border-radius:5px;font-family:monospace;font-size:.9em">code</code>'); document.getElementById('noteBody').focus(); },
+  undo: function(){ document.execCommand('undo'); document.getElementById('noteBody').focus(); },
+  redo: function(){ document.execCommand('redo'); document.getElementById('noteBody').focus(); },
+};
+</script>
+<script defer src="js/email-capture.js?v=2.0"></script>
+<script src="js/pwa.js?v=2.0" defer></script>
+<nav class="sm2-bottomnav" aria-label="Mobile">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
+  <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
+  <a href="ai.html" class="ai"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>W</span><span>AI</span></a>
+  <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
+  <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
+</nav>
+</body>
+</html>

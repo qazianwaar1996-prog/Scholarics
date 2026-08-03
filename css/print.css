@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Study Metrics — print stylesheet
+   Loaded with media="print" on every page, so it has zero effect on screen.
+   ========================================================================== */
+@media print {
+  .site-head, .foot, #backToTop, .ad-slot, .menu-toggle,
+  .nav-cta, .article-actions, .site-search, #readProgress,
+  .hero-shapes, .hero-float, .grid-bg, .hero-grid { display: none !important; }
+
+  body { background: #fff !important; color: #000 !important; }
+
+  .wrap { max-width: 100% !important; padding: 0 !important; }
+
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after,
+  a[href^="/"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
+
+  .prose, .panel, .tool-layout { box-shadow: none !important; border: none !important; }
+
+  h1, h2, h3 { page-break-after: avoid; }
+  details { page-break-inside: avoid; }
+  details > summary { list-style: none; }
+  details:not([open]) > *:not(summary) { display: block !important; } /* expand FAQs when printing */
+
+  .tools-grid, .guide-grid, .rel-grid { display: block !important; }
+  .tools-grid > *, .guide-grid > *, .rel-grid > * { margin-bottom: var(--s3, 12px); page-break-inside: avoid; }
+}
