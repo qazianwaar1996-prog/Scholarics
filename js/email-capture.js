@@ -167,12 +167,47 @@
           form.classList.add("hide");
           document.getElementById("smEcSuccess").classList.add("show");
           setTimeout(function () { closeModal(overlay); }, 2500);
-        } else {
+          return;
+        }
+
+        /* Non-2xx response. Read the response body so we can tell a
+           "you're already subscribed" duplicate apart from a real failure. */
+        return res.json().then(function (data) {
+          data = data || {};
+          var isDuplicate =
+            res.status === 409 ||
+            data.duplicate === true ||
+            /already\s+subscribed|already\s+on\s+(our\s+)?waitlist|already\s+registered/i
+              .test(String(data.error || ""));
+
+          if (isDuplicate) {
+            /* Prefer the friendly, on-brand duplicate message. Fall back to
+               the server's own wording only if it mentions a waitlist. */
+            var alreadyMsg = /waitlist/i.test(String(data.error || ""))
+              ? String(data.error)
+              : "You're already subscribed! 🎉";
+            errorEl.textContent = alreadyMsg;
+            errorEl.classList.add("show");
+            return;
+          }
+
+          errorEl.textContent = data.error || "Something went wrong — please try again.";
+          errorEl.classList.add("show");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Subscribe — it\u2019s free";
+        }).catch(function () {
+          /* Body unreadable — fall back to the status code, then the
+             generic message for genuine server/network failures. */
+          if (res.status === 409) {
+            errorEl.textContent = "You're already subscribed! 🎉";
+            errorEl.classList.add("show");
+            return;
+          }
           errorEl.textContent = "Something went wrong — please try again.";
           errorEl.classList.add("show");
           submitBtn.disabled = false;
           submitBtn.textContent = "Subscribe — it\u2019s free";
-        }
+        });
       }).catch(function () {
         errorEl.textContent = "Could not connect — please try again later.";
         errorEl.classList.add("show");

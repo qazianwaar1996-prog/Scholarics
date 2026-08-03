@@ -456,10 +456,38 @@
           source: 'newsletter-footer'
         })
       }).then(function (res) {
-        if (!res.ok) throw new Error('subscribe failed');
-        if (window.SM && SM.toast) SM.toast("Thanks — you're subscribed!", 'success');
-        try { localStorage.setItem('sm_ec_subscribed', '1'); } catch (err) {}
-        form.reset();
+        if (res.ok) {
+          if (window.SM && SM.toast) SM.toast("Thanks — you're subscribed!", 'success');
+          try { localStorage.setItem('sm_ec_subscribed', '1'); } catch (err) {}
+          form.reset();
+          return;
+        }
+
+        /* Non-2xx — read the body so a duplicate (already subscribed) is
+           shown as a friendly message, not a generic failure. */
+        return res.json().then(function (data) {
+          data = data || {};
+          var isDuplicate =
+            res.status === 409 ||
+            data.duplicate === true ||
+            /already\s+subscribed|already\s+on\s+(our\s+)?waitlist|already\s+registered/i
+              .test(String(data.error || ""));
+
+          if (isDuplicate) {
+            var dupMsg = /waitlist/i.test(String(data.error || ""))
+              ? String(data.error)
+              : "You're already subscribed! 🎉";
+            if (window.SM && SM.toast) SM.toast(dupMsg, 'success');
+            return;
+          }
+          throw new Error(String(data.error || 'subscribe failed'));
+        }).catch(function () {
+          if (res.status === 409) {
+            if (window.SM && SM.toast) SM.toast("You're already subscribed! 🎉", 'success');
+            return;
+          }
+          if (window.SM && SM.toast) SM.toast('Unable to subscribe right now. Please try again.', 'error');
+        });
       }).catch(function () {
         if (window.SM && SM.toast) SM.toast('Unable to subscribe right now. Please try again.', 'error');
       }).finally(function () {
