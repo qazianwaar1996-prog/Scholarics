@@ -6,6 +6,7 @@
  * Features:
  *  - Email validation (format + length)
  *  - Duplicate prevention via SUBMISSIONS KV namespace
+ *    (HTTP 409 on repeat; fails closed — no email — if KV is unavailable)
  *  - Honeypot spam trap (_gotcha field must be absent / empty)
  *  - Per-IP rate limiting (via withApi → rateLimit)
  *  - Email delivery via Resend when RESEND_API_KEY is configured
@@ -37,14 +38,26 @@ function emailKey(email) {
 
 /**
  * Store subscriber in SUBMISSIONS KV.
- * Returns { stored: true, duplicate: false } or { stored: false, duplicate: true }.
+ * Returns exactly one of:
+ *   { stored: true,  duplicate: false }                 — new subscriber persisted
+ *   { stored: false, duplicate: true  }                 — email already exists (caller returns 409)
+ *   { stored: false, duplicate: false, kvError: true }  — KV binding missing/broken;
+ *        the caller must FAIL CLOSED (no email). Swallowing these errors is what
+ *        previously let a broken binding re-send a notification on every submit.
  */
 async function storeSubscriber(env, email, meta) {
-  if (!env.SUBMISSIONS) return { stored: false, duplicate: false };
+  if (!env.SUBMISSIONS) return { stored: false, duplicate: false, kvError: true };
 
   var k = emailKey(email);
-  var existing = null;
-  try { existing = await env.SUBMISSIONS.get(k); } catch (e) {}
+
+  /* Query KV FIRST — and do not hide errors: if the existence check fails,
+     we cannot prove this is a new subscriber, so we must not email. */
+  var existing;
+  try {
+    existing = await env.SUBMISSIONS.get(k);
+  } catch (e) {
+    return { stored: false, duplicate: false, kvError: true };
+  }
 
   if (existing !== null) {
     return { stored: false, duplicate: true };
@@ -63,7 +76,7 @@ async function storeSubscriber(env, email, meta) {
     await env.SUBMISSIONS.put(k, record, { expirationTtl: 60 * 60 * 24 * 90 });
     return { stored: true, duplicate: false };
   } catch (e) {
-    return { stored: false, duplicate: false };
+    return { stored: false, duplicate: false, kvError: true };
   }
 }
 
@@ -90,15 +103,22 @@ export const onRequestPost = withApi(async ({ body, env, request }) => {
         || (request.headers.get('x-forwarded-for') || '').split(',')[0].trim()
         || 'unknown';
 
-  /* 5. Check for duplicate & persist to KV */
-  var { stored, duplicate } = await storeSubscriber(env, email, { page, source, ip });
+  /* 5. Query KV for a duplicate BEFORE anything else; persist only if new */
+  var sub = await storeSubscriber(env, email, { page, source, ip });
 
-  if (duplicate) {
-    /* Friendly, not an error — user may have signed up before */
-    return json({ ok: true, duplicate: true, message: 'You are already subscribed — thanks!' });
+  /* Email already exists → return immediately: no re-save, no email */
+  if (sub.duplicate) {
+    return json({ ok: false, duplicate: true, error: 'Email already subscribed.' }, 409);
   }
 
-  /* 6. Send notification email to site owner (non-blocking on failure) */
+  /* KV binding missing/broken → fail closed. Without a stored record there is
+     no dedup guarantee, so we must NOT send (this is what caused duplicates). */
+  if (!sub.stored) {
+    return json({ ok: false, error: 'Could not save your subscription right now. Please try again later.' }, 503);
+  }
+
+  /* 6. Reachable only after a NEW subscriber was durably stored — now notify
+        the site owner (non-blocking on failure) */
   var emailResult = { delivered: false };
   try {
     emailResult = await deliver(env, {
@@ -130,7 +150,7 @@ export const onRequestPost = withApi(async ({ body, env, request }) => {
 
   return json({
     ok:        true,
-    stored:    stored,
+    stored:    true, /* guaranteed — we returned early otherwise */
     delivered: !!emailResult.delivered,
     message:   'Subscribed successfully.'
   });
