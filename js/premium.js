@@ -445,8 +445,26 @@
       e.preventDefault();
       var input = qs('input[type="email"]', form);
       if (!input || !input.checkValidity()) return;
-      if (window.SM && SM.toast) SM.toast("Thanks — you're subscribed!", 'success');
-      form.reset();
+      var submit = form.querySelector('button[type="submit"]');
+      if (submit) { submit.disabled = true; submit.setAttribute('aria-busy', 'true'); }
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email: input.value.trim(),
+          page: window.location.pathname,
+          source: 'newsletter-footer'
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error('subscribe failed');
+        if (window.SM && SM.toast) SM.toast("Thanks — you're subscribed!", 'success');
+        try { localStorage.setItem('sm_ec_subscribed', '1'); } catch (err) {}
+        form.reset();
+      }).catch(function () {
+        if (window.SM && SM.toast) SM.toast('Unable to subscribe right now. Please try again.', 'error');
+      }).finally(function () {
+        if (submit) { submit.disabled = false; submit.removeAttribute('aria-busy'); }
+      });
     });
   }
   function init () {
