@@ -1,33 +1,33 @@
-/* Calculator tool cards: keep the compact icon proportions used by the
-   original calculator grid. This file is loaded after the shared theme so
-   the shared homepage icon size cannot enlarge calculator icons. */
-.tool-ico {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  border-radius: 10px;
+/* Calculator pages shared styles.
+   Loaded on every calculator page after the global theme (css/style.css).
+
+   NOTE: The shared .tool-ico tool-card component now carries the original
+   compact icon proportions (36px box / 18px icon) directly in css/style.css,
+   so no per-file override is needed here anymore.
+
+   This file restores the original .calc-kicker hero badge (pill layout +
+   13px icon) from the original design. Without it the hero <svg> had no
+   size rule and the global img,svg{max-width:100%;height:auto} rules made
+   the icon expand to the full hero width on every calculator page. */
+
+.calc-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 14px;
+  border-radius: 30px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  background: var(--accent-dim);
+  color: var(--accent-strong);
+  border: 1px solid rgba(0, 0, 0, .06);
 }
 
-.tool-ico svg {
-  width: 18px;
-  height: 18px;
-  max-width: 18px;
-  max-height: 18px;
-  flex: 0 0 18px;
-}
-
-@media (max-width: 480px) {
-  .tool-ico {
-    width: 34px;
-    height: 34px;
-    flex-basis: 34px;
-  }
-
-  .tool-ico svg {
-    width: 17px;
-    height: 17px;
-    max-width: 17px;
-    max-height: 17px;
-    flex-basis: 17px;
-  }
+.calc-kicker svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
 }

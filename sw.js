@@ -4,7 +4,7 @@
    offline fallback page for navigation failures.
    ============================================================ */
 
-var CACHE_NAME = 'sm-shell-v3'; /* bumped 2026-08-03: force-evict stale cache; fix prelaunch CSS version */
+var CACHE_NAME = 'sm-shell-v4'; /* bumped 2026-08-03: force-evict stale cache; deliver calculator icon-size fix (css/style.css + css/calculators.css) */
 var OFFLINE_URL = '/404.html';
 
 /* Assets to pre-cache on install (the app shell) */
