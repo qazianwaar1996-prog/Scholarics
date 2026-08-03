@@ -15,11 +15,13 @@ functions/
     validate.js      ← input validation + sanitisation
     rateLimit.js     ← per-IP rate limiter (KV-backed, in-memory fallback)
     email.js         ← Resend email sender (+ KV fallback)
+    emailList.js     ← shared secure email-list + duplicate-prevention pipeline
     errors.js        ← error codes → HTTP mapping
     http.js          ← json(), withApi() wrapper, client IP
   api/
     ai/{chat,paraphrase,study-plan,flashcards,quiz,health}.js
-    subscribe.js     ← email-capture modal / newsletter
+    subscribe.js     ← email-capture modal / newsletter (`subscriber:` KV keys)
+    waitlist.js      ← premium Notify Me waitlist (`waitlist:` KV keys)
     contact.js       ← contact form
     bug-report.js    ← bug reports / quick feedback
   _routes.json       ← only /api/* runs as Functions; everything else is static
@@ -35,7 +37,8 @@ wrangler.toml        ← Pages config + optional KV bindings
 | POST | `/api/ai/study-plan` | Study plan → `{plan}` |
 | POST | `/api/ai/flashcards` | Flashcards → `{flashcards:[{front,back}]}` |
 | POST | `/api/ai/quiz` | Quiz → `{quiz:[{question,options,answer,explanation}]}` |
-| POST | `/api/subscribe` | Email subscription |
+| POST | `/api/subscribe` | Newsletter subscription |
+| POST | `/api/waitlist` | Premium Notify Me waitlist |
 | POST | `/api/contact` | Contact form |
 | POST | `/api/bug-report` | Bug reports / feedback |
 
@@ -95,11 +98,18 @@ npx wrangler kv namespace create SUBMISSIONS     # stores emails if no Resend ke
 Then uncomment the `[[kv_namespaces]]` blocks in `wrangler.toml`. For the
 strongest protection, also enable a WAF Rate Limiting Rule on `/api/*`.
 
+Newsletter and Notify Me addresses share the bound namespace but are separate
+logical collections: newsletter records use `subscriber:<email>` keys and
+Notify Me records use `waitlist:<email>` keys. An address can therefore join
+both lists, while duplicates are prevented independently within each list.
+
 ## Email behaviour
 - `RESEND_API_KEY` set → emails are sent to `EMAIL_TO` via Resend.
 - No Resend key but `SUBMISSIONS` KV bound → submissions are stored (nothing lost).
-- Neither → `/api/subscribe|contact|bug-report` return 503 (clear error) so the UI
-  shows “not configured” rather than silently dropping data.
+- A new `/api/subscribe` or `/api/waitlist` record triggers one owner notification;
+  duplicate records trigger neither a write nor another notification.
+- Without the required storage binding, list endpoints fail closed with 503 so
+  they cannot send duplicate notifications when persistence is unavailable.
 
 ## Security
 - Gemini key & Resend key are server-side only (Workers `env`).

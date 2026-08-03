@@ -283,10 +283,14 @@ function openPremium(){
     +'</div>'
     +'<div style="background:var(--card-2,#faf9f5);border:1px solid var(--border);border-radius:14px;padding:16px">'
     +'<p style="font-size:12.5px;font-weight:600;color:var(--ink-3);margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em">Get Early Access</p>'
+    +'<form id="premiumWaitlistForm" onsubmit="submitPremiumEmail();return false" novalidate>'
+    +'<input id="premiumGotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">'
     +'<div class="pm-email-row" style="display:flex;gap:8px;flex-wrap:wrap">'
-    +'<input id="premiumEmail" type="email" placeholder="your@email.com" aria-label="Email address" style="flex:1;min-width:160px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:13.5px;background:var(--card);color:var(--ink);font-family:inherit">'
-    +'<button onclick="submitPremiumEmail()" style="padding:10px 16px;background:var(--gold);color:#1a1509;border:none;border-radius:10px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0">Notify Me</button>'
+    +'<input id="premiumEmail" type="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required style="flex:1;min-width:160px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:13.5px;background:var(--card);color:var(--ink);font-family:inherit">'
+    +'<button id="premiumNotifyButton" type="submit" style="padding:10px 16px;background:var(--gold);color:#1a1509;border:none;border-radius:10px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0">Notify Me</button>'
     +'</div>'
+    +'<p id="premiumWaitlistStatus" role="status" aria-live="polite" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.45"></p>'
+    +'</form>'
     +'</div>'
     +'</div>';
   var overlay=document.createElement('div');
@@ -301,38 +305,58 @@ function openPremium(){
   document.addEventListener('keydown',function onEsc(e){if(e.key==='Escape'){overlay.remove();document.removeEventListener('keydown',onEsc);}});
   setTimeout(function(){var ei=document.getElementById('premiumEmail');if(ei)ei.focus();},100);
 }
+function showPremiumWaitlistMessage(message,type){
+  var status=document.getElementById('premiumWaitlistStatus');
+  if(status){
+    status.textContent=message;
+    status.style.display='block';
+    status.style.color=type==='success'?'var(--ok,#2f9e5b)':'var(--danger,#d33)';
+  }
+  if(window.SM&&window.SM.toast)window.SM.toast(message,type);
+}
+function resetPremiumWaitlistForm(inp,btn){
+  if(btn){btn.disabled=false;btn.removeAttribute('aria-busy');btn.textContent='Notify Me';}
+  if(inp){inp.disabled=false;inp.focus();}
+}
 function submitPremiumEmail(){
   var inp=document.getElementById('premiumEmail');
-  var btn=document.querySelector('#sm2modalPremium button[onclick="submitPremiumEmail()"]');
+  var gotcha=document.getElementById('premiumGotcha');
+  var btn=document.getElementById('premiumNotifyButton');
   if(!inp)return;
   var email=(inp.value||'').trim();
   var valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if(!valid){if(window.SM&&SM.toast)SM.toast('Please enter a valid email address','error');inp.focus();return;}
-  if(btn){btn.disabled=true;btn.textContent='Sending\u2026';}
+  if(!valid){showPremiumWaitlistMessage('Please enter a valid email address.','error');inp.focus();return;}
+  if(btn){btn.disabled=true;btn.setAttribute('aria-busy','true');btn.textContent='Sending\u2026';}
   inp.disabled=true;
-  fetch('/api/subscribe',{
+  fetch('/api/waitlist',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({email:email,page:window.location.pathname,source:'premium-modal'})
+    body:JSON.stringify({
+      email:email,
+      page:window.location.pathname,
+      source:'premium-modal',
+      _gotcha:gotcha?gotcha.value:''
+    })
   }).then(function(res){
-    if(res.ok){
-      if(window.SM&&SM.toast)SM.toast('You\'re on the list! We\'ll notify you at launch \uD83C\uDF89','success');
-      try{localStorage.setItem('sm_ec_subscribed','1');}catch(e){}
-      var overlay=document.getElementById('sm2modalPremium');
-      if(overlay)setTimeout(function(){overlay.remove();},1400);
-    } else {
-      return res.json().then(function(d){
-        var msg=(d&&d.error)||'Something went wrong — please try again.';
-        if(msg.toLowerCase().includes('already'))msg='You\'re already subscribed \uD83D\uDE0A';
-        if(window.SM&&SM.toast)SM.toast(msg,'error');
-        if(btn){btn.disabled=false;btn.textContent='Notify Me';}
-        inp.disabled=false;inp.focus();
-      });
-    }
+    return res.json().catch(function(){return {};}).then(function(data){
+      var isDuplicate=res.status===409||data.duplicate===true;
+      if(res.ok||isDuplicate){
+        var message=isDuplicate
+          ? 'You\'re already on the waitlist! \uD83C\uDF89'
+          : 'You\'re on the waitlist! We\'ll notify you when this feature launches.';
+        showPremiumWaitlistMessage(message,'success');
+        try{localStorage.setItem('sm_notify_waitlist_joined','1');}catch(e){}
+        var overlay=document.getElementById('sm2modalPremium');
+        if(overlay)setTimeout(function(){overlay.remove();},2800);
+        return;
+      }
+
+      showPremiumWaitlistMessage(data.error||'Something went wrong — please try again.','error');
+      resetPremiumWaitlistForm(inp,btn);
+    });
   }).catch(function(){
-    if(window.SM&&SM.toast)SM.toast('Network error — please try again.','error');
-    if(btn){btn.disabled=false;btn.textContent='Notify Me';}
-    inp.disabled=false;
+    showPremiumWaitlistMessage('Network error — please try again.','error');
+    resetPremiumWaitlistForm(inp,btn);
   });
 }
 document.body.classList.remove('premium');
