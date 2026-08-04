@@ -1,8 +1,8 @@
 (function () {
   'use strict';
-  var store = SM.store;
-  var esc   = SM.esc;
-  var round = SM.round;
+  var store = SC.store;
+  var esc   = SC.esc;
+  var round = SC.round;
   var TOOLS = [
     { slug:'gpa',                   name:'GPA Calculator',         url:'gpa.html',                   cat:'GPA & Grades' },
     { slug:'cgpa',                  name:'CGPA Calculator',        url:'cgpa.html',                  cat:'GPA & Grades' },
@@ -32,31 +32,31 @@
     { slug:'word-counter',          name:'Word Counter',           url:'word-counter.html',          cat:'Utilities'   },
   ];
   var K = {
-    GPA_ROWS     : 'sm_gpa_rows',
-    GPA_SCALE    : 'sm_gpa_scale',
-    CGPA_ROWS    : 'sm_cgpa_rows',
-    SEM_GPA      : 'sm_semester_gpa',
-    GRADE_ROWS   : 'sm_grade_rows',
-    GRADE_PRED   : 'sm_gp',
-    CONV_ROWS    : 'sm_conv_rows',
-    CONV_META    : 'sm_conv_meta',
-    TARGET       : 'sm_target',
-    FINAL_EXAM   : 'sm_final_exam',
-    FINAL_GRADE  : 'sm_final',
-    ATTEND       : 'sm_attend',
-    ATTEND_PCT   : 'sm_ap',
-    ATTEND_GOAL  : 'sm_ag',
-    STUDY_TIME   : 'sm_st',
-    ASSIGN_WT    : 'sm_aw',
-    REQUIRED     : 'sm_required_marks',
-    CREDIT_PLAN  : 'sm_chp',
-    GIP          : 'sm_gip',
-    STUDY_SCHED  : 'sm_ss',
-    P2G          : 'sm_p2g',
-    G2P          : 'sm_g2p',
-    FAVORITES    : 'sm_dash_favorites',
-    RECENT       : 'sm_dash_recent',
-    USERNAME     : 'sm_dash_name',
+    GPA_ROWS     : 'sc_gpa_rows',
+    GPA_SCALE    : 'sc_gpa_scale',
+    CGPA_ROWS    : 'sc_cgpa_rows',
+    SEM_GPA      : 'sc_semester_gpa',
+    GRADE_ROWS   : 'sc_grade_rows',
+    GRADE_PRED   : 'sc_gp',
+    CONV_ROWS    : 'sc_conv_rows',
+    CONV_META    : 'sc_conv_meta',
+    TARGET       : 'sc_target',
+    FINAL_EXAM   : 'sc_final_exam',
+    FINAL_GRADE  : 'sc_final',
+    ATTEND       : 'sc_attend',
+    ATTEND_PCT   : 'sc_ap',
+    ATTEND_GOAL  : 'sc_ag',
+    STUDY_TIME   : 'sc_st',
+    ASSIGN_WT    : 'sc_aw',
+    REQUIRED     : 'sc_required_marks',
+    CREDIT_PLAN  : 'sc_chp',
+    GIP          : 'sc_gip',
+    STUDY_SCHED  : 'sc_ss',
+    P2G          : 'sc_p2g',
+    G2P          : 'sc_g2p',
+    FAVORITES    : 'sc_dash_favorites',
+    RECENT       : 'sc_dash_recent',
+    USERNAME     : 'sc_dash_name',
   };
   var favorites    = store.get(K.FAVORITES, []);
   var recentVisits = store.get(K.RECENT, []);
@@ -447,14 +447,14 @@
   function toggleFav(slug) {
     if (isFav(slug)) {
       favorites = favorites.filter(function (f) { return f !== slug; });
-      SM.toast('Removed from favorites', 'info');
+      SC.toast('Removed from favorites', 'info');
     } else {
       if (favorites.length >= 20) {
-        SM.toast('Maximum 20 favorites — remove one first', 'error');
+        SC.toast('Maximum 20 favorites — remove one first', 'error');
         return;
       }
       favorites.push(slug);
-      SM.toast('Added to favorites ⭐', 'success');
+      SC.toast('Added to favorites ⭐', 'success');
     }
     store.set(K.FAVORITES, favorites);
     renderFavorites();
@@ -558,17 +558,17 @@
       store.set(K.RECENT, []);
       store.set(K.USERNAME, '');
       try {
-        localStorage.removeItem('sm_freq');
-        localStorage.removeItem('sm_last_open');
-        localStorage.removeItem('sm_search_history');
+        localStorage.removeItem('sc_freq');
+        localStorage.removeItem('sc_last_open');
+        localStorage.removeItem('sc_search_history');
       } catch(e) {}
       favorites = []; recentVisits = []; username = '';
       renderAll();
-      if (window.SM_PERSONALIZATION) {
-        SM_PERSONALIZATION.renderDashboardRecommended();
-        SM_PERSONALIZATION.renderCountryNote();
+      if (window.SC_PERSONALIZATION) {
+        SC_PERSONALIZATION.renderDashboardRecommended();
+        SC_PERSONALIZATION.renderCountryNote();
       }
-      SM.toast('Dashboard reset', 'info');
+      SC.toast('Dashboard reset', 'info');
     });
   }
   function renderAll() {

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
-  var $ = SM.$, round = SM.round, clamp = SM.clamp, store = SM.store;
-  var KEY = "sm_final_exam";
+  var $ = SC.$, round = SC.round, clamp = SC.clamp, store = SC.store;
+  var KEY = "sc_final_exam";
   var GRADE_MINS = {
     "A+": 97, "A": 93, "A-": 90,
     "B+": 87, "B": 83, "B-": 80,
@@ -114,8 +114,8 @@
   document.addEventListener("DOMContentLoaded", function () {
     /* Shareable link: auto-fill from URL query params (?cur=...&goal=...&weight=...) */
     var sharedFromLink = false;
-    if (window.SMShare) {
-      var qp = SMShare.params();
+    if (window.SCShare) {
+      var qp = SCShare.params();
       if (qp.has("cur") || qp.has("goal") || qp.has("weight")) {
         var sce = $("#feCurrentGrade"); if (sce && qp.get("cur") !== null) sce.value = qp.get("cur");
         var sge = $("#feTargetGrade");  if (sge && qp.get("goal") !== null) sge.value = qp.get("goal");
@@ -141,22 +141,22 @@
         });
         store.set(KEY, null);
         compute();
-        SM.toast("Fields cleared", "info");
+        SC.toast("Fields cleared", "info");
       };
     }
     var shareBtn = $("#feShare");
     if (shareBtn) {
       shareBtn.onclick = function () {
         var val = $("#feNeedOut") ? $("#feNeedOut").textContent : "—";
-        if (val === "—") return SM.toast("Enter values first", "info");
-        SM.copy("I need " + val + " on my final exam to hit my grade goal — calculated on Study Metrics (studymetrics.app)");
+        if (val === "—") return SC.toast("Enter values first", "info");
+        SC.copy("I need " + val + " on my final exam to hit my grade goal — calculated on Scholarics (scholarics.com)");
       };
     }
     var copyLinkBtn = $("#feCopyLink");
-    if (copyLinkBtn && window.SMShare) {
+    if (copyLinkBtn && window.SCShare) {
       copyLinkBtn.onclick = function () {
         var curEl = $("#feCurrentGrade"), goalEl = $("#feTargetGrade"), weightEl = $("#feWeight");
-        SMShare.copyLink({
+        SCShare.copyLink({
           cur: curEl ? curEl.value : "",
           goal: goalEl ? goalEl.value : "",
           weight: weightEl ? weightEl.value : ""
@@ -165,9 +165,9 @@
     }
     compute();
 
-    if (sharedFromLink && window.SMShare) {
+    if (sharedFromLink && window.SCShare) {
       var needVal = $("#feNeedOut") ? $("#feNeedOut").textContent : "—";
-      SMShare.showBanner({
+      SCShare.showBanner({
         message: "Shared final exam scenario — score needed on the final: <b>" + needVal + "</b>.",
         host: document.querySelector(".tool-layout")
       });

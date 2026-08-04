@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, $$=SM.$$, round=SM.round, uid=SM.uid, esc=SM.esc, store=SM.store, KEY="sm_gp";
+var $=SC.$, $$=SC.$$, round=SC.round, uid=SC.uid, esc=SC.esc, store=SC.store, KEY="sc_gp";
 function letterGrade(p){
   if(p>=97)return'A+';if(p>=93)return'A';if(p>=90)return'A-';
   if(p>=87)return'B+';if(p>=83)return'B';if(p>=80)return'B-';
@@ -61,9 +61,9 @@ function compute(){
 }
 document.addEventListener('DOMContentLoaded',function(){
   var add=$('#gpAddRow'),rs=$('#gpReset'),sh=$('#gpShare');
-  if(add) add.onclick=function(){rows.push({id:uid(),name:'',score:'',weight:''});store.set(KEY,rows);render();SM.toast('Component added','success');};
-  if(rs) rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Midterm Exam',score:'78',weight:'30'},{id:uid(),name:'Assignments',score:'85',weight:'20'},{id:uid(),name:'Final Exam',score:'',weight:'50'}];render();SM.toast('Reset','info');};
-  if(sh) sh.onclick=function(){var v=$('#gpPredOut');if(!v||v.textContent==='—')return SM.toast('Enter scores first','info');SM.copy('My predicted grade is '+v.textContent+' ('+$('#gpLetterOut').textContent+') — Study Metrics');};
+  if(add) add.onclick=function(){rows.push({id:uid(),name:'',score:'',weight:''});store.set(KEY,rows);render();SC.toast('Component added','success');};
+  if(rs) rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Midterm Exam',score:'78',weight:'30'},{id:uid(),name:'Assignments',score:'85',weight:'20'},{id:uid(),name:'Final Exam',score:'',weight:'50'}];render();SC.toast('Reset','info');};
+  if(sh) sh.onclick=function(){var v=$('#gpPredOut');if(!v||v.textContent==='—')return SC.toast('Enter scores first','info');SC.copy('My predicted grade is '+v.textContent+' ('+$('#gpLetterOut').textContent+') — Scholarics');};
   render();
 });
 })();

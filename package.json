@@ -1,7 +1,7 @@
 {
-  "name": "studymetrics",
+  "name": "scholarics",
   "version": "2.0.0",
-  "description": "StudyMetrics — Academic Tools & AI (Cloudflare Pages + Functions)",
+  "description": "Scholarics — Academic Tools & AI (Cloudflare Pages + Functions)",
   "private": true,
   "scripts": {
     "dev": "wrangler pages dev . --compatibility-date=2024-11-01",

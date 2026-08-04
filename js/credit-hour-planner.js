@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, round=SM.round, store=SM.store, KEY="sm_chp";
+var $=SC.$, round=SC.round, store=SC.store, KEY="sc_chp";
 function compute(){
   var tot=parseFloat($('#chTotal').value)||0;
   var earned=parseFloat($('#chEarned').value)||0;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var rs=$('#chReset');
   if(rs){rs.onclick=function(){store.set(KEY,null);location.reload();};}
   var sh=$('#chShare');
-  if(sh){sh.onclick=function(){var s=$('#chSemOut');if(!s||s.textContent==='—')return SM.toast('Enter details first','info');SM.copy('I have '+$('#chRemaining').textContent+' credits left and '+s.textContent+' semesters to go — Study Metrics');};}
+  if(sh){sh.onclick=function(){var s=$('#chSemOut');if(!s||s.textContent==='—')return SC.toast('Enter details first','info');SC.copy('I have '+$('#chRemaining').textContent+' credits left and '+s.textContent+' semesters to go — Scholarics');};}
   compute();
 });
 })();

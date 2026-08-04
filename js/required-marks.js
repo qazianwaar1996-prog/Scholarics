@@ -1,8 +1,8 @@
 (function () {
   "use strict";
-  var $ = SM.$, $$ = SM.$$, round = SM.round, uid = SM.uid,
-      esc = SM.esc, store = SM.store;
-  var KEY = "sm_required_marks";
+  var $ = SC.$, $$ = SC.$$, round = SC.round, uid = SC.uid,
+      esc = SC.esc, store = SC.store;
+  var KEY = "sc_required_marks";
   var subjects = store.get(KEY, []);
   if (!subjects.length) {
     subjects = [
@@ -92,7 +92,7 @@
       btn.onclick = function () {
         subjects = subjects.filter(function (s) { return s.id !== btn.getAttribute("data-del"); });
         save(); render();
-        SM.toast("Subject removed", "info");
+        SC.toast("Subject removed", "info");
       };
     });
   }
@@ -113,7 +113,7 @@
         errMsg.className = 'field-error-msg';
         errMsg.textContent = 'Target must be between 0 and 100';
         if (targetEl.parentNode) targetEl.parentNode.appendChild(errMsg);
-        targetPct = SM.clamp(parseFloat(targetRaw) || 0, 0, 100);
+        targetPct = SC.clamp(parseFloat(targetRaw) || 0, 0, 100);
       }
     }
     var totalMax       = 0, obtainedSum = 0;
@@ -160,7 +160,7 @@
   function addSubject() {
     subjects.push({ id: uid(), name: "", obtained: "", max: 100, done: false });
     save(); render();
-    SM.toast("Subject added", "success");
+    SC.toast("Subject added", "success");
   }
   document.addEventListener("DOMContentLoaded", function () {
     var add1  = $("#rmAddRow");
@@ -176,7 +176,7 @@
       clear.onclick = function () {
         if (confirm("Clear all subjects?")) {
           subjects = []; save(); render();
-          SM.toast("Cleared", "info");
+          SC.toast("Cleared", "info");
         }
       };
     }
@@ -191,15 +191,15 @@
           { id: uid(), name: "Computer Sci", obtained: "", max: 100, done: false }
         ];
         save(); render();
-        SM.toast("Reset to example", "info");
+        SC.toast("Reset to example", "info");
       };
     }
     if (share) {
       share.onclick = function () {
         var req = $("#rmRequired") ? $("#rmRequired").textContent : "—";
-        if (req === "—") return SM.toast("Enter data first", "info");
+        if (req === "—") return SC.toast("Enter data first", "info");
         var tgt = $("#rmTarget") ? $("#rmTarget").value : "";
-        SM.copy("I need " + req + " per subject to reach " + tgt + "% — calculated on Study Metrics (studymetrics.app)");
+        SC.copy("I need " + req + " per subject to reach " + tgt + "% — calculated on Scholarics (scholarics.com)");
       };
     }
     render();

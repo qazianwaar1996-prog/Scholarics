@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  var $ = SM.$, $$ = SM.$$, round = SM.round, uid = SM.uid, esc = SM.esc, store = SM.store;
+  var $ = SC.$, $$ = SC.$$, round = SC.round, uid = SC.uid, esc = SC.esc, store = SC.store;
   function letter(p) {
     if (p >= 93) return "A";
     if (p >= 90) return "A-";
@@ -15,7 +15,7 @@
     if (p >= 60) return "D-";
     return "F";
   }
-  var KEY = "sm_grade_rows";
+  var KEY = "sc_grade_rows";
   var rows = store.get(KEY, []);
   if (!rows.length) {
     rows = [
@@ -72,7 +72,7 @@
         rows = rows.filter(function (r) { return r.id !== id; });
         save();
         render();
-        SM.toast("Item removed", "info");
+        SC.toast("Item removed", "info");
       };
     });
   }
@@ -135,7 +135,7 @@
     rows.push({ id: uid(), name: "", score: "", weight: "" });
     save();
     render();
-    SM.toast("Item added", "success");
+    SC.toast("Item added", "success");
   }
   document.addEventListener("DOMContentLoaded", function () {
     var add1 = $("#addRow");
@@ -150,15 +150,15 @@
           rows = [];
           save();
           render();
-          SM.toast("Cleared all entries", "info");
+          SC.toast("Cleared all entries", "info");
         }
       };
     }
     if (share) {
       share.onclick = function() {
         var g = $("#gradeOut") ? $("#gradeOut").textContent : "—";
-        if (g === "—") return SM.toast("Enter items first", "error");
-        SM.copy("My current course grade is " + g + "! Calculated on Study Metrics.");
+        if (g === "—") return SC.toast("Enter items first", "error");
+        SC.copy("My current course grade is " + g + "! Calculated on Scholarics.");
       };
     }
     render();

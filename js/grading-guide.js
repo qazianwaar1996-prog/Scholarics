@@ -1,11 +1,11 @@
 (function () {
   "use strict";
   document.addEventListener("DOMContentLoaded", function () {
-    if (typeof window.SM_GRADING === "undefined") return;
-    var G = window.SM_GRADING;
-    var round = SM.round;
+    if (typeof window.SC_GRADING === "undefined") return;
+    var G = window.SC_GRADING;
+    var round = SC.round;
     function renderAllCountries() {
-      var container = document.getElementById("smAllCountries");
+      var container = document.getElementById("scAllCountries");
       if (!container) return;
       container.innerHTML = G.all.map(function (sys) {
         var topGrade = sys.grades[0];
@@ -20,7 +20,7 @@
           e.preventDefault();
           var sys = G.get(card.getAttribute("data-country"));
           if (!sys) return;
-          document.querySelectorAll(".sm-country-select").forEach(function (sel) {
+          document.querySelectorAll(".sc-country-select").forEach(function (sel) {
             sel.value = sys.id;
             sel.dispatchEvent(new Event("change"));
           });
@@ -28,7 +28,7 @@
       });
     }
     function renderRegionList() {
-      var el = document.getElementById("smRegionList");
+      var el = document.getElementById("scRegionList");
       if (!el) return;
       el.innerHTML = Object.keys(G.regions).sort().map(function (r) {
         var count = G.regions[r].length;
@@ -49,7 +49,7 @@
       var share = document.getElementById("ggShare");
       if (!inp) return;
       function convert() {
-        var sys = window.SM_COUNTRY ? window.SM_COUNTRY.current() : G.get("us");
+        var sys = window.SC_COUNTRY ? window.SC_COUNTRY.current() : G.get("us");
         if (!sys) return;
         var val = parseFloat(inp.value);
         if (unit) {
@@ -84,16 +84,16 @@
         if (nat)  nat.textContent  = gpa4.toFixed(2) + " / 4.0";
       }
       inp.addEventListener("input", convert);
-      document.addEventListener("sm:country-change", function () {
+      document.addEventListener("sc:country-change", function () {
         inp.value = "";
         convert();
       });
       if (share) {
         share.onclick = function () {
-          var sys = window.SM_COUNTRY ? window.SM_COUNTRY.current() : G.get("us");
+          var sys = window.SC_COUNTRY ? window.SC_COUNTRY.current() : G.get("us");
           var val = us4 ? us4.textContent : "—";
-          if (val === "—" || !sys) return SM.toast("Enter a grade first", "info");
-          SM.copy(sys.flag + " " + sys.name + " grade → US GPA " + val + " — Study Metrics (studymetrics.app/grading-guide.html)");
+          if (val === "—" || !sys) return SC.toast("Enter a grade first", "info");
+          SC.copy(sys.flag + " " + sys.name + " grade → US GPA " + val + " — Scholarics (scholarics.com/grading-guide.html)");
         };
       }
       try {
@@ -101,7 +101,7 @@
         var qCountry = params.get("country");
         if (qCountry && G.get(qCountry)) {
           setTimeout(function () {
-            document.querySelectorAll(".sm-country-select").forEach(function (sel) {
+            document.querySelectorAll(".sc-country-select").forEach(function (sel) {
               sel.value = qCountry;
               sel.dispatchEvent(new Event("change"));
             });

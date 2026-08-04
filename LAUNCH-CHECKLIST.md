@@ -1,21 +1,27 @@
-# Study Metrics — Launch Checklist
+# Scholarics — Launch Checklist
 **Version 1.0 | Production Release**
 
 ---
 
-## 🔑 BEFORE YOU DEPLOY — Replace All Placeholders
+## 🔑 BEFORE YOU DEPLOY — Configure Services
 
-| Placeholder | File(s) | How to get it |
+Analytics, ads and webmaster verification are **disabled by default** (guards in
+`js/analytics.js` and `js/consent.js` reject placeholder IDs, so nothing is
+loaded or tracked until you set real IDs).
+
+| Service | Where to configure | Notes |
 |---|---|---|
-| `YOUR_GSC_VERIFICATION_CODE` | All 52 HTML `<head>` | Google Search Console → Add property → HTML tag verification |
-| `YOUR_BING_VERIFICATION_CODE` | All 52 HTML `<head>` | Bing Webmaster Tools → Add site → Meta tag |
-| `G-XXXXXXXXXX` | `js/analytics.js` | GA4 → Admin → Data streams → Web → Measurement ID |
-| `ca-pub-XXXXXXXXXXXXXXXXX` | All HTML + `js/consent.js` | Google AdSense → Account → Publisher ID |
-| `REPLACE_WITH_FORM_ID` | `contact.html` (2 places) | formspree.io → New form → Copy form ID |
+| GA4 Measurement ID | `js/analytics.js` → `GA_ID` | Analytics stays off until a real `G-XXXXXXX` ID is set |
+| AdSense Publisher ID | `js/consent.js` → `PUB_ID` + `data-ad-slot` values in the 40 ad-holder pages | Ads stay off until a real `ca-pub-…` ID is set |
+| Search Console / Bing verification | Add the meta tags to each `<head>` (currently absent) | Add after claiming the property in GSC/Bing |
+| Contact/bug-report inbox | Cloudflare dashboard → Pages → `scholaricsv-2` → Settings → Environment variables → `EMAIL_TO` | Submissions fall back to KV storage when unset |
+| Resend API key | `wrangler pages secret put RESEND_API_KEY` | Enables real email delivery |
+| Gemini API key | `wrangler pages secret put GEMINI_API_KEY` | Enables the AI features |
 
-**Find all placeholders at once:**
+**Verify nothing is left to configure in code:**
 ```bash
-grep -rn "YOUR_GSC\|YOUR_BING\|G-XXXXXXXXXX\|ca-pub-XXXX\|REPLACE_WITH_FORM" .
+grep -rn "G-XXXXXXXXXX\|ca-pub-XXXX\|PASTE_" js/ *.html
+# → no matches expected
 ```
 
 ---
@@ -27,17 +33,17 @@ grep -rn "YOUR_GSC\|YOUR_BING\|G-XXXXXXXXXX\|ca-pub-XXXX\|REPLACE_WITH_FORM" .
 - [ ] HTTPS/SSL certificate installed and working
 - [ ] www → non-www redirect confirmed
 - [ ] http → https redirect confirmed
-- [ ] Uncomment HSTS header in `.htaccess` after confirming HTTPS
+- [ ] HSTS is already sent via `_headers` (Cloudflare Pages)
 
-### All Placeholders Replaced
-- [ ] Google Analytics Measurement ID (`G-XXXXXXXXXX`)
-- [ ] Google Search Console verification code
-- [ ] Bing Webmaster verification code
-- [ ] AdSense Publisher ID (`ca-pub-XXXXXXXXXXXXXXXX`)
-- [ ] Formspree Form ID (contact.html — 2 occurrences)
+### Services Configured (as needed)
+- [ ] GA4 Measurement ID set in `js/analytics.js` (optional — off until set)
+- [ ] AdSense Publisher ID set in `js/consent.js` (optional — off until set)
+- [ ] Search Console / Bing verification meta tags added (optional)
+- [ ] `EMAIL_TO` set in Cloudflare dashboard (contact form inbox)
+- [ ] `RESEND_API_KEY` + `GEMINI_API_KEY` secrets set (`wrangler pages secret put`)
 
 ### Files Uploaded
-- [ ] All 52 HTML pages
+- [ ] All 56 HTML pages
 - [ ] `css/` directory (12 files)
 - [ ] `js/` directory (all .js files)
 - [ ] `images/` directory (favicon.svg, og-image.svg)
@@ -57,18 +63,18 @@ grep -rn "YOUR_GSC\|YOUR_BING\|G-XXXXXXXXXX\|ca-pub-XXXX\|REPLACE_WITH_FORM" .
 ## ✅ Post-Deploy Verification
 
 ### Core Pages
-- [ ] https://studymetrics.app/ loads (homepage)
-- [ ] https://studymetrics.app/gpa.html (GPA calculator works)
-- [ ] https://studymetrics.app/cgpa.html (CGPA calculator works)
-- [ ] https://studymetrics.app/gpa-converter.html (country selector works)
-- [ ] https://studymetrics.app/dashboard.html (student dashboard works)
-- [ ] https://studymetrics.app/ai.html (AI assistant works)
-- [ ] https://studymetrics.app/contact.html (form submits successfully)
-- [ ] https://studymetrics.app/404 (custom 404 page shows)
+- [ ] https://scholarics.com/ loads (homepage)
+- [ ] https://scholarics.com/gpa.html (GPA calculator works)
+- [ ] https://scholarics.com/cgpa.html (CGPA calculator works)
+- [ ] https://scholarics.com/gpa-converter.html (country selector works)
+- [ ] https://scholarics.com/dashboard.html (student dashboard works)
+- [ ] https://scholarics.com/ai.html (AI assistant works)
+- [ ] https://scholarics.com/contact.html (form submits successfully)
+- [ ] https://scholarics.com/404 (custom 404 page shows)
 
 ### Technical
-- [ ] robots.txt accessible: https://studymetrics.app/robots.txt
-- [ ] Sitemap accessible: https://studymetrics.app/sitemap.xml
+- [ ] robots.txt accessible: https://scholarics.com/robots.txt
+- [ ] Sitemap accessible: https://scholarics.com/sitemap.xml
 - [ ] No mixed content warnings (HTTP resources on HTTPS page)
 - [ ] Console shows no JavaScript errors on any page
 - [ ] Cookie consent banner appears on first visit
@@ -122,7 +128,7 @@ For Cloudflare Pages: Connect GitHub repo → set build output to `/` → deploy
 rsync -avz --delete \
   --exclude='.git' \
   --exclude='*.md' \
-  ./ user@yourserver.com:/var/www/html/studymetrics/
+  ./ user@yourserver.com:/var/www/html/scholarics/
 ```
 
 Verify `.htaccess` is uploaded and Apache `mod_rewrite` is enabled.

@@ -1,4 +1,4 @@
-window.SM_GRADING = (function () {
+window.SC_GRADING = (function () {
   "use strict";
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
   var SYSTEMS = [
@@ -671,7 +671,7 @@ window.SM_GRADING = (function () {
     if (!REGIONS[s.region]) REGIONS[s.region] = [];
     REGIONS[s.region].push(s);
   });
-  var PREF_KEY = "sm_country";
+  var PREF_KEY = "sc_country";
   return {
     all: SYSTEMS,
     get: function(id) { return BY_ID[id] || null; },

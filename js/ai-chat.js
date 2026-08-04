@@ -64,7 +64,7 @@
     msg.innerHTML = avatarHTML + '<div class="msg-body">' + bubbleContent + actionsHTML + '</div>';
     var copyBtn = msg.querySelector('.msg-copy-btn');
     if (copyBtn) {
-      copyBtn.addEventListener('click', function () { SM.copy(content); });
+      copyBtn.addEventListener('click', function () { SC.copy(content); });
     }
     messagesEl.appendChild(msg);
     scrollToBottom();
@@ -101,7 +101,7 @@
   }
   function setStatus(loading) {
     if (statusDotEl) statusDotEl.className = 'chat-status-dot' + (loading ? ' loading' : '');
-    if (statusLblEl) statusLblEl.textContent = loading ? 'Thinking…' : 'StudyMetrics AI Coach · Ready';
+    if (statusLblEl) statusLblEl.textContent = loading ? 'Thinking…' : 'Scholarics AI Coach · Ready';
   }
   function scrollToBottom() {
     if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -126,7 +126,7 @@
     appendMessage('user', text);
     if (textareaEl) { textareaEl.value = ''; autoResizeTextarea(); }
     showTyping();
-    window.SMAI.send(
+    window.SCAI.send(
       history,
       function (response) {
         hideTyping();

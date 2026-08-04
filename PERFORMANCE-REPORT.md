@@ -1,4 +1,4 @@
-# Study Metrics — Performance Report
+# Scholarics — Performance Report
 **Phase 10 | Version 1.0 | July 2026**
 
 ---

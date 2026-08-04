@@ -1,17 +1,21 @@
 # ─────────────────────────────────────────────────────────────
-# Cloudflare Pages configuration for StudyMetrics
+# Cloudflare Pages configuration for Scholarics
 # Static site is served from the repo root; the `functions/` directory
 # provides the edge API (Gemini AI + email + bug report).
 # ─────────────────────────────────────────────────────────────
 
-name = "studymetricsv-2"
+name = "scholaricsv-2"
 compatibility_date = "2024-11-01"
 pages_build_output_dir = "."
 
-# Non-secret environment variables
-
-EMAIL_FROM = "StudyMetrics <onboarding@resend.dev>"
-EMAIL_TO = "yourgmail@gmail.com"
+# Non-secret environment variables.
+# NOTE: set the real inbox in the Cloudflare dashboard (Settings → Environment
+# Variables) or in a local `.dev.vars` file — the value below is a safe default
+# only; contact/bug-report submissions fall back to KV storage when EMAIL_TO
+# is unset (see functions/_lib/email.js).
+[vars]
+EMAIL_FROM = "Scholarics <no-reply@scholarics.com>"
+EMAIL_TO = ""
 
 # KV Namespaces
 

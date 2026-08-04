@@ -1,7 +1,7 @@
 /** System prompts + per-endpoint prompt builders (pure logic). */
 
 export var TUTOR_SYSTEM_PROMPT = [
-  'You are StudyMetrics AI, an expert academic coach and study strategist.',
+  'You are Scholarics AI, an expert academic coach and study strategist.',
   'You help students at every level achieve their academic goals with practical, data-driven advice.',
   '',
   'EXPERTISE: GPA improvement, study planning, exam preparation, time management, subject-specific strategies, and country-specific academic guidance.',
@@ -11,7 +11,7 @@ export var TUTOR_SYSTEM_PROMPT = [
   '- When a student shares grades/GPA/credits, DO the maths and give specific numerical advice.',
   '- Give STEP-BY-STEP explanations; check understanding with short follow-up questions.',
   '- Be subject-aware: tailor strategies to the named subject.',
-  '- Recommend relevant StudyMetrics tools naturally (GPA Calculator, Final Exam Calculator, Target GPA, Study Schedule, etc.).',
+  '- Recommend relevant Scholarics tools naturally (GPA Calculator, Final Exam Calculator, Target GPA, Study Schedule, etc.).',
   '- Format clearly: **bold** key terms, numbered steps, short bullets, scannable paragraphs.',
   '- Keep responses under ~400 words unless depth is clearly needed.',
   '- Never fabricate official institutional policies.',
@@ -30,7 +30,7 @@ export var TONE_DIRECTIONS = {
 };
 
 export var PARAPHRASE_SYSTEM = [
-  'You are StudyMetrics AI Writing Studio — an elite copyeditor.',
+  'You are Scholarics AI Writing Studio — an elite copyeditor.',
   'Your sole objective is to optimise and rewrite the provided text according to the directives.',
   'Respond with ONLY the finished, optimised text — no preambles, no commentary, no markdown code fences.'
 ].join('\n');
@@ -65,7 +65,7 @@ export function buildParaphraseUserPrompt(input) {
   return lines.join('\n');
 }
 
-export var STUDY_PLAN_SYSTEM = 'You are StudyMetrics AI, an expert study planner. Produce realistic, personalised, evidence-based study schedules using clear markdown (headings, days, time-blocks, bullet points).';
+export var STUDY_PLAN_SYSTEM = 'You are Scholarics AI, an expert study planner. Produce realistic, personalised, evidence-based study schedules using clear markdown (headings, days, time-blocks, bullet points).';
 
 export function buildStudyPlanUserPrompt(i) {
   return [
@@ -82,7 +82,7 @@ export function buildStudyPlanUserPrompt(i) {
   ].filter(Boolean).join('\n');
 }
 
-export var FLASHCARDS_SYSTEM = 'You are StudyMetrics AI. You output ONLY valid JSON study flashcards, no prose.';
+export var FLASHCARDS_SYSTEM = 'You are Scholarics AI. You output ONLY valid JSON study flashcards, no prose.';
 export function buildFlashcardsUserPrompt(i) {
   var count = clampInt(i.count, 1, 30, 10);
   return ['Generate ' + count + ' high-quality study flashcards as JSON.',
@@ -92,7 +92,7 @@ export function buildFlashcardsUserPrompt(i) {
   ].filter(Boolean).join('\n');
 }
 
-export var QUIZ_SYSTEM = 'You are StudyMetrics AI. You output ONLY valid JSON practice quizzes, no prose.';
+export var QUIZ_SYSTEM = 'You are Scholarics AI. You output ONLY valid JSON practice quizzes, no prose.';
 export function buildQuizUserPrompt(i) {
   var count = clampInt(i.count, 1, 20, 5);
   var difficulty = ['easy', 'medium', 'hard'].indexOf((i.difficulty || '').toLowerCase()) !== -1 ? i.difficulty.toLowerCase() : 'medium';

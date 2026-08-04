@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, store=SM.store, KEY="sm_g2p";
+var $=SC.$, store=SC.store, KEY="sc_g2p";
 var SCALES={
   us4:{name:"US 4.0",max:4,fn:function(g){
     if(g>=4.0)return{pct:97,cls:"A / Excellent"};
@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(saved){var g=$('#g2pGpa');if(g)g.value=saved.gpa||'';var s=$('#g2pScale');if(s)s.value=saved.scale||'us4';}
   ['#g2pGpa','#g2pScale'].forEach(function(s){var e=$(s);if(e)e.addEventListener('input',compute);});
   var rs=$('#g2pReset');
-  if(rs){rs.onclick=function(){var e=$('#g2pGpa');if(e)e.value='';store.set(KEY,null);compute();SM.toast('Reset','info');};}
+  if(rs){rs.onclick=function(){var e=$('#g2pGpa');if(e)e.value='';store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#g2pShare');
-  if(sh){sh.onclick=function(){var v=$('#g2pOut');if(!v||v.textContent==='—')return SM.toast('Enter a GPA first','info');SM.copy('My GPA of '+$('#g2pGpa').value+' equals '+v.textContent+' — Study Metrics');};}
+  if(sh){sh.onclick=function(){var v=$('#g2pOut');if(!v||v.textContent==='—')return SC.toast('Enter a GPA first','info');SC.copy('My GPA of '+$('#g2pGpa').value+' equals '+v.textContent+' — Scholarics');};}
   compute();
 });
 })();

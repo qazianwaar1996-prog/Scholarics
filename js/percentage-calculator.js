@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  var $ = SM.$, $$ = SM.$$, round = SM.round;
+  var $ = SC.$, $$ = SC.$$, round = SC.round;
   document.addEventListener("DOMContentLoaded", function () {
     var tabs = $$(".tabs button");
     var panels = $$(".panel-lg");

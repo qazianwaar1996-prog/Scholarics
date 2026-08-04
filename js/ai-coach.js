@@ -155,7 +155,7 @@
       btn.setAttribute('data-q', q);
       btn.textContent = q;
       btn.addEventListener('click', function () {
-        document.dispatchEvent(new CustomEvent('smai:send', { detail: { text: q } }));
+        document.dispatchEvent(new CustomEvent('scai:send', { detail: { text: q } }));
       });
       container.appendChild(btn);
     });
@@ -212,7 +212,7 @@
       a.style.display = '';
     });
   }
-  document.addEventListener('smai:send', function (e) {
+  document.addEventListener('scai:send', function (e) {
     var text = e.detail && e.detail.text;
     if (!text) return;
     var ta  = document.getElementById('chat-textarea');

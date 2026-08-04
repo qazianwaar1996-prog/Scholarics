@@ -1,11 +1,11 @@
-# Study Metrics — Version 1.0 Release Notes
+# Scholarics — Version 1.0 Release Notes
 **Release Date: July 2026**
 
 ---
 
 ## Overview
 
-Study Metrics v1.0 is the official public launch of a free, privacy-respecting academic tools platform. It provides students worldwide with GPA calculators, grade trackers, attendance tools, study timers, an AI study assistant, and a personalised student dashboard.
+Scholarics v1.0 is the official public launch of a free, privacy-respecting academic tools platform. It provides students worldwide with GPA calculators, grade trackers, attendance tools, study timers, an AI study assistant, and a personalised student dashboard.
 
 ---
 

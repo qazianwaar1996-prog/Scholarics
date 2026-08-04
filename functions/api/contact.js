@@ -10,7 +10,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
 
   const result = await deliver(env, {
     type: 'contact',
-    subject: 'New StudyMetrics contact message',
+    subject: 'New Scholarics contact message',
     replyTo: email,
     text: 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message + '\n\n— via /api/contact',
     html: '<h3>New contact message</h3><p><b>Name:</b> ' + name + '<br><b>Email:</b> ' + email + '</p><p>' + escapeHtml(message).replace(/\n/g, '<br>') + '</p>',

@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, round=SM.round, store=SM.store, KEY="sm_p2g";
+var $=SC.$, round=SC.round, store=SC.store, KEY="sc_p2g";
 var SCALES={
   us4:{name:"US 4.0",max:4,fn:function(p){
     if(p>=97)return{gpa:4.0,letter:"A+",cls:"Excellent"};
@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded',function(){
   var inputs=['#p2gPct','#p2gScale'];
   inputs.forEach(function(sel){var el=$(sel);if(el)el.addEventListener('input',compute);});
   var rs=$('#p2gReset');
-  if(rs){rs.onclick=function(){var e=$('#p2gPct');if(e)e.value='';store.set(KEY,null);compute();SM.toast('Reset','info');};}
+  if(rs){rs.onclick=function(){var e=$('#p2gPct');if(e)e.value='';store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#p2gShare');
-  if(sh){sh.onclick=function(){var v=$('#p2gOut');if(!v||v.textContent==='—')return SM.toast('Enter a percentage first','info');SM.copy('My '+$('#p2gPct').value+'% converts to '+v.textContent+' GPA — Study Metrics');};}
+  if(sh){sh.onclick=function(){var v=$('#p2gOut');if(!v||v.textContent==='—')return SC.toast('Enter a percentage first','info');SC.copy('My '+$('#p2gPct').value+'% converts to '+v.textContent+' GPA — Scholarics');};}
   compute();
 });
 })();

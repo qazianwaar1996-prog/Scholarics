@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, round=SM.round, store=SM.store, KEY="sm_ag";
+var $=SC.$, round=SC.round, store=SC.store, KEY="sc_ag";
 function compute(){
   var att=parseFloat($('#agAttended').value), tot=parseFloat($('#agTotal').value),
       rem=parseFloat($('#agRemaining').value)||0, req=parseFloat($('#agRequired').value)||75;
@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(saved){['agAttended','agTotal','agRemaining','agRequired'].forEach(function(id){var e=$('#'+id);if(e&&saved[id.slice(2).toLowerCase()]!==undefined)e.value=saved[id.slice(2).toLowerCase()]||e.value;});}
   ['#agAttended','#agTotal','#agRemaining','#agRequired'].forEach(function(s){var e=$(s);if(e)e.addEventListener('input',compute);});
   var rs=$('#agReset');
-  if(rs){rs.onclick=function(){['#agAttended','#agTotal','#agRemaining'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SM.toast('Reset','info');};}
+  if(rs){rs.onclick=function(){['#agAttended','#agTotal','#agRemaining'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#agShare');
-  if(sh){sh.onclick=function(){var v=$('#agMustAttend');if(!v||v.textContent==='—')return SM.toast('Enter data first','info');SM.copy('I must attend '+v.textContent+' more classes to reach my attendance goal — Study Metrics');};}
+  if(sh){sh.onclick=function(){var v=$('#agMustAttend');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('I must attend '+v.textContent+' more classes to reach my attendance goal — Scholarics');};}
   compute();
 });
 })();

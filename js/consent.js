@@ -1,7 +1,7 @@
 (function () {
   'use strict';
-  var PUB_ID   = 'ca-pub-XXXXXXXXXXXXXXXXX';
-  var KEY      = 'sm_cookie_consent';
+  var PUB_ID   = ''; // ← set your AdSense publisher ID (e.g. 'ca-pub-1234567890123456') to enable ads
+  var KEY      = 'sc_cookie_consent';
   var ACCEPTED = 'accepted';
   var DECLINED = 'declined';
   function getConsent() {
@@ -25,7 +25,7 @@
     s.onload = function () {
       pushAllSlots();
     };
-    window._smAdsPending = true;
+    window._scAdsPending = true;
   }
   function pushAllSlots() {
     var slots = document.querySelectorAll('ins.adsbygoogle:not([data-ad-pushed])');
@@ -44,7 +44,7 @@
     banner.innerHTML =
       '<div class="consent-inner">' +
         '<p class="consent-text">' +
-          '<strong>We use cookies to keep Study Metrics free.</strong> ' +
+          '<strong>We use cookies to keep Scholarics free.</strong> ' +
           'We display ads through Google AdSense. By clicking Accept you consent to ' +
           'personalised advertising cookies. ' +
           '<a href="privacy-policy.html">Privacy Policy</a>' +
@@ -60,7 +60,7 @@
       setConsent(ACCEPTED);
       hideBanner(banner);
       loadAds();
-      document.dispatchEvent(new Event('sm:consent:accepted'));
+      document.dispatchEvent(new Event('sc:consent:accepted'));
     });
     document.getElementById('consent-decline').addEventListener('click', function () {
       setConsent(DECLINED);

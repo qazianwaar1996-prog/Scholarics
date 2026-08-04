@@ -148,11 +148,11 @@
 }
 
 /* ── Mobile bottom-nav clearance ─────────────────────────────── */
-/* On sm2-shell pages the fixed mobile bottom-nav (≤640 px) sits at bottom:0.
+/* On sc2-shell pages the fixed mobile bottom-nav (≤640 px) sits at bottom:0.
    Push the consent banner above it so it doesn't cover the nav. */
 @media (max-width: 640px) {
-  body.sm2-shell #consent-banner {
-    bottom: 64px; /* approx height of .sm2-bottomnav (icons + safe-area) */
+  body.sc2-shell #consent-banner {
+    bottom: 64px; /* approx height of .sc2-bottomnav (icons + safe-area) */
     border-radius: var(--r-md, 14px) var(--r-md, 14px) 0 0;
     border-top: 1px solid var(--border);
   }

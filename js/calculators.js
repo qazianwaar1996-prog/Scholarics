@@ -1,8 +1,8 @@
 (function () {
   'use strict';
-  if (typeof window.SM === 'undefined') return;
-  var qs  = SM.$;
-  var qsa = SM.$$;
+  if (typeof window.SC === 'undefined') return;
+  var qs  = SC.$;
+  var qsa = SC.$$;
   var pRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function initFieldActive () {
     qsa('.field').forEach(function (field) {
@@ -90,13 +90,13 @@
       var result   = resultEl ? resultEl.textContent.trim() : '';
       var label    = labelEl  ? labelEl.textContent.trim()  : 'Result';
       if (!result || result === '—') {
-        SM.toast('Enter values first', 'info');
+        SC.toast('Enter values first', 'info');
         return;
       }
-      var text = label + ': ' + result + ' — Calculated on Study Metrics (studymetrics.app)';
-      navigator.share({ title: 'Study Metrics', text: text, url: window.location.href })
+      var text = label + ': ' + result + ' — Calculated on Scholarics (scholarics.com)';
+      navigator.share({ title: 'Scholarics', text: text, url: window.location.href })
         .catch(function (err) {
-          if (err.name !== 'AbortError') SM.copy(text);
+          if (err.name !== 'AbortError') SC.copy(text);
         });
     });
     var txt = shareBtn.lastChild;

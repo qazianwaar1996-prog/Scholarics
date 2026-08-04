@@ -1,7 +1,7 @@
 (function () {
   "use strict";
-  var $ = SM.$, round = SM.round, clamp = SM.clamp, store = SM.store;
-  var KEY = "sm_target";
+  var $ = SC.$, round = SC.round, clamp = SC.clamp, store = SC.store;
+  var KEY = "sc_target";
   document.addEventListener("DOMContentLoaded", function () {
     var curGpaEl = $("#curGpa");
     var curCredEl = $("#curCredits");
@@ -96,7 +96,7 @@
         if (goalSlideEl) goalSlideEl.value = "3.50";
         if (goalSlideValEl) goalSlideValEl.textContent = "3.50";
         calc();
-        SM.toast("Reset to defaults", "info");
+        SC.toast("Reset to defaults", "info");
       };
     }
     var shareBtn = $("#shareBtn");
@@ -104,7 +104,7 @@
       shareBtn.onclick = function() {
         var val = ne ? ne.textContent : "—";
         if (val === "—") return;
-        SM.copy("I need to average a " + val + " to reach my goal! Check yours on Study Metrics.");
+        SC.copy("I need to average a " + val + " to reach my goal! Check yours on Scholarics.");
       };
     }
     if (goalSlideValEl && goalGpaEl) {

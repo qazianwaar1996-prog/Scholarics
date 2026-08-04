@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, round=SM.round;
+var $=SC.$, round=SC.round;
 function letterGrade(p){
   if(p>=90)return'A';if(p>=80)return'B';if(p>=70)return'C';if(p>=60)return'D';return'F';
 }
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var sc=$('#caScores'),btn=$('#caCalculate'),rs=$('#caReset'),sh=$('#caShare');
   if(sc) sc.addEventListener('input',compute);
   if(btn) btn.onclick=compute;
-  if(rs) rs.onclick=function(){if(sc) sc.value='';compute();SM.toast('Cleared','info');};
-  if(sh) sh.onclick=function(){var v=$('#caMean');if(!v||v.textContent==='—')return SM.toast('Enter scores first','info');SM.copy('Class average: '+v.textContent+' (n='+$('#caStudents').textContent+') — Study Metrics');};
+  if(rs) rs.onclick=function(){if(sc) sc.value='';compute();SC.toast('Cleared','info');};
+  if(sh) sh.onclick=function(){var v=$('#caMean');if(!v||v.textContent==='—')return SC.toast('Enter scores first','info');SC.copy('Class average: '+v.textContent+' (n='+$('#caStudents').textContent+') — Scholarics');};
   compute();
 });
 })();

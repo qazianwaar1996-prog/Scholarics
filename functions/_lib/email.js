@@ -9,7 +9,7 @@
  *
  * Required/optional env:
  *   RESEND_API_KEY  (secret)  — Resend API key
- *   EMAIL_FROM      (var)     — e.g. "StudyMetrics <noreply@yourdomain.com>"
+ *   EMAIL_FROM      (var)     — e.g. "Scholarics <no-reply@scholarics.com>"
  *   EMAIL_TO        (var)     — inbox that receives submissions
  *   SUBMISSIONS     (KV)      — optional fallback store
  */
@@ -22,7 +22,7 @@ export async function deliver(env, message) {
   // 1. Resend
   if (key) {
     var payload = {
-      from: env.EMAIL_FROM || 'StudyMetrics <onboarding@resend.com>',
+      from: env.EMAIL_FROM || 'Scholarics <no-reply@scholarics.com>',
       to: to,
       reply_to: message.replyTo || undefined,
       subject: message.subject,

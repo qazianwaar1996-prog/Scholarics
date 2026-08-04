@@ -1,8 +1,8 @@
 (function () {
   "use strict";
-  var $ = SM.$, $$ = SM.$$, round = SM.round, clamp = SM.clamp,
-      uid = SM.uid, esc = SM.esc, store = SM.store;
-  var KEY = "sm_semester_gpa";
+  var $ = SC.$, $$ = SC.$$, round = SC.round, clamp = SC.clamp,
+      uid = SC.uid, esc = SC.esc, store = SC.store;
+  var KEY = "sc_semester_gpa";
   var LETTERS = ["A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F"];
   var L2P = {"A+":4.0,"A":4.0,"A-":3.7,"B+":3.3,"B":3.0,"B-":2.7,
              "C+":2.3,"C":2.0,"C-":1.7,"D+":1.3,"D":1.0,"D-":0.7,"F":0};
@@ -64,7 +64,7 @@
         rows = rows.filter(function (r) { return r.id !== btn.getAttribute("data-del"); });
         save();
         render();
-        SM.toast("Course removed", "info");
+        SC.toast("Course removed", "info");
       };
     });
   }
@@ -91,7 +91,7 @@
     rows.push({ id: uid(), name: "", grade: "B", credits: 3 });
     save();
     render();
-    SM.toast("Course added", "success");
+    SC.toast("Course added", "success");
   }
   document.addEventListener("DOMContentLoaded", function () {
     var add1  = $("#sgAddRow");
@@ -105,7 +105,7 @@
       clear.onclick = function () {
         if (confirm("Clear all courses?")) {
           rows = []; save(); render();
-          SM.toast("All courses cleared", "info");
+          SC.toast("All courses cleared", "info");
         }
       };
     }
@@ -118,14 +118,14 @@
           { id: uid(), name: "Course 3", grade: "A-", credits: 4 }
         ];
         save(); render();
-        SM.toast("Reset to example data", "info");
+        SC.toast("Reset to example data", "info");
       };
     }
     if (share) {
       share.onclick = function () {
         var val = $("#sgGpaOut") ? $("#sgGpaOut").textContent : "—";
-        if (val === "—") return SM.toast("Enter courses first", "info");
-        SM.copy("My semester GPA is " + val + " — calculated on Study Metrics (studymetrics.app)");
+        if (val === "—") return SC.toast("Enter courses first", "info");
+        SC.copy("My semester GPA is " + val + " — calculated on Scholarics (scholarics.com)");
       };
     }
     render();

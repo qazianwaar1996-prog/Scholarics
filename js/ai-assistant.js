@@ -300,7 +300,7 @@
       };
     },
     'study-schedule.html': function () {
-      var subjects = SM.$$('.ss-subject-name, .sched-subject').map(function (el) { return el.textContent.trim(); }).filter(Boolean).slice(0, 6);
+      var subjects = SC.$$('.ss-subject-name, .sched-subject').map(function (el) { return el.textContent.trim(); }).filter(Boolean).slice(0, 6);
       if (!subjects.length) return null;
       return {
         title: 'Study Schedule Result',
@@ -348,7 +348,7 @@
   }
   function buildPrompt(ctx) {
     return [
-      'A student has just used the StudyMetrics ' + ctx.title + ' and received these results:',
+      'A student has just used the Scholarics ' + ctx.title + ' and received these results:',
       '',
       ctx.details.map(function(d){ return '• ' + d; }).join('\n'),
       '',
@@ -369,7 +369,7 @@
     if (rail.querySelector('.ask-ai-btn')) return;
     var btn = document.createElement('button');
     btn.className = 'ask-ai-btn';
-    btn.setAttribute('aria-label', 'Ask StudyMetrics AI to explain this result');
+    btn.setAttribute('aria-label', 'Ask Scholarics AI to explain this result');
     btn.innerHTML =
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M12 8v4l3 3"/></svg>' +
       '<span class="ask-ai-sparkle">✦</span> Ask AI to explain this result';
@@ -378,7 +378,7 @@
       var builder = CALCULATORS[page];
       var liveCtx = builder ? builder() : null;
       if (!liveCtx) {
-        SM.toast('Calculate a result first, then ask AI.', 'info');
+        SC.toast('Calculate a result first, then ask AI.', 'info');
         return;
       }
       openPanel(rail, liveCtx, btn);
@@ -395,7 +395,7 @@
       '<div class="calc-ai-head">' +
         '<div class="calc-ai-head-left">' +
           '<span class="calc-ai-dot loading" id="calc-ai-dot"></span>' +
-          '<span class="calc-ai-title">StudyMetrics AI — Explaining your result…</span>' +
+          '<span class="calc-ai-title">Scholarics AI — Explaining your result…</span>' +
         '</div>' +
         '<button class="calc-ai-close" aria-label="Close AI explanation" id="calc-ai-close">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>' +
@@ -410,14 +410,14 @@
       if (triggerBtn) triggerBtn.style.display = '';
     });
     var prompt = buildPrompt(ctx);
-    window.SMAI.send(
+    window.SCAI.send(
       [{ role: 'user', content: prompt }],
       function (response) {
         var body = panel.querySelector('#calc-ai-body');
         var dot  = panel.querySelector('#calc-ai-dot');
         if (body) body.innerHTML = renderMD(response);
         if (dot)  dot.className = 'calc-ai-dot';
-        setTitle(panel, 'StudyMetrics AI — ' + ctx.title);
+        setTitle(panel, 'Scholarics AI — ' + ctx.title);
         appendFooter(panel, response);
       },
       function (errMsg) {
@@ -431,7 +431,7 @@
             '</div>';
         }
         if (dot) dot.className = 'calc-ai-dot';
-        setTitle(panel, 'StudyMetrics AI — Error');
+        setTitle(panel, 'Scholarics AI — Error');
       }
     );
   }
@@ -453,16 +453,16 @@
         ' Open full AI chat' +
       '</a>';
     foot.querySelector('.calc-ai-copy-btn').addEventListener('click', function () {
-      SM.copy(responseText);
+      SC.copy(responseText);
     });
     panel.appendChild(foot);
   }
   function init() {
     var page = location.pathname.split('/').pop() || 'index.html';
     if (!CALCULATORS[page]) return;
-    var rails = SM.$$('.result-rail');
+    var rails = SC.$$('.result-rail');
     if (!rails.length) {
-      rails = SM.$$('.gpa-hero, .res-hero, .grade-hero');
+      rails = SC.$$('.gpa-hero, .res-hero, .grade-hero');
     }
     if (!rails.length) return;
     rails.forEach(function (rail) {

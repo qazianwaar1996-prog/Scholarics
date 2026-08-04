@@ -1,11 +1,11 @@
 (function () {
   'use strict';
-  if (typeof window.SM === 'undefined') {
-    console.warn('personalization.js: SM not found. Load script.js first.');
+  if (typeof window.SC === 'undefined') {
+    console.warn('personalization.js: SC not found. Load script.js first.');
     return;
   }
-  var store = SM.store;
-  var esc   = SM.esc;
+  var store = SC.store;
+  var esc   = SC.esc;
   var TOOLS = [
     { slug:'gpa',                    name:'GPA Calculator',          url:'gpa.html',                    cat:'GPA & Grades',  icon:'📐' },
     { slug:'cgpa',                   name:'CGPA Calculator',         url:'cgpa.html',                   cat:'GPA & Grades',  icon:'📊' },
@@ -37,28 +37,28 @@
   var TOOL_BY_SLUG = {};
   TOOLS.forEach(function (t) { TOOL_BY_SLUG[t.slug] = t; });
   var K = {
-    THEME         : 'sm_theme',
-    SEARCH_HIST   : 'sm_search_history',
-    FREQ          : 'sm_freq',
-    LAST_OPEN     : 'sm_last_open',
-    RECENT        : 'sm_dash_recent',
-    FAVORITES     : 'sm_dash_favorites',
-    USERNAME      : 'sm_dash_name',
+    THEME         : 'sc_theme',
+    SEARCH_HIST   : 'sc_search_history',
+    FREQ          : 'sc_freq',
+    LAST_OPEN     : 'sc_last_open',
+    RECENT        : 'sc_dash_recent',
+    FAVORITES     : 'sc_dash_favorites',
+    USERNAME      : 'sc_dash_name',
   };
-  var SM_THEME = (function () {
+  var SC_THEME = (function () {
     var ATTR = 'data-theme';
     function _apply(theme) {
       document.documentElement.setAttribute(ATTR, theme);
-      document.querySelectorAll('.sm-theme-toggle').forEach(function (btn) {
+      document.querySelectorAll('.sc-theme-toggle').forEach(function (btn) {
         btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
         btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        var icon = btn.querySelector('.sm-theme-icon');
+        var icon = btn.querySelector('.sc-theme-icon');
         if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
       });
     }
     function _saved() {
       /* Theme is stored as a RAW string ('dark'/'light') to stay consistent with
-         the inline boot script and the v2 sm2Theme() helper. Using SM.store here
+         the inline boot script and the v2 sc2Theme() helper. Using SC.store here
          would JSON-encode the value and break cross-page theme persistence. */
       try { return localStorage.getItem(K.THEME) || null; } catch (e) { return null; }
     }
@@ -73,7 +73,7 @@
       var next = current() === 'dark' ? 'light' : 'dark';
       try { localStorage.setItem(K.THEME, next); } catch (e) {}
       _apply(next);
-      SM.toast(next === 'dark' ? '🌙 Dark mode on' : '☀️ Light mode on', 'info');
+      SC.toast(next === 'dark' ? '🌙 Dark mode on' : '☀️ Light mode on', 'info');
     }
     function init() {
       _apply(current());
@@ -86,18 +86,18 @@
     return { current: current, toggle: toggle, init: init };
   })();
   function injectThemeToggle() {
-    if (document.querySelector('.sm-theme-toggle')) return;
+    if (document.querySelector('.sc-theme-toggle')) return;
     var nav = document.querySelector('.site-head .nav-links') ||
               document.querySelector('.site-head nav') ||
               document.querySelector('.site-head');
     if (!nav) return;
     var btn = document.createElement('button');
-    btn.className   = 'btn btn-ghost sm-theme-toggle';
+    btn.className   = 'btn btn-ghost sc-theme-toggle';
     btn.style.cssText = 'padding:8px 10px;min-width:0;font-size:1.1rem;line-height:1;border-radius:var(--r-md)';
-    btn.setAttribute('aria-pressed', SM_THEME.current() === 'dark' ? 'true' : 'false');
-    btn.setAttribute('aria-label', SM_THEME.current() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    btn.innerHTML = '<span class="sm-theme-icon">' + (SM_THEME.current() === 'dark' ? '☀️' : '🌙') + '</span>';
-    btn.addEventListener('click', SM_THEME.toggle);
+    btn.setAttribute('aria-pressed', SC_THEME.current() === 'dark' ? 'true' : 'false');
+    btn.setAttribute('aria-label', SC_THEME.current() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.innerHTML = '<span class="sc-theme-icon">' + (SC_THEME.current() === 'dark' ? '☀️' : '🌙') + '</span>';
+    btn.addEventListener('click', SC_THEME.toggle);
     nav.appendChild(btn);
   }
   function trackFrequency() {
@@ -150,14 +150,14 @@
     return top.slice(0, limit).map(function (s) { return s.tool; });
   }
   function initSmartSearch() {
-    var inputs = document.querySelectorAll('.sm-search-input');
+    var inputs = document.querySelectorAll('.sc-search-input');
     if (!inputs.length) return;
     inputs.forEach(function (input) {
-      var wrapper = input.closest('.sm-search-wrap') || input.parentElement;
-      var list    = wrapper.querySelector('.sm-search-suggestions');
+      var wrapper = input.closest('.sc-search-wrap') || input.parentElement;
+      var list    = wrapper.querySelector('.sc-search-suggestions');
       if (!list) {
         list = document.createElement('ul');
-        list.className = 'sm-search-suggestions';
+        list.className = 'sc-search-suggestions';
         list.setAttribute('role', 'listbox');
         list.setAttribute('aria-label', 'Search suggestions');
         wrapper.appendChild(list);
@@ -169,9 +169,9 @@
         items.forEach(function (item) {
           var li = document.createElement('li');
           li.setAttribute('role', 'option');
-          li.innerHTML = '<span class="sm-sugg-icon">' + esc(item.icon || '') + '</span>'
-            + '<span class="sm-sugg-name">' + esc(item.name) + '</span>'
-            + (item.cat ? '<span class="sm-sugg-cat">' + esc(item.cat) + '</span>' : '');
+          li.innerHTML = '<span class="sc-sugg-icon">' + esc(item.icon || '') + '</span>'
+            + '<span class="sc-sugg-name">' + esc(item.name) + '</span>'
+            + (item.cat ? '<span class="sc-sugg-cat">' + esc(item.cat) + '</span>' : '');
           li.addEventListener('mousedown', function (e) {
             e.preventDefault();
             saveSearch(item.name);
@@ -222,12 +222,12 @@
           e.preventDefault();
           if (active) active.classList.remove('active');
           var next = items[idx + 1] || items[0];
-          if (next) { next.classList.add('active'); input.value = next.querySelector('.sm-sugg-name').textContent; }
+          if (next) { next.classList.add('active'); input.value = next.querySelector('.sc-sugg-name').textContent; }
         } else if (e.key === 'ArrowUp') {
           e.preventDefault();
           if (active) active.classList.remove('active');
           var prev = items[idx - 1] || items[items.length - 1];
-          if (prev) { prev.classList.add('active'); input.value = prev.querySelector('.sm-sugg-name').textContent; }
+          if (prev) { prev.classList.add('active'); input.value = prev.querySelector('.sc-sugg-name').textContent; }
         } else if (e.key === 'Enter') {
           if (active) { active.dispatchEvent(new Event('mousedown')); }
           else {
@@ -255,25 +255,25 @@
     if (age > 7) { container.hidden = true; return; }
     var lastUrl = last.url;
     var banner = document.createElement('div');
-    banner.className = 'sm-continue-banner reveal';
+    banner.className = 'sc-continue-banner reveal';
     banner.innerHTML = [
-      '<div class="sm-continue-inner">',
-      '  <span class="sm-continue-icon">↩️</span>',
-      '  <div class="sm-continue-text">',
-      '    <div class="sm-continue-label">Continue where you left off</div>',
-      '    <div class="sm-continue-name">' + esc(last.name) + '</div>',
+      '<div class="sc-continue-inner">',
+      '  <span class="sc-continue-icon">↩️</span>',
+      '  <div class="sc-continue-text">',
+      '    <div class="sc-continue-label">Continue where you left off</div>',
+      '    <div class="sc-continue-name">' + esc(last.name) + '</div>',
       '  </div>',
-      '  <a href="' + esc(lastUrl) + '" class="btn btn-primary sm-continue-btn">Resume</a>',
-      '  <button type="button" class="sm-continue-close" aria-label="Dismiss">&times;</button>',
+      '  <a href="' + esc(lastUrl) + '" class="btn btn-primary sc-continue-btn">Resume</a>',
+      '  <button type="button" class="sc-continue-close" aria-label="Dismiss">&times;</button>',
       '</div>',
     ].join('');
-    var inner = banner.querySelector('.sm-continue-inner');
+    var inner = banner.querySelector('.sc-continue-inner');
     inner.addEventListener('click', function (e) {
-      if (!e.target.closest('.sm-continue-close') && !e.target.closest('.sm-continue-btn')) {
+      if (!e.target.closest('.sc-continue-close') && !e.target.closest('.sc-continue-btn')) {
         location.href = lastUrl;
       }
     });
-    banner.querySelector('.sm-continue-close').addEventListener('click', function (e) {
+    banner.querySelector('.sc-continue-close').addEventListener('click', function (e) {
       e.stopPropagation();
       banner.remove();
       container.hidden = true;
@@ -282,7 +282,7 @@
     container.hidden = false;
   }
   function renderHomepageStrip() {
-    var el = document.getElementById('sm-personalized-strip');
+    var el = document.getElementById('sc-personalized-strip');
     if (!el) return;
     var recent  = store.get(K.RECENT, []);
     var hasData = recent.length > 0 || Object.keys(store.get(K.FREQ, {})).length > 0;
@@ -294,34 +294,34 @@
     var rec = getRecommended(4, []);
     var cards = rec.map(function (t) {
       return [
-        '<a href="' + t.url + '" class="sm-pers-card">',
-        '  <span class="sm-pers-card-icon">' + t.icon + '</span>',
-        '  <span class="sm-pers-card-name">' + esc(t.name) + '</span>',
-        '  <span class="sm-pers-card-cat">' + esc(t.cat) + '</span>',
+        '<a href="' + t.url + '" class="sc-pers-card">',
+        '  <span class="sc-pers-card-icon">' + t.icon + '</span>',
+        '  <span class="sc-pers-card-name">' + esc(t.name) + '</span>',
+        '  <span class="sc-pers-card-cat">' + esc(t.cat) + '</span>',
         '</a>',
       ].join('');
     }).join('');
     el.innerHTML = [
       '<div class="wrap">',
-      '  <div class="sm-pers-head">',
+      '  <div class="sc-pers-head">',
       '    <span class="kicker">' + (name ? 'For you, ' + esc(name) : 'Recommended for you') + '</span>',
       '    <p>Based on your recent activity</p>',
       '  </div>',
-      '  <div class="sm-pers-grid">' + cards + '</div>',
+      '  <div class="sc-pers-grid">' + cards + '</div>',
       '</div>',
     ].join('');
     el.hidden = false;
   }
   function renderSmartQuickLinks() {
-    var el = document.getElementById('sm-quick-links');
+    var el = document.getElementById('sc-quick-links');
     if (!el) return;
     var rec = getRecommended(6, []);
     if (!rec.length) { el.hidden = true; return; }
     var links = rec.map(function (t) {
-      return '<a href="' + t.url + '" class="sm-quick-link">'
+      return '<a href="' + t.url + '" class="sc-quick-link">'
         + t.icon + ' ' + esc(t.name) + '</a>';
     }).join('');
-    el.innerHTML = '<div class="sm-quick-links-inner"><span class="sm-quick-label">Quick links:</span>' + links + '</div>';
+    el.innerHTML = '<div class="sc-quick-links-inner"><span class="sc-quick-label">Quick links:</span>' + links + '</div>';
     el.hidden = false;
   }
   function renderDashboardRecommended() {
@@ -350,14 +350,14 @@
     el.innerHTML = html;
   }
   function renderCountryNote() {
-    var el = document.getElementById('sm-country-note');
+    var el = document.getElementById('sc-country-note');
     if (!el) return;
     try {
-      var saved = localStorage.getItem('sm_country');
+      var saved = localStorage.getItem('sc_country');
       if (!saved) { el.hidden = true; return; }
       var label;
-      if (window.SM_GRADING) {
-        var sys = window.SM_GRADING.get(saved);
+      if (window.SC_GRADING) {
+        var sys = window.SC_GRADING.get(saved);
         label = sys ? (sys.flag + '\u00a0' + sys.name) : null;
       } else {
         var FLAGS = {
@@ -380,8 +380,8 @@
       el.textContent = 'Showing ' + label + ' grading scale';
     } catch (e) { el.hidden = true; }
   }
-  window.SM_PERSONALIZATION = {
-    theme         : SM_THEME,
+  window.SC_PERSONALIZATION = {
+    theme         : SC_THEME,
     getRecommended: getRecommended,
     renderContinueBanner     : renderContinueBanner,
     renderHomepageStrip      : renderHomepageStrip,
@@ -391,11 +391,11 @@
     initSmartSearch          : initSmartSearch,
   };
   function boot() {
-    SM_THEME.init();
+    SC_THEME.init();
     injectThemeToggle();
     trackFrequency();
     initSmartSearch();
-    renderContinueBanner('#sm-continue-slot');
+    renderContinueBanner('#sc-continue-slot');
     renderHomepageStrip();
     renderSmartQuickLinks();
     renderDashboardRecommended();

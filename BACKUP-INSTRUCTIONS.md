@@ -1,4 +1,4 @@
-# Study Metrics — Backup Instructions
+# Scholarics — Backup Instructions
 **Version 1.0**
 
 ---
@@ -21,12 +21,12 @@ Before every deploy, create a timestamped ZIP:
 ```bash
 # macOS / Linux
 cd ~/projects
-zip -r study-metrics-backup-$(date +%Y%m%d).zip study-metrics-v1/ \
+zip -r scholarics-backup-$(date +%Y%m%d).zip scholarics-v1/ \
   --exclude "*.DS_Store" --exclude "__MACOSX/*"
 
 # Windows (PowerShell)
-Compress-Archive -Path study-metrics-v1 `
-  -DestinationPath "study-metrics-backup-$(Get-Date -Format yyyyMMdd).zip"
+Compress-Archive -Path scholarics-v1 `
+  -DestinationPath "scholarics-backup-$(Get-Date -Format yyyyMMdd).zip"
 ```
 
 Store backups in at least two locations:
@@ -42,11 +42,11 @@ Keep the last **3 versions** minimum.
 If you aren't already using Git, initialise a repo:
 
 ```bash
-cd study-metrics-v1
+cd scholarics-v1
 git init
 git add .
 git commit -m "v1.0 — initial production release"
-git remote add origin https://github.com/yourname/study-metrics.git
+git remote add origin https://github.com/yourname/scholarics.git
 git push -u origin main
 ```
 
@@ -72,9 +72,9 @@ If you control the server, automate backups with cron:
 ```bash
 # Add to crontab (crontab -e)
 # Backs up at 2 AM every Sunday
-0 2 * * 0 zip -r /backups/studymetrics-$(date +\%Y\%m\%d).zip /var/www/html/studymetrics/
+0 2 * * 0 zip -r /backups/scholarics-$(date +\%Y\%m\%d).zip /var/www/html/scholarics/
 # Delete backups older than 30 days
-0 3 * * 0 find /backups -name "studymetrics-*.zip" -mtime +30 -delete
+0 3 * * 0 find /backups -name "scholarics-*.zip" -mtime +30 -delete
 ```
 
 ---

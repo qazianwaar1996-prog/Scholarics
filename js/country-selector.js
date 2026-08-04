@@ -1,27 +1,27 @@
-window.SM_COUNTRY = (function () {
+window.SC_COUNTRY = (function () {
   "use strict";
-  if (typeof window.SM_GRADING === "undefined") {
-    console.warn("country-selector: SM_GRADING not loaded.");
+  if (typeof window.SC_GRADING === "undefined") {
+    console.warn("country-selector: SC_GRADING not loaded.");
     return { current: function() { return null; }, onChange: function() {} };
   }
-  var G        = window.SM_GRADING;
-  var PREF_KEY = "sm_country";
+  var G        = window.SC_GRADING;
+  var PREF_KEY = "sc_country";
   var _current = G.get(G.load()) || G.all[0];
   var _listeners = [];
   function _emit(sys) {
     _current = sys;
     G.save(sys.id);
-    document.querySelectorAll(".sm-country-select").forEach(function(sel) {
+    document.querySelectorAll(".sc-country-select").forEach(function(sel) {
       if (sel.value !== sys.id) sel.value = sys.id;
     });
     _listeners.forEach(function(fn) { try { fn(sys); } catch(e) {} });
-    document.dispatchEvent(new CustomEvent("sm:country-change", { detail: { system: sys } }));
+    document.dispatchEvent(new CustomEvent("sc:country-change", { detail: { system: sys } }));
   }
   function _buildSelect(assignId) {
     var sel = document.createElement("select");
-    sel.className  = "select sm-country-select";
+    sel.className  = "select sc-country-select";
     sel.setAttribute("aria-label", "Select your country grading system");
-    if (assignId) sel.id = "smCountrySelect";
+    if (assignId) sel.id = "scCountrySelect";
     Object.keys(G.regions).sort().forEach(function(region) {
       var og = document.createElement("optgroup");
       og.label = region;
@@ -40,19 +40,19 @@ window.SM_COUNTRY = (function () {
       _emit(sys);
       _updateBadge(sys);
       _updateScaleNote(sys);
-      if (typeof SM !== "undefined" && SM.toast) {
-        SM.toast(sys.flag + " " + sys.name + " grading system selected", "success");
+      if (typeof SC !== "undefined" && SC.toast) {
+        SC.toast(sys.flag + " " + sys.name + " grading system selected", "success");
       }
     });
     return sel;
   }
   function _updateBadge(sys) {
-    document.querySelectorAll(".sm-scale-badge").forEach(function(el) {
+    document.querySelectorAll(".sc-scale-badge").forEach(function(el) {
       el.textContent = sys.flag + " " + sys.scale;
     });
   }
   function _updateScaleNote(sys) {
-    var note = document.getElementById("smScaleNote");
+    var note = document.getElementById("scScaleNote");
     if (!note) return;
     var rows = sys.grades.slice(0, 5).map(function(g) {
       return g.label + " → " + (g.gpa4 >= 4 ? "4.0" : g.gpa4.toFixed(1));
@@ -64,27 +64,27 @@ window.SM_COUNTRY = (function () {
     note.classList.add("info");
   }
   function _injectNav() {
-    if (document.getElementById("smCountrySelect")) return;
+    if (document.getElementById("scCountrySelect")) return;
     var navCta = document.querySelector(".nav-cta");
     if (navCta) {
       var wrap = document.createElement("div");
-      wrap.className = "sm-country-wrap";
+      wrap.className = "sc-country-wrap";
       wrap.setAttribute("aria-label", "Country grading system selector");
       wrap.appendChild(_buildSelect(true));
       navCta.insertBefore(wrap, navCta.firstChild);
     }
     var toolHead = document.querySelector(".tool-head .wrap");
-    if (toolHead && !toolHead.querySelector(".sm-country-inline")) {
+    if (toolHead && !toolHead.querySelector(".sc-country-inline")) {
       var mobileWrap = document.createElement("div");
-      mobileWrap.className = "sm-country-inline";
+      mobileWrap.className = "sc-country-inline";
       mobileWrap.setAttribute("aria-label", "Select country grading system");
       mobileWrap.appendChild(_buildSelect(false));
       toolHead.appendChild(mobileWrap);
     }
   }
   function _injectPlaceholders() {
-    document.querySelectorAll(".sm-country-picker").forEach(function(el) {
-      if (el.querySelector(".sm-country-select")) return;
+    document.querySelectorAll(".sc-country-picker").forEach(function(el) {
+      if (el.querySelector(".sc-country-select")) return;
       el.appendChild(_buildSelect());
     });
   }
@@ -92,7 +92,7 @@ window.SM_COUNTRY = (function () {
     var container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = _buildGuidePanelHTML(_current);
-    document.addEventListener("sm:country-change", function(e) {
+    document.addEventListener("sc:country-change", function(e) {
       container.innerHTML = _buildGuidePanelHTML(e.detail.system);
     });
   }
@@ -130,7 +130,7 @@ window.SM_COUNTRY = (function () {
   function _liveConversion() {
     var resultEls = document.querySelectorAll(".gpa-big, .res-big, #gpaOut, #sgGpaOut");
     if (!resultEls.length) return;
-    var convEl = document.getElementById("smConvResult");
+    var convEl = document.getElementById("scConvResult");
     if (!convEl) return;
     function update() {
       var sys = _current;
@@ -155,7 +155,7 @@ window.SM_COUNTRY = (function () {
     resultEls.forEach(function(el) {
       new MutationObserver(update).observe(el, { childList: true, characterData: true, subtree: true });
     });
-    document.addEventListener("sm:country-change", update);
+    document.addEventListener("sc:country-change", update);
     setTimeout(update, 500);
   }
   function _init() {
@@ -164,7 +164,7 @@ window.SM_COUNTRY = (function () {
     _updateBadge(_current);
     _updateScaleNote(_current);
     _liveConversion();
-    _renderGuidePanel("smGuidePanel");
+    _renderGuidePanel("scGuidePanel");
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", _init);
