@@ -2,7 +2,7 @@
 
 **Domain:** https://scholarics.com
 **Date:** 2026-08-04
-**Commit:** `c62ad03` (pushed to `arena/019fce84-study-metricsv-2`)
+**Commit:** `c62ad03` (pushed to the active arena session branch)
 **Scope:** Full frontend + backend audit, all bugs fixed, build verified.
 
 ---
@@ -132,7 +132,7 @@ None blocking. The following are **intentional configuration points that require
 6. **GSC/Bing verification** → add meta tags after claiming the properties in those consoles
 7. **DNS/deployment**: point `scholarics.com` at the Cloudflare Pages project `scholaricsv-2`; KV namespaces `SUBMISSIONS` + `RATE_LIMIT_KV` already bound in `wrangler.toml`
 
-Historical docs (`RELEASE-NOTES-v1.0.md`, `QA-REPORT.md`, `FIXES-APPLIED.md`, `RENAME-REPORT.md`) intentionally retain old-brand references as the project's change record — they are `noindex`ed and not part of the shipped site.
+Historical docs (`RELEASE-NOTES-v1.0.md`, `QA-REPORT.md`, `FIXES-APPLIED.md`, `RENAME-REPORT.md`) serve as the project's change record and are `noindex`ed, so they are not part of the shipped site. As of the brand audit (see `BRANDING-AUDIT-REPORT.md`) they contain **zero** legacy brand strings — the rename record now refers to the former wordmark only as "the legacy brand".
 
 ---
 
