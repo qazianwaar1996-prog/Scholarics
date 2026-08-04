@@ -81,6 +81,29 @@
     var siteHead = qs('.site-head');
     if (!siteHead) return;
 
+    /* ── Fix branding: replace any remaining "Study Metrics" logo text with "Scholarics" ── */
+    siteHead.querySelectorAll('.logo').forEach(function (logoEl) {
+      /* Preserve the logo-mark span, replace only the text node after it */
+      var mark = logoEl.querySelector('.logo-mark');
+      if (mark) {
+        /* Remove all child nodes after the mark */
+        while (mark.nextSibling) { logoEl.removeChild(mark.nextSibling); }
+        logoEl.appendChild(document.createTextNode('Scholarics'));
+      } else if (logoEl.textContent.indexOf('Study') !== -1 || logoEl.textContent.indexOf('Metrics') !== -1) {
+        logoEl.textContent = 'Scholarics';
+      }
+    });
+    /* Also fix footer logos */
+    document.querySelectorAll('footer .logo, .foot-brand .logo').forEach(function (logoEl) {
+      var mark = logoEl.querySelector('.logo-mark');
+      if (mark) {
+        while (mark.nextSibling) { logoEl.removeChild(mark.nextSibling); }
+        logoEl.appendChild(document.createTextNode('Scholarics'));
+      } else if (logoEl.textContent.indexOf('Study') !== -1 || logoEl.textContent.indexOf('Metrics') !== -1) {
+        logoEl.textContent = 'Scholarics';
+      }
+    });
+
     /* Replace nav-links with full homepage nav set */
     var navLinks = qs('.nav-links', siteHead);
     if (navLinks) {
@@ -146,6 +169,7 @@
         toggle.dataset.scBound = '1';   /* flag so premium.js won't double-bind the same #menuToggle */
         toggle.addEventListener('click', function (e) {
           e.stopPropagation();
+          e.preventDefault();
           var open = navLinks.classList.toggle('open');
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
           toggle.innerHTML = open ? ICON_CLOSE : ICON_MENU;
@@ -174,7 +198,7 @@
       style.id = 'sh-unified-style';
       style.textContent = [
         /* Nav height alignment */
-        '.nav{height:64px;gap:20px}',
+        '.nav{height:64px;gap:20px;position:relative}',
         '.nav-links{gap:20px}',
         '.nav-links a{font-size:13.5px;font-weight:500;white-space:nowrap}',
         /* Prevent overflow */
@@ -186,7 +210,11 @@
         '@media(max-width:860px){',
         '  .sh-search,.sh-icon-btn:not(.sc-theme-toggle),.sc-install-btn{display:none!important}',
         '  .nav-cta{gap:8px}',
-        '  .nav-links{top:64px;max-height:70vh;overflow-y:auto}',
+        /* FIX: Use fixed positioning for nav dropdown to avoid overflow-x:clip on .wrap */
+        '  .site-head .wrap.nav{overflow-x:visible!important;overflow-y:visible!important}',
+        '  .nav-links{position:fixed!important;top:64px!important;left:0!important;right:0!important;z-index:60;background:var(--surface);box-shadow:0 8px 24px rgba(0,0,0,.12);border-bottom:1px solid var(--border);padding:16px 24px;max-height:70vh;overflow-y:auto}',
+        '  .nav-links.open{display:flex!important}',
+        '  .menu-toggle{display:flex!important;z-index:61}',
         '}',
         /* On very small screens, shrink logo text */
         '@media(max-width:400px){',

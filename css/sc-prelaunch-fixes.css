@@ -193,10 +193,26 @@ table {
     text-overflow: ellipsis;
     max-width: 130px;
   }
-  /* Ensure mobile nav dropdown doesn't overflow */
+  /* FIX: .wrap has overflow-x:clip which clips the absolute nav-links dropdown.
+     Override to visible on the header's .wrap.nav so the dropdown is not clipped. */
+  .site-head .wrap.nav {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+  /* Make the nav a positioning context for the dropdown */
+  .site-head .nav {
+    position: relative;
+  }
+  /* Ensure mobile nav dropdown is above all content and not clipped */
   .nav-links.open {
     max-height: calc(100vh - 68px);
     overflow-y: auto;
+    z-index: 60;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .menu-toggle {
+    z-index: 61;
+    position: relative;
   }
 }
 
