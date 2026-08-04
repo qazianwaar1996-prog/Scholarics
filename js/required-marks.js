@@ -199,7 +199,7 @@
         var req = $("#rmRequired") ? $("#rmRequired").textContent : "—";
         if (req === "—") return SC.toast("Enter data first", "info");
         var tgt = $("#rmTarget") ? $("#rmTarget").value : "";
-        SC.copy("I need " + req + " per subject to reach " + tgt + "% — calculated on Scholarics (scholarics.app)");
+        SC.copy("I need " + req + " per subject to reach " + tgt + "% — calculated on Scholarics (scholarics.com)");
       };
     }
     render();

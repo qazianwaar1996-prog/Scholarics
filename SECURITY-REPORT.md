@@ -96,7 +96,7 @@ form-action 'self' https://formspree.io;
 ### Gemini API Key — Client-Side
 **Risk:** Low — the Google Gemini API key is embedded in `js/ai-service.js` (client-visible). Google's API key restrictions (allowed HTTP referrers, API quotas) mitigate this significantly.
 
-**Mitigation already in place:** Restrict the key in Google Cloud Console to `scholarics.app` referrers only.
+**Mitigation already in place:** Restrict the key in Google Cloud Console to `scholarics.com` referrers only.
 
 **Future improvement:** Proxy Gemini calls through a serverless function (Netlify Function / Cloudflare Worker) so the key is never exposed to the browser.
 

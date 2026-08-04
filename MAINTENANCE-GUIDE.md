@@ -22,7 +22,7 @@
 ```bash
 # Install link checker
 npm install -g broken-link-checker
-blc https://scholarics.app --recursive --exclude-external
+blc https://scholarics.com --recursive --exclude-external
 ```
 
 ### Sitemap Update
@@ -48,11 +48,11 @@ When adding or removing pages, update `sitemap.xml`:
 
 ### Performance Audit
 Run Google PageSpeed Insights on top 5 pages:
-- https://scholarics.app/
-- https://scholarics.app/gpa-converter.html
-- https://scholarics.app/gpa.html
-- https://scholarics.app/dashboard.html
-- https://scholarics.app/ai.html
+- https://scholarics.com/
+- https://scholarics.com/gpa-converter.html
+- https://scholarics.com/gpa.html
+- https://scholarics.com/dashboard.html
+- https://scholarics.com/ai.html
 
 Target: mobile ≥ 85, desktop ≥ 95
 
@@ -82,13 +82,13 @@ If CSP errors appear (blocked resources), update `Content-Security-Policy` in `.
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page Title — Scholarics</title>
 <meta name="description" content="50–160 char description">
-<link rel="canonical" href="https://scholarics.app/page.html">
+<link rel="canonical" href="https://scholarics.com/page.html">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Page Title — Scholarics">
 <meta property="og:description" content="...">
-<meta property="og:url" content="https://scholarics.app/page.html">
-<meta property="og:image" content="https://scholarics.app/images/og-image.svg">
+<meta property="og:url" content="https://scholarics.com/page.html">
+<meta property="og:image" content="https://scholarics.com/images/og-image.svg">
 <meta name="twitter:site" content="@scholarics">
 <meta name="twitter:card" content="summary_large_image">
 ```

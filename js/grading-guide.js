@@ -93,7 +93,7 @@
           var sys = window.SC_COUNTRY ? window.SC_COUNTRY.current() : G.get("us");
           var val = us4 ? us4.textContent : "—";
           if (val === "—" || !sys) return SC.toast("Enter a grade first", "info");
-          SC.copy(sys.flag + " " + sys.name + " grade → US GPA " + val + " — Scholarics (scholarics.app/grading-guide.html)");
+          SC.copy(sys.flag + " " + sys.name + " grade → US GPA " + val + " — Scholarics (scholarics.com/grading-guide.html)");
         };
       }
       try {

@@ -201,8 +201,8 @@
       document.head.appendChild(_ks);
     }
     function wireSearchInput(input) {
-      if (!input || input.__sm2SearchBound) return;
-      input.__sm2SearchBound = true;
+      if (!input || input.__sc2SearchBound) return;
+      input.__sc2SearchBound = true;
 
       var dropdown = null;
       function doSearch(q) {
@@ -289,8 +289,8 @@
 
   function initNotifications() {
     function bindBtn(btn) {
-      if (!btn || btn.__sm2NotifBound) return;
-      btn.__sm2NotifBound = true;
+      if (!btn || btn.__sc2NotifBound) return;
+      btn.__sc2NotifBound = true;
 
       var dismissed = store.get(NOTIF_KEY, []);
       var active = NOTIFS.filter(function (n) { return dismissed.indexOf(n.id) === -1; });
@@ -360,8 +360,8 @@
   ══════════════════════════════════════════════════════════════════════ */
   function initProfile() {
     function bindAvatar(el) {
-      if (!el || el.__sm2ProfileBound) return;
-      el.__sm2ProfileBound = true;
+      if (!el || el.__sc2ProfileBound) return;
+      el.__sc2ProfileBound = true;
       el.style.cursor = 'pointer';
       el.title = 'Edit profile';
       el.addEventListener('click', openProfile);
@@ -401,7 +401,7 @@
       document.querySelectorAll('.sc2-avatar, .sc2-side-foot img').forEach(bindAvatar);
       // Also profile span in sidebar footer
       document.querySelectorAll('.sc2-side-foot .nm').forEach(function (el) {
-        if (el.__sm2ProfileBound) return; el.__sm2ProfileBound = true;
+        if (el.__sc2ProfileBound) return; el.__sc2ProfileBound = true;
         el.style.cursor = 'pointer'; el.addEventListener('click', openProfile);
         // update display name
         var n = store.get('sc_dash_name', '');

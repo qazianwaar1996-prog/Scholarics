@@ -3,7 +3,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://scholarics.app/</loc>
+    <loc>https://scholarics.com/</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
 
   <!-- Scholarics AI -->
   <url>
-    <loc>https://scholarics.app/ai.html</loc>
+    <loc>https://scholarics.com/ai.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -19,97 +19,97 @@
 
   <!-- GPA & Grade Tools -->
   <url>
-    <loc>https://scholarics.app/gpa-converter.html</loc>
+    <loc>https://scholarics.com/gpa-converter.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/gpa.html</loc>
+    <loc>https://scholarics.com/gpa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/cgpa.html</loc>
+    <loc>https://scholarics.com/cgpa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/semester-gpa.html</loc>
+    <loc>https://scholarics.com/semester-gpa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/target-gpa.html</loc>
+    <loc>https://scholarics.com/target-gpa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/gpa-improvement-planner.html</loc>
+    <loc>https://scholarics.com/gpa-improvement-planner.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/gpa-to-percentage.html</loc>
+    <loc>https://scholarics.com/gpa-to-percentage.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/percentage-to-gpa.html</loc>
+    <loc>https://scholarics.com/percentage-to-gpa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grade-calculator.html</loc>
+    <loc>https://scholarics.com/grade-calculator.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/final-grade.html</loc>
+    <loc>https://scholarics.com/final-grade.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/final-exam-calculator.html</loc>
+    <loc>https://scholarics.com/final-exam-calculator.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/required-marks.html</loc>
+    <loc>https://scholarics.com/required-marks.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grade-predictor.html</loc>
+    <loc>https://scholarics.com/grade-predictor.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/assignment-weight.html</loc>
+    <loc>https://scholarics.com/assignment-weight.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/class-average.html</loc>
+    <loc>https://scholarics.com/class-average.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/percentage-calculator.html</loc>
+    <loc>https://scholarics.com/percentage-calculator.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -117,61 +117,61 @@
 
   <!-- Attendance & Planning Tools -->
   <url>
-    <loc>https://scholarics.app/attendance-calculator.html</loc>
+    <loc>https://scholarics.com/attendance-calculator.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/attendance-goal.html</loc>
+    <loc>https://scholarics.com/attendance-goal.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/attendance-percentage.html</loc>
+    <loc>https://scholarics.com/attendance-percentage.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/credit-hour-planner.html</loc>
+    <loc>https://scholarics.com/credit-hour-planner.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/study-time.html</loc>
+    <loc>https://scholarics.com/study-time.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/pomodoro.html</loc>
+    <loc>https://scholarics.com/pomodoro.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/study-schedule.html</loc>
+    <loc>https://scholarics.com/study-schedule.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/scientific-calculator.html</loc>
+    <loc>https://scholarics.com/scientific-calculator.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/basic-calculator.html</loc>
+    <loc>https://scholarics.com/basic-calculator.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/word-counter.html</loc>
+    <loc>https://scholarics.com/word-counter.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -179,25 +179,25 @@
 
   <!-- Content Hubs -->
   <url>
-    <loc>https://scholarics.app/study-guides.html</loc>
+    <loc>https://scholarics.com/study-guides.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/gpa-help-center.html</loc>
+    <loc>https://scholarics.com/gpa-help-center.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/academic-resources.html</loc>
+    <loc>https://scholarics.com/academic-resources.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grading-guide.html</loc>
+    <loc>https://scholarics.com/grading-guide.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -205,25 +205,25 @@
 
   <!-- Study Guides (Articles) -->
   <url>
-    <loc>https://scholarics.app/guide-gpa-scale-explained.html</loc>
+    <loc>https://scholarics.com/guide-gpa-scale-explained.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/guide-how-to-raise-your-gpa.html</loc>
+    <loc>https://scholarics.com/guide-how-to-raise-your-gpa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/guide-attendance-rules-explained.html</loc>
+    <loc>https://scholarics.com/guide-attendance-rules-explained.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/guide-final-exam-prep-checklist.html</loc>
+    <loc>https://scholarics.com/guide-final-exam-prep-checklist.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -231,37 +231,37 @@
 
   <!-- Country Grading Guides -->
   <url>
-    <loc>https://scholarics.app/grading-system-usa.html</loc>
+    <loc>https://scholarics.com/grading-system-usa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grading-system-uk.html</loc>
+    <loc>https://scholarics.com/grading-system-uk.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grading-system-india.html</loc>
+    <loc>https://scholarics.com/grading-system-india.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grading-system-canada.html</loc>
+    <loc>https://scholarics.com/grading-system-canada.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grading-system-pakistan.html</loc>
+    <loc>https://scholarics.com/grading-system-pakistan.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/grading-system-australia.html</loc>
+    <loc>https://scholarics.com/grading-system-australia.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -269,13 +269,13 @@
 
   <!-- Admission Guides -->
   <url>
-    <loc>https://scholarics.app/admission-gpa-guide-usa.html</loc>
+    <loc>https://scholarics.com/admission-gpa-guide-usa.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/admission-gpa-guide-uk.html</loc>
+    <loc>https://scholarics.com/admission-gpa-guide-uk.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -283,19 +283,19 @@
 
   <!-- Blog & Company -->
   <url>
-    <loc>https://scholarics.app/blog.html</loc>
+    <loc>https://scholarics.com/blog.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/about.html</loc>
+    <loc>https://scholarics.com/about.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/contact.html</loc>
+    <loc>https://scholarics.com/contact.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
@@ -303,49 +303,49 @@
 
   <!-- Legal -->
   <url>
-    <loc>https://scholarics.app/privacy-policy.html</loc>
+    <loc>https://scholarics.com/privacy-policy.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/terms-and-conditions.html</loc>
+    <loc>https://scholarics.com/terms-and-conditions.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/disclaimer.html</loc>
+    <loc>https://scholarics.com/disclaimer.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/dashboard.html</loc>
+    <loc>https://scholarics.com/dashboard.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/flashcards.html</loc>
+    <loc>https://scholarics.com/flashcards.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/notes.html</loc>
+    <loc>https://scholarics.com/notes.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/paraphraser.html</loc>
+    <loc>https://scholarics.com/paraphraser.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://scholarics.app/profile.html</loc>
+    <loc>https://scholarics.com/profile.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

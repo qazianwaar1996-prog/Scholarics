@@ -93,7 +93,7 @@
         SC.toast('Enter values first', 'info');
         return;
       }
-      var text = label + ': ' + result + ' — Calculated on Scholarics (scholarics.app)';
+      var text = label + ': ' + result + ' — Calculated on Scholarics (scholarics.com)';
       navigator.share({ title: 'Scholarics', text: text, url: window.location.href })
         .catch(function (err) {
           if (err.name !== 'AbortError') SC.copy(text);

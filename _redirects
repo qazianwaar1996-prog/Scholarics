@@ -3,3 +3,8 @@
 # every request (including css/js/images) by appending ".html", which 404s all
 # static assets on Cloudflare. The site links to *.html directly, so clean-URL
 # rewrites are unnecessary and have been removed.
+
+# Canonical host: redirect www → apex (production domain: scholarics.com)
+www.scholarics.com/* https://scholarics.com/:splat 301
+
+# Legacy 404 handling (Cloudflare Pages serves /404.html for unknown paths)

@@ -25,4 +25,4 @@ User-agent: AhrefsBot
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://scholarics.app/sitemap.xml
+Sitemap: https://scholarics.com/sitemap.xml

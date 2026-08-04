@@ -6,7 +6,7 @@
  * - If the user has accepted cookies (sc_cookie_consent = "accepted"),
  *   full measurement (including personalisation signals) is enabled.
  *
- * Replace G-XXXXXXXXXX with your real GA4 Measurement ID before deploying.
+ * Set GA_ID (e.g. "G-AB12CD34EF") to enable analytics; analytics is disabled until then.
  * Replace the gtag-placeholder script src if your ID changes.
  *
  * Google Search Console & Bing Webmaster verification tags are in each
@@ -16,7 +16,15 @@
 (function () {
   'use strict';
 
-  var GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
+  var GA_ID = ''; // ← set your GA4 Measurement ID (e.g. 'G-AB12CD34EF') to enable analytics
+
+  /* GA4 Measurement IDs look like "G-" followed by 6+ alphanumerics.
+     Analytics stays disabled until a real ID is configured. */
+  function isRealGAId(id) {
+    return typeof id === 'string' &&
+           !/XXXX/i.test(id) &&
+           /^G-[A-Z0-9]{6,}$/i.test(id);
+  }
   var CONSENT_KEY = 'sc_cookie_consent';
 
   function getConsent() {
@@ -26,7 +34,7 @@
   /* ── Load gtag.js ─────────────────────────────────────────── */
   function loadGA4() {
     /* Do not request Google's endpoint with the repository placeholder. */
-    if (!/^G-[A-Z0-9]+$/i.test(GA_ID)) return;
+    if (!isRealGAId(GA_ID)) return;
     if (window._ga4Loaded) return;
     window._ga4Loaded = true;
 

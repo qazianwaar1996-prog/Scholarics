@@ -78,7 +78,7 @@ npm install
 npx wrangler pages deploy .
 ```
 
-After deploy: `curl https://<your-project>.pages.dev/api/ai/health`
+After deploy: `curl https://scholaricsv-2.pages.dev/api/ai/health`
 → `{"ok":true,"keyConfigured":true,...}`
 
 ## 3) Local development

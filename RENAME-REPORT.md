@@ -10,7 +10,7 @@
 |---|---|
 | `StudyMetrics` / `Study Metrics` / `STUDY METRICS` | `Scholarics` / `Scholarics` / `SCHOLARICS` |
 | `studymetrics` / `study-metrics` / `study_metrics` | `scholarics` |
-| `studymetrics.app` (domain) | `scholarics.app` |
+| `studymetrics.app` (domain) | `scholarics.com` |
 | `@studymetrics` (Twitter handle) | `@scholarics` |
 | `SM` global namespace (`SM.$$`, `SM.store`, …) | `SC` |
 | `sm2*` identifiers/classes/ids (`sm2Theme`, `sm2-btn`, …) | `sc2*` |
@@ -90,13 +90,13 @@ A one-time migration in `js/script.js` (runs before any page code reads storage)
 | CSS class integrity: 125 `sm*`/`sm2*` classes defined pre-rename | ✅ 125 exact `sc*`/`sc2*` counterparts, 0 orphaned |
 | JS-referenced element ids | ✅ all created/defined (static HTML or dynamic JS) |
 | Brand scan: `studymetrics`, `study-metrics`, `study_metrics`, `Study Metrics`, `StudyMetrics`, `STUDYMETRICS` in repo | ✅ 0 occurrences |
-| Titles/meta/OG/Twitter/JSON-LD on served pages | ✅ all "Scholarics" / `scholarics.app` |
+| Titles/meta/OG/Twitter/JSON-LD on served pages | ✅ all "Scholarics" / `scholarics.com` |
 | `?v=` cache-busting bump (`2.x` → `3.x`) on all asset links | ✅ applied |
 
 ## 6. Notes for deployment
 
 1. **Cloudflare project name:** `wrangler.toml` now uses `name = "scholaricsv-2"`. Create (or rename) the Pages project to `scholaricsv-2` in your Cloudflare account, or the first `wrangler pages deploy` will prompt to create it. KV namespace IDs are unchanged (they live in the account, not the project).
-2. **Domain:** all canonical/OG/sitemap/robots/JSON-LD references now point to `scholarics.app`. Point that domain at the Pages project and add it in the Pages custom domains panel.
+2. **Domain:** all canonical/OG/sitemap/robots/JSON-LD references now point to `scholarics.com`. Point that domain at the Pages project and add it in the Pages custom domains panel.
 3. **Email:** `EMAIL_FROM` now sends as `Scholarics <onboarding@resend.dev>`; set `RESEND_API_KEY` for real delivery (KV fallback works without it).
 4. **AI:** set `GEMINI_API_KEY`; otherwise endpoints return the standard "not configured" error.
 5. **Analytics:** replace the `G-XXXXXXXXXX` placeholder in `js/analytics.js` as before (unchanged behavior).

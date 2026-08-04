@@ -9,8 +9,18 @@
   "theme_color": "#0a0a0a",
   "orientation": "any",
   "lang": "en",
-  "categories": ["education", "utilities", "productivity"],
+  "categories": [
+    "education",
+    "utilities",
+    "productivity"
+  ],
   "icons": [
+    {
+      "src": "images/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "images/favicon.svg",
       "sizes": "any",
@@ -43,21 +53,37 @@
       "short_name": "GPA",
       "description": "Calculate your GPA instantly",
       "url": "/gpa.html",
-      "icons": [{ "src": "images/favicon.svg", "sizes": "any" }]
+      "icons": [
+        {
+          "src": "images/favicon.svg",
+          "sizes": "any"
+        }
+      ]
     },
     {
       "name": "Pomodoro Timer",
       "short_name": "Pomodoro",
       "description": "Focus timer with breaks",
       "url": "/pomodoro.html",
-      "icons": [{ "src": "images/favicon.svg", "sizes": "any" }]
+      "icons": [
+        {
+          "src": "images/favicon.svg",
+          "sizes": "any"
+        }
+      ]
     },
     {
       "name": "Dashboard",
       "short_name": "Dashboard",
       "description": "Your student dashboard",
       "url": "/dashboard.html",
-      "icons": [{ "src": "images/favicon.svg", "sizes": "any" }]
+      "icons": [
+        {
+          "src": "images/favicon.svg",
+          "sizes": "any"
+        }
+      ]
     }
-  ]
+  ],
+  "id": "/"
 }

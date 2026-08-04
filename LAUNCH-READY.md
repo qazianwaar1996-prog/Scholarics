@@ -26,27 +26,25 @@ Full re-audit of all 138 files after the bug fixes. Verified in a real headless 
 
 ## ⚠️ LAUNCH BLOCKERS — need YOUR values (I can't invent these)
 
-These are placeholder credentials scattered in the code. Replace each before going live:
+Service configuration (all optional; the site runs fully without them):
 
-| What | Where | Replace with |
-|------|-------|--------------|
-| **Formspree form ID** | `js/email-capture.js:13` **and** `contact.html` (`<form action="https://formspree.io/f/REPLACE_WITH_FORM_ID">`) | your real `https://formspree.io/f/xxxxxxxx` — **both the contact form AND the email popup are broken until set** |
-| **GA4 Measurement ID** | `js/analytics.js` → `G-XXXXXXXXXX` | your `G-XXXXXXXXXX` |
-| **AdSense publisher ID + slot IDs** | `js/consent.js` → `ca-pub-XXXXXXXXXXXXXXXXX`; ad slots in **40 HTML pages** (`data-ad-slot="LEADERBOARD_SLOT_ID"` etc.) | your `ca-pub-…` + real slot IDs |
-| **Google Search Console** | `YOUR_GSC_VERIFICATION_CODE` in **53 pages** `<head>` | your GSC verification code (or verify via DNS) |
-| **Bing Webmaster** | `YOUR_BING_VERIFICATION_CODE` in **53 pages** `<head>` | your Bing code |
+| Service | Where to configure | Notes |
+|---------|--------------------|-------|
+| **GA4 Measurement ID** | `js/analytics.js` → `GA_ID` | Analytics is disabled until a real `G-XXXXXXX` ID is set (guard rejects the placeholder) |
+| **AdSense publisher ID + slot IDs** | `js/consent.js` → `PUB_ID`; ad slots in 40 HTML pages (`data-ad-slot`) | Ads are disabled until a real `ca-pub-…` ID is set (guard rejects the placeholder) |
+| **Contact/bug-report inbox** | Cloudflare dashboard → Pages `scholaricsv-2` → Settings → Environment variables → `EMAIL_TO` | Submissions fall back to KV storage when unset; set `RESEND_API_KEY` for email delivery |
+| **Gemini AI** | `wrangler pages secret put GEMINI_API_KEY` | AI endpoints return a clean 503 until set |
+| **Search Console / Bing verification** | Add the meta tags to each page `<head>` (currently absent) | Or verify via DNS in GSC |
 
-> Tip: once you paste these, the code is fully launch-ready. I deliberately did **not** invent fake IDs.
+> The site is fully functional without any of these — nothing is blocked or
+> broken by missing credentials, and no fake IDs are shipped.
 
 ## 🌐 Deployment decision (affects 3 things)
 
-The repo is configured for **`scholarics.app` at the domain root** (canonical/OG/sitemap/robots/JSON-LD all use it; `manifest.json` `start_url`/`scope` = `/`; `pwa.js` registers `/sw.js` at scope `/`). Pick a host:
+The repo is configured for **`scholarics.com` at the domain root** (canonical/OG/sitemap/robots/JSON-LD all use it; `manifest.json` `start_url`/`scope` = `/`; `pwa.js` registers `/sw.js` at scope `/`). Pick a host:
 
-- **Best (full AI):** a Node host running `node server.js` (Replit/Render/Railway/Fly) on `scholarics.app` → static site + `/api/ai` Gemini proxy + PWA + AI all work.
-- **Good (static, no AI):** Netlify/Cloudflare Pages on `scholarics.app` → uses the included `_headers` (security headers) + `_redirects` (clean URLs); add one serverless function for `/api/ai` if you want AI.
-- **GitHub Pages (current):** site renders & all calculators work, but **AI 404s**, the service-worker `scope:'/'` errors on every load, and `_headers`/`_redirects` are ignored (no security headers). Not ideal for production.
-
-If your real domain is **not** `scholarics.app`, also update the domain in all 56 pages + `sitemap.xml` + `robots.txt` + JSON-LD.
+- **Production target: Cloudflare Pages** — project `scholaricsv-2` with the custom domain `scholarics.com` at the root. The repo ships `wrangler.toml` (KV bindings + `[vars]`), `_headers` (security headers), `_redirects` (www → apex 301) and `functions/` (edge API).
+- The site is configured for **`scholarics.com`** (canonical/OG/sitemap/robots/JSON-LD all use it; `manifest.json` `start_url`/`scope` = `/`; `pwa.js` registers `/sw.js` at scope `/`).
 
 ## Low priority (optional)
 - `og-image.png` is 830 KB — fine for social, could be compressed to <200 KB if you want.
@@ -74,4 +72,4 @@ study-schedule, study-time, target-gpa, terms-and-conditions, word-counter
 ```
 Everything else (all CSS, other images, manifest, sw.js, server.js, docs) is unchanged.
 
-**Status: code is launch-ready.** Drop in your 5 credentials, deploy `scholarics.app` to a Node host (or Netlify + a `/api/ai` function), and ship.
+**Status: code is launch-ready.** Drop in your 5 credentials, deploy `scholarics.com` to a Node host (or Netlify + a `/api/ai` function), and ship.

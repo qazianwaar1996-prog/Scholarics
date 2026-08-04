@@ -125,7 +125,7 @@
       share.onclick = function () {
         var val = $("#sgGpaOut") ? $("#sgGpaOut").textContent : "—";
         if (val === "—") return SC.toast("Enter courses first", "info");
-        SC.copy("My semester GPA is " + val + " — calculated on Scholarics (scholarics.app)");
+        SC.copy("My semester GPA is " + val + " — calculated on Scholarics (scholarics.com)");
       };
     }
     render();

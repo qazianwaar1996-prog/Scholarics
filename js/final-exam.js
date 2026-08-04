@@ -149,7 +149,7 @@
       shareBtn.onclick = function () {
         var val = $("#feNeedOut") ? $("#feNeedOut").textContent : "—";
         if (val === "—") return SC.toast("Enter values first", "info");
-        SC.copy("I need " + val + " on my final exam to hit my grade goal — calculated on Scholarics (scholarics.app)");
+        SC.copy("I need " + val + " on my final exam to hit my grade goal — calculated on Scholarics (scholarics.com)");
       };
     }
     var copyLinkBtn = $("#feCopyLink");
