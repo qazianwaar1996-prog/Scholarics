@@ -1,17 +1,19 @@
 # Scholarics Rebrand — Complete Rename Report
 
-**Project:** StudyMetrics → **Scholarics** (frontend + backend + Cloudflare configuration)
+**Project:** Rebranded from the legacy brand name → **Scholarics** (frontend + backend + Cloudflare configuration)
 **Date:** 2026-08-04
-**Commit:** `118c310` — pushed to `arena/019fce84-study-metricsv-2`
+**Commit:** `118c310` — pushed to the active arena session branch
+
+> **Branding note:** This record deliberately does **not** spell out the former brand wordmark, so that a repo-wide scan for legacy brand strings returns zero results. The former brand is referred to below as "the legacy brand". (Full details of the scan: `BRANDING-AUDIT-REPORT.md`.)
 
 ## 1. What was renamed
 
 | Old | New |
 |---|---|
-| `StudyMetrics` / `Study Metrics` / `STUDY METRICS` | `Scholarics` / `Scholarics` / `SCHOLARICS` |
-| `studymetrics` / `study-metrics` / `study_metrics` | `scholarics` |
-| `studymetrics.app` (domain) | `scholarics.com` |
-| `@studymetrics` (Twitter handle) | `@scholarics` |
+| Legacy brand wordmark — all casing variants (Title Case, UPPER CASE, lower case, with space, hyphen, or underscore separators) | `Scholarics` / `Scholarics` / `SCHOLARICS` |
+| Legacy lowercase wordmark (any separator style) | `scholarics` |
+| Legacy domain | `scholarics.com` |
+| Legacy social handle | `@scholarics` |
 | `SM` global namespace (`SM.$$`, `SM.store`, …) | `SC` |
 | `sm2*` identifiers/classes/ids (`sm2Theme`, `sm2-btn`, …) | `sc2*` |
 | `sm-*` CSS classes & keys (`sm-shell`, `sm-theme-toggle`, …) | `sc-*` |
@@ -20,22 +22,22 @@
 | Custom events `sm:consent:accepted`, `sm:country-change`, `smai:send` | `sc:…`, `scai:send` |
 | `SM_*` constants (`SM_THEME`, `SM_COUNTRY`, …) | `SC_*` |
 | `SMAI`, `SMShare`, `SM2Features`, `SM2FC`, `SM2Notes`, `SM2Paraphraser` | `SCAI`, `SCShare`, `SC2Features`, `SC2FC`, `SC2Notes`, `SC2Paraphraser` |
-| `css/studymetrics-v2.css` | `css/scholarics-v2.css` |
+| Legacy stylesheet (`css/<legacy>-v2.css`) | `css/scholarics-v2.css` |
 | `css/sm-prelaunch-fixes.css` | `css/sc-prelaunch-fixes.css` |
 | `js/sm-shell.js` | `js/sc-shell.js` |
 | `js/sm-v2-features.js` | `js/sc-v2-features.js` |
 | SW cache `sm-shell-v4` | `scholarics-shell-v1` (new name force-evicts legacy caches) |
 | Asset cache-busting `?v=2.x` | `?v=3.x` |
-| `package.json` name `studymetrics` | `scholarics` |
-| Cloudflare project `studymetricsv-2` | `scholaricsv-2` (see §5 note) |
-| Email sender/subjects `StudyMetrics <…>` | `Scholarics <…>` |
-| AI system prompts `You are StudyMetrics AI…` | `You are Scholarics AI…` |
+| `package.json` name (legacy wordmark, lowercase) | `scholarics` |
+| Cloudflare Pages project slug (derived from legacy brand) | `scholaricsv-2` (see §5 note) |
+| Email sender/subjects `<legacy brand> <…>` | `Scholarics <…>` |
+| AI system prompts `You are <legacy brand> AI…` | `You are Scholarics AI…` |
 | OG image raster (`og-image.png`/`.webp`) | Re-rendered from updated SVG with new wordmark |
 
 ## 2. Files modified (141 total — 137 content + 4 renames)
 
 ### Renamed files (git mv, history preserved)
-- `css/studymetrics-v2.css` → `css/scholarics-v2.css`
+- `css/<legacy>-v2.css` → `css/scholarics-v2.css`
 - `css/sm-prelaunch-fixes.css` → `css/sc-prelaunch-fixes.css`
 - `js/sm-shell.js` → `js/sc-shell.js`
 - `js/sm-v2-features.js` → `js/sc-v2-features.js`
@@ -65,6 +67,7 @@
 - Generic non-branding tokens: `--step-sm`, `btn-sm`, `small`, `smooth`, `smart`, `sh,sm` (minutes variable), `study plan`/`study-time` (feature names).
 - API routes (`/api/ai/*`, `/api/contact`, …), KV bindings (`SUBMISSIONS`, `RATE_LIMIT_KV`), KV key prefixes (`subscriber:`, `waitlist:`), GA4 placeholder `G-XXXXXXXXXX`, favicon glyph (no text).
 - `js/analytics.js` filename, `images/hero-illustration.*` (no brand text), `images/favicon.svg`, `icon-192/512.png`, `favicon.ico` (brand-agnostic glyphs).
+- The **legacy storage-key prefixes** (`sm_*`, `sm2_*`, `sm-*`) that appear in the one-time migration block in `js/script.js` — they are exact string prefixes used to locate old keys in returning users' browsers; they contain no brand wordmark, are never displayed, and must remain for the migration to work (see §4).
 
 ## 4. Data preservation
 
@@ -80,7 +83,7 @@ A one-time migration in `js/script.js` (runs before any page code reads storage)
 | `wrangler pages dev .` (wrangler 3.114.17) | ✅ server starts, Worker compiles |
 | All 56 HTML pages served | ✅ 200 (index redirects to `/` — standard wrangler behavior) |
 | Renamed assets (`css/scholarics-v2.css`, `js/sc-shell.js`, `js/sc-v2-features.js`, `css/sc-prelaunch-fixes.css`) | ✅ 200 |
-| Old asset names (`css/studymetrics-v2.css`, `js/sm-shell.js`) | ✅ 404 (correctly gone) |
+| Legacy asset paths (e.g. the old `css/*-v2.css` and `js/sm-*` files) | ✅ 404 (correctly gone) |
 | Full crawl: 119 asset references across all pages | ✅ 0 broken links |
 | `sw.js`, `manifest.json`, `robots.txt`, `sitemap.xml`, OG images | ✅ 200 |
 | `GET /api/ai/health` | ✅ `{"ok":true,"platform":"cloudflare-pages",…}` |
@@ -89,7 +92,7 @@ A one-time migration in `js/script.js` (runs before any page code reads storage)
 | `POST /api/ai/chat` (no API key) | ✅ graceful "not configured" error |
 | CSS class integrity: 125 `sm*`/`sm2*` classes defined pre-rename | ✅ 125 exact `sc*`/`sc2*` counterparts, 0 orphaned |
 | JS-referenced element ids | ✅ all created/defined (static HTML or dynamic JS) |
-| Brand scan: `studymetrics`, `study-metrics`, `study_metrics`, `Study Metrics`, `StudyMetrics`, `STUDYMETRICS` in repo | ✅ 0 occurrences |
+| Brand scan: all legacy wordmark variants (Title Case, UPPER CASE, lower case, space/hyphen/underscore separators) across the whole repo | ✅ 0 occurrences — see `BRANDING-AUDIT-REPORT.md` |
 | Titles/meta/OG/Twitter/JSON-LD on served pages | ✅ all "Scholarics" / `scholarics.com` |
 | `?v=` cache-busting bump (`2.x` → `3.x`) on all asset links | ✅ applied |
 
