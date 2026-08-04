@@ -1,4 +1,4 @@
-# Study Metrics — Launch Checklist
+# Scholarics — Launch Checklist
 **Version 1.0 | Production Release**
 
 ---
@@ -57,18 +57,18 @@ grep -rn "YOUR_GSC\|YOUR_BING\|G-XXXXXXXXXX\|ca-pub-XXXX\|REPLACE_WITH_FORM" .
 ## ✅ Post-Deploy Verification
 
 ### Core Pages
-- [ ] https://studymetrics.app/ loads (homepage)
-- [ ] https://studymetrics.app/gpa.html (GPA calculator works)
-- [ ] https://studymetrics.app/cgpa.html (CGPA calculator works)
-- [ ] https://studymetrics.app/gpa-converter.html (country selector works)
-- [ ] https://studymetrics.app/dashboard.html (student dashboard works)
-- [ ] https://studymetrics.app/ai.html (AI assistant works)
-- [ ] https://studymetrics.app/contact.html (form submits successfully)
-- [ ] https://studymetrics.app/404 (custom 404 page shows)
+- [ ] https://scholarics.app/ loads (homepage)
+- [ ] https://scholarics.app/gpa.html (GPA calculator works)
+- [ ] https://scholarics.app/cgpa.html (CGPA calculator works)
+- [ ] https://scholarics.app/gpa-converter.html (country selector works)
+- [ ] https://scholarics.app/dashboard.html (student dashboard works)
+- [ ] https://scholarics.app/ai.html (AI assistant works)
+- [ ] https://scholarics.app/contact.html (form submits successfully)
+- [ ] https://scholarics.app/404 (custom 404 page shows)
 
 ### Technical
-- [ ] robots.txt accessible: https://studymetrics.app/robots.txt
-- [ ] Sitemap accessible: https://studymetrics.app/sitemap.xml
+- [ ] robots.txt accessible: https://scholarics.app/robots.txt
+- [ ] Sitemap accessible: https://scholarics.app/sitemap.xml
 - [ ] No mixed content warnings (HTTP resources on HTTPS page)
 - [ ] Console shows no JavaScript errors on any page
 - [ ] Cookie consent banner appears on first visit
@@ -122,7 +122,7 @@ For Cloudflare Pages: Connect GitHub repo → set build output to `/` → deploy
 rsync -avz --delete \
   --exclude='.git' \
   --exclude='*.md' \
-  ./ user@yourserver.com:/var/www/html/studymetrics/
+  ./ user@yourserver.com:/var/www/html/scholarics/
 ```
 
 Verify `.htaccess` is uploaded and Apache `mod_rewrite` is enabled.

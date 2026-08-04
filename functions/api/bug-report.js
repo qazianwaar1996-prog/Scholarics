@@ -12,7 +12,7 @@ export const onRequestPost = withApi(async ({ body, env, request }) => {
 
   const result = await deliver(env, {
     type: 'bug-report',
-    subject: 'StudyMetrics bug report',
+    subject: 'Scholarics bug report',
     replyTo: email || undefined,
     text: 'Bug report\n\nURL: ' + url + '\nUser agent: ' + userAgent + (email ? '\nContact: ' + email : '') + '\n\n' + message,
     html: '<h3>Bug report</h3><p><b>URL:</b> ' + escapeHtml(url) + '<br><b>User agent:</b> ' + escapeHtml(userAgent) + (email ? '<br><b>Contact:</b> ' + escapeHtml(email) : '') + '</p><p>' + escapeHtml(message).replace(/\n/g, '<br>') + '</p>',

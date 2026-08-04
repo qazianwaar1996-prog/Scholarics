@@ -1,4 +1,4 @@
-# StudyMetrics on Cloudflare Pages
+# Scholarics on Cloudflare Pages
 
 
 The entire site runs on **Cloudflare Pages**: static assets from the repo root +

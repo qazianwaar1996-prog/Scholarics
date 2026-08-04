@@ -1,7 +1,7 @@
 (function () {
   "use strict";
-  var $ = SM.$, $$ = SM.$$, round = SM.round, clamp = SM.clamp, uid = SM.uid, esc = SM.esc, store = SM.store;
-  var KEY = "sm_cgpa_rows";
+  var $ = SC.$, $$ = SC.$$, round = SC.round, clamp = SC.clamp, uid = SC.uid, esc = SC.esc, store = SC.store;
+  var KEY = "sc_cgpa_rows";
   var rows = store.get(KEY, []);
   function classify(g) {
     if (g >= 3.7) return "Excellent standing";
@@ -21,8 +21,8 @@
   /* Shareable link: auto-fill semesters from URL query params (?rows=...) */
   var sharedFromLink = false;
   (function () {
-    if (!window.SMShare) return;
-    var rowsParam = SMShare.params().get("rows");
+    if (!window.SCShare) return;
+    var rowsParam = SCShare.params().get("rows");
     if (!rowsParam) return;
     try {
       var parsed = JSON.parse(rowsParam);
@@ -124,7 +124,7 @@
         rows = rows.filter(function (r) { return r.id !== rowId; });
         save();
         render();
-        SM.toast("Semester removed", "info");
+        SC.toast("Semester removed", "info");
       };
     });
   }
@@ -153,7 +153,7 @@
     rows.push({ id: uid(), name: "Semester " + (rows.length + 1), gpa: 4.0, credits: 15 });
     save();
     render();
-    SM.toast("Semester added", "success");
+    SC.toast("Semester added", "success");
   }
   document.addEventListener("DOMContentLoaded", function () {
     var addBtn1 = $("#addRow");
@@ -168,29 +168,29 @@
           rows = [];
           save();
           render();
-          SM.toast("Data cleared", "info");
+          SC.toast("Data cleared", "info");
         }
       };
     }
     if (shareBtn) {
       shareBtn.onclick = function() {
         var result = $("#cgpaOut") ? $("#cgpaOut").textContent : "0.00";
-        SM.copy("My Cumulative GPA is " + result + ". Calculated on Study Metrics!");
+        SC.copy("My Cumulative GPA is " + result + ". Calculated on Scholarics!");
       };
     }
     var copyLinkBtn = $("#copyLinkBtn");
-    if (copyLinkBtn && window.SMShare) {
+    if (copyLinkBtn && window.SCShare) {
       copyLinkBtn.onclick = function () {
         var compact = rows.map(function (r) { return [r.name, r.gpa, r.credits]; });
-        SMShare.copyLink({ rows: JSON.stringify(compact) });
+        SCShare.copyLink({ rows: JSON.stringify(compact) });
       };
     }
     render();
 
-    if (sharedFromLink && window.SMShare) {
+    if (sharedFromLink && window.SCShare) {
       save();
       var cgpaVal = $("#cgpaOut") ? $("#cgpaOut").textContent : "0.00";
-      SMShare.showBanner({
+      SCShare.showBanner({
         message: "You're viewing a shared CGPA result of <b>" + cgpaVal + "</b>. Edit any semester below to make it your own.",
         host: document.querySelector(".tool-layout")
       });

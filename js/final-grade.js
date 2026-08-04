@@ -1,11 +1,11 @@
 (function () {
   "use strict";
-  var $ = SM.$, clamp = SM.clamp, store = SM.store;
+  var $ = SC.$, clamp = SC.clamp, store = SC.store;
   function round(n) {
     var f = 10;
     return Math.round((n + Number.EPSILON) * f) / f;
   }
-  var KEY = "sm_final";
+  var KEY = "sc_final";
   function courseGradeAt(score, cur, w) { return cur * (1 - w) + score * w; }
   document.addEventListener("DOMContentLoaded", function () {
     var curInput = $("#cur");
@@ -82,15 +82,15 @@
         weightInput.value = "";
         store.set(KEY, null);
         calc();
-        SM.toast("Fields reset", "info");
+        SC.toast("Fields reset", "info");
       };
     }
     var shareBtn = $("#shareBtn");
     if (shareBtn) {
       shareBtn.onclick = function() {
         var score = ne.textContent;
-        if (score === "—") return SM.toast("Enter numbers first", "error");
-        SM.copy("I need a " + score + " on my final to reach my goal! Calculated on Study Metrics.");
+        if (score === "—") return SC.toast("Enter numbers first", "error");
+        SC.copy("I need a " + score + " on my final to reach my goal! Calculated on Scholarics.");
       };
     }
     calc();

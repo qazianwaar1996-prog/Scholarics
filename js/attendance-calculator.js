@@ -1,10 +1,10 @@
 (function () {
   "use strict";
-  var $ = SM.$;
-  var $$ = SM.$$;
-  var store = SM.store;
+  var $ = SC.$;
+  var $$ = SC.$$;
+  var store = SC.store;
   var CIRC = 490;
-  var KEY = "sm_attend";
+  var KEY = "sc_attend";
   document.addEventListener("DOMContentLoaded", function () {
     var attendedInput = $("#attended");
     var heldInput = $("#held");
@@ -18,8 +18,8 @@
 
     /* Shareable link: auto-fill from URL query params (?a=...&h=...&r=...) */
     var sharedFromLink = false;
-    if (window.SMShare) {
-      var qp = SMShare.params();
+    if (window.SCShare) {
+      var qp = SCShare.params();
       if (qp.has("a") || qp.has("h") || qp.has("r")) {
         if (qp.get("a") !== null) attendedInput.value = qp.get("a");
         if (qp.get("h") !== null) heldInput.value = qp.get("h");
@@ -80,12 +80,12 @@
       // Validate required %
       if (rRaw !== '' && (isNaN(r) || r < 0 || r > 100)) {
         showFieldError(reqInput, 'Must be between 0 and 100');
-        r = SM.clamp(r || 75, 0, 100);
+        r = SC.clamp(r || 75, 0, 100);
       }
 
       if (isNaN(a)) a = 0;
       if (isNaN(h)) h = 0;
-      r = SM.clamp(r || 75, 0, 100);
+      r = SC.clamp(r || 75, 0, 100);
       store.set(KEY, { a: a, h: h, r: r });
       if (h === 0) {
         pctEl.textContent = "—";
@@ -103,7 +103,7 @@
         vt.innerHTML = "<b>Invalid input</b>Attended classes cannot exceed total classes held.";
         return;
       }
-      var pct = SM.round((a / h) * 100, 1);
+      var pct = SC.round((a / h) * 100, 1);
       pctEl.textContent = pct + "%";
       var offset = CIRC - (CIRC * Math.min(pct, 100) / 100);
       arc.style.strokeDashoffset = offset;
@@ -140,24 +140,24 @@
         heldInput.value = "";
         reqInput.value = 75;
         calc();
-        SM.toast("Reset successfully", "info");
+        SC.toast("Reset successfully", "info");
       });
     }
     var shareBtn = $("#shareBtn");
     if (shareBtn) {
       shareBtn.addEventListener("click", function() {
         if (pctEl.textContent === "—") {
-            SM.toast("No results to copy", "info");
+            SC.toast("No results to copy", "info");
             return;
         }
-        var text = "My attendance is " + pctEl.textContent + ". Calculated on Study Metrics.";
-        SM.copy(text);
+        var text = "My attendance is " + pctEl.textContent + ". Calculated on Scholarics.";
+        SC.copy(text);
       });
     }
     var copyLinkBtn = $("#attCopyLink");
-    if (copyLinkBtn && window.SMShare) {
+    if (copyLinkBtn && window.SCShare) {
       copyLinkBtn.addEventListener("click", function () {
-        SMShare.copyLink({
+        SCShare.copyLink({
           a: attendedInput.value,
           h: heldInput.value,
           r: reqInput.value
@@ -166,8 +166,8 @@
     }
     calc();
 
-    if (sharedFromLink && window.SMShare) {
-      SMShare.showBanner({
+    if (sharedFromLink && window.SCShare) {
+      SCShare.showBanner({
         message: "Shared attendance result — <b>" + pctEl.textContent + "</b> attendance.",
         host: document.querySelector(".tool-layout")
       });

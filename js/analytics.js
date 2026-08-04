@@ -3,7 +3,7 @@
  *
  * Consent-aware GA4 loader.
  * - GA4 loads in analytics-only mode on all visits (no ad personalisation).
- * - If the user has accepted cookies (sm_cookie_consent = "accepted"),
+ * - If the user has accepted cookies (sc_cookie_consent = "accepted"),
  *   full measurement (including personalisation signals) is enabled.
  *
  * Replace G-XXXXXXXXXX with your real GA4 Measurement ID before deploying.
@@ -17,7 +17,7 @@
   'use strict';
 
   var GA_ID = 'G-XXXXXXXXXX'; // ← replace with your Measurement ID
-  var CONSENT_KEY = 'sm_cookie_consent';
+  var CONSENT_KEY = 'sc_cookie_consent';
 
   function getConsent() {
     try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
@@ -61,8 +61,8 @@
   }
 
   /* ── Upgrade consent when user accepts in consent banner ──── */
-  /* consent.js fires a custom event 'sm:consent:accepted' */
-  document.addEventListener('sm:consent:accepted', function () {
+  /* consent.js fires a custom event 'sc:consent:accepted' */
+  document.addEventListener('sc:consent:accepted', function () {
     if (window.gtag) {
       gtag('consent', 'update', {
         'ad_storage':         'granted',

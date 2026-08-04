@@ -1,5 +1,5 @@
 /* ============================================================
-   StudyMetrics PWA — Registration + Install Button  v2.2
+   Scholarics PWA — Registration + Install Button  v2.2
    • Registers sw.js
    • Captures beforeinstallprompt → shows "Install App" button
      ONLY when: prompt is available, not in standalone mode,
@@ -77,7 +77,7 @@
   window.addEventListener('appinstalled', function () {
     deferredPrompt = null;
     removeInstallButton();
-    if (window.SM && SM.toast) SM.toast('Study Metrics installed! 🎉', 'success');
+    if (window.SC && SC.toast) SC.toast('Scholarics installed! 🎉', 'success');
   });
 
   /* Remove button immediately if the display-mode switches to standalone
@@ -103,26 +103,26 @@
   }
 
   function removeInstallButton() {
-    document.querySelectorAll('.sm-install-btn').forEach(function (el) {
+    document.querySelectorAll('.sc-install-btn').forEach(function (el) {
       el.remove();
     });
   }
 
   function injectInstallButton() {
     /* Avoid duplicates */
-    if (document.querySelector('.sm-install-btn')) return;
+    if (document.querySelector('.sc-install-btn')) return;
     /* Final standalone check before injecting */
     if (isStandalone()) return;
 
     var INSTALL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M8 12l4 4 4-4"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg>';
 
-    /* --- Desktop: inject into sm2-top-tools or legacy nav-cta --- */
+    /* --- Desktop: inject into sc2-top-tools or legacy nav-cta --- */
     function tryInjectDesktop() {
-      var topTools = document.querySelector('.sm2-top-tools');
+      var topTools = document.querySelector('.sc2-top-tools');
       if (topTools) {
         var btn = document.createElement('button');
-        btn.className = 'sm2-icon-btn sm-install-btn';
-        btn.setAttribute('aria-label', 'Install Study Metrics app');
+        btn.className = 'sc2-icon-btn sc-install-btn';
+        btn.setAttribute('aria-label', 'Install Scholarics app');
         btn.setAttribute('title', 'Install App');
         btn.innerHTML = INSTALL_ICON;
         btn.addEventListener('click', triggerInstall);
@@ -133,8 +133,8 @@
       var navCta = document.querySelector('.site-head .nav-cta');
       if (navCta) {
         var lbtn = document.createElement('button');
-        lbtn.className = 'btn btn-ghost sm-install-btn';
-        lbtn.setAttribute('aria-label', 'Install Study Metrics app');
+        lbtn.className = 'btn btn-ghost sc-install-btn';
+        lbtn.setAttribute('aria-label', 'Install Scholarics app');
         lbtn.setAttribute('title', 'Install App');
         lbtn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;padding:8px 12px;min-width:0';
         lbtn.innerHTML = INSTALL_ICON + '<span>Install</span>';
@@ -158,9 +158,9 @@
 
   /* ── Offline / Online banner ── */
   function showOfflineBanner() {
-    if (document.getElementById('sm-offline-banner')) return;
+    if (document.getElementById('sc-offline-banner')) return;
     var bar = document.createElement('div');
-    bar.id = 'sm-offline-banner';
+    bar.id = 'sc-offline-banner';
     bar.setAttribute('role', 'status');
     bar.setAttribute('aria-live', 'polite');
     bar.textContent = '⚠ You are offline — some features may be limited.';
@@ -175,7 +175,7 @@
   }
 
   function hideOfflineBanner() {
-    var bar = document.getElementById('sm-offline-banner');
+    var bar = document.getElementById('sc-offline-banner');
     if (bar) bar.remove();
   }
 

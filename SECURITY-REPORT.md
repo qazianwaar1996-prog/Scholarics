@@ -1,4 +1,4 @@
-# Study Metrics — Security Report
+# Scholarics — Security Report
 **Phase 10 | Version 1.0 | July 2026**
 
 ---
@@ -64,7 +64,7 @@ Prevents browsers from MIME-sniffing responses. Ensures CSS is rendered as CSS, 
 Sends the full URL as referrer on same-origin requests. Sends only the origin (no path) on cross-origin HTTPS→HTTPS. Sends nothing on HTTPS→HTTP. Protects user privacy on external links.
 
 ### Permissions-Policy
-Explicitly disables camera, microphone, geolocation, and payment APIs. Study Metrics does not use these browser features — preventing them reduces attack surface.
+Explicitly disables camera, microphone, geolocation, and payment APIs. Scholarics does not use these browser features — preventing them reduces attack surface.
 
 ### Content Security Policy
 ```
@@ -96,7 +96,7 @@ form-action 'self' https://formspree.io;
 ### Gemini API Key — Client-Side
 **Risk:** Low — the Google Gemini API key is embedded in `js/ai-service.js` (client-visible). Google's API key restrictions (allowed HTTP referrers, API quotas) mitigate this significantly.
 
-**Mitigation already in place:** Restrict the key in Google Cloud Console to `studymetrics.app` referrers only.
+**Mitigation already in place:** Restrict the key in Google Cloud Console to `scholarics.app` referrers only.
 
 **Future improvement:** Proxy Gemini calls through a serverless function (Netlify Function / Cloudflare Worker) so the key is never exposed to the browser.
 

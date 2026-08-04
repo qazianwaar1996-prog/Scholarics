@@ -1,5 +1,5 @@
 /* ============================================================
-   StudyMetrics — Pomodoro Timer  v2.1
+   Scholarics — Pomodoro Timer  v2.1
    Features:
      • Persistent state via localStorage (survives page reload)
      • Resume after refresh using wall-clock drift compensation
@@ -11,12 +11,12 @@
 (function () {
   'use strict';
 
-  var $ = SM.$;
+  var $ = SC.$;
 
   /* ── localStorage keys ── */
   var KEY = {
-    state:    'sm_pom_state',
-    settings: 'sm_pom_settings'
+    state:    'sc_pom_state',
+    settings: 'sc_pom_settings'
   };
 
   /* ── Default state ── */
@@ -91,7 +91,7 @@
     if (ft)  ft.textContent  = state.focusMinutes;
 
     document.title = fmt(remaining) + ' — ' +
-      (state.phase === 'focus' ? 'Focus' : 'Break') + ' · Study Metrics';
+      (state.phase === 'focus' ? 'Focus' : 'Break') + ' · Scholarics';
 
     if (startBtn) {
       startBtn.disabled = state.running;
@@ -166,7 +166,7 @@
     settings = loadSettings();
     state = defaultState();
     state.remaining = getFocusSec();
-    document.title = 'Study Metrics';
+    document.title = 'Scholarics';
     updateDisplay();
   }
 
@@ -244,8 +244,8 @@
     if (typeof Notification === 'undefined') return;
     Notification.requestPermission().then(function () {
       updateNotifBtnUI();
-      if (notifPermission() === 'granted' && window.SM && SM.toast) {
-        SM.toast('Notifications enabled! You\'ll be alerted between sessions.', 'success');
+      if (notifPermission() === 'granted' && window.SC && SC.toast) {
+        SC.toast('Notifications enabled! You\'ll be alerted between sessions.', 'success');
       }
     });
   }
@@ -256,9 +256,9 @@
       ? 'Break over! Time to focus. 🎯'
       : 'Focus session complete! Take a break. ☕';
     try {
-      new Notification('Study Metrics', {
+      new Notification('Scholarics', {
         body: msg, icon: '/images/favicon.svg',
-        badge: '/images/icon-192.png', tag: 'sm-pomodoro', renotify: true
+        badge: '/images/icon-192.png', tag: 'sc-pomodoro', renotify: true
       });
     } catch (e) {}
   }
@@ -317,7 +317,7 @@
   /* Save running state on unload */
   window.addEventListener('pagehide', function () {
     if (state.running) saveState(state);
-    document.title = 'Study Metrics';
+    document.title = 'Scholarics';
   });
 
 })();

@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, round=SM.round, store=SM.store, KEY="sm_ap";
+var $=SC.$, round=SC.round, store=SC.store, KEY="sc_ap";
 function compute(){
   var att=parseFloat($('#apAttended').value), tot=parseFloat($('#apTotal').value), min=parseFloat($('#apMinRequired').value)||75;
   store.set(KEY,{att:$('#apAttended').value,tot:$('#apTotal').value,min:$('#apMinRequired').value});
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(saved){var a=$('#apAttended');if(a)a.value=saved.att||'';var t=$('#apTotal');if(t)t.value=saved.tot||'';var m=$('#apMinRequired');if(m)m.value=saved.min||'75';}
   ['#apAttended','#apTotal','#apMinRequired'].forEach(function(s){var e=$(s);if(e)e.addEventListener('input',compute);});
   var rs=$('#apReset');
-  if(rs){rs.onclick=function(){['#apAttended','#apTotal'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SM.toast('Reset','info');};}
+  if(rs){rs.onclick=function(){['#apAttended','#apTotal'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#apShare');
-  if(sh){sh.onclick=function(){var v=$('#apPctOut');if(!v||v.textContent==='—')return SM.toast('Enter data first','info');SM.copy('My attendance is '+v.textContent+' — Study Metrics');};}
+  if(sh){sh.onclick=function(){var v=$('#apPctOut');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('My attendance is '+v.textContent+' — Scholarics');};}
   compute();
 });
 })();

@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$;
+var $=SC.$;
 var expr='', isDeg=true, history=[], MAX_HIST=20;
 var BTNS=[
   ['Deg','Rad','','(',')','CE'],
@@ -93,7 +93,7 @@ function buildKeypad(){
 }
 document.addEventListener('DOMContentLoaded',function(){
   buildKeypad(); display();
-  var ch=$('#sciClearHistory'); if(ch){ch.onclick=function(){history=[];renderHistory();SM.toast('History cleared','info');};}
+  var ch=$('#sciClearHistory'); if(ch){ch.onclick=function(){history=[];renderHistory();SC.toast('History cleared','info');};}
   document.addEventListener('keydown',function(e){
     if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
     var map={'Enter':'=','Backspace':'⌫','Escape':'AC'};

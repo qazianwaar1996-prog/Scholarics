@@ -1,6 +1,35 @@
 (function () {
   "use strict";
-  window.SM = {
+
+  /* ── Scholarics rebrand: one-time migration of legacy storage keys
+        (sm_*, sm2_*, sm-* → sc_*, sc2_*, sc-*) so returning users
+        keep their saved data. ── */
+  (function () {
+    var FLAG = 'sc_migrated_v1';
+    function migrate(store) {
+      try {
+        if (!store || store.getItem(FLAG)) return;
+        var keys = [];
+        for (var i = 0; i < store.length; i++) {
+          var k = store.key(i);
+          if (k && (k.indexOf('sm2_') === 0 || k.indexOf('sm_') === 0 || k.indexOf('sm-') === 0)) {
+            keys.push(k);
+          }
+        }
+        keys.forEach(function (k) {
+          var nk = k.indexOf('sm2_') === 0 ? 'sc2_' + k.slice(4)
+                : k.indexOf('sm_') === 0  ? 'sc_' + k.slice(3)
+                : 'sc-' + k.slice(3);
+          if (store.getItem(nk) === null) store.setItem(nk, store.getItem(k));
+        });
+        store.setItem(FLAG, '1');
+      } catch (e) { /* storage unavailable — skip migration */ }
+    }
+    migrate(window.localStorage);
+    migrate(window.sessionStorage);
+  })();
+
+  window.SC = {
     $:  function (s, r) { return (r || document).querySelector(s); },
     $$: function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); },
     round: function (n, d) {
@@ -43,12 +72,12 @@
     copy: function (text) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
-          SM.toast("Copied to clipboard!", "success");
+          SC.toast("Copied to clipboard!", "success");
         }).catch(function () {
-          SM._copyFallback(text);
+          SC._copyFallback(text);
         });
       } else {
-        SM._copyFallback(text);
+        SC._copyFallback(text);
       }
     },
     _copyFallback: function (text) {
@@ -57,8 +86,8 @@
       ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand('copy'); SM.toast("Copied!", "success"); }
-      catch (e) { SM.toast("Copy failed", "error"); }
+      try { document.execCommand('copy'); SC.toast("Copied!", "success"); }
+      catch (e) { SC.toast("Copy failed", "error"); }
       ta.remove();
     },
     trackVisit: function () {
@@ -71,21 +100,21 @@
                     'study-guides.html','grading-guide.html',''];
         if (skip.indexOf(url) !== -1) return;
         var name = document.title
-          .replace(/\s*[—|\-]\s*Study Metrics\s*$/i, '')
-          .replace(/\s*\|\s*Study Metrics\s*$/i, '')
+          .replace(/\s*[—|\-]\s*Scholarics\s*$/i, '')
+          .replace(/\s*\|\s*Scholarics\s*$/i, '')
           .trim() || url;
-        var recent = SM.store.get('sm_dash_recent', []);
+        var recent = SC.store.get('sc_dash_recent', []);
         recent = recent.filter(function (r) { return r.url !== url; });
         recent.unshift({ url: url, name: name, ts: Date.now() });
         if (recent.length > 12) recent = recent.slice(0, 12);
-        SM.store.set('sm_dash_recent', recent);
-        SM.store.set('sm_last_open', { url: url, name: name, ts: Date.now() });
+        SC.store.set('sc_dash_recent', recent);
+        SC.store.set('sc_last_open', { url: url, name: name, ts: Date.now() });
       } catch (e) {}
     }
   };
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { SM.trackVisit(); });
+    document.addEventListener('DOMContentLoaded', function () { SC.trackVisit(); });
   } else {
-    SM.trackVisit();
+    SC.trackVisit();
   }
 })();

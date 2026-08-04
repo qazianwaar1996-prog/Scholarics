@@ -1,4 +1,4 @@
-# Study Metrics — Maintenance Guide
+# Scholarics — Maintenance Guide
 **Version 1.0**
 
 ---
@@ -22,7 +22,7 @@
 ```bash
 # Install link checker
 npm install -g broken-link-checker
-blc https://studymetrics.app --recursive --exclude-external
+blc https://scholarics.app --recursive --exclude-external
 ```
 
 ### Sitemap Update
@@ -48,11 +48,11 @@ When adding or removing pages, update `sitemap.xml`:
 
 ### Performance Audit
 Run Google PageSpeed Insights on top 5 pages:
-- https://studymetrics.app/
-- https://studymetrics.app/gpa-converter.html
-- https://studymetrics.app/gpa.html
-- https://studymetrics.app/dashboard.html
-- https://studymetrics.app/ai.html
+- https://scholarics.app/
+- https://scholarics.app/gpa-converter.html
+- https://scholarics.app/gpa.html
+- https://scholarics.app/dashboard.html
+- https://scholarics.app/ai.html
 
 Target: mobile ≥ 85, desktop ≥ 95
 
@@ -80,16 +80,16 @@ If CSP errors appear (blocked resources), update `Content-Security-Policy` in `.
 <meta name="msvalidate.01" content="YOUR_CODE">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page Title — Study Metrics</title>
+<title>Page Title — Scholarics</title>
 <meta name="description" content="50–160 char description">
-<link rel="canonical" href="https://studymetrics.app/page.html">
+<link rel="canonical" href="https://scholarics.app/page.html">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Page Title — Study Metrics">
+<meta property="og:title" content="Page Title — Scholarics">
 <meta property="og:description" content="...">
-<meta property="og:url" content="https://studymetrics.app/page.html">
-<meta property="og:image" content="https://studymetrics.app/images/og-image.svg">
-<meta name="twitter:site" content="@studymetrics">
+<meta property="og:url" content="https://scholarics.app/page.html">
+<meta property="og:image" content="https://scholarics.app/images/og-image.svg">
+<meta name="twitter:site" content="@scholarics">
 <meta name="twitter:card" content="summary_large_image">
 ```
 
@@ -160,7 +160,7 @@ See `BACKUP-INSTRUCTIONS.md`.
 
 | File | Purpose |
 |---|---|
-| `js/script.js` | Core utility (`SM` namespace, nav, toast, etc.) |
+| `js/script.js` | Core utility (`SC` namespace, nav, toast, etc.) |
 | `js/gpa.js` | GPA calculator logic |
 | `js/calculators.js` | Shared calculator utilities |
 | `js/grading-systems.js` | 30+ country grading data |
@@ -176,5 +176,5 @@ See `BACKUP-INSTRUCTIONS.md`.
 | `js/analytics.js` | GA4 consent-aware loader |
 | `js/consent.js` | Cookie consent banner |
 
-**Load order matters:** `script.js` must load before any calculator JS (it defines the `SM` namespace).
+**Load order matters:** `script.js` must load before any calculator JS (it defines the `SC` namespace).
 

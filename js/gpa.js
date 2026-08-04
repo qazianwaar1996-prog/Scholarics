@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  var $ = SM.$, $$ = SM.$$, round = SM.round, clamp = SM.clamp, uid = SM.uid, esc = SM.esc, store = SM.store;
+  var $ = SC.$, $$ = SC.$$, round = SC.round, clamp = SC.clamp, uid = SC.uid, esc = SC.esc, store = SC.store;
   var LETTERS = ["A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F"];
   var L2P = {"A+":4.0,"A":4.0,"A-":3.7,"B+":3.3,"B":3.0,"B-":2.7,"C+":2.3,"C":2.0,"C-":1.7,"D+":1.3,"D":1.0,"D-":0.7,"F":0};
   function pct2points(p) {
@@ -26,7 +26,7 @@
     if (g > 0) return "Needs improvement";
     return "";
   }
-  var KEY = "sm_gpa_rows", SKEY = "sm_gpa_scale";
+  var KEY = "sc_gpa_rows", SKEY = "sc_gpa_scale";
   var scale = localStorage.getItem(SKEY) || "letter";
   var rows = store.get(KEY, []);
   if (!rows.length) {
@@ -39,8 +39,8 @@
   /* Shareable link: auto-fill rows/scale from URL query params (?rows=...&scale=...) */
   var sharedFromLink = false;
   (function () {
-    if (!window.SMShare) return;
-    var rowsParam = SMShare.params().get("rows");
+    if (!window.SCShare) return;
+    var rowsParam = SCShare.params().get("rows");
     if (!rowsParam) return;
     try {
       var parsed = JSON.parse(rowsParam);
@@ -48,7 +48,7 @@
         rows = parsed.slice(0, 60).map(function (r) {
           return { id: uid(), name: String((r && r[0]) || ""), grade: r ? r[1] : "A", credits: r ? r[2] : 0 };
         });
-        var sharedScale = SMShare.params().get("scale");
+        var sharedScale = SCShare.params().get("scale");
         if (sharedScale && ["letter", "percent", "points"].indexOf(sharedScale) !== -1) {
           scale = sharedScale;
           localStorage.setItem(SKEY, scale);
@@ -107,7 +107,7 @@
         rows = rows.filter(function(r) { return r.id !== id; });
         save();
         render();
-        SM.toast("Course removed", "info");
+        SC.toast("Course removed", "info");
       };
     });
   }
@@ -165,7 +165,7 @@
         save();
         render();
         setScaleNote();
-        SM.toast("Scale changed", "info");
+        SC.toast("Scale changed", "info");
       };
     }
     var add1 = $("#addRow");
@@ -177,7 +177,7 @@
       rows.push({ id: uid(), name: "", grade: defGrade, credits: 3 });
       save();
       render();
-      SM.toast("Course added", "success");
+      SC.toast("Course added", "success");
     };
     if (add1) add1.onclick = handler;
     if (add2) add2.onclick = handler;
@@ -188,7 +188,7 @@
           rows = [];
           save();
           render();
-          SM.toast("Data cleared", "info");
+          SC.toast("Data cleared", "info");
         }
       };
     }
@@ -196,23 +196,23 @@
     if (share) {
       share.onclick = function() {
         var g = $("#gpaOut") ? $("#gpaOut").textContent : "0.00";
-        SM.copy("My GPA is " + g + "! Calculated on Study Metrics.");
+        SC.copy("My GPA is " + g + "! Calculated on Scholarics.");
       };
     }
     var copyLink = $("#copyLinkBtn");
-    if (copyLink && window.SMShare) {
+    if (copyLink && window.SCShare) {
       copyLink.onclick = function () {
         var compact = rows.map(function (r) { return [r.name, r.grade, r.credits]; });
-        SMShare.copyLink({ scale: scale, rows: JSON.stringify(compact) });
+        SCShare.copyLink({ scale: scale, rows: JSON.stringify(compact) });
       };
     }
     render();
     setScaleNote();
 
-    if (sharedFromLink && window.SMShare) {
+    if (sharedFromLink && window.SCShare) {
       save();
       var gpaVal = $("#gpaOut") ? $("#gpaOut").textContent : "0.00";
-      SMShare.showBanner({
+      SCShare.showBanner({
         message: "You're viewing a shared GPA result of <b>" + gpaVal + "</b>. Edit any course below to make it your own.",
         host: document.querySelector(".tool-layout")
       });

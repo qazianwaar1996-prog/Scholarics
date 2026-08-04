@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, $$=SM.$$, round=SM.round, uid=SM.uid, esc=SM.esc, store=SM.store, KEY="sm_aw";
+var $=SC.$, $$=SC.$$, round=SC.round, uid=SC.uid, esc=SC.esc, store=SC.store, KEY="sc_aw";
 var rows=store.get(KEY,[]);
 if(!rows.length) rows=[
   {id:uid(),name:'Homework 1',score:'18',max:'20'},
@@ -48,10 +48,10 @@ function compute(){
 }
 document.addEventListener('DOMContentLoaded',function(){
   var add=$('#awAddRow'),rs=$('#awReset'),sh=$('#awShare'),tw=$('#awTotalWeight');
-  if(add) add.onclick=function(){rows.push({id:uid(),name:'',score:'',max:'100'});store.set(KEY,rows);render();SM.toast('Added','success');};
-  if(rs) rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Homework 1',score:'18',max:'20'},{id:uid(),name:'Homework 2',score:'15',max:'20'},{id:uid(),name:'Quiz 1',score:'9',max:'10'}];render();SM.toast('Reset','info');};
+  if(add) add.onclick=function(){rows.push({id:uid(),name:'',score:'',max:'100'});store.set(KEY,rows);render();SC.toast('Added','success');};
+  if(rs) rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Homework 1',score:'18',max:'20'},{id:uid(),name:'Homework 2',score:'15',max:'20'},{id:uid(),name:'Quiz 1',score:'9',max:'10'}];render();SC.toast('Reset','info');};
   if(tw) tw.addEventListener('input',compute);
-  if(sh) sh.onclick=function(){var v=$('#awAvgOut');if(!v||v.textContent==='—')return SM.toast('Enter data first','info');SM.copy('Assignment average: '+v.textContent+' — Study Metrics');};
+  if(sh) sh.onclick=function(){var v=$('#awAvgOut');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('Assignment average: '+v.textContent+' — Scholarics');};
   render();
 });
 })();

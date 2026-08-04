@@ -14,7 +14,7 @@ export const onRequestPost = createEmailListEndpoint({
   binding: 'SUBMISSIONS',
   keyPrefix: 'waitlist:',
   notificationType: 'waitlist',
-  notificationSubject: 'New StudyMetrics Notify Me waitlist signup',
+  notificationSubject: 'New Scholarics Notify Me waitlist signup',
   notificationHeading: 'New Notify Me waitlist signup',
   successMessage: "You're on the waitlist! We'll notify you when this feature launches.",
   duplicateMessage: "You're already on the waitlist! 🎉",

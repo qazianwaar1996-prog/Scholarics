@@ -1,4 +1,4 @@
-# Launch-Readiness Report — study-metricsv.2
+# Launch-Readiness Report — scholaricsv.2
 
 Full re-audit of all 138 files after the bug fixes. Verified in a real headless browser (Chrome @ mobile 390px + desktop) against the fixed repo.
 
@@ -40,13 +40,13 @@ These are placeholder credentials scattered in the code. Replace each before goi
 
 ## 🌐 Deployment decision (affects 3 things)
 
-The repo is configured for **`studymetrics.app` at the domain root** (canonical/OG/sitemap/robots/JSON-LD all use it; `manifest.json` `start_url`/`scope` = `/`; `pwa.js` registers `/sw.js` at scope `/`). Pick a host:
+The repo is configured for **`scholarics.app` at the domain root** (canonical/OG/sitemap/robots/JSON-LD all use it; `manifest.json` `start_url`/`scope` = `/`; `pwa.js` registers `/sw.js` at scope `/`). Pick a host:
 
-- **Best (full AI):** a Node host running `node server.js` (Replit/Render/Railway/Fly) on `studymetrics.app` → static site + `/api/ai` Gemini proxy + PWA + AI all work.
-- **Good (static, no AI):** Netlify/Cloudflare Pages on `studymetrics.app` → uses the included `_headers` (security headers) + `_redirects` (clean URLs); add one serverless function for `/api/ai` if you want AI.
+- **Best (full AI):** a Node host running `node server.js` (Replit/Render/Railway/Fly) on `scholarics.app` → static site + `/api/ai` Gemini proxy + PWA + AI all work.
+- **Good (static, no AI):** Netlify/Cloudflare Pages on `scholarics.app` → uses the included `_headers` (security headers) + `_redirects` (clean URLs); add one serverless function for `/api/ai` if you want AI.
 - **GitHub Pages (current):** site renders & all calculators work, but **AI 404s**, the service-worker `scope:'/'` errors on every load, and `_headers`/`_redirects` are ignored (no security headers). Not ideal for production.
 
-If your real domain is **not** `studymetrics.app`, also update the domain in all 56 pages + `sitemap.xml` + `robots.txt` + JSON-LD.
+If your real domain is **not** `scholarics.app`, also update the domain in all 56 pages + `sitemap.xml` + `robots.txt` + JSON-LD.
 
 ## Low priority (optional)
 - `og-image.png` is 830 KB — fine for social, could be compressed to <200 KB if you want.
@@ -57,7 +57,7 @@ If your real domain is **not** `studymetrics.app`, also update the domain in all
 
 ## Complete list of changed/added files (download & replace, names unchanged)
 **Added:** `images/og-image.png`, `favicon.ico`
-**JS (this + prior pass):** `js/sm-shell.js`, `js/premium.js`, `js/content-platform.js`
+**JS (this + prior pass):** `js/sc-shell.js`, `js/premium.js`, `js/content-platform.js`
 **HTML:** 53 pages (OG-image swap) — a superset that also includes the 51 footer fixes + academic-resources `#resourceGrid` + paraphraser `.mini-actions`. Concretely the modified HTML set:
 ```
 404, about, academic-resources, admission-gpa-guide-uk, admission-gpa-guide-usa, ai,
@@ -74,4 +74,4 @@ study-schedule, study-time, target-gpa, terms-and-conditions, word-counter
 ```
 Everything else (all CSS, other images, manifest, sw.js, server.js, docs) is unchanged.
 
-**Status: code is launch-ready.** Drop in your 5 credentials, deploy `studymetrics.app` to a Node host (or Netlify + a `/api/ai` function), and ship.
+**Status: code is launch-ready.** Drop in your 5 credentials, deploy `scholarics.app` to a Node host (or Netlify + a `/api/ai` function), and ship.

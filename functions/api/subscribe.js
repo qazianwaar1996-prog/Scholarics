@@ -12,7 +12,7 @@ export const onRequestPost = createEmailListEndpoint({
   binding: 'SUBMISSIONS',
   keyPrefix: 'subscriber:',
   notificationType: 'subscribe',
-  notificationSubject: 'New StudyMetrics subscriber',
+  notificationSubject: 'New Scholarics subscriber',
   notificationHeading: 'New subscriber',
   successMessage: 'Subscribed successfully.',
   duplicateMessage: 'Email already subscribed.',

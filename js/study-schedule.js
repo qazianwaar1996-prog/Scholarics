@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, $$=SM.$$, round=SM.round, uid=SM.uid, esc=SM.esc, store=SM.store, KEY="sm_ss";
+var $=SC.$, $$=SC.$$, round=SC.round, uid=SC.uid, esc=SC.esc, store=SC.store, KEY="sc_ss";
 var DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 var rows=store.get(KEY,[]);
 if(!rows.length) rows=[
@@ -74,16 +74,16 @@ function generate(){
     return '<div style="margin-bottom:var(--s4)"><div style="font-weight:600;font-size:var(--step-sm);margin-bottom:var(--s2);color:var(--accent-strong)">'+d.day+'</div>'+slots+'</div>';
   }).join('');
   output.style.display='';
-  SM.toast('Schedule generated!','success');
+  SC.toast('Schedule generated!','success');
 }
 function pad(n){return String(n).padStart(2,'0');}
 document.addEventListener('DOMContentLoaded',function(){
   var add=$('#ssAddRow'),gen=$('#ssGenerate'),rs=$('#ssReset'),sh=$('#ssShare'),days=$('#ssDays');
-  if(add) add.onclick=function(){rows.push({id:uid(),name:'',diff:'medium',hrs:'2'});store.set(KEY,rows);render();SM.toast('Subject added','success');};
+  if(add) add.onclick=function(){rows.push({id:uid(),name:'',diff:'medium',hrs:'2'});store.set(KEY,rows);render();SC.toast('Subject added','success');};
   if(gen) gen.onclick=generate;
   if(days) days.addEventListener('input',updateTotals);
-  if(rs){rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Mathematics',diff:'hard',hrs:'4'},{id:uid(),name:'Physics',diff:'medium',hrs:'3'},{id:uid(),name:'English',diff:'easy',hrs:'2'}];render();var o=$('#ssOutput');if(o)o.style.display='none';SM.toast('Reset','info');};}
-  if(sh){sh.onclick=function(){var v=$('#ssTotalHours');if(!v||v.textContent==='—')return SM.toast('Add subjects first','info');SM.copy('My study schedule: '+v.textContent+' per week across '+rows.length+' subjects — Study Metrics');};}
+  if(rs){rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Mathematics',diff:'hard',hrs:'4'},{id:uid(),name:'Physics',diff:'medium',hrs:'3'},{id:uid(),name:'English',diff:'easy',hrs:'2'}];render();var o=$('#ssOutput');if(o)o.style.display='none';SC.toast('Reset','info');};}
+  if(sh){sh.onclick=function(){var v=$('#ssTotalHours');if(!v||v.textContent==='—')return SC.toast('Add subjects first','info');SC.copy('My study schedule: '+v.textContent+' per week across '+rows.length+' subjects — Scholarics');};}
   render();
 });
 })();

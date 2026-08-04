@@ -1,5 +1,5 @@
 /**
- * StudyMetrics — AI Writing Studio Orchestrator
+ * Scholarics — AI Writing Studio Orchestrator
  * js/paraphraser.js | Version 5.0
  * 
  * Complete production-ready implementation of the AI Writing Studio.
@@ -7,11 +7,11 @@
  * abstract synthesis, thesis generation, metrics modules, and dynamic updates.
  */
 
-window.SM2Paraphraser = (function () {
+window.SC2Paraphraser = (function () {
   'use strict';
 
-  var HISTORY_KEY = 'sm2_paraphraser_history';
-  var DRAFT_KEY = 'sm2_paraphraser_draft';
+  var HISTORY_KEY = 'sc2_paraphraser_history';
+  var DRAFT_KEY = 'sc2_paraphraser_draft';
 
   // State Management
   var state = {
@@ -51,8 +51,8 @@ window.SM2Paraphraser = (function () {
 
   // Safe global toast alert wrapper
   function notify(msg, type) {
-    if (window.SM && typeof window.SM.toast === 'function') {
-      window.SM.toast(msg, type || 'info');
+    if (window.SC && typeof window.SC.toast === 'function') {
+      window.SC.toast(msg, type || 'info');
     }
   }
 
@@ -249,14 +249,14 @@ window.SM2Paraphraser = (function () {
     listContainer.innerHTML = state.history.map(function (item) {
       var preview = escapeHtml(item.original.slice(0, 100)) + (item.original.length > 100 ? '...' : '');
       return '<div class="history-item" data-id="' + item.id + '">' +
-        '  <div class="history-item-body" onclick="SM2Paraphraser.loadHistoryItem(\'' + item.id + '\')">' +
+        '  <div class="history-item-body" onclick="SC2Paraphraser.loadHistoryItem(\'' + item.id + '\')">' +
         '    <div class="history-item-title">' + preview + '</div>' +
         '    <div class="history-item-meta">' +
         '      <span class="history-item-tag">' + item.mode + '</span>' +
         '      <span>' + item.timestamp + '</span>' +
         '    </div>' +
         '  </div>' +
-        '  <button class="history-del-btn" onclick="SM2Paraphraser.deleteHistoryItem(\'' + item.id + '\', event)" aria-label="Delete history entry">×</button>' +
+        '  <button class="history-del-btn" onclick="SC2Paraphraser.deleteHistoryItem(\'' + item.id + '\', event)" aria-label="Delete history entry">×</button>' +
         '</div>';
     }).join('');
   }
@@ -650,7 +650,7 @@ window.SM2Paraphraser = (function () {
   }
 
   // Unified Request Dispatcher
-  // All AI requests go through the StudyMetrics backend (/api/ai/paraphrase).
+  // All AI requests go through the Scholarics backend (/api/ai/paraphrase).
   // The Gemini API key lives ONLY on the server — it is never read from
   // localStorage or exposed to the browser.
   async function makeAIRequest(promptText) {
@@ -932,7 +932,7 @@ window.SM2Paraphraser = (function () {
     }
 
     // Quick fix click bindings
-    document.querySelectorAll('.quick-fixes-panel button.sm2-chip').forEach(function (btn) {
+    document.querySelectorAll('.quick-fixes-panel button.sc2-chip').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var fixType = this.getAttribute('data-fix');
         triggerQuickFix(fixType);
@@ -940,9 +940,9 @@ window.SM2Paraphraser = (function () {
     });
 
     // Academic tools sub-panel toggles
-    document.querySelectorAll('.academic-tools-panel button.sm2-chip').forEach(function (btn) {
+    document.querySelectorAll('.academic-tools-panel button.sc2-chip').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.academic-tools-panel button.sm2-chip').forEach(function (b) { b.classList.remove('on'); });
+        document.querySelectorAll('.academic-tools-panel button.sc2-chip').forEach(function (b) { b.classList.remove('on'); });
         this.classList.add('on');
         state.activeTool = this.getAttribute('data-tool');
 

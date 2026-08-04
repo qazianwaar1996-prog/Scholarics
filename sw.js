@@ -1,10 +1,10 @@
 /* ============================================================
-   StudyMetrics Service Worker v2.0
+   Scholarics Service Worker v2.0
    Strategy: Cache-first for shell assets, network-first for HTML,
    offline fallback page for navigation failures.
    ============================================================ */
 
-var CACHE_NAME = 'sm-shell-v4'; /* bumped 2026-08-03: force-evict stale cache; deliver calculator icon-size fix (css/style.css + css/calculators.css) */
+var CACHE_NAME = 'scholarics-shell-v1'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
 var OFFLINE_URL = '/404.html';
 
 /* Assets to pre-cache on install (the app shell) */
@@ -12,12 +12,12 @@ var SHELL_ASSETS = [
   '/',
   '/index.html',
   '/css/style.css',
-  '/css/studymetrics-v2.css',
+  '/css/scholarics-v2.css',
   '/css/premium.css',
   '/css/personalization.css',
-  '/css/sm-prelaunch-fixes.css',
+  '/css/sc-prelaunch-fixes.css',
   '/js/script.js',
-  '/js/sm-shell.js',
+  '/js/sc-shell.js',
   '/js/premium.js',
   '/images/favicon.svg',
   '/404.html'

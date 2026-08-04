@@ -7,7 +7,7 @@
   document.documentElement.classList.add('js-loaded');
   /* body.premium (the legacy purple/glass skin) is intentionally NOT applied.
      Calculator pages must use the unified gold/black design system in
-     css/style.css — the same one the sm2 homepage uses — instead of the old
+     css/style.css — the same one the sc2 homepage uses — instead of the old
      body.premium overlay (which recoloured focus rings, field labels, grade
      letters and result heros purple via css/calculators.css). */
   function injectBackground () {
@@ -176,7 +176,7 @@
         }
       });
     }
-    if (toggle && navLinks && !toggle.dataset.smBound) {
+    if (toggle && navLinks && !toggle.dataset.scBound) {
       toggle.addEventListener('click', function (e) {
         e.stopPropagation();
         var open = navLinks.classList.toggle('open');
@@ -233,7 +233,7 @@
       var target = qs(id);
       if (!target) return;
       e.preventDefault();
-      var headerH = (qs('.site-head') || qs('.sm2-top') || { offsetHeight: 0 }).offsetHeight;
+      var headerH = (qs('.site-head') || qs('.sc2-top') || { offsetHeight: 0 }).offsetHeight;
       var top = target.getBoundingClientRect().top + window.scrollY - headerH - 8;
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     });
@@ -457,8 +457,8 @@
         })
       }).then(function (res) {
         if (res.ok) {
-          if (window.SM && SM.toast) SM.toast("Thanks — you're subscribed!", 'success');
-          try { localStorage.setItem('sm_ec_subscribed', '1'); } catch (err) {}
+          if (window.SC && SC.toast) SC.toast("Thanks — you're subscribed!", 'success');
+          try { localStorage.setItem('sc_ec_subscribed', '1'); } catch (err) {}
           form.reset();
           return;
         }
@@ -477,26 +477,26 @@
             var dupMsg = /waitlist/i.test(String(data.error || ""))
               ? String(data.error)
               : "You're already subscribed! 🎉";
-            if (window.SM && SM.toast) SM.toast(dupMsg, 'success');
+            if (window.SC && SC.toast) SC.toast(dupMsg, 'success');
             return;
           }
           throw new Error(String(data.error || 'subscribe failed'));
         }).catch(function () {
           if (res.status === 409) {
-            if (window.SM && SM.toast) SM.toast("You're already subscribed! 🎉", 'success');
+            if (window.SC && SC.toast) SC.toast("You're already subscribed! 🎉", 'success');
             return;
           }
-          if (window.SM && SM.toast) SM.toast('Unable to subscribe right now. Please try again.', 'error');
+          if (window.SC && SC.toast) SC.toast('Unable to subscribe right now. Please try again.', 'error');
         });
       }).catch(function () {
-        if (window.SM && SM.toast) SM.toast('Unable to subscribe right now. Please try again.', 'error');
+        if (window.SC && SC.toast) SC.toast('Unable to subscribe right now. Please try again.', 'error');
       }).finally(function () {
         if (submit) { submit.disabled = false; submit.removeAttribute('aria-busy'); }
       });
     });
   }
   function init () {
-    /* injectBackground() disabled — legacy purple blob/noise skin removed (StudyMetrics v2 design system) */
+    /* injectBackground() disabled — legacy purple blob/noise skin removed (Scholarics v2 design system) */
     initScrollProgress();
     initNavbar();
     initSmoothScroll();
@@ -514,7 +514,7 @@
       initCounters();
       /* initCardTilt(), initMagneticButtons(), initCursor(), initMouseGlow(), initParticles()
          disabled — heavy mousemove/rAF-driven decorations from the legacy purple skin,
-         removed for the flat StudyMetrics v2 design system and to cut runtime CPU cost. */
+         removed for the flat Scholarics v2 design system and to cut runtime CPU cost. */
       initIconAnims();
     } else {
       qsa('.reveal').forEach(function (el) { el.classList.add('active'); });

@@ -1,10 +1,10 @@
 /**
- * StudyMetrics AI — frontend API client.
+ * Scholarics AI — frontend API client.
  *
  * Talks ONLY to our own backend (/api/ai/*). The Gemini key never appears in
  * the browser — every request is proxied through the server.
  *
- * Backward compatible: SMAI.send(history, onSuccess, onError) still works for
+ * Backward compatible: SCAI.send(history, onSuccess, onError) still works for
  * the AI Tutor / dashboard assistant (now hitting /api/ai/chat).
  * New Promise-based helpers are added for the other endpoints.
  */
@@ -34,7 +34,7 @@
     });
   }
 
-  window.SMAI = {
+  window.SCAI = {
     /* ── AI Tutor (multi-turn chat) — callback API for existing callers ── */
     send: function (history, onSuccess, onError) {
       request('/chat', { messages: history })

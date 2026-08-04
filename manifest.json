@@ -1,6 +1,6 @@
 {
-  "name": "Study Metrics",
-  "short_name": "StudyMetrics",
+  "name": "Scholarics",
+  "short_name": "Scholarics",
   "description": "Free academic tools and calculators for students. GPA calculator, Pomodoro timer, grade predictor, and more.",
   "start_url": "/",
   "scope": "/",

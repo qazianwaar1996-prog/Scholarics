@@ -1,7 +1,7 @@
 (function () {
   "use strict";
-  var $ = SM.$, store = SM.store;
-  var KEY = "sm_wordcount";
+  var $ = SC.$, store = SC.store;
+  var KEY = "sc_wordcount";
   document.addEventListener("DOMContentLoaded", function () {
     var editor = $("#editor");
     if (!editor) return;
@@ -63,10 +63,10 @@
     if (copyBtn) {
       copyBtn.onclick = function () {
         if (!editor.value.trim()) {
-          SM.toast("Nothing to copy", "info");
+          SC.toast("Nothing to copy", "info");
           return;
         }
-        SM.copy(editor.value);
+        SC.copy(editor.value);
       };
     }
     var clearBtn = $("#clearBtn");
@@ -77,7 +77,7 @@
           editor.value = "";
           count();
           editor.focus();
-          SM.toast("Editor cleared", "info");
+          SC.toast("Editor cleared", "info");
         }
       };
     }

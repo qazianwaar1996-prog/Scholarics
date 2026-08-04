@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$, round=SM.round, store=SM.store, KEY="sm_gip";
+var $=SC.$, round=SC.round, store=SC.store, KEY="sc_gip";
 function compute(){
   var cur=parseFloat($('#giCurrent').value);
   var tgt=parseFloat($('#giTarget').value);
@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(saved){['#giCurrent','#giTarget','#giCreditsEarned','#giCreditsLeft'].forEach(function(s,i){var e=$(s);if(e){var keys=['cur','tgt','earned','left'];e.value=saved[keys[i]]||'';}});}
   ['#giCurrent','#giTarget','#giCreditsEarned','#giCreditsLeft'].forEach(function(s){var e=$(s);if(e)e.addEventListener('input',compute);});
   var rs=$('#giReset');
-  if(rs){rs.onclick=function(){['#giCurrent','#giTarget','#giCreditsEarned','#giCreditsLeft'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SM.toast('Reset','info');};}
+  if(rs){rs.onclick=function(){['#giCurrent','#giTarget','#giCreditsEarned','#giCreditsLeft'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#giShare');
-  if(sh){sh.onclick=function(){var v=$('#giRequired');if(!v||v.textContent==='—')return SM.toast('Enter data first','info');SM.copy('I need a '+v.textContent+' GPA for my remaining credits to reach my target — Study Metrics');};}
+  if(sh){sh.onclick=function(){var v=$('#giRequired');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('I need a '+v.textContent+' GPA for my remaining credits to reach my target — Scholarics');};}
   compute();
 });
 })();

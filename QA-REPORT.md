@@ -1,4 +1,4 @@
-# Study Metrics — QA Report
+# Scholarics — QA Report
 **Phase 10 | Version 1.0 | July 2026**
 
 ---
@@ -92,7 +92,7 @@ All 52 pages validated against 16-point checklist:
 
 All 26 calculators tested by JS syntax check and dependency trace:
 
-| Calculator | JS File | Syntax | SM Dependency |
+| Calculator | JS File | Syntax | SC Dependency |
 |---|---|---|---|
 | GPA Calculator | gpa.js | ✅ | ✅ |
 | CGPA Calculator | cgpa.js | ✅ | ✅ |
@@ -148,7 +148,7 @@ All 26 calculators tested by JS syntax check and dependency trace:
 - `og:image`: `images/og-image.svg` — referenced correctly on all pages ✅
 - `og:type`: correct (`website` for hubs, `article` for guides) ✅
 - `twitter:card`: `summary_large_image` on all pages ✅
-- `twitter:site`: `@studymetrics` on all pages ✅
+- `twitter:site`: `@scholarics` on all pages ✅
 
 ---
 

@@ -1,4 +1,4 @@
-# Study Metrics robots.txt
+# Scholarics robots.txt
 
 User-agent: *
 Allow: /
@@ -25,4 +25,4 @@ User-agent: AhrefsBot
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://studymetrics.app/sitemap.xml
+Sitemap: https://scholarics.app/sitemap.xml

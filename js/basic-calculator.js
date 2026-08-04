@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var $=SM.$;
+var $=SC.$;
 var state={display:'0',expr:'',operator:null,prevVal:null,reset:false};
 var KEYS=[
   ['AC','±','%','÷'],['7','8','9','×'],['4','5','6','−'],
