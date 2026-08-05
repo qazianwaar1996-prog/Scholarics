@@ -103,6 +103,30 @@ function mockReply(opts) {
   var last = opts.contents && opts.contents[opts.contents.length - 1];
   var q = (last && last.parts && last.parts[0] && last.parts[0].text) || '';
   if (opts.jsonMode) {
+    if (q.indexOf('GPA analytics') !== -1 || q.indexOf('coaching report') !== -1) {
+      /* Echo the analytics embedded in the prompt so local tests exercise
+         the real numbers (regex-safe: the prompt is built by our code). */
+      var cur = parseFloat((q.match(/Current CGPA: ([0-9.]+|not available)/) || [])[1]);
+      var tgt = parseFloat((q.match(/Target: ([0-9.]+|not set)/) || [])[1]);
+      var pct = parseInt((q.match(/Progress toward target: ([0-9]+)%/) || [])[1], 10);
+      if (!Number.isFinite(cur)) cur = 0;
+      if (!Number.isFinite(tgt)) tgt = cur;
+      if (!Number.isFinite(pct)) pct = Math.round(cur > 0 && tgt > 0 ? Math.min(100, (cur / tgt) * 100) : 0);
+      var day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      return Promise.resolve(JSON.stringify({
+        strengths: ['Calculus I (B+) — solid quantitative foundation', 'English 101 (A) — strong written communication'],
+        weaknesses: ['History 101 (A-) — essays need stronger argument structure'],
+        progress: { current: cur, target: tgt, gap: Math.round((tgt - cur) * 100) / 100, pct: pct },
+        priorities: [
+          { subject: 'Calculus I', reason: '4 credits — biggest lever on your CGPA', urgency: 'high' },
+          { subject: 'History 101', reason: 'Below your average — easy essay-score gains', urgency: 'medium' }
+        ],
+        weeklyPlan: day.map(function (d) {
+          return { day: d, focus: 'Focused study block', tasks: ['Attempt 5 practice problems', 'Review notes and mark errors'] };
+        }),
+        advice: 'You are ' + pct + '% of the way to your target — protect it with weekly practice and steady revision.'
+      }));
+    }
     if (q.indexOf('flashcards') !== -1) {
       return Promise.resolve(JSON.stringify({ flashcards: [
         { front: 'What is photosynthesis?', back: 'The process by which plants convert light into chemical energy.' },

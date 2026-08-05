@@ -35,6 +35,7 @@ wrangler.toml        ← Pages config + optional KV bindings
 | POST | `/api/ai/chat` | AI Tutor (multi-turn, subject-aware) → `{reply}` |
 | POST | `/api/ai/paraphrase` | AI Paraphraser (8 modes + options) → `{reply}` |
 | POST | `/api/ai/study-plan` | Study plan → `{plan}` |
+| POST | `/api/ai/coach` | GPA Simulator AI Coach: client sends simulator state, server recomputes analytics and returns `{coach:{strengths,weaknesses,progress,priorities,weeklyPlan,advice}}` |
 | POST | `/api/ai/flashcards` | Flashcards → `{flashcards:[{front,back}]}` |
 | POST | `/api/ai/quiz` | Quiz → `{quiz:[{question,options,answer,explanation}]}` |
 | POST | `/api/subscribe` | Newsletter subscription |

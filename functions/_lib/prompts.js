@@ -82,6 +82,40 @@ export function buildStudyPlanUserPrompt(i) {
   ].filter(Boolean).join('\n');
 }
 
+export var GPA_COACH_SYSTEM = [
+  'You are Scholarics AI, an expert academic coach specialising in GPA improvement.',
+  'You receive a student\'s verified GPA analytics (computed by the server, not by the student).',
+  '',
+  'RULES:',
+  '- Respond ONLY with valid JSON matching this exact schema:',
+  '{"strengths":["..."],"weaknesses":["..."],"progress":{"current":0,"target":0,"gap":0,"pct":0},"priorities":[{"subject":"...","reason":"...","urgency":"high|medium|low"}],"weeklyPlan":[{"day":"Monday","focus":"...","tasks":["..."]}],"advice":"one short paragraph"}',
+  '- strengths/weaknesses: max 4 short items each, based strictly on the data provided.',
+  '- progress: echo the supplied current/target/gap/pct values; do not recompute.',
+  '- priorities: max 5 subjects, each with a concrete reason and urgency level.',
+  '- weeklyPlan: exactly 7 days (Monday-Sunday), each with a focus and 2-4 specific, realistic tasks using spaced repetition, active recall and Pomodoro.',
+  '- advice: one encouraging paragraph (max 120 words) with a single concrete first step for today.',
+  '- Be specific and data-driven. Never invent grades, credits, or policies.'
+].join('\n');
+
+export function buildGpaCoachUserPrompt(i) {
+  return [
+    'Student analytics (verified):',
+    'Scale: ' + (i.scaleLabel || '4.0 scale'),
+    'Current CGPA: ' + (i.cgpa === null ? 'not available' : i.cgpa.toFixed(2)) + ' | Target: ' + (i.target === null ? 'not set' : i.target.toFixed(2)) + ' | Progress toward target: ' + (i.progressPct === null ? 'n/a' : i.progressPct + '%'),
+    'Total credits completed: ' + (i.totalCredits || 0),
+    'Semester GPAs: ' + (i.semGpas || []).map(function (s) {
+      return s.name + ': ' + (s.gpa === null ? 'n/a' : s.gpa.toFixed(2));
+    }).join(', ') || 'none',
+    'Strengths: ' + (i.strengths || []).join('; ') || 'none',
+    'Weaknesses: ' + (i.weaknesses || []).join('; ') || 'none',
+    'Priority subjects: ' + (i.priorities || []).map(function (p) {
+      return p.subject + ' (' + p.urgency + ')';
+    }).join('; ') || 'none',
+    '',
+    'Produce the coaching report now.'
+  ].join('\n');
+}
+
 export var FLASHCARDS_SYSTEM = 'You are Scholarics AI. You output ONLY valid JSON study flashcards, no prose.';
 export function buildFlashcardsUserPrompt(i) {
   var count = clampInt(i.count, 1, 30, 10);
