@@ -22,6 +22,7 @@
   var TOOLS = [
     { name: 'GPA Calculator',         url: 'gpa.html',                   cat: 'GPA & Grades',  tags: 'gpa grade point average' },
     { name: 'CGPA Calculator',        url: 'cgpa.html',                  cat: 'GPA & Grades',  tags: 'cgpa cumulative semester' },
+    { name: 'GPA Simulator',          url: 'gpa-simulator.html',         cat: 'GPA & Grades',  tags: 'gpa simulate what if semesters model cgpa trend' },
     { name: 'Semester GPA',           url: 'semester-gpa.html',          cat: 'GPA & Grades',  tags: 'semester gpa term' },
     { name: 'GPA Converter',          url: 'gpa-converter.html',         cat: 'GPA & Grades',  tags: 'gpa convert country scale' },
     { name: 'Target GPA',             url: 'target-gpa.html',            cat: 'GPA & Grades',  tags: 'target goal gpa future' },

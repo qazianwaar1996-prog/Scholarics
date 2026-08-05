@@ -4,7 +4,7 @@
    offline fallback page for navigation failures.
    ============================================================ */
 
-var CACHE_NAME = 'scholarics-shell-v1'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
+var CACHE_NAME = 'scholarics-shell-v2'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
 var OFFLINE_URL = '/404.html';
 
 /* Assets to pre-cache on install (the app shell) */
@@ -20,7 +20,10 @@ var SHELL_ASSETS = [
   '/js/sc-shell.js',
   '/js/premium.js',
   '/images/favicon.svg',
-  '/404.html'
+  '/404.html',
+  '/gpa-simulator.html',
+  '/js/gpa-simulator.js',
+  '/js/gpa-simulator-core.js'
 ];
 
 self.addEventListener('install', function (e) {

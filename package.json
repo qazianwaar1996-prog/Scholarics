@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "wrangler pages dev . --compatibility-date=2024-11-01",
     "deploy": "wrangler pages deploy .",
-    "test": "wrangler pages dev . --compatibility-date=2024-11-01 --port 8788"
+    "test": "node tests/run-all.js"
   },
   "devDependencies": {
+    "jsdom": "^24.1.3",
     "wrangler": "^3.78.0"
   },
   "engines": {

@@ -35,6 +35,25 @@
         ]
       };
     },
+    'gpa-simulator.html': function () {
+      var cgpa    = text('#simCgpa');
+      var sem     = text('#simSemGpa');
+      var credits = text('#simTotalCredits');
+      var status  = text('#simStatus');
+      var target  = text('#simTarget');
+      if (!cgpa || cgpa === '—') return null;
+      return {
+        title: 'GPA Simulator Result',
+        summary: 'Simulated CGPA: ' + cgpa + ' (target ' + (target || '—') + '), current semester ' + (sem || '—') + ', ' + (credits || '?') + ' total credits.',
+        details: [
+          'Cumulative GPA (CGPA): ' + cgpa,
+          'Target GPA: ' + (target || 'not set'),
+          'Active semester GPA: ' + (sem || '—'),
+          'Academic standing: ' + (status || 'N/A'),
+          'Total credits: ' + (credits || '?')
+        ]
+      };
+    },
     'cgpa.html': function () {
       var cgpa    = text('#cgpaOut') || text('.gpa-big');
       var cls     = text('#cgpaClass') || text('.gpa-sub');
