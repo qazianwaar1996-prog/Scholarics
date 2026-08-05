@@ -26,3 +26,10 @@ Crawl-delay: 10
 
 # Sitemap location
 Sitemap: https://scholarics.com/sitemap.xml
+
+# Host directive
+Host: scholarics.com
+
+# Disallow non-public directories
+Disallow: /functions/
+Disallow: /api/
