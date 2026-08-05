@@ -53,6 +53,39 @@
 
 <!-- GPA Simulator styles (inline for single-file delivery) -->
 <style>
+/* ── Skip-link: accessible-hide on non-sc2 pages ─────────────────────── */
+/* style.css only targets body.sc2 .skip-link; this page has no .sc2 class */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--accent, #5b6ef5);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+
+/* ── Missing design-token fallback ───────────────────────────────────── */
+/* --step-sm is used throughout the Scholarics design system (nav, buttons,
+   body copy) but is not declared in style.css (the scale jumps sc→base).
+   Define it here so all var(--step-sm) references resolve correctly. */
+:root { --step-sm: .9375rem; }
+
 /* ── GPA Simulator component styles ──────────────────────────────────── */
 
 /* Semester tabs */
@@ -708,7 +741,7 @@
 
           <!-- Course rows -->
           <div id="simRows" role="table" aria-label="Courses" aria-live="polite" aria-relevant="additions removals">
-            <!-- Rendered by JS -->
+            <!-- JS renders rows inside a role="rowgroup" wrapper -->
           </div>
 
           <!-- Row actions -->
@@ -738,8 +771,8 @@
           </p>
           <div class="sim-target-row">
             <label for="simTarget">Goal CGPA</label>
-            <input id="simTarget" class="sim-target-input tnum" type="number" min="0" max="4" step="0.01" value="3.50" aria-label="Target GPA on the 4.0 scale">
-            <span style="font-size:var(--step-sm);color:var(--ink-3)">/ <span id="simTargetScale">4.0</span></span>
+            <input id="simTarget" class="sim-target-input tnum" type="number" min="0" max="4" step="0.01" value="3.50" aria-label="Target GPA on the 4.0 scale" aria-describedby="simTargetScaleWrap">
+            <span id="simTargetScaleWrap" style="font-size:var(--step-sm);color:var(--ink-3)">/ <span id="simTargetScale">4.0</span></span>
           </div>
           <div class="field slider-wrap">
             <input type="range" id="simTargetSlider" min="0" max="4" step="0.01" value="3.50" aria-label="Adjust target GPA with slider">
@@ -844,7 +877,7 @@
               CGPA Trend
               <span style="margin-left:var(--s3);color:oklch(.55 .06 78)">— Target</span>
             </div>
-            <div id="simSparkWrap" aria-label="CGPA trend chart">
+            <div id="simSparkWrap" role="img" aria-label="CGPA trend chart">
               <!-- SVG rendered by JS -->
             </div>
           </div>
@@ -989,19 +1022,7 @@
 <script defer src="js/gpa-simulator-core.js?v=1.0"></script>
 <script defer src="js/gpa-simulator.js?v=2.0"></script>
 
-<!-- Nav toggle (matches existing pattern in site) -->
-<script>
-(function () {
-  var toggle = document.getElementById("menuToggle");
-  var links  = document.getElementById("navLinks");
-  if (toggle && links) {
-    toggle.addEventListener("click", function () {
-      var open = links.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  }
-})();
-</script>
+<!-- Nav toggle is handled by sc-shell.js (deferred) which guards against double-binding -->
 
 </body>
 </html>
