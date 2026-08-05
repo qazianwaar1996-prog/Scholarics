@@ -4,7 +4,7 @@
   "description": "Scholarics — Academic Tools & AI (Cloudflare Pages + Functions)",
   "private": true,
   "scripts": {
-    "dev": "wrangler pages dev . --compatibility-date=2024-11-01",
+    "dev": "wrangler pages dev . --compatibility-date=2024-11-01 --ip 0.0.0.0 --port 8788",
     "deploy": "wrangler pages deploy .",
     "test": "node tests/run-all.js"
   },

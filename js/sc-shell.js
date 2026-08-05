@@ -111,10 +111,10 @@
       var currentPage = path.split('/').pop() || 'index.html';
       var links = [
         { href: 'index.html#tools', label: 'Calculators', match: '' },
+        { href: 'gpa-simulator.html', label: 'GPA Simulator', match: 'gpa-simulator.html' },
         { href: 'dashboard.html',   label: 'Dashboard',   match: 'dashboard.html' },
         { href: 'ai.html',          label: 'AI Tutor',    match: 'ai.html' },
         { href: 'notes.html',       label: 'Notes',       match: 'notes.html' },
-        { href: 'grading-guide.html', label: 'Countries', match: 'grading-guide.html' },
         { href: 'academic-resources.html', label: 'Resources', match: 'academic-resources.html' },
       ];
       navLinks.innerHTML = links.map(function (l) {
