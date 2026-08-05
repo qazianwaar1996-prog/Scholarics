@@ -4,6 +4,8 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 Disallow: /*.md
+Disallow: /functions/
+Disallow: /api/
 
 # Allow Google's ad crawler full access
 User-agent: Mediapartners-Google
@@ -29,7 +31,3 @@ Sitemap: https://scholarics.com/sitemap.xml
 
 # Host directive
 Host: scholarics.com
-
-# Disallow non-public directories
-Disallow: /functions/
-Disallow: /api/

@@ -39,9 +39,22 @@ export function withApi(handler, opts) {
       return json({ error: 'Too many requests. Please slow down and try again shortly.' }, 429, { 'Retry-After': '60' });
     }
 
+    /* Enforce the documented request-size limit before parsing untrusted JSON.
+       Content-Length catches normal requests early; reading the text and measuring
+       it also protects against chunked requests that omit that header. */
+    var maxBodyBytes = parseInt(env.MAX_BODY_BYTES, 10) || 131072;
+    var declaredLength = parseInt(request.headers.get('content-length') || '', 10);
+    if (Number.isFinite(declaredLength) && declaredLength > maxBodyBytes) {
+      return json({ error: 'Request body is too large.' }, 413);
+    }
+
     var body;
     try {
-      body = await request.json();
+      var raw = await request.text();
+      if (new TextEncoder().encode(raw).byteLength > maxBodyBytes) {
+        return json({ error: 'Request body is too large.' }, 413);
+      }
+      body = JSON.parse(raw);
     } catch (e) {
       return badRequest('Invalid JSON body.');
     }
