@@ -63,7 +63,7 @@
 
     /* Footer injection */
     document.querySelectorAll('.foot-col').forEach(function (col) {
-      var header = col.querySelector('h4');
+      var header = col.querySelector('h4, h2');
       if (!header) return;
       var txt = header.textContent.trim().toLowerCase();
       if ((txt === 'productivity' || txt === 'guides & company' || txt === 'gpa & grades') &&

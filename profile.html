@@ -148,7 +148,7 @@
     <div class="prof-sections">
       <!-- 1. Profile Overview -->
       <div class="prof-section open" id="profSecOverview">
-        <div class="prof-sec-head" onclick="toggleSec('profSecOverview')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecOverview')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecOverview');}" role="button" tabindex="0" aria-expanded="true">
           <span class="prof-sec-ico" style="background:rgba(99,102,241,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--violet,#6366f1)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></span>
           <h2>Profile Overview</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -163,7 +163,7 @@
       </div>
       <!-- 2. Personalization -->
       <div class="prof-section open" id="profSecPersonal">
-        <div class="prof-sec-head" onclick="toggleSec('profSecPersonal')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecPersonal')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecPersonal');}" role="button" tabindex="0" aria-expanded="true">
           <span class="prof-sec-ico" style="background:rgba(197,150,44,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-strong,#a97c14)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span>
           <h2>Personalization</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -188,7 +188,7 @@
       </div>
       <!-- 3. Preferences -->
       <div class="prof-section" id="profSecPrefs">
-        <div class="prof-sec-head" onclick="toggleSec('profSecPrefs')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecPrefs')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecPrefs');}" role="button" tabindex="0" aria-expanded="false">
           <span class="prof-sec-ico" style="background:rgba(34,197,94,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ok,#22c55e)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
           <h2>Preferences</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -214,7 +214,7 @@
       </div>
       <!-- 4. Study Statistics -->
       <div class="prof-section" id="profSecStats">
-        <div class="prof-sec-head" onclick="toggleSec('profSecStats')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecStats')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecStats');}" role="button" tabindex="0" aria-expanded="false">
           <span class="prof-sec-ico" style="background:rgba(59,130,246,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue,#3b82f6)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 4-4"/></svg></span>
           <h2>Study Statistics</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -249,7 +249,7 @@
       </div>
       <!-- 5. Achievements -->
       <div class="prof-section" id="profSecAchieve">
-        <div class="prof-sec-head" onclick="toggleSec('profSecAchieve')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecAchieve')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecAchieve');}" role="button" tabindex="0" aria-expanded="false">
           <span class="prof-sec-ico" style="background:rgba(234,179,8,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-strong,#a97c14)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16M11 5H6v7a6 6 0 0 0 12 0V5h-5"/><path d="M11 5V2M13 5V2"/></svg></span>
           <h2>Achievements</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -262,7 +262,7 @@
       </div>
       <!-- 6. Account -->
       <div class="prof-section" id="profSecAccount">
-        <div class="prof-sec-head" onclick="toggleSec('profSecAccount')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecAccount')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecAccount');}" role="button" tabindex="0" aria-expanded="false">
           <span class="prof-sec-ico" style="background:rgba(239,68,68,.08)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--err,#ef4444)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
           <h2>Account</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -287,7 +287,7 @@
       </div>
       <!-- 7. Privacy & About -->
       <div class="prof-section" id="profSecAbout">
-        <div class="prof-sec-head" onclick="toggleSec('profSecAbout')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecAbout')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecAbout');}" role="button" tabindex="0" aria-expanded="false">
           <span class="prof-sec-ico" style="background:rgba(100,116,139,.10)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
           <h2>Privacy &amp; About</h2>
           <svg class="prof-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -305,7 +305,7 @@
       </div>
       <!-- 8. Command Center (separate section, preserved) -->
       <div class="prof-section" id="profSecCmd" style="border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)">
-        <div class="prof-sec-head" onclick="toggleSec('profSecCmd')">
+        <div class="prof-sec-head" onclick="toggleSec('profSecCmd')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSec('profSecCmd');}" role="button" tabindex="0" aria-expanded="false">
           <span class="prof-sec-ico" style="background:rgba(197,150,44,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-strong,#a97c14)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></span>
           <h2>Command Center</h2>
           <span style="font-size:10.5px;font-weight:700;color:var(--gold-strong);background:rgba(197,150,44,.12);padding:2px 8px;border-radius:20px;margin-right:6px">Dashboard</span>
@@ -334,7 +334,13 @@
 function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
 function toggleSec(id){
   var el=document.getElementById(id);
-  if(el)el.classList.toggle('open');
+  if(el){
+    var isOpen = el.classList.toggle('open');
+    var head = el.querySelector('.prof-sec-head');
+    if (head) {
+      head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+  }
 }
 function get(k,fb){try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;}}
 function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
@@ -447,7 +453,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 });
 </script>
-<script defer src="assets/js/g-ca0b60.1c6dc0a3.js" data-sc-src="script personalization premium sc-shell sc-v2-features analytics consent email-capture pwa"></script>
+<script defer src="assets/js/g-ca0b60.08de92d3.js" data-sc-src="script personalization premium sc-shell sc-v2-features analytics consent email-capture pwa"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
 <script>

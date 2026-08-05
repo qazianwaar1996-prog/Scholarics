@@ -275,7 +275,7 @@
             </button>
           </div>
           <div class="field" style="margin-bottom: var(--s4)">
-            <textarea class="editor" id="inputText" placeholder="Paste or type your draft here... (e.g., 'In this study, we are researching how climate change has affected the migration of birds. As shown by Smith (2023), the impact is very high.')" style="min-height: 280px;"></textarea>
+            <textarea class="editor" id="inputText" aria-label="Source text input" placeholder="Paste or type your draft here... (e.g., 'In this study, we are researching how climate change has affected the migration of birds. As shown by Smith (2023), the impact is very high.')" style="min-height: 280px;"></textarea>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s4)">
             <div class="editor-info" style="display:flex; gap: var(--s2); flex-wrap: wrap;">
@@ -288,8 +288,8 @@
           </div>
           <!-- Advanced Studio Controls Line 1: Tone Selector -->
           <div class="field" style="margin-bottom: var(--s4)">
-            <label style="margin-bottom: var(--s2)">Tone Selector</label>
-            <div class="tabs" role="tablist">
+            <label id="toneSelectorLabel" style="margin-bottom: var(--s2)">Tone Selector</label>
+            <div class="tabs" role="tablist" aria-labelledby="toneSelectorLabel">
               <button class="on" data-mode="Academic">Academic</button>
               <button data-mode="Professional">Professional</button>
               <button data-mode="Friendly">Friendly</button>
@@ -393,7 +393,7 @@
             <!-- Academic Output Box (Hidden until generated) -->
             <div id="academicOutputBox" style="display: none; margin-top: var(--s3); padding: var(--s3); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md);">
               <div style="font-size: var(--step-xs); font-weight: 600; text-transform: uppercase; color: var(--gold-strong); margin-bottom: 6px;">Academic helper Result</div>
-              <textarea id="academicOutputText" readonly class="editor" style="min-height: 120px; font-size: var(--step-xs); padding: 8px; line-height: 1.4; margin-bottom: var(--s2);"></textarea>
+              <textarea id="academicOutputText" readonly class="editor" aria-label="Academic helper result" style="min-height: 120px; font-size: var(--step-xs); padding: 8px; line-height: 1.4; margin-bottom: var(--s2);"></textarea>
               <div style="display: flex; gap: var(--s2); justify-content: flex-end;">
                 <button class="btn btn-ghost" id="insertAcademicBtn" style="font-size: 11px; padding: 4px 8px;">Insert into Input</button>
                 <button class="btn btn-ghost" id="copyAcademicBtn" style="font-size: 11px; padding: 4px 8px;">Copy</button>
@@ -422,7 +422,7 @@
             </div>
           </div>
           <div class="field" style="margin-bottom: var(--s4)">
-            <textarea class="editor" id="outputText" readonly placeholder="Your polished text will appear here..." style="min-height: 280px;"></textarea>
+            <textarea class="editor" id="outputText" readonly aria-label="Polished text output" placeholder="Your polished text will appear here..." style="min-height: 280px;"></textarea>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s2)">
             <div class="editor-info" style="display:flex; gap: var(--s2); flex-wrap: wrap;">
@@ -531,7 +531,7 @@
   <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
 </nav>
 <!-- Scripts -->
-<script defer src="assets/js/core-shell-person-prem-aisvc.c8141586.js" data-sc-src="script sc-shell personalization premium ai-service"></script>
+<script defer src="assets/js/core-shell-person-prem-aisvc.d3c7ca64.js" data-sc-src="script sc-shell personalization premium ai-service"></script>
 <script defer src="assets/js/p-paraphraser.a0a12eaf.js" data-sc-src="paraphraser"></script>
 <script defer src="assets/js/v2feat-ga-consent-email-pwa.1d2253c0.js" data-sc-src="sc-v2-features analytics consent email-capture pwa"></script>
 <script>
