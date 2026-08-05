@@ -61,13 +61,13 @@
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: var(--s4);
+  margin-bottom: var(--s3);
 }
 .sim-tab {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 7px 14px;
+  padding: 8px 14px;
   border-radius: 10px;
   font-size: var(--step-sm);
   font-weight: 500;
@@ -75,21 +75,24 @@
   background: var(--surface-2);
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: background .15s var(--ease), color .15s, border-color .15s;
+  transition: background .15s var(--ease), color .15s, border-color .15s, box-shadow .15s;
   white-space: nowrap;
+  min-height: 44px;
 }
 .sim-tab:hover { background: var(--surface); color: var(--ink); border-color: var(--ink-3); }
+.sim-tab:focus-visible { box-shadow: 0 0 0 3px var(--accent-dim); }
 .sim-tab.on {
   background: var(--accent-dim);
   color: var(--accent-strong);
   border-color: var(--accent);
   font-weight: 600;
+  box-shadow: 0 1px 4px var(--accent-dim);
 }
 .sim-tab-gpa {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--step-xs);
-  padding: 1px 7px;
+  padding: 2px 8px;
   border-radius: 20px;
   background: var(--surface);
   color: var(--ink);
@@ -97,7 +100,7 @@
 }
 .sim-tab.on .sim-tab-gpa { background: var(--accent); color: #fff; border-color: var(--accent); }
 .sim-tab-add {
-  width: 34px; height: 34px;
+  width: 44px; height: 44px;
   padding: 0;
   justify-content: center;
   border-style: dashed;
@@ -109,7 +112,7 @@
   display: flex;
   align-items: center;
   gap: var(--s3);
-  margin-bottom: var(--s4);
+  margin-bottom: var(--s3);
   flex-wrap: wrap;
 }
 .sim-sem-name {
@@ -122,9 +125,12 @@
   outline: none;
   min-width: 10ch;
   max-width: 28ch;
-  padding: 2px 6px;
+  padding: 4px 8px;
   border-radius: 6px;
   cursor: text;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .sim-sem-name:focus {
   background: var(--surface-2);
@@ -141,7 +147,7 @@
 .sim-rows-head,
 .sim-crow {
   display: grid;
-  grid-template-columns: 1fr 130px 80px 110px 36px;
+  grid-template-columns: 1fr 130px 80px 110px 44px;
   gap: var(--s2);
   align-items: center;
 }
@@ -154,24 +160,44 @@
   font-weight: 600;
 }
 .sim-crow {
-  padding: 8px;
+  padding: 10px;
   border: 1px solid var(--border-soft);
   border-radius: var(--r-md);
   margin-bottom: var(--s2);
   background: var(--surface-2);
   animation: rowIn .25s var(--ease);
+  transition: border-color .15s, box-shadow .15s;
 }
-.sim-crow .input, .sim-crow .select { background: var(--surface); }
+.sim-crow:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+.sim-crow .input, .sim-crow .select { background: var(--surface); min-height: 44px; }
 @keyframes rowIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Delete row button — 44px touch target */
+.row-del {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--ink-3);
+  transition: background .15s, color .15s;
+}
+.row-del:hover { background: var(--danger-dim); color: var(--danger); }
+.row-del:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.row-del svg { width: 16px; height: 16px; }
 
 /* Needed grade tag */
 .sim-need {
   display: inline-block;
   font-size: var(--step-xs);
   font-weight: 600;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 20px;
   white-space: nowrap;
+  line-height: 1.4;
 }
 .sim-need-ok   { background: var(--ok-dim);     color: var(--ok); }
 .sim-need-info { background: var(--info-dim);   color: var(--info); }
@@ -182,9 +208,10 @@
   background: var(--ink);
   color: var(--bg);
   border-radius: var(--r-lg);
-  padding: var(--s6);
+  padding: var(--s5);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 16px oklch(.25 .02 55 / .18), 0 1px 3px oklch(.25 .02 55 / .08);
 }
 .sim-result-card::after {
   content: "";
@@ -197,15 +224,15 @@
 .sim-result-label {
   font-size: var(--step-xs);
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .1em;
   color: oklch(.72 .01 74);
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 .sim-cgpa-big {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 3.4rem;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
   line-height: 1;
   letter-spacing: -.03em;
   color: #fff;
@@ -213,41 +240,42 @@
 .sim-status {
   font-size: var(--step-sm);
   color: oklch(.8 .01 74);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .sim-meta-row {
   display: flex;
   gap: var(--s5);
-  margin-top: var(--s5);
-  padding-top: var(--s4);
+  margin-top: var(--s4);
+  padding-top: var(--s3);
   border-top: 1px solid oklch(.35 .01 74);
 }
 .sim-meta-row .n {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--step-md);
   color: #fff;
 }
 .sim-meta-row .l {
-  font-size: .68rem;
+  font-size: .7rem;
   text-transform: uppercase;
   letter-spacing: .06em;
   color: oklch(.65 .01 74);
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 /* Delta badge */
 .sim-delta {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: var(--step-xs);
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
   margin-top: var(--s3);
+  min-height: 32px;
 }
-.sim-delta svg { width: 13px; height: 13px; }
+.sim-delta svg { width: 14px; height: 14px; flex-shrink: 0; }
 .sim-delta-ok   { background: var(--ok-dim);   color: var(--ok); }
 .sim-delta-warn { background: var(--warn-dim); color: var(--warn); }
 
@@ -269,13 +297,13 @@
 }
 .sim-target-row label {
   font-size: var(--step-sm);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink-2);
   white-space: nowrap;
 }
 .sim-target-input {
   width: 80px;
-  padding: 7px 10px;
+  padding: 8px 10px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
@@ -284,6 +312,7 @@
   font-size: var(--step-md);
   text-align: center;
   color: var(--ink);
+  min-height: 44px;
   transition: border-color .16s, box-shadow .16s;
 }
 .sim-target-input:focus {
@@ -292,12 +321,26 @@
   box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
-/* AI Coach panel */
+/* AI Coach panel — premium treatment */
 .sim-ai-panel {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  padding: var(--s5);
+  padding: var(--s4);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px oklch(.25 .02 55 / .04);
+}
+.sim-ai-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  opacity: .6;
 }
 .sim-ai-panel h3 {
   font-size: var(--step-md);
@@ -311,7 +354,7 @@
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: 20px;
   background: var(--accent-dim);
   color: var(--accent-strong);
@@ -320,19 +363,19 @@
 .sim-ai-output {
   font-size: var(--step-sm);
   color: var(--ink-2);
-  line-height: 1.65;
-  min-height: 48px;
+  line-height: 1.6;
+  min-height: 44px;
   margin-top: var(--s3);
 }
 .sim-ai-loader {
   display: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border: 2px solid var(--border);
   border-top-color: var(--accent);
   border-radius: 50%;
   animation: spin .7s linear infinite;
-  margin: var(--s2) auto;
+  margin: var(--s3) auto;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -342,36 +385,40 @@
   align-items: center;
   gap: var(--s2);
   flex-wrap: wrap;
-  margin-top: var(--s4);
+  margin-top: var(--s3);
+}
+.sim-toolbar .btn {
+  min-height: 44px;
 }
 
 /* Info cards grid */
 .sim-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-  gap: var(--s4);
-  margin-top: var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  gap: var(--s3);
+  margin-top: var(--s4);
 }
 .sim-info-card {
   display: flex;
   flex-direction: column;
   gap: var(--s2);
-  padding: var(--s5);
+  padding: var(--s4);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
+  box-shadow: 0 1px 2px oklch(.25 .02 55 / .03);
 }
 .sim-info-ico {
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--accent-dim);
   color: var(--accent-strong);
   display: grid;
   place-items: center;
 }
-.sim-info-ico svg { width: 19px; height: 19px; }
-.sim-info-card h4 { font-size: var(--step-sm); font-weight: 600; }
+.sim-info-ico svg { width: 18px; height: 18px; }
+.sim-info-card h4 { font-size: var(--step-sm); font-weight: 600; line-height: 1.3; }
 .sim-info-card p  { font-size: var(--step-xs); color: var(--ink-3); line-height: 1.5; }
 
 /* ── Grading scale selector ───────────────────────────────────────────── */
@@ -380,7 +427,7 @@
   align-items: center;
   gap: var(--s3);
   flex-wrap: wrap;
-  margin-bottom: var(--s4);
+  margin-bottom: var(--s3);
   padding-bottom: var(--s3);
   border-bottom: 1px solid var(--border-soft);
 }
@@ -394,15 +441,17 @@
   flex: 0 1 auto;
   min-width: 210px;
   background: var(--surface);
+  min-height: 44px;
 }
 .sim-scale-hint {
   font-size: var(--step-xs);
   color: var(--ink-3);
+  line-height: 1.45;
 }
 
 /* ── AI Coach report sections ─────────────────────────────────────────── */
 .sim-coach-sec {
-  margin-top: var(--s4);
+  margin-top: var(--s3);
   padding-top: var(--s3);
   border-top: 1px dashed var(--border);
 }
@@ -420,7 +469,7 @@
   display: grid;
   gap: 4px;
 }
-.sim-coach-sec li { line-height: 1.5; }
+.sim-coach-sec li { line-height: 1.55; }
 .sim-coach-prio li { display: grid; grid-template-columns: auto auto 1fr; gap: 8px; align-items: baseline; }
 .sim-coach-week > li { margin-bottom: var(--s2); }
 .sim-coach-week ul { margin-top: 3px; }
@@ -451,24 +500,31 @@
   background: linear-gradient(90deg, var(--accent), var(--gold));
   transition: width .4s var(--ease);
 }
-.sim-coach-sec p { font-size: var(--step-sm); color: var(--ink-2); }
+.sim-coach-sec p { font-size: var(--step-sm); color: var(--ink-2); line-height: 1.55; }
 .sim-coach-advice {
-  margin-top: var(--s4);
+  margin-top: var(--s3);
   padding: var(--s3) var(--s4);
   background: var(--accent-dim);
   border-left: 3px solid var(--accent);
   border-radius: var(--r-md);
   font-size: var(--step-sm);
   color: var(--ink-2);
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 /* ── Dark mode fixes (the base theme flips --ink to light) ────────────── */
 :root[data-theme="dark"] .sim-result-card {
   background: oklch(.17 .018 260);
+  box-shadow: 0 4px 16px oklch(0 0 0 / .3), 0 1px 3px oklch(0 0 0 / .15);
 }
 :root[data-theme="dark"] .sim-tab.on .sim-tab-gpa {
   color: var(--accent-fg);
+}
+:root[data-theme="dark"] .sim-ai-panel {
+  box-shadow: 0 1px 4px oklch(0 0 0 / .15);
+}
+:root[data-theme="dark"] .sim-info-card {
+  box-shadow: 0 1px 3px oklch(0 0 0 / .1);
 }
 :root[data-theme="dark"] .foot {
   background: #0b0b0e;
@@ -487,7 +543,7 @@
 @media (max-width: 640px) {
   .sim-rows-head { display: none; }
   .sim-crow {
-    grid-template-columns: 1fr 36px;
+    grid-template-columns: 1fr 44px;
     grid-template-areas:
       "name   del"
       "grade  grade"
@@ -498,7 +554,7 @@
   .sim-crow .c-grade-wrap{ grid-area: grade; }
   .sim-crow .c-credit    { grid-area: credit; }
   .sim-crow .c-need      { grid-area: need; align-self: center; }
-  .sim-cgpa-big          { font-size: 2.6rem; }
+  .sim-cgpa-big          { font-size: 2.4rem; }
   .sim-meta-row          { flex-wrap: wrap; gap: var(--s3); }
   .sim-tabs-wrap {
     flex-wrap: nowrap;
@@ -511,11 +567,31 @@
   .sim-scale-row .select { flex: 1 1 100%; }
   .sim-scale-hint { flex-basis: 100%; }
   .sim-coach-prio li { grid-template-columns: 1fr; gap: 2px; }
-  .sim-toolbar .btn { flex: 1 1 auto; }
+  .sim-toolbar .btn { flex: 1 1 auto; min-height: 44px; }
+  .sim-result-card { padding: var(--s4); }
+  .sim-info-grid { gap: var(--s2); }
+  .sim-info-card { padding: var(--s3); }
+  .sim-ai-panel { padding: var(--s3); }
+  /* Compact panel spacing on mobile */
+  .sim-sem-head { margin-bottom: var(--s2); }
+  .sim-tabs-wrap { margin-bottom: var(--s2); }
+  .sim-scale-row { margin-bottom: var(--s2); }
 }
 @media (max-width: 960px) {
   .tool-layout { grid-template-columns: 1fr; }
   .result-rail { position: static; }
+}
+@media (max-width: 380px) {
+  /* Extra-narrow screens (320px+) — prevent overflow */
+  .sim-crow { padding: 8px; gap: 6px; }
+  .sim-target-input { width: 70px; }
+  .sim-tab { padding: 6px 10px; font-size: var(--step-xs); }
+  .sim-tab-gpa { padding: 1px 6px; font-size: .65rem; }
+  .sim-toolbar .btn { font-size: var(--step-xs); padding: 8px 12px; }
+  .sim-info-ico { width: 32px; height: 32px; }
+  .sim-info-ico svg { width: 16px; height: 16px; }
+  .sim-meta-row .n { font-size: var(--step-sm); }
+  .sim-meta-row .l { font-size: .62rem; }
 }
 </style>
 </head>
@@ -582,7 +658,7 @@
       <div class="calc-main">
 
         <!-- Semester tabs -->
-        <div class="panel" style="padding: var(--s4);">
+        <div class="panel" style="padding: var(--s4); padding-bottom: var(--s3);">
           <div class="sim-scale-row">
             <label for="simScale">Grading scale</label>
             <select id="simScale" class="select" aria-label="Grading scale"></select>
@@ -604,7 +680,7 @@
                    aria-multiline="false"></div>
             </div>
             <div class="sim-sem-actions">
-              <button id="delSemBtn" class="btn btn-ghost btn-danger" title="Delete this semester" aria-label="Delete semester" style="font-size:var(--step-sm);padding:7px 12px;display:none">
+              <button id="delSemBtn" class="btn btn-ghost btn-danger" title="Delete this semester" aria-label="Delete semester" style="font-size:var(--step-sm);padding:8px 14px;min-height:44px;display:none">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
                 Delete semester
               </button>
@@ -631,10 +707,10 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
               Add course
             </button>
-            <button id="clearSemBtn" class="btn btn-ghost btn-danger" aria-label="Clear all courses in this semester" style="font-size:var(--step-sm)">
+            <button id="clearSemBtn" class="btn btn-ghost btn-danger" aria-label="Clear all courses in this semester" style="font-size:var(--step-sm);min-height:44px">
               Clear semester
             </button>
-            <button id="simUndoBtn" class="btn btn-ghost" aria-label="Undo last deletion" disabled style="font-size:var(--step-sm)">
+            <button id="simUndoBtn" class="btn btn-ghost" aria-label="Undo last deletion" disabled style="font-size:var(--step-sm);min-height:44px">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg>
               Undo
             </button>
@@ -642,12 +718,12 @@
         </div>
 
         <!-- Target GPA panel -->
-        <div class="panel" style="margin-top:var(--s4)">
+        <div class="panel" style="margin-top:var(--s3); padding: var(--s4);">
           <div class="panel-head">
             <h2>Target CGPA</h2>
             <span class="chip">Needed grade updates live as you type</span>
           </div>
-          <p style="font-size:var(--step-sm);color:var(--ink-2);margin-bottom:var(--s4);line-height:1.55">
+          <p style="font-size:var(--step-sm);color:var(--ink-2);margin-bottom:var(--s3);line-height:1.5">
             Set your goal CGPA below. The <strong>Needed</strong> column in each course row will instantly show the minimum grade you'd need in that course to reach your target.
           </p>
           <div class="sim-target-row">
@@ -661,7 +737,7 @@
         </div>
 
         <!-- AI Coach panel -->
-        <div class="sim-ai-panel" style="margin-top:var(--s4)">
+        <div class="sim-ai-panel" style="margin-top:var(--s3)">
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" style="width:20px;height:20px;color:var(--accent-strong)"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>
             AI Study Coach
@@ -670,7 +746,7 @@
           <p style="font-size:var(--step-sm);color:var(--ink-2)">
             Get a personalised coaching report — strengths, weaknesses, target-GPA progress, subject priorities and a weekly study plan based on your grades.
           </p>
-          <button id="aiCoachBtn" class="btn btn-ghost" aria-label="Get AI-powered study coaching">
+          <button id="aiCoachBtn" class="btn btn-ghost" aria-label="Get AI-powered study coaching" style="min-height:44px;margin-top:var(--s2)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="width:15px;height:15px"><path d="M12 3 3 8.5l9 5 9-5L12 3zM3 15.5l9 5 9-5M3 12l9 5 9-5"/></svg>
             Generate study plan
           </button>
@@ -679,7 +755,7 @@
         </div>
 
         <!-- Export actions -->
-        <div class="sim-toolbar" style="margin-top:var(--s4)">
+        <div class="sim-toolbar" style="margin-top:var(--s3)">
           <button id="simShareBtn" class="btn btn-ghost" aria-label="Copy shareable link to this GPA scenario">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
             Share result
@@ -753,7 +829,7 @@
           </div>
 
           <!-- Trend sparkline -->
-          <div style="margin-top:var(--s4);border-top:1px solid oklch(.35 .01 74);padding-top:var(--s4)">
+          <div style="margin-top:var(--s3);border-top:1px solid oklch(.35 .01 74);padding-top:var(--s3)">
             <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:oklch(.65 .01 74);font-weight:600;margin-bottom:var(--s2)">
               CGPA Trend
               <span style="margin-left:var(--s3);color:oklch(.55 .06 78)">— Target</span>
