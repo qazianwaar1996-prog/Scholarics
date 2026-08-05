@@ -147,7 +147,7 @@
 .sim-rows-head,
 .sim-crow {
   display: grid;
-  grid-template-columns: 1fr 130px 80px 110px 44px;
+  grid-template-columns: 1fr 130px 80px minmax(110px, auto) 44px;
   gap: var(--s2);
   align-items: center;
 }
@@ -172,15 +172,20 @@
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-dim);
 }
-.sim-crow .input, .sim-crow .select { background: var(--surface); min-height: 44px; }
+.sim-crow .input, .sim-crow .select {
+  background: var(--surface);
+  min-height: 44px;
+  width: 100%;
+}
 @keyframes rowIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* Delete row button — 44px touch target */
 .row-del {
   width: 44px;
   height: 44px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
   color: var(--ink-3);
   transition: background .15s, color .15s;
@@ -191,13 +196,15 @@
 
 /* Needed grade tag */
 .sim-need {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: var(--step-xs);
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 20px;
   white-space: nowrap;
   line-height: 1.4;
+  max-width: 100%;
 }
 .sim-need-ok   { background: var(--ok-dim);     color: var(--ok); }
 .sim-need-info { background: var(--info-dim);   color: var(--info); }
@@ -543,17 +550,18 @@
 @media (max-width: 640px) {
   .sim-rows-head { display: none; }
   .sim-crow {
-    grid-template-columns: 1fr 44px;
+    grid-template-columns: 1fr auto;
     grid-template-areas:
       "name   del"
       "grade  grade"
       "credit need";
+    gap: 8px;
   }
-  .sim-crow .c-name      { grid-area: name; }
-  .sim-crow .c-del       { grid-area: del; }
-  .sim-crow .c-grade-wrap{ grid-area: grade; }
-  .sim-crow .c-credit    { grid-area: credit; }
-  .sim-crow .c-need      { grid-area: need; align-self: center; }
+  .sim-crow .c-name      { grid-area: name; width: 100%; }
+  .sim-crow .c-del       { grid-area: del; display: flex; justify-content: flex-end; align-items: center; }
+  .sim-crow .c-grade-wrap{ grid-area: grade; width: 100%; }
+  .sim-crow .c-credit    { grid-area: credit; width: 100%; }
+  .sim-crow .c-need      { grid-area: need; align-self: center; display: flex; justify-content: flex-end; align-items: center; }
   .sim-cgpa-big          { font-size: 2.4rem; }
   .sim-meta-row          { flex-wrap: wrap; gap: var(--s3); }
   .sim-tabs-wrap {
@@ -583,11 +591,13 @@
 }
 @media (max-width: 380px) {
   /* Extra-narrow screens (320px+) — prevent overflow */
-  .sim-crow { padding: 8px; gap: 6px; }
+  .sim-need { padding: 3px 8px; font-size: 0.68rem; }
+  .sim-crow { padding: 8px; gap: 8px; }
+  .sim-crow .input, .sim-crow .select { min-height: 44px; }
   .sim-target-input { width: 70px; }
   .sim-tab { padding: 6px 10px; font-size: var(--step-xs); }
   .sim-tab-gpa { padding: 1px 6px; font-size: .65rem; }
-  .sim-toolbar .btn { font-size: var(--step-xs); padding: 8px 12px; }
+  .sim-toolbar .btn { font-size: var(--step-xs); padding: 8px 12px; min-height: 44px; }
   .sim-info-ico { width: 32px; height: 32px; }
   .sim-info-ico svg { width: 16px; height: 16px; }
   .sim-meta-row .n { font-size: var(--step-sm); }
@@ -952,7 +962,7 @@
         <a href="about.html">About</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="privacy-policy.html">Privacy</a>
         <a href="terms-and-conditions.html">Terms</a>
       </div>
     </div>
