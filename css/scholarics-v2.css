@@ -598,6 +598,19 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:var(
 /* footer refinement */
 body.sc2-shell footer{border-top:1px solid var(--border);background:var(--surface);margin-top:40px}
 
+/* ====================================================
+   Footer for native sc2 app pages (index/dashboard/
+   profile/paraphraser) — matches the shell footer look
+   ==================================================== */
+.sc2-footer{border-top:1px solid var(--border);background:var(--surface);margin-top:48px;padding:32px 24px 40px}
+.sc2-footer .sc2-footer-inner{max-width:1120px;margin:0 auto}
+.sc2-footer .sc2-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-bottom:24px}
+.sc2-footer h3{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px;font-family:'Bricolage Grotesque','Inter',system-ui,sans-serif}
+.sc2-footer a{display:block;font-size:13.5px;color:var(--ink-2);padding:4px 0;text-decoration:none}
+.sc2-footer a:hover{color:var(--ink)}
+.sc2-footer .sc2-footer-bottom{border-top:1px solid var(--border);padding-top:16px;font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center}
+@media(max-width:640px){.sc2-footer{padding-bottom:96px}}
+
 /* kill purple/heavy glows from premium page-transition */
 body.premium{opacity:1!important}
 
