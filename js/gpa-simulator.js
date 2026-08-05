@@ -22,7 +22,7 @@
   var CORE = window.SCSimCore;
 
   /* ── SC namespace utilities (Scholarics global) ─────────────────────── */
-  var $ = SC.$, $$ = SC.$$, round = SC.round, clamp = SC.clamp,
+  var $ = SC.$, $$ = SC.$$, clamp = SC.clamp,
       esc = SC.esc, store = SC.store;
 
   /* ── Constants ───────────────────────────────────────────────────────── */
@@ -190,7 +190,8 @@
     if (!sem || !container) return;
     var scale = getScale();
 
-    container.innerHTML = sem.courses.map(function (r) {
+    /* ARIA table pattern requires role=table > role=rowgroup > role=row > role=cell */
+    var rowsHtml = sem.courses.map(function (r) {
       var opts = scale.type === "letter"
         ? scale.letters.map(function (l) {
             return '<option value="' + esc(l.g) + '"' + (r.grade === l.g ? " selected" : "") + ">" +
@@ -213,6 +214,7 @@
           '" title="Remove course" aria-label="Remove course"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
         "</div>";
     }).join("");
+    container.innerHTML = '<div role="rowgroup">' + rowsHtml + "</div>";
 
     updateNeededTags();
   }
@@ -287,15 +289,21 @@
     if (statusOut) statusOut.textContent = cgpa !== null ? CORE.classify(scale, cgpa) : "Add courses to begin";
     if (creditsOut) creditsOut.textContent = cg.credits;
 
-    if (deltaEl && cgpa !== null) {
-      var delta = round(targetGpa - cgpa, 2);
-      if (delta <= 0) {
-        deltaEl.className = "sim-delta sim-delta-ok";
-        deltaEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Target reached!';
+    if (deltaEl) {
+      if (cgpa !== null) {
+        /* Use CORE.round (1e-9 epsilon) for correct float rounding at GPA precision */
+        var delta = CORE.round(targetGpa - cgpa, 2);
+        deltaEl.style.display = "";
+        if (delta <= 0) {
+          deltaEl.className = "sim-delta sim-delta-ok";
+          deltaEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Target reached!';
+        } else {
+          deltaEl.className = "sim-delta sim-delta-warn";
+          deltaEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg> ' +
+            (scale.id === "pct" ? delta.toFixed(1) + "%" : delta.toFixed(2)) + " to go";
+        }
       } else {
-        deltaEl.className = "sim-delta sim-delta-warn";
-        deltaEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg> ' +
-          (scale.id === "pct" ? delta.toFixed(1) + "%" : delta.toFixed(2)) + " to go";
+        deltaEl.style.display = "none";
       }
     }
 
@@ -412,6 +420,9 @@
     }
     flushSave();
     render();
+    /* Return focus to the active semester tab so keyboard users stay oriented */
+    var undoTab = $(".sim-tab[data-sem='" + activeSem + "']", $("#semTabs"));
+    if (undoTab) undoTab.focus();
     SC.toast("Undone — " + entry.label, "success");
   }
 
@@ -453,6 +464,9 @@
     activeSem = Math.max(0, activeSem - 1);
     flushSave();
     render();
+    /* Restore focus to the now-active tab so keyboard users aren't stranded */
+    var newActiveTab = $(".sim-tab[data-sem='" + activeSem + "']", $("#semTabs"));
+    if (newActiveTab) newActiveTab.focus();
     SC.toast("Semester deleted", "info");
   }
 
@@ -619,7 +633,7 @@
     return {
       strengths: strengths.length ? strengths : ["Keep attending classes consistently"],
       weaknesses: weaknesses.length ? weaknesses : ["Set a clear grade goal for each course"],
-      progress: { current: cg.gpa, target: targetGpa, gap: round(targetGpa - cg.gpa, 2), pct: pct },
+      progress: { current: cg.gpa, target: targetGpa, gap: CORE.round(targetGpa - cg.gpa, 2), pct: pct },
       priorities: prio.map(function (c) {
         var ratio = c.points / scale.max;
         return {
@@ -698,7 +712,7 @@
     };
     btn.disabled = true;
     btn.setAttribute("aria-busy", "true");
-    if (loader) loader.style.display = "";
+    if (loader) loader.style.display = "block";
     out.textContent = "";
 
     var fallback = function (err) {
