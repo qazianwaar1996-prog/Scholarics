@@ -42,6 +42,14 @@ function post(p, body) {
   });
 }
 
+function postRaw(p, body) {
+  return fetch(BASE + p, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: body
+  });
+}
+
 const VALID_PAYLOAD = {
   scaleId: "us40",
   target: 3.5,
@@ -87,12 +95,17 @@ async function portFree(ms) {
   try {
     await waitForServer(proc, 90000);
 
-    await test("health endpoint reports mock mode", async () => {
+    await test("health endpoint reports AI availability", async () => {
       const res = await fetch(BASE + "/api/ai/health");
       assert.strictEqual(res.status, 200);
       const j = await res.json();
       assert.strictEqual(j.ok, true);
-      assert.strictEqual(j.mock, true);
+      assert.strictEqual(j.aiAvailable, true);
+    });
+
+    await test("API rejects request bodies above the configured limit", async () => {
+      const res = await postRaw("/api/ai/coach", JSON.stringify({ prompt: "x".repeat(131073) }));
+      assert.strictEqual(res.status, 413);
     });
 
     await test("coach returns structured report (200)", async () => {
