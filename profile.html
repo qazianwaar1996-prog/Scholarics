@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X8E8T88FX8');
-</script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Profile, Preferences &amp; Study Progress | Scholarics</title>
 <meta name="description" content="Manage your Scholarics student profile, study preferences, theme, academic statistics, achievements, and personalised learning experience.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://scholarics.com/profile.html">
-<link rel="preload" href="css/style.css?v=3.0" as="style">
-<link rel="preload" href="css/scholarics-v2.css?v=3.0" as="style">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="apple-touch-icon" href="images/icon-180.png">
 <meta property="og:type" content="website">
@@ -34,16 +26,10 @@
 <meta name="twitter:title" content="Student Profile, Preferences &amp; Study Progress | Scholarics">
 <meta name="twitter:description" content="Manage your Scholarics student profile, study preferences, theme, academic statistics, achievements, and personalised learning experience.">
 <meta name="twitter:image" content="https://scholarics.com/images/og-image.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3.0">
-<link rel="stylesheet" href="css/print.css?v=3.0" media="print">
-<link rel="stylesheet" href="css/premium.css?v=3.0">
-<link rel="stylesheet" href="css/personalization.css?v=3.0">
-<link rel="stylesheet" href="css/scholarics-v2.css?v=3.0">
-<link rel="stylesheet" href="css/consent.css?v=3.0">
-<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/core-3.06a13263.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/shell.67197acc.css">
 <style>
   .prof-hero{display:flex;align-items:center;gap:20px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--rxl);box-shadow:var(--shadow-sm);margin-bottom:20px}
   .prof-avatar-wrap{position:relative;flex-shrink:0}
@@ -94,14 +80,12 @@
   .prof-version{text-align:center;font-size:11px;color:var(--ink-3);margin-top:8px}
   @media(max-width:520px){.prof-stat-grid{grid-template-columns:repeat(3,1fr)}.prof-hero{flex-direction:column;text-align:center;align-items:center}}
 </style>
-  <link rel="stylesheet" href="css/sc-prelaunch-fixes.css?v=3.1">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": []}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Student Profile", "url": "https://scholarics.com/profile.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
 </head>
 <body class="sc2">
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="sc2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
-
 <div class="sc2-app">
 <aside class="sc2-side">
   <div class="sc2-side-brand">
@@ -127,13 +111,12 @@
     <a href="ai.html" class="sc2-btn sc2-btn-primary">Ask AI</a>
   </div>
   <div class="sc2-side-foot">
-    <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar">
+    <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar" width="30" height="30" decoding="async">
     <span class="nm">Profile</span>
     <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
     <a href="profile.html" class="sc2-icon-btn" aria-label="Profile" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></a>
   </div>
 </aside>
-
 <div class="sc2-main">
   <header class="sc2-top">
     <button class="sc2-icon-btn sc2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
@@ -144,16 +127,14 @@
     </div>
     <div class="sc2-top-tools">
       <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
-      <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar">
+      <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar" width="34" height="34" decoding="async">
     </div>
   </header>
-
   <main class="sc2-content" id="main-content">
     <div style="margin-bottom:20px">
       <h1 style="font-size:22px;font-weight:700;color:var(--ink);margin:0 0 4px">Your Profile</h1>
       <p style="font-size:13px;color:var(--ink-3);margin:0">Manage your preferences, statistics and account settings.</p>
     </div>
-
     <!-- Hero -->
     <div class="prof-hero">
       <div class="prof-avatar-wrap">
@@ -164,9 +145,7 @@
         <p id="profHeroSub">Scholarics Member · Free Plan</p>
       </div>
     </div>
-
     <div class="prof-sections">
-
       <!-- 1. Profile Overview -->
       <div class="prof-section open" id="profSecOverview">
         <div class="prof-sec-head" onclick="toggleSec('profSecOverview')">
@@ -182,7 +161,6 @@
           <button class="prof-save-btn" onclick="saveProfile()">Save Profile</button>
         </div>
       </div>
-
       <!-- 2. Personalization -->
       <div class="prof-section open" id="profSecPersonal">
         <div class="prof-sec-head" onclick="toggleSec('profSecPersonal')">
@@ -208,7 +186,6 @@
           </div>
         </div>
       </div>
-
       <!-- 3. Preferences -->
       <div class="prof-section" id="profSecPrefs">
         <div class="prof-sec-head" onclick="toggleSec('profSecPrefs')">
@@ -235,7 +212,6 @@
           </div>
         </div>
       </div>
-
       <!-- 4. Study Statistics -->
       <div class="prof-section" id="profSecStats">
         <div class="prof-sec-head" onclick="toggleSec('profSecStats')">
@@ -271,7 +247,6 @@
           </div>
         </div>
       </div>
-
       <!-- 5. Achievements -->
       <div class="prof-section" id="profSecAchieve">
         <div class="prof-sec-head" onclick="toggleSec('profSecAchieve')">
@@ -285,7 +260,6 @@
           </div>
         </div>
       </div>
-
       <!-- 6. Account -->
       <div class="prof-section" id="profSecAccount">
         <div class="prof-sec-head" onclick="toggleSec('profSecAccount')">
@@ -311,7 +285,6 @@
           </div>
         </div>
       </div>
-
       <!-- 7. Privacy & About -->
       <div class="prof-section" id="profSecAbout">
         <div class="prof-sec-head" onclick="toggleSec('profSecAbout')">
@@ -330,7 +303,6 @@
           <div class="prof-version" id="profVersion">Scholarics · Free · v2.2</div>
         </div>
       </div>
-
       <!-- 8. Command Center (separate section, preserved) -->
       <div class="prof-section" id="profSecCmd" style="border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)">
         <div class="prof-sec-head" onclick="toggleSec('profSecCmd')">
@@ -347,12 +319,10 @@
           </a>
         </div>
       </div>
-
     </div><!-- /prof-sections -->
   </main>
 </div><!-- /sc2-main -->
 </div><!-- /sc2-app -->
-
 <nav class="sc2-bottomnav" aria-label="Mobile">
   <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
   <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
@@ -360,18 +330,14 @@
   <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
   <a href="profile.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
 </nav>
-
 <script>
 function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
-
 function toggleSec(id){
   var el=document.getElementById(id);
   if(el)el.classList.toggle('open');
 }
-
 function get(k,fb){try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;}}
 function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-
 function setTheme(t){
   var theme=t==='system'?(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;
   document.documentElement.setAttribute('data-theme',theme);
@@ -382,7 +348,6 @@ function setTheme(t){
   if(btn)btn.classList.add('active');
   if(window.SC&&SC.toast)SC.toast(t==='system'?'⚙️ System theme':'theme'==='dark'?'🌙 Dark on':'☀️ Light on','info');
 }
-
 function saveProfile(){
   var inp=document.getElementById('profName');
   if(!inp)return;
@@ -392,7 +357,6 @@ function saveProfile(){
   document.querySelectorAll('.sc2-side-foot .nm').forEach(function(el){el.textContent=n||'Profile';});
   if(window.SC&&SC.toast)SC.toast('Profile saved ✓','success');
 }
-
 function renderHero(name){
   var initial=(name||'').trim().charAt(0).toUpperCase()||'?';
   var btn=document.getElementById('profAvatarBtn');
@@ -400,14 +364,12 @@ function renderHero(name){
   if(btn)btn.textContent=initial;
   if(h)h.textContent=name||'Student';
 }
-
 function clearAllData(){
   if(!confirm('Clear all Scholarics data from this browser? This cannot be undone.'))return;
   try{localStorage.clear();}catch(e){}
   if(window.SC&&SC.toast)SC.toast('All data cleared','info');
   setTimeout(function(){location.reload();},800);
 }
-
 function renderAchievements(stats){
   var badges=[
     {icon:'🎯',label:'First Calculation',key:'calcs',threshold:1},
@@ -426,25 +388,21 @@ function renderAchievements(stats){
     return '<div class="prof-badge '+(earned?'earned':'locked')+'"><span style="font-size:18px">'+b.icon+'</span><span>'+b.label+'</span></div>';
   }).join('');
 }
-
 document.addEventListener('DOMContentLoaded',function(){
   var name=get('sc_dash_name','')||'';
   var inp=document.getElementById('profName');
   if(inp)inp.value=name;
   renderHero(name);
-
   // Theme button active state
   var saved=localStorage.getItem('sc_theme')||'';
   var cur=saved===''?'system':(saved==='dark'?'dark':'light');
   var map2={light:'themeLight',dark:'themeDark',system:'themeSystem'};
   var activeBtn=document.getElementById(map2[cur]);
   if(activeBtn)activeBtn.classList.add('active');
-
   // Country
   var country=get('sc_selected_country','')||get('sc_grading_country','')||'';
   var cl=document.getElementById('profCountryLabel');
   if(cl)cl.textContent=country||'Not set';
-
   // Statistics
   var recent=get('sc_dash_recent',[])||[];
   var notes=get('sc2_notes',[])||[];
@@ -454,9 +412,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var gpaResult=get('sc_gpa_result',null);
   var cgpaResult=get('sc_cgpa_result',null);
   var pomDur=get('sc_pom_work',25)||25;
-
   var calcsRun=parseInt(get('sc_calcs_run',0)||0,10);
-
   function setText(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
   setText('statCalcs',calcsRun||recent.length||0);
   setText('statNotes',Array.isArray(notes)?notes.length:0);
@@ -467,11 +423,9 @@ document.addEventListener('DOMContentLoaded',function(){
   setText('statGpa',gpaResult?parseFloat(gpaResult).toFixed(2)+'':'—');
   setText('statCgpa',cgpaResult?parseFloat(cgpaResult).toFixed(2)+'':'—');
   setText('prefPomodoro',pomDur+' min');
-
   // GPA scale from localStorage
   var scale=get('sc_gpa_scale','4.0')||'4.0';
   setText('prefGpaScale',scale);
-
   renderAchievements({
     calcs:calcsRun||recent.length,
     notes:Array.isArray(notes)?notes.length:0,
@@ -481,7 +435,6 @@ document.addEventListener('DOMContentLoaded',function(){
     deadlines:Array.isArray(deadlines)?deadlines.length:0,
     visits:recent.length
   });
-
   // Bind avatar button to save-profile section
   var avatarBtn=document.getElementById('profAvatarBtn');
   if(avatarBtn){
@@ -494,14 +447,14 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 });
 </script>
-<script defer src="js/script.js?v=3.0"></script>
-<script defer src="js/personalization.js?v=3.0"></script>
-<script defer src="js/premium.js?v=3.0"></script>
-<script defer src="js/sc-shell.js?v=3.0"></script>
-<script defer src="js/sc-v2-features.js?v=3.1"></script>
-<script defer src="js/analytics.js?v=3.1"></script>
-<script defer src="js/consent.js?v=3.1"></script>
-<script defer src="js/email-capture.js?v=3.0"></script>
-<script src="js/pwa.js?v=3.0" defer></script>
+<script defer src="assets/js/g-ca0b60.1c6dc0a3.js" data-sc-src="script personalization premium sc-shell sc-v2-features analytics consent email-capture pwa"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
 </body>
 </html>
