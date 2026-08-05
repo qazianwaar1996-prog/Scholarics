@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X8E8T88FX8');
-</script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personal Student Dashboard &amp; GPA Tracker | Scholarics</title>
 <meta name="description" content="Your personal Scholarics dashboard. View your GPA history, CGPA, recent calculations, favorite tools, and quickly access all calculators in one place.">
 <link rel="canonical" href="https://scholarics.com/dashboard.html">
-<!-- Critical Path Preloads -->
-<link rel="preload" href="css/style.css?v=3.0" as="style">
-<link rel="preload" href="css/scholarics-v2.css?v=3.0" as="style">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="apple-touch-icon" href="images/icon-180.png">
 <meta property="og:locale" content="en_US">
@@ -36,20 +27,12 @@
 <meta name="twitter:description" content="Your personal Scholarics dashboard. View your GPA history, CGPA, recent calculations, favorite tools, and quickly access all calculators in one place.">
 <meta name="twitter:image" content="https://scholarics.com/images/og-image.webp">
 <meta name="robots" content="noindex, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3.0">
-<link rel="stylesheet" href="css/print.css?v=3.0" media="print">
-<link rel="stylesheet" href="css/premium.css?v=3.0">
-<link rel="stylesheet" href="css/personalization.css?v=3.0">
-<link rel="stylesheet" href="css/dashboard.css?v=3.0">
-<link rel="stylesheet" href="css/content-platform.css?v=3.0">
+<link rel="stylesheet" href="assets/css/core-3.06a13263.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/dash-content.4dc7287d.css">
 <!-- Non-Critical Consent Banner CSS Loaded Asynchronously -->
-<link rel="stylesheet" href="css/consent.css?v=3.0" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="css/scholarics-v2.css?v=3.0">
-<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-  <link rel="stylesheet" href="css/sc-prelaunch-fixes.css?v=3.1">
+<link rel="stylesheet" href="assets/css/shell.67197acc.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": []}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Student Dashboard", "url": "https://scholarics.com/dashboard.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
 </head>
@@ -85,7 +68,7 @@
       <a href="ai.html" class="sc2-btn sc2-btn-primary">Ask AI</a>
     </div>
     <div class="sc2-side-foot">
-      <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar">
+      <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar" width="30" height="30" decoding="async">
       <span class="nm">Profile</span>
       <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
       <a href="profile.html" class="sc2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
@@ -108,7 +91,7 @@
       <div class="sc2-top-tools">
         <button class="sc2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sc2-dot"></span></button>
         <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
-        <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar">
+        <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar" width="34" height="34" decoding="async">
       </div>
     </header>
 <main id="main-content" class="sc2-content">
@@ -117,7 +100,6 @@
         <p>Welcome back — here's everything about your academic progress in one place.</p>
       </div>
       <div id="db-welcome"></div>
-
       <!-- METRIC ROW -->
       <div class="sc2-grid sc2-g4">
         <div class="sc2-card sc2-metric sc2-rev d1" id="db-metric-1" data-metric="semester-gpa">
@@ -145,7 +127,6 @@
           <div class="sc2-progress"><i style="width:93%"></i></div>
         </div>
       </div>
-
       <!-- TREND + GOALS -->
       <div class="sc2-grid sc2-trend-grid" style="grid-template-columns:1.6fr 1fr;margin-top:14px">
         <section class="sc2-card sc2-panel sc2-rev d1">
@@ -187,7 +168,6 @@
           </div>
         </section>
       </div>
-
       <!-- CALENDAR + DEADLINES + ACHIEVEMENTS -->
       <div class="sc2-grid sc2-g3" style="margin-top:14px">
         <section class="sc2-card sc2-panel sc2-rev d1">
@@ -219,7 +199,6 @@
           <p style="font-size:12px;color:var(--ink-3);margin-top:12px;line-height:1.5">You're <b style="color:var(--ink)">2 achievements</b> away from the <b style="color:var(--gold-strong)">Scholar</b> badge. Keep your streak alive!</p>
         </section>
       </div>
-
       <!-- INSIGHTS + ACTIVITY -->
       <div class="sc2-grid sc2-g2" style="margin-top:14px">
         <section class="sc2-card sc2-panel sc2-rev d1">
@@ -247,7 +226,6 @@
           <div id="db-recent-visits"></div>
         </section>
       </div>
-
       <!-- SAVED / QUICK ACCESS + AI SUGGESTIONS -->
       <div class="sc2-grid sc2-g2" style="margin-top:14px" id="favorites">
         <section class="sc2-card sc2-panel sc2-rev d1">
@@ -278,25 +256,24 @@
   <a href="dashboard.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
   <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
 </nav>
-
 <script>function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
 document.body.classList.remove('premium');
 try{new MutationObserver(function(){if(document.body.classList.contains('premium'))document.body.classList.remove('premium');}).observe(document.body,{attributes:true,attributeFilter:['class']});}catch(e){}
-
 document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){
  [['db-recent-calcs','db-recent-fallback'],['db-favorites','db-fav-fallback']].forEach(function(p){var real=document.getElementById(p[0]);var fb=document.getElementById(p[1]);if(real&&real.children.length>0&&fb)fb.style.display='none';});
 },450);});
 </script>
-<script defer src="js/script.js?v=3.0"></script>
-<script defer src="js/dashboard.js?v=3.0"></script>
-<script defer src="js/personalization.js?v=3.0"></script>
-<script defer src="js/premium.js?v=3.0"></script>
+<script defer src="assets/js/core.ee2cb8b3.js" data-sc-src="script"></script>
+<script defer src="assets/js/p-dashboard.ac2b4e57.js" data-sc-src="dashboard"></script>
+<script defer src="assets/js/g-9e103f.2f0f639d.js" data-sc-src="personalization premium sc-shell sc-v2-features analytics consent email-capture pwa"></script>
 <!-- Optimized Script Loads (Removed Redundant content-platform.js) -->
-<script defer src="js/sc-shell.js?v=3.0"></script>
-<script defer src="js/sc-v2-features.js?v=3.1"></script>
-<script defer src="js/analytics.js?v=3.1"></script>
-<script defer src="js/consent.js?v=3.1"></script>
-<script defer src="js/email-capture.js?v=3.0"></script>
-<script src="js/pwa.js?v=3.0" defer></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
 </body>
                                      </html>

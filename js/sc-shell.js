@@ -229,7 +229,10 @@
   function loadFeaturesIfNeeded() {
     /* Only on old-nav pages (no .sc2) that don't already have it */
     if (document.body.classList.contains('sc2')) return;
-    if (document.querySelector('script[src*="sc-v2-features"]')) return;
+    /* [data-sc-src] is emitted by tools/build-assets.mjs and lists the sources a
+       fingerprinted bundle contains, so pages that already ship the feature
+       engine inside a bundle are detected here too. */
+    if (document.querySelector('script[src*="sc-v2-features"], script[data-sc-src~="sc-v2-features"]')) return;
     var s = document.createElement('script');
     s.src = 'js/sc-v2-features.js';
     s.defer = true;

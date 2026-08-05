@@ -198,8 +198,19 @@ function test(name, fn) {
   /* ── Service worker pre-cache ────────────────────────────────────────── */
   await test("service worker pre-caches the simulator shell", () => {
     const s = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
-    for (const a of ["/gpa-simulator.html", "/js/gpa-simulator.js", "/js/gpa-simulator-core.js"]) {
-      assert.ok(s.indexOf(a) !== -1, "sw.js missing " + a);
+    const list = s.slice(s.indexOf("var SHELL_ASSETS"), s.indexOf("];", s.indexOf("var SHELL_ASSETS")));
+    assert.ok(list.indexOf("'/gpa-simulator.html'") !== -1, "sw.js does not pre-cache /gpa-simulator.html");
+    /* the simulator's CSS/JS ship inside fingerprinted bundles — every bundle the
+       page loads must be pre-cached for the tool to work offline */
+    const man = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/assets.manifest.json"), "utf8"));
+    const page = man.pages["gpa-simulator.html"];
+    assert.ok(page.js.indexOf("js/gpa-simulator.js") !== -1, "gpa-simulator.js not bundled");
+    assert.ok(page.js.indexOf("js/gpa-simulator-core.js") !== -1, "gpa-simulator-core.js not bundled");
+    for (const kind of ["css", "js"]) {
+      for (const name of page.bundles[kind]) {
+        const re = new RegExp("'/assets/" + kind + "/" + name.replace(/[.*+?^${}()|[\]\\-]/g, "\\$&") + "\\.[0-9a-f]{8}\\." + kind + "'");
+        assert.ok(re.test(list), "sw.js does not pre-cache bundle " + name);
+      }
     }
   });
 

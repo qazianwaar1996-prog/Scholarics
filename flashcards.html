@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X8E8T88FX8');
-</script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Online Study Flashcards for Students | Scholarics</title>
 <meta name="description" content="Create and study flashcards in your browser. Flip cards, track your progress, and master any subject. No account required.">
 <link rel="canonical" href="https://scholarics.com/flashcards.html">
@@ -32,21 +26,14 @@
 <meta name="twitter:description" content="Create and study flashcards in your browser. Flip cards, track your progress, and master any subject. No account required.">
 <meta name="twitter:image" content="https://scholarics.com/images/og-image.webp">
 <meta name="robots" content="noindex, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3.0">
-<link rel="stylesheet" href="css/print.css?v=3.0" media="print">
-<link rel="stylesheet" href="css/premium.css?v=3.0">
-<link rel="stylesheet" href="css/personalization.css?v=3.0">
-<link rel="stylesheet" href="css/consent.css?v=3.0">
-<link rel="stylesheet" href="css/scholarics-v2.css?v=3.0">
-<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/core-3.06a13263.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/shell.67197acc.css">
 <style>
 /* ── Flashcard App ── */
 .fc-page{max-width:920px;margin:0 auto;padding:24px 20px 80px}
 body.sc2-shell .fc-page{padding-top:24px}
-
 /* Deck list */
 .fc-decks-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .fc-decks-head h1{font-size:24px;font-weight:700;color:var(--ink)}
@@ -60,7 +47,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-deck-card .fc-deck-progress i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-strong,#a97c14))}
 .fc-deck-del{position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;color:var(--ink-3);font-size:16px;line-height:1;padding:4px;border-radius:6px;opacity:0;transition:opacity .12s}
 .fc-deck-card:hover .fc-deck-del{opacity:1}
-
 /* Study mode */
 .fc-study{display:none}
 .fc-study.active{display:block}
@@ -68,7 +54,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-study-head h2{font-size:20px;font-weight:700;color:var(--ink);flex:1}
 .fc-progress-bar{height:6px;border-radius:4px;background:var(--card-2,#f0efea);overflow:hidden;margin-bottom:20px}
 .fc-progress-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-strong,#a97c14));transition:width .3s}
-
 /* Flip card */
 .fc-card-wrap{perspective:1200px;height:280px;margin-bottom:20px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .fc-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.22,1,.36,1)}
@@ -79,7 +64,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-card-side{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:16px}
 .fc-card-text{font-size:clamp(16px,3vw,22px);font-weight:600;color:var(--ink);line-height:1.5;max-width:100%;word-break:break-word}
 .fc-card-hint{font-size:13px;color:var(--ink-3);margin-top:12px}
-
 /* Rating buttons */
 .fc-rating{display:flex;gap:10px;justify-content:center;margin-bottom:16px}
 .fc-rating-btn{flex:1;max-width:120px;padding:12px;border-radius:13px;border:1px solid;font-size:13.5px;font-weight:700;cursor:pointer;transition:transform .1s,box-shadow .12s;font-family:inherit}
@@ -94,7 +78,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-nav button{background:var(--surface,#fff);border:1px solid var(--border);border-radius:11px;padding:9px 18px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--ink);transition:background .12s,border-color .12s;font-family:inherit}
 .fc-nav button:hover{background:var(--card-2,#faf9f5);border-color:var(--gold)}
 .fc-counter{font-size:13px;color:var(--ink-3);min-width:80px;text-align:center}
-
 /* Results screen */
 .fc-results{display:none;text-align:center;padding:32px}
 .fc-results.active{display:block}
@@ -103,7 +86,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-results p{font-size:14px;color:var(--ink-2);margin-bottom:24px}
 .fc-results-stats{display:flex;gap:16px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
 .fc-result-stat{padding:14px 20px;border-radius:13px;min-width:80px}
-
 /* Card editor */
 .fc-editor{background:var(--surface,#fff);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:20px}
 .fc-editor h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px}
@@ -115,7 +97,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-card-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
 .fc-del-row{background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;color:var(--ink-3);font-size:16px;width:36px;height:36px;display:grid;place-items:center;line-height:1;transition:background .12s}
 .fc-del-row:hover{background:rgba(209,80,60,.1);color:#d1503c;border-color:rgba(209,80,60,.3)}
-
 /* Deck section toggle */
 .fc-section{margin-bottom:30px}
 .fc-deck-list-view{display:block}
@@ -123,7 +104,6 @@ body.sc2-shell .fc-page{padding-top:24px}
 .fc-study-view.active,.fc-deck-list-view.hidden{display:none!important}
 .fc-study-view:not(.hidden){display:block!important}
 </style>
-  <link rel="stylesheet" href="css/sc-prelaunch-fixes.css?v=3.1">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": []}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Study Flashcards", "url": "https://scholarics.com/flashcards.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
 </head>
@@ -160,7 +140,7 @@ body.sc2-shell .fc-page{padding-top:24px}
       <a href="ai.html" class="sc2-btn sc2-btn-primary">Ask AI</a>
     </div>
     <div class="sc2-side-foot">
-      <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar">
+      <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar" width="30" height="30" decoding="async">
       <span class="nm">Profile</span>
       <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
       <a href="profile.html" class="sc2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
@@ -183,11 +163,10 @@ body.sc2-shell .fc-page{padding-top:24px}
       <div class="sc2-top-tools">
         <button class="sc2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sc2-dot"></span></button>
         <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
-        <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar">
+        <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar" width="34" height="34" decoding="async">
       </div>
     </header>
 <main id="main-content" class="sc2-content">
-
   <!-- DECK LIST VIEW -->
   <!-- Coming Soon Banner -->
   <div style="max-width:680px;margin:0 auto 60px;text-align:center;padding:48px 24px;">
@@ -221,9 +200,7 @@ body.sc2-shell .fc-page{padding-top:24px}
     </div>
     <a href="index.html#tools" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;">Explore Free Tools →</a>
   </div>
-
   <div id="fcDeckListView" class="fc-deck-list-view" style="display:none">
-
     <div class="fc-decks-head">
       <h2 style="font-size:24px;font-weight:700;color:var(--ink)">My Flashcard Decks</h2>
       <button id="btnNewDeck" class="sc2-btn sc2-btn-primary">
@@ -231,11 +208,9 @@ body.sc2-shell .fc-page{padding-top:24px}
         New Deck
       </button>
     </div>
-
     <div class="fc-decks-grid" id="fcDecksGrid">
       <!-- Decks rendered here by JS -->
     </div>
-
     <!-- Editor for creating/editing a deck -->
     <div class="fc-editor" id="fcEditor" style="display:none;margin-top:24px">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
@@ -263,14 +238,12 @@ body.sc2-shell .fc-page{padding-top:24px}
           </select>
         </div>
       </div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr 36px;gap:10px;margin-bottom:8px">
         <div style="font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em">Question / Front</div>
         <div style="font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em">Answer / Back</div>
         <div></div>
       </div>
       <div class="fc-card-rows" id="fcCardRows"></div>
-
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button id="btnAddCardRow" class="sc2-btn sc2-btn-ghost" style="font-size:12.5px">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
@@ -281,7 +254,6 @@ body.sc2-shell .fc-page{padding-top:24px}
       </div>
     </div>
   </div>
-
   <!-- STUDY VIEW -->
   <div id="fcStudyView" style="display:none">
     <div class="fc-study-head">
@@ -292,9 +264,7 @@ body.sc2-shell .fc-page{padding-top:24px}
       <h2 id="fcStudyDeckName">Study</h2>
       <button id="fcShuffleBtn" class="sc2-btn sc2-btn-ghost" style="font-size:12.5px">🔀 Shuffle</button>
     </div>
-
     <div class="fc-progress-bar"><i id="fcProgressBar" style="width:0%"></i></div>
-
     <!-- Card -->
     <div class="fc-card-wrap" id="fcCardWrap" onclick="SC2FC.flip()" role="button" aria-label="Flip card" tabindex="0">
       <div class="fc-card" id="fcCard">
@@ -309,20 +279,17 @@ body.sc2-shell .fc-page{padding-top:24px}
         </div>
       </div>
     </div>
-
     <!-- Rating (hidden until flipped) -->
     <div class="fc-rating" id="fcRating" style="display:none">
       <button class="fc-rating-btn fc-btn-wrong" onclick="SC2FC.rate('wrong')">✗ Wrong</button>
       <button class="fc-rating-btn fc-btn-hard" onclick="SC2FC.rate('hard')">~ Hard</button>
       <button class="fc-rating-btn fc-btn-good" onclick="SC2FC.rate('good')">✓ Got it</button>
     </div>
-
     <div class="fc-nav">
       <button id="fcPrevBtn" onclick="SC2FC.prev()">← Prev</button>
       <span class="fc-counter" id="fcCounter">1 / 1</span>
       <button id="fcNextBtn" onclick="SC2FC.next()">Next →</button>
     </div>
-
     <!-- Results -->
     <div class="fc-results" id="fcResults">
       <div class="fc-results-ring" id="fcResultsRing">🎉</div>
@@ -349,12 +316,10 @@ body.sc2-shell .fc-page{padding-top:24px}
       </div>
     </div>
   </div>
-
 </div><!-- /fc-page -->
 </main>
 </div>
 </div>
-
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
@@ -395,18 +360,9 @@ body.sc2-shell .fc-page{padding-top:24px}
     <div class="foot-bottom"><span>&copy; 2026 Scholarics. All rights reserved.</span></div>
   </div>
 </footer>
-
-<script defer src="js/script.js?v=3.0"></script>
-<script defer src="js/sc-shell.js?v=3.0"></script>
-<script defer src="js/personalization.js?v=3.0"></script>
-<script defer src="js/premium.js?v=3.0"></script>
-<script defer src="js/sc-v2-features.js?v=3.1"></script>
-<script defer src="js/analytics.js?v=3.1"></script>
-<script defer src="js/consent.js?v=3.1"></script>
-
+<script defer src="assets/js/g-5d2528.dd9728b5.js" data-sc-src="script sc-shell personalization premium sc-v2-features analytics consent email-capture pwa"></script>
 <script>
 function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
-
 window.SC2FC = (function(){
   'use strict';
   var DECKS_KEY = 'sc2_fc_decks';
@@ -414,16 +370,12 @@ window.SC2FC = (function(){
     get: function(k,fb){ try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;} },
     set: function(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
   };
-
   var decks=[], editDeckId=null, studyDeckId=null, studyCards=[], studyIdx=0, isFlipped=false;
   var scores={good:0,hard:0,wrong:0}, wrongCards=[];
   var editCardRows=[];
-
   function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
-
   function load(){ decks=store.get(DECKS_KEY,[]); if(!decks.length) seedDecks(); }
   function save(){ store.set(DECKS_KEY,decks); }
-
   function seedDecks(){
     decks=[
       {id:uid(),name:'Biology Basics',icon:'🔬',cards:[
@@ -441,7 +393,6 @@ window.SC2FC = (function(){
     ];
     save();
   }
-
   function renderDecks(){
     var grid=document.getElementById('fcDecksGrid');
     if(!grid) return;
@@ -466,7 +417,6 @@ window.SC2FC = (function(){
       el.addEventListener('keydown',function(e){if(e.key==='Enter')SC2FC.startStudy(el.dataset.id||el.querySelector('[onclick*="startStudy"]')?.getAttribute('onclick')?.match(/'([^']+)'/)?.[1]);});
     });
   }
-
   function showEditor(deck){
     editDeckId=deck?deck.id:null;
     document.getElementById('fcEditorTitle').textContent=deck?'Edit Deck':'New Deck';
@@ -478,12 +428,10 @@ window.SC2FC = (function(){
     document.getElementById('fcEditor').style.display='';
     document.getElementById('fcEditor').scrollIntoView({behavior:'smooth'});
   }
-
   function addCardRow(front,back){
     editCardRows.push({id:uid(),front:front||'',back:back||''});
     renderCardRows();
   }
-
   function renderCardRows(){
     var container=document.getElementById('fcCardRows');
     if(!container) return;
@@ -498,7 +446,6 @@ window.SC2FC = (function(){
   window.SC2FC = window.SC2FC||{};
   window.SC2FC._updateRow=function(i,field,val){if(editCardRows[i])editCardRows[i][field]=val;};
   window.SC2FC._delRow=function(i){editCardRows.splice(i,1);if(!editCardRows.length)addCardRow();else renderCardRows();};
-
   function saveDeck(){
     var name=(document.getElementById('fcDeckName').value||'').trim();
     var icon=document.getElementById('fcDeckIcon').value||'📚';
@@ -514,18 +461,15 @@ window.SC2FC = (function(){
     if(window.SC)SC.toast(editDeckId?'Deck updated ✓':'Deck created ✓','success');
   }
   function cancelEdit(){ editDeckId=null; editCardRows=[]; document.getElementById('fcEditor').style.display='none'; }
-
   function deleteDeck(id){
     var d=decks.find(function(x){return x.id===id;}); if(!d) return;
     if(!confirm('Delete "'+d.name+'"? This cannot be undone.')) return;
     decks=decks.filter(function(x){return x.id!==id;}); save(); renderDecks();
     if(window.SC)SC.toast('Deck deleted','info');
   }
-
   function editDeck(id){
     var d=decks.find(function(x){return x.id===id;}); if(d) showEditor(d);
   }
-
   function startStudy(id){
     var d=decks.find(function(x){return x.id===id;}); if(!d||!d.cards.length) return;
     studyDeckId=id;
@@ -538,7 +482,6 @@ window.SC2FC = (function(){
     document.getElementById('fcStudyView').style.display='';
     showCard();
   }
-
   function showCard(){
     var card=studyCards[studyIdx];
     if(!card){ showResults(); return; }
@@ -552,7 +495,6 @@ window.SC2FC = (function(){
     document.getElementById('fcCounter').textContent=(studyIdx+1)+' / '+total;
     document.getElementById('fcProgressBar').style.width=(((studyIdx)/total)*100).toFixed(1)+'%';
   }
-
   function flip(){
     if(studyIdx>=studyCards.length) return;
     isFlipped=!isFlipped;
@@ -560,7 +502,6 @@ window.SC2FC = (function(){
     if(fc){ if(isFlipped)fc.classList.add('flipped'); else fc.classList.remove('flipped'); }
     document.getElementById('fcRating').style.display=isFlipped?'flex':'none';
   }
-
   function rate(score){
     var card=studyCards[studyIdx];
     if(!card) return;
@@ -568,24 +509,20 @@ window.SC2FC = (function(){
     if(score==='wrong'||score==='hard') wrongCards.push(card);
     next();
   }
-
   function next(){
     studyIdx++;
     if(studyIdx>=studyCards.length){ showResults(); return; }
     showCard();
   }
-
   function prev(){
     if(studyIdx>0){ studyIdx--; showCard(); }
   }
-
   function shuffle(){
     studyCards=studyCards.slice().sort(function(){return Math.random()-.5;});
     studyIdx=0; scores={good:0,hard:0,wrong:0}; wrongCards=[];
     showCard();
     if(window.SC)SC.toast('Cards shuffled 🔀','info');
   }
-
   function showResults(){
     document.getElementById('fcProgressBar').style.width='100%';
     document.getElementById('fcResults').classList.add('active');
@@ -603,13 +540,10 @@ window.SC2FC = (function(){
     decks=decks.map(function(d){ return d.id===studyDeckId?Object.assign({},d,{progress:{good:scores.good||0,hard:scores.hard||0,wrong:scores.wrong||0}}):d; });
     save();
   }
-
   function restartStudy(){ var id=studyDeckId; if(id) startStudy(id); }
   function studyWrong(){ if(!wrongCards.length) return; studyCards=wrongCards.slice(); studyIdx=0; scores={good:0,hard:0,wrong:0}; wrongCards=[]; document.getElementById('fcResults').classList.remove('active'); showCard(); }
   function backToDecks(){ document.getElementById('fcStudyView').style.display='none'; document.getElementById('fcDeckListView').style.display=''; renderDecks(); }
-
   function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
   function init(){
     load(); renderDecks();
     var btnNew=document.getElementById('btnNewDeck');
@@ -618,7 +552,6 @@ window.SC2FC = (function(){
     var fcBackBtn=document.getElementById('fcBackBtn');
     var fcShuffle=document.getElementById('fcShuffleBtn');
     var fcWrap=document.getElementById('fcCardWrap');
-
     if(btnNew) btnNew.addEventListener('click',function(){showEditor(null);});
     if(btnAdd) btnAdd.addEventListener('click',function(){addCardRow();});
     if(btnSave) btnSave.addEventListener('click',saveDeck);
@@ -635,13 +568,10 @@ window.SC2FC = (function(){
       if(e.key==='3') rate('good');
     });
   }
-
   document.addEventListener('DOMContentLoaded',init);
   return{startStudy:startStudy,editDeck:editDeck,deleteDeck:deleteDeck,flip:flip,rate:rate,next:next,prev:prev,restartStudy:restartStudy,studyWrong:studyWrong,backToDecks:backToDecks,cancelEdit:cancelEdit,_updateRow:window.SC2FC&&window.SC2FC._updateRow,_delRow:window.SC2FC&&window.SC2FC._delRow};
 })();
 </script>
-<script defer src="js/email-capture.js?v=3.0"></script>
-<script src="js/pwa.js?v=3.0" defer></script>
 <nav class="sc2-bottomnav" aria-label="Mobile">
   <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
   <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
@@ -649,5 +579,13 @@ window.SC2FC = (function(){
   <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
   <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
 </nav>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 */
 "use strict";
 const assert = require("assert");
+const fs = require("fs");
 const { spawn } = require("child_process");
 const path = require("path");
 
@@ -200,7 +201,18 @@ async function portFree(ms) {
       assert.strictEqual(res.status, 200);
       const html = await res.text();
       assert.ok(html.indexOf("GPA Simulator") !== -1);
-      assert.ok(html.indexOf("gpa-simulator-core.js") !== -1);
+      /* The simulator's scripts ship inside fingerprinted bundles built by
+         tools/build-assets.mjs, so assert the sources are still bundled for
+         this page and that every one of its bundles is referenced. */
+      const man = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/assets.manifest.json"), "utf8"));
+      const page = man.pages["gpa-simulator.html"];
+      assert.ok(page, "gpa-simulator.html missing from the asset manifest");
+      assert.ok(page.js.indexOf("js/gpa-simulator-core.js") !== -1, "gpa-simulator-core.js not bundled");
+      assert.ok(page.js.indexOf("js/gpa-simulator.js") !== -1, "gpa-simulator.js not bundled");
+      for (const name of page.bundles.js) {
+        const re = new RegExp("assets/js/" + name.replace(/[.*+?^${}()|[\]\\-]/g, "\\$&") + "\\.[0-9a-f]{8}\\.js");
+        assert.ok(re.test(html), "page does not load bundle " + name);
+      }
     });
   } finally {
     /* kill the whole process group so workerd children never orphan */

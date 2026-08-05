@@ -33,12 +33,23 @@
     bar.setAttribute('aria-valuemax', '100');
     bar.setAttribute('aria-valuenow', '0');
     document.body.appendChild(bar);
-    window.addEventListener('scroll', function () {
-      var scrolled = window.scrollY;
+    /* Coalesced into one write per animation frame: a scroll event can fire far
+       more often than the screen refreshes, and reading scrollHeight inside the
+       listener forced a synchronous layout on every one of them. */
+    var queued = false, lastPct = -1;
+    function paintProgress () {
+      queued = false;
       var total = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = total > 0 ? Math.round((scrolled / total) * 100) : 0;
+      var pct = total > 0 ? Math.round((window.scrollY / total) * 100) : 0;
+      if (pct === lastPct) return;
+      lastPct = pct;
       bar.style.width = pct + '%';
       bar.setAttribute('aria-valuenow', pct);
+    }
+    window.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(paintProgress);
     }, { passive: true });
   }
   function initCursor () {
@@ -51,19 +62,23 @@
     document.body.appendChild(ring);
     var mx = -200, my = -200, rx = -200, ry = -200;
     var rAF = null;
+    /* Positions are written once per frame (a mouse can report faster than the
+       display refreshes) and the loop parks itself once the ring has caught up,
+       so an idle page costs nothing. */
     document.addEventListener('mousemove', function (e) {
       mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top  = my + 'px';
+      if (rAF === null) rAF = requestAnimationFrame(animRing);
     }, { passive: true });
     function animRing () {
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
       rx += (mx - rx) * 0.14;
       ry += (my - ry) * 0.14;
       ring.style.left = Math.round(rx) + 'px';
       ring.style.top  = Math.round(ry) + 'px';
+      if (Math.abs(mx - rx) < 0.5 && Math.abs(my - ry) < 0.5) { rx = mx; ry = my; rAF = null; return; }
       rAF = requestAnimationFrame(animRing);
     }
-    rAF = requestAnimationFrame(animRing);
     var hoverSel = 'a, button, [role="button"], input, select, textarea, label';
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest(hoverSel)) document.body.classList.add('cursor-hover');
@@ -86,18 +101,21 @@
     glow.id = 'mouse-glow';
     glow.setAttribute('aria-hidden', 'true');
     document.body.appendChild(glow);
-    var tX = -600, tY = -600, cX = -600, cY = -600;
+    var tX = -600, tY = -600, cX = -600, cY = -600, raf = null;
     document.addEventListener('mousemove', function (e) {
       tX = e.clientX; tY = e.clientY;
+      if (raf === null) raf = requestAnimationFrame(update);
     }, { passive: true });
+    /* Same as the cursor ring: the easing loop stops once it has settled instead
+       of running a style write every frame for the life of the page. */
     function update () {
       cX += (tX - cX) * 0.07;
       cY += (tY - cY) * 0.07;
       glow.style.left = Math.round(cX) + 'px';
       glow.style.top  = Math.round(cY) + 'px';
-      requestAnimationFrame(update);
+      if (Math.abs(tX - cX) < 0.5 && Math.abs(tY - cY) < 0.5) { cX = tX; cY = tY; raf = null; return; }
+      raf = requestAnimationFrame(update);
     }
-    requestAnimationFrame(update);
   }
   function initReveal () {
     var targets = qsa('.reveal');

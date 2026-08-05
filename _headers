@@ -10,14 +10,24 @@
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate
 
-/*.css
-  Cache-Control: public, max-age=604800
+# Built assets are content-fingerprinted (core.9f2a1c04.css), so the URL changes
+# whenever the bytes change and the file can be cached permanently.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
 
-/*.js
-  Cache-Control: public, max-age=604800
+# Un-fingerprinted sources. Still referenced by older cached pages and by the
+# runtime fallback in js/sc-shell.js, so they keep a short, revalidating TTL.
+/css/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/js/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
 /images/*
-  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/favicon.ico
+  Cache-Control: public, max-age=2592000
 
 /sw.js
   Cache-Control: no-cache, no-store, must-revalidate

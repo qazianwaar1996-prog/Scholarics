@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X8E8T88FX8');
-</script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0a0a">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GPA Simulator — What-If GPA Calculator | Scholarics</title>
 <meta name="description" content="Free GPA Simulator: model multiple semesters, simulate 'what if' grade changes, track your CGPA trend, and get an AI-powered study plan. No signup required.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://scholarics.com/gpa-simulator.html">
-<link rel="preload" href="css/style.css?v=3.0" as="style">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="apple-touch-icon" href="images/icon-180.png">
-
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
@@ -35,32 +27,18 @@
 <meta name="twitter:title" content="GPA Simulator — What-If GPA Calculator | Scholarics">
 <meta name="twitter:description" content="Free GPA Simulator: model multiple semesters, simulate 'what if' grade changes, track your CGPA trend, and get an AI-powered study plan. No signup required.">
 <meta name="twitter:image" content="https://scholarics.com/images/og-image.webp">
-
 <!-- Structured Data -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://scholarics.com/"},{"@type":"ListItem","position":2,"name":"GPA Simulator","item":"https://scholarics.com/gpa-simulator.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GPA Simulator","url":"https://scholarics.com/gpa-simulator.html","description":"Free GPA simulator. Model multiple semesters across 4.0, 4.3, 5.0, 7.0, 10.0 and percentage scales, simulate what-if grade changes, track CGPA trends, and get AI-powered study coaching. No signup required.","applicationCategory":"EducationalApplication","isAccessibleForFree":true,"operatingSystem":"All","featureList":["Multi-semester GPA tracking","What-if grade simulation","CGPA trend chart","Target GPA reverse-calculation","Multiple grading scales (4.0, 4.3, 5.0, 7.0, 10.0, Percentage)","AI study coaching","Undo support","CSV export","Shareable results","PDF export"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a GPA Simulator?","acceptedAnswer":{"@type":"Answer","text":"A GPA Simulator lets you model your full academic record across multiple semesters and instantly see how changing a grade in any course would affect your cumulative GPA — before the semester ends."}},{"@type":"Question","name":"How is CGPA calculated?","acceptedAnswer":{"@type":"Answer","text":"CGPA (Cumulative GPA) is the credit-weighted average of all grade points earned across all semesters. Each course grade is converted to points (A=4.0, B=3.0, etc.) and weighted by the number of credits."}},{"@type":"Question","name":"What does the 'needed grade' column mean?","acceptedAnswer":{"@type":"Answer","text":"The 'needed grade' shows the exact grade you would need to earn in that specific course to reach your target CGPA, given your current performance in all other courses. If it shows 'impossible', your goal cannot be reached through that course alone."}},{"@type":"Question","name":"Is my data saved?","acceptedAnswer":{"@type":"Answer","text":"Yes. All your course data is saved automatically in your browser using localStorage. Nothing is sent to any server. You can also generate a shareable link to save or share your exact GPA scenario."}}]}</script>
-
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
-
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css?v=3.0">
-<link rel="stylesheet" href="css/print.css?v=3.0" media="print">
-<link rel="stylesheet" href="css/premium.css?v=3.0">
-<link rel="stylesheet" href="css/personalization.css?v=3.0">
-<link rel="stylesheet" href="css/content-platform.css?v=3.0">
-<link rel="stylesheet" href="css/calculators.css?v=3.0">
-<link rel="stylesheet" href="css/ai-assistant.css?v=3.0">
-<link rel="stylesheet" href="css/consent.css?v=3.0">
-<link rel="stylesheet" href="css/scholarics-v2.css?v=3.4">
-
+<link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/calc-ai.c05aaeec.css">
+<link rel="stylesheet" href="assets/css/shell.67197acc.css">
 <!-- Theme script (must be synchronous to prevent flash) -->
-<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="css/sc-prelaunch-fixes.css?v=3.2">
-
 <!-- GPA Simulator styles (inline for single-file delivery) -->
 <style>
 /* ── Skip-link: accessible-hide on non-sc2 pages ─────────────────────── */
@@ -89,15 +67,12 @@
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
-
 /* ── Missing design-token fallback ───────────────────────────────────── */
 /* --step-sm is used throughout the Scholarics design system (nav, buttons,
    body copy) but is not declared in style.css (the scale jumps sc→base).
    Define it here so all var(--step-sm) references resolve correctly. */
 :root { --step-sm: .9375rem; }
-
 /* ── GPA Simulator component styles ──────────────────────────────────── */
-
 /* Semester tabs */
 .sim-tabs-wrap {
   display: flex;
@@ -149,7 +124,6 @@
   border-style: dashed;
 }
 .sim-tab-add svg { width: 16px; height: 16px; }
-
 /* Active semester header */
 .sim-sem-head {
   display: flex;
@@ -185,7 +159,6 @@
   display: flex;
   gap: var(--s2);
 }
-
 /* Course rows: 5 columns */
 .sim-rows-head,
 .sim-crow {
@@ -221,7 +194,6 @@
   width: 100%;
 }
 @keyframes rowIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
 /* Delete row button — 44px touch target */
 .row-del {
   width: 44px;
@@ -236,7 +208,6 @@
 .row-del:hover { background: var(--danger-dim); color: var(--danger); }
 .row-del:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .row-del svg { width: 16px; height: 16px; }
-
 /* Needed grade tag */
 .sim-need {
   display: inline-flex;
@@ -252,7 +223,6 @@
 .sim-need-ok   { background: var(--ok-dim);     color: var(--ok); }
 .sim-need-info { background: var(--info-dim);   color: var(--info); }
 .sim-need-bad  { background: var(--danger-dim); color: var(--danger); }
-
 /* Result rail */
 .sim-result-card {
   background: var(--ink);
@@ -312,7 +282,6 @@
   color: oklch(.65 .01 74);
   margin-top: 3px;
 }
-
 /* Delta badge */
 .sim-delta {
   display: inline-flex;
@@ -328,7 +297,6 @@
 .sim-delta svg { width: 14px; height: 14px; flex-shrink: 0; }
 .sim-delta-ok   { background: var(--ok-dim);   color: var(--ok); }
 .sim-delta-warn { background: var(--warn-dim); color: var(--warn); }
-
 /* Sparkline */
 .sim-sparkline {
   width: 100%;
@@ -337,7 +305,6 @@
   margin-top: var(--s3);
   overflow: visible;
 }
-
 /* Target GPA panel */
 .sim-target-row {
   display: flex;
@@ -370,7 +337,6 @@
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-dim);
 }
-
 /* AI Coach panel — premium treatment */
 .sim-ai-panel {
   background: var(--surface);
@@ -428,7 +394,6 @@
   margin: var(--s3) auto;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-
 /* Toolbar buttons */
 .sim-toolbar {
   display: flex;
@@ -440,7 +405,6 @@
 .sim-toolbar .btn {
   min-height: 44px;
 }
-
 /* Info cards grid */
 .sim-info-grid {
   display: grid;
@@ -470,7 +434,6 @@
 .sim-info-ico svg { width: 18px; height: 18px; }
 .sim-info-card h4 { font-size: var(--step-sm); font-weight: 600; line-height: 1.3; }
 .sim-info-card p  { font-size: var(--step-xs); color: var(--ink-3); line-height: 1.5; }
-
 /* ── Grading scale selector ───────────────────────────────────────────── */
 .sim-scale-row {
   display: flex;
@@ -498,7 +461,6 @@
   color: var(--ink-3);
   line-height: 1.45;
 }
-
 /* ── AI Coach report sections ─────────────────────────────────────────── */
 .sim-coach-sec {
   margin-top: var(--s3);
@@ -561,7 +523,6 @@
   color: var(--ink-2);
   line-height: 1.55;
 }
-
 /* ── Dark mode fixes (the base theme flips --ink to light) ────────────── */
 :root[data-theme="dark"] .sim-result-card {
   background: oklch(.17 .018 260);
@@ -588,7 +549,6 @@
 :root[data-theme="dark"] .foot .logo-mark::before,
 :root[data-theme="dark"] .foot .logo-mark::after { background: #0b0b0e; }
 :root[data-theme="dark"] .foot-col a { color: oklch(.72 .01 74); }
-
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .sim-rows-head { display: none; }
@@ -650,10 +610,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": []}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "GPA Simulator", "url": "https://scholarics.com/gpa-simulator.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
 </head>
-
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
-
 <!-- ── HEADER ─────────────────────────────────────────────────────────── -->
 <header class="site-head">
   <nav class="wrap nav" aria-label="Primary">
@@ -675,10 +633,8 @@
     </div>
   </nav>
 </header>
-
 <!-- ── MAIN ───────────────────────────────────────────────────────────── -->
 <main id="main-content">
-
   <!-- Tool header -->
   <section class="tool-head">
     <div class="grid-bg" aria-hidden="true"></div>
@@ -696,7 +652,6 @@
       <p>Model your full academic history across multiple semesters — on the 4.0, 4.3, 5.0, 7.0, 10.0 or percentage scale. Instantly see how any grade change affects your CGPA, before it's on your transcript.</p>
     </div>
   </section>
-
   <!-- Ad slot (top) -->
   <div class="ad-slot wrap" aria-label="Advertisement">
     <div class="ad-inner">
@@ -704,14 +659,11 @@
       <span class="hint">Your ad here</span>
     </div>
   </div>
-
   <!-- ── TOOL LAYOUT ──────────────────────────────────────────────────── -->
   <div class="wrap reveal">
     <div class="tool-layout wide-rail-lg">
-
       <!-- ── LEFT: Calculator ────────────────────────────────────────── -->
       <div class="calc-main">
-
         <!-- Semester tabs -->
         <div class="panel" style="padding: var(--s4); padding-bottom: var(--s3);">
           <div class="sim-scale-row">
@@ -722,7 +674,6 @@
           <div id="semTabs" class="sim-tabs-wrap" role="tablist" aria-label="Semesters">
             <!-- Rendered by JS -->
           </div>
-
           <!-- Active semester header -->
           <div class="sim-sem-head">
             <div>
@@ -741,7 +692,6 @@
               </button>
             </div>
           </div>
-
           <!-- Course rows header -->
           <div class="sim-rows-head" aria-hidden="true">
             <span>Course name</span>
@@ -750,12 +700,10 @@
             <span>Needed for target</span>
             <span></span>
           </div>
-
           <!-- Course rows -->
           <div id="simRows" role="table" aria-label="Courses" aria-live="polite" aria-relevant="additions removals">
             <!-- JS renders rows inside a role="rowgroup" wrapper -->
           </div>
-
           <!-- Row actions -->
           <div class="sim-toolbar">
             <button id="addCourseBtn" class="btn btn-ghost" aria-label="Add a new course">
@@ -771,7 +719,6 @@
             </button>
           </div>
         </div>
-
         <!-- Target GPA panel -->
         <div class="panel" style="margin-top:var(--s3); padding: var(--s4);">
           <div class="panel-head">
@@ -790,7 +737,6 @@
             <input type="range" id="simTargetSlider" min="0" max="4" step="0.01" value="3.50" aria-label="Adjust target GPA with slider">
           </div>
         </div>
-
         <!-- AI Coach panel -->
         <div class="sim-ai-panel" style="margin-top:var(--s3)">
           <h3>
@@ -808,7 +754,6 @@
           <div id="aiCoachLoader" class="sim-ai-loader" role="status" aria-label="Loading AI coaching"></div>
           <div id="aiCoachOut" class="sim-ai-output" aria-live="polite" aria-atomic="true"></div>
         </div>
-
         <!-- Export actions -->
         <div class="sim-toolbar" style="margin-top:var(--s3)">
           <button id="simShareBtn" class="btn btn-ghost" aria-label="Copy shareable link to this GPA scenario">
@@ -828,7 +773,6 @@
             Export CSV
           </button>
         </div>
-
         <!-- How it works -->
         <div class="sim-info-grid">
           <div class="sim-info-card">
@@ -860,12 +804,9 @@
             <p>Your data saves automatically in your browser. Private, no account required.</p>
           </div>
         </div>
-
       </div><!-- /calc-main -->
-
       <!-- ── RIGHT: Result rail ─────────────────────────────────────── -->
       <aside class="result-rail" aria-label="GPA results">
-
         <!-- CGPA hero card -->
         <div class="sim-result-card" aria-live="polite" aria-atomic="true">
           <div class="sim-result-label">Cumulative GPA</div>
@@ -882,7 +823,6 @@
               <div class="l">Total credits</div>
             </div>
           </div>
-
           <!-- Trend sparkline -->
           <div style="margin-top:var(--s3);border-top:1px solid oklch(.35 .01 74);padding-top:var(--s3)">
             <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:oklch(.65 .01 74);font-weight:600;margin-bottom:var(--s2)">
@@ -894,7 +834,6 @@
             </div>
           </div>
         </div>
-
         <!-- GPA scale reference -->
         <div class="scale-note" id="simScaleNote">
           <b>4.0 Scale reference</b>
@@ -909,7 +848,6 @@
             <span>● F = 0.0</span>
           </div>
         </div>
-
         <!-- Related tools -->
         <div class="panel" style="padding:var(--s5)">
           <div class="panel-head" style="margin-bottom:var(--s4)"><h3 style="font-size:var(--step-sm)">Related tools</h3></div>
@@ -932,19 +870,15 @@
             </a>
           </div>
         </div>
-
       </aside><!-- /result-rail -->
-
     </div><!-- /tool-layout -->
   </div><!-- /wrap -->
-
   <!-- ── AD SLOT (bottom) ──────────────────────────────────────────── -->
   <div class="ad-slot wrap" aria-label="Advertisement">
     <div class="ad-inner ad-slot rect">
       <span class="tag">Advertisement</span>
     </div>
   </div>
-
   <!-- ── FAQ SECTION ───────────────────────────────────────────────── -->
   <section class="wrap" style="padding-bottom:var(--s8)">
     <div class="prose">
@@ -973,9 +907,7 @@
       </div>
     </div>
   </section>
-
 </main><!-- /main -->
-
 <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
 <footer class="foot" aria-label="Site footer">
   <div class="wrap">
@@ -1017,24 +949,20 @@
     </div>
   </div>
 </footer>
-
 <!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
-<script defer src="js/script.js?v=3.0"></script>
-<script defer src="js/share-links.js?v=3.0"></script>
-<script defer src="js/personalization.js?v=3.0"></script>
-<script defer src="js/premium.js?v=3.0"></script>
-<script defer src="js/sc-shell.js?v=3.0"></script>
-<script defer src="js/sc-v2-features.js?v=3.1"></script>
-<script defer src="js/analytics.js?v=3.1"></script>
-<script defer src="js/consent.js?v=3.1"></script>
-<script defer src="js/email-capture.js?v=3.0"></script>
-<script defer src="js/pwa.js?v=3.0"></script>
-
+<script defer src="assets/js/core.ee2cb8b3.js" data-sc-src="script"></script>
+<script defer src="assets/js/p-gpa-simulator.0a040e5c.js" data-sc-src="share-links"></script>
+<script defer src="assets/js/g-9e103f.2f0f639d.js" data-sc-src="personalization premium sc-shell sc-v2-features analytics consent email-capture pwa"></script>
 <!-- GPA Simulator — must load after SC namespace is defined -->
-<script defer src="js/gpa-simulator-core.js?v=1.0"></script>
-<script defer src="js/gpa-simulator.js?v=2.0"></script>
-
+<script defer src="assets/js/p-gpa-simulator-2.cedb4b40.js" data-sc-src="gpa-simulator-core gpa-simulator"></script>
 <!-- Nav toggle is handled by sc-shell.js (deferred) which guards against double-binding -->
-
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
 </body>
 </html>
