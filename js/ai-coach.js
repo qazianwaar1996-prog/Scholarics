@@ -16,6 +16,7 @@
       ],
       tools: [
         { name: 'GPA Improvement Planner', url: 'gpa-improvement-planner.html' },
+        { name: 'GPA Simulator',           url: 'gpa-simulator.html' },
         { name: 'Target GPA Calculator',   url: 'target-gpa.html' },
         { name: 'GPA Calculator',          url: 'gpa.html' },
         { name: 'CGPA Calculator',         url: 'cgpa.html' }

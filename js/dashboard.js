@@ -6,6 +6,7 @@
   var TOOLS = [
     { slug:'gpa',                   name:'GPA Calculator',         url:'gpa.html',                   cat:'GPA & Grades' },
     { slug:'cgpa',                  name:'CGPA Calculator',        url:'cgpa.html',                  cat:'GPA & Grades' },
+    { slug:'gpa-simulator',         name:'GPA Simulator',          url:'gpa-simulator.html',         cat:'GPA & Grades' },
     { slug:'semester-gpa',          name:'Semester GPA',           url:'semester-gpa.html',          cat:'GPA & Grades' },
     { slug:'gpa-converter',         name:'GPA Converter',          url:'gpa-converter.html',         cat:'GPA & Grades' },
     { slug:'target-gpa',            name:'Target GPA',             url:'target-gpa.html',            cat:'GPA & Grades' },
