@@ -2,7 +2,6 @@
 
 User-agent: *
 Allow: /
-Disallow: /404.html
 Disallow: /*.md
 Disallow: /functions/
 Disallow: /api/
