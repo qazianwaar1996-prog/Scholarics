@@ -142,9 +142,11 @@ function test(name, fn) {
       const hasGpa = s.indexOf('<a href="gpa.html">GPA Calculator</a>') !== -1;
       if (!hasFooter || !hasGpa) continue;
       checked++;
-      const gpaIdx = s.indexOf('<a href="gpa.html">GPA Calculator</a>');
-      const simIdx = s.indexOf('<a href="gpa-simulator.html">GPA Simulator</a>');
-      assert.ok(simIdx > gpaIdx, p + ": footer missing simulator link (or out of order)");
+      const footerIdx = s.indexOf("<footer");
+      const footerSub = s.slice(footerIdx);
+      const gpaIdx = footerSub.indexOf('<a href="gpa.html">GPA Calculator</a>');
+      const simIdx = footerSub.indexOf('<a href="gpa-simulator.html">GPA Simulator</a>');
+      assert.ok(simIdx !== -1 && gpaIdx !== -1 && simIdx > gpaIdx, p + ": footer missing simulator link (or out of order)");
       footed++;
     }
     assert.ok(footed >= 50, "expected ~52 footer insertions, got " + footed);
