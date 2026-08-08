@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-05",
+  "generated": "2026-08-08",
   "sharedJs": [
     "js/ai-assistant.js",
     "js/ai-service.js",
@@ -169,6 +169,68 @@
         ],
         "js": [
           "g-a24dd9"
+        ]
+      }
+    },
+    "ai-citation-generator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core-3",
+          "shell"
+        ],
+        "js": [
+          "g-5d2528"
+        ]
+      }
+    },
+    "ai-quiz-generator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core-3",
+          "shell"
+        ],
+        "js": [
+          "g-5d2528"
         ]
       }
     },
@@ -1717,6 +1779,36 @@
           "core-shell-person",
           "p-pomodoro",
           "prem-calc-content-ga-consent-email-pwa"
+        ]
+      }
+    },
+    "premium.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person-ga-consent-email-pwa"
         ]
       }
     },
