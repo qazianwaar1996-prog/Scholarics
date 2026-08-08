@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Route to Premium page
+(function(){
+  var path = window.location.pathname;
+  var aiPages = ['ai.html','paraphraser.html','flashcards.html'];
+  var page = path.split('/').pop();
+  if(aiPages.indexOf(page) !== -1){
+    window.location.replace('premium.html');
+  }
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<title>AI Writing Studio &amp; Paraphrasing Tool | Scholarics</title>
+<meta name="description" content="Rewrite, simplify, and refine essays, research papers, and reports with the Scholarics AI Writing Studio, adjustable levels, and quality feedback.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://scholarics.com/paraphraser.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scholarics">
+<meta property="og:title" content="AI Writing Studio &amp; Paraphrasing Tool | Scholarics">
+<meta property="og:description" content="Rewrite, simplify, and refine essays, research papers, and reports with the Scholarics AI Writing Studio, adjustable levels, and quality feedback.">
+<meta property="og:url" content="https://scholarics.com/paraphraser.html">
+<meta property="og:image" content="https://scholarics.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:site" content="@scholarics">
+<meta name="twitter:creator" content="@scholarics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://scholarics.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:title" content="AI Writing Studio &amp; Paraphrasing Tool | Scholarics">
+<meta name="twitter:description" content="Rewrite, simplify, and refine essays, research papers, and reports with the Scholarics AI Writing Studio, adjustable levels, and quality feedback.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Scholarics AI Writing Studio",
+  "url": "https://scholarics.com/paraphraser.html",
+  "applicationCategory": "EducationalApplication",
+  "isAccessibleForFree": true,
+  "operatingSystem": "All",
+  "description": "Rewrite and polish your drafts with tone controls, language levels, citation preservation, and quality assessments."
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/calc.03bcf03d.css">
+<link rel="stylesheet" href="assets/css/shell.cc3a5b31.css">
+<style>
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--s4);
+}
+.compare-table th, .compare-table td {
+  padding: var(--s3);
+  border: 1px solid var(--border);
+  font-size: var(--step-sm);
+  vertical-align: top;
+  width: 50%;
+}
+.compare-table th {
+  background: var(--surface-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-align: left;
+}
+.compare-table tr:hover td {
+  background: var(--card-2);
+}
+.diff-add {
+  background: var(--ok-soft, rgba(75, 192, 127, 0.15));
+  color: var(--ok, #4bc07f);
+  font-weight: 500;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.diff-del {
+  background: var(--danger-dim, rgba(240, 119, 106, 0.16));
+  color: var(--danger, #f0776a);
+  text-decoration: line-through;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s3) var(--s4);
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: all 0.2s var(--ease);
+}
+.history-item:hover {
+  border-color: var(--gold-line);
+  background: var(--surface);
+}
+.history-item-body {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+.history-item-title {
+  font-size: var(--step-sm);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.history-item-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font-size: var(--step-xs);
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+.history-item-tag {
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--gold-soft);
+  color: var(--gold-strong);
+}
+.history-del-btn {
+  background: none;
+  border: none;
+  color: var(--ink-3);
+  cursor: pointer;
+  padding: var(--s2);
+  border-radius: var(--r-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.history-del-btn:hover {
+  background: var(--danger-dim);
+  color: var(--danger);
+}
+.quick-fixes-panel button.sc2-chip {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+}
+.quick-fixes-panel button.sc2-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  background: var(--accent-dim);
+}
+.academic-tools-panel button.sc2-chip {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+}
+.academic-tools-panel button.sc2-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  background: var(--accent-dim);
+}
+.academic-tools-panel button.sc2-chip.on {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  background: var(--accent-dim);
+}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "AI Writing Studio", "url": "https://scholarics.com/paraphraser.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI Paraphraser?","acceptedAnswer":{"@type":"Answer","text":"An AI Paraphraser is a tool that uses artificial intelligence to restate text in new wording while keeping the original meaning intact. The Scholarics AI Paraphraser \u2014 part of the AI Writing Studio \u2014 rebuilds sentences with better structure, vocabulary, and tone, and adds quality scores so you can judge the result. It is designed for drafts of essays, reports, articles, and everyday writing."}},{"@type":"Question","name":"Does paraphrasing remove plagiarism?","acceptedAnswer":{"@type":"Answer","text":"No. Changing the wording of someone else\u2019s ideas does not make them your own, and paraphrased content can still be flagged as plagiarism. You must always credit the original source with an appropriate citation. Use paraphrasing to clarify and improve your own writing \u2014 not to disguise borrowed work \u2014 and follow your institution\u2019s academic integrity policy."}},{"@type":"Question","name":"Is the rewritten text always accurate?","acceptedAnswer":{"@type":"Answer","text":"No. The AI usually preserves meaning and improves flow, but it can occasionally shift nuance, drop a detail, or alter a fact. Always review the output sentence by sentence \u2014 the built-in Compare Changes view makes this easy \u2014 verify names, numbers, and citations, and edit anything that does not match what you intended to say."}},{"@type":"Question","name":"Can I paraphrase essays?","acceptedAnswer":{"@type":"Answer","text":"Yes. The studio is built for academic drafts: paste your essay text, choose the Academic tone and a language level, and review the polished result. Keep \u201cPreserve citations & math\u201d enabled so references stay intact. For the best results work section by section, and remember that reviewing and editing the output yourself is what keeps the work authentically yours."}},{"@type":"Question","name":"Can I paraphrase research papers?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 researchers use it to clarify abstracts, introductions, and discussion sections of their own drafts. The preservation option keeps citations, data, and formulas in place. Requests currently support up to 12,000 characters, so long papers are best paraphrased a section at a time, and technical claims should always be verified against your sources."}},{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Scholarics is a free platform. The AI Writing Studio is currently rolling out as a preview, and like every Scholarics tool it requires no signup, no account, and no subscription \u2014 everything runs in your browser once the studio opens."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The studio is fully responsive: the panels, tone controls, and history all adapt to phones and tablets, and a dedicated bottom navigation bar keeps every section one tap away on smaller screens."}},{"@type":"Question","name":"Is my text stored?","acceptedAnswer":{"@type":"Answer","text":"Your text is sent securely to Scholarics\u2019 servers only to process your request through the AI engine, and it is not saved or retained in our databases. The Studio History you see on the page is kept locally in your own browser, not on our servers, and you can erase it at any time with the Clear History button. Nothing you write is made public."}}]}</script>
+
+<style id="logo-override">
+/* ═══ Scholarics Logo Override — Graduation Cap + Data (v2) ═══ */
+
+/* ── Tool pages: header & footer .logo-mark ── */
+.logo-mark {
+  background: #1a1815 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%231a1815%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+}
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+.logo-dot {
+  display: none !important;
+}
+
+/* Footer dark background version */
+.foot .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+.foot .logo-mark::before,
+.foot .logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Dark theme override for header */
+:root[data-theme="dark"] .logo-mark,
+[data-theme="dark"] .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+
+</style>
+</head>
+<body class="sc2">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="sc2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
+<div class="sc2-app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sc2-side">
+    <a href="index.html" class="sc2-brand">
+      <span class="sc2-logo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9l8-4 8 4-8 4z" fill="#f8fafc"/><path d="M12 13v4" stroke="#f8fafc" stroke-width="1.1" stroke-linecap="round"/><path d="M18 9v3" stroke="#e6bd63" stroke-width="1.1" stroke-linecap="round"/><circle cx="18" cy="13" r="1.2" fill="#e6bd63"/><rect x="5" y="18" width="2" height="3.5" rx="0.6" fill="#e6bd63"/><rect x="9" y="16" width="2" height="5.5" rx="0.6" fill="#e6bd63" opacity="0.85"/><rect x="13" y="17" width="2" height="4.5" rx="0.6" fill="#e6bd63" opacity="0.7"/><path d="M6 17.5l4-2 4 1" stroke="#f8fafc" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </span>Scholarics
+    </a>
+    <nav class="sc2-nav" aria-label="Primary">
+      <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg> Home</a>
+      <a href="academic-resources.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> All Calculators</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg> Dashboard</a>
+      <a href="premium.html"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;color:var(--gold-strong,#e6bd63)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg> <span style="color:var(--gold-strong,#e6bd63)">Premium</span> <span class="sc2-badge">EARLY</span></a>
+      <a href="premium.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg> AI Tutor</a>
+      <a href="paraphraser.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> AI Paraphraser <span class="sc2-badge">NEW</span></a>
+      <a href="study-schedule.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg> Study Planner</a>
+      <a href="notes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg> Notes</a>
+      <a href="premium.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg> Flashcards</a>
+      <a href="grading-guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Countries &amp; Grades</a>
+      <a href="study-guides.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2 2 0 0 1 6 3.5h13v14H6a2 2 0 0 0-2 2V5.5Z"/><path d="M4 19.5a2 2 0 0 1 2-2h13v3H6a2 2 0 0 1-2-1Z"/></svg> Resources</a>
+      <div class="sc2-nav-sep"></div>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg> Profile</a>
+    </nav>
+    <div class="sc2-side-foot">
+      <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar" width="30" height="30" decoding="async">
+      <span class="nm">Profile</span>
+      <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+    </div>
+  </aside>
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="sc2-main">
+    <header class="sc2-top">
+      <button class="sc2-icon-btn sc2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="sc2-search">
+        <svg class="s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" id="sc2Search" placeholder="Search calculators or tools…" aria-label="Search">
+        <span class="sc2-kbd">⌘K</span>
+      </div>
+      <nav class="sc2-top-nav" aria-label="Secondary">
+        <a href="index.html#tools">Calculators</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="premium.html">⭐ Premium</a>
+        <a href="academic-resources.html">Resources</a>
+      </nav>
+      <div class="sc2-top-tools">
+        <button class="sc2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sc2-dot"></span></button>
+        <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+        <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar" width="34" height="34" decoding="async">
+      </div>
+    </header>
+    <main id="main-content" class="sc2-content">
+      <!-- Hero -->
+      <div class="sc2-page-head">
+        <h1>AI Writing Studio</h1>
+        <p>An AI Paraphraser is an intelligent writing tool that restates your text in fresh wording while keeping the original meaning intact. The Scholarics AI Paraphraser — the AI Writing Studio — goes further than a basic synonym swapper: it analyzes the structure and intent of each sentence, then rebuilds it with clearer grammar, stronger vocabulary, and a tone you control. Paste a draft, choose how it should sound, and receive a polished version in seconds, complete with quality scores that show exactly what improved.</p>
+        <p>Paraphrasing is one of the fastest ways to improve academic writing. Reworking a rough paragraph forces clearer logic, tighter sentences, and a more formal voice, which is why students use an academic paraphrasing tool as a revision partner rather than a shortcut. Used as an essay paraphraser, it turns first drafts into focused arguments, smooths awkward phrasing, and keeps your style consistent across long assignments — all without changing what you actually meant.</p>
+        <p>It also helps to know how paraphrasing differs from rewriting and summarizing. Paraphrasing restates the same ideas in new words at roughly the same length. A text rewriter may go further, restructuring whole passages for flow. Summarizing compresses instead, keeping only the essential points. A sentence rewriter works at the smallest scale, polishing one line at a time. The Scholarics studio covers every level, from quick fixes on single sentences to full-draft optimization, so you always get the right depth of edit.</p>
+        <p>Responsible use matters here: AI suggestions should be reviewed, verified, and blended with your own voice, and sources must still be cited, because paraphrasing never replaces academic honesty. Scholarics is a free AI Paraphraser and paraphrasing tool that requires no signup, no account, and no subscription. The studio is currently rolling out as a preview, handling requests of up to 12,000 characters, processed securely through Google Gemini and never stored on our servers.</p>
+      </div>
+      <!-- Coming Soon Banner -->
+      <div style="max-width:680px;margin:0 auto 60px;text-align:center;padding:48px 24px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:oklch(.95 .08 280/.15);border:1px solid oklch(.6 .19 280/.3);border-radius:999px;padding:6px 18px;margin-bottom:28px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#a78bfa;display:inline-block;animation:pulse 2s infinite"></span>
+          <span style="font-size:.8rem;font-weight:600;color:#a78bfa;letter-spacing:.05em;text-transform:uppercase">Coming Soon</span>
+        </div>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;">AI Writing Studio is almost here</h2>
+        <p style="font-size:1rem;color:var(--ink-2);line-height:1.7;margin-bottom:36px;">Rewrite, simplify, and optimise your academic writing with advanced tone control, citation helpers, grammar scoring, and intelligent metrics — all powered by Google Gemini.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px;text-align:left;">
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="font-size:1.4rem;margin-bottom:8px;">✍️</div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Tone Control</div>
+            <div style="font-size:.8rem;color:var(--ink-2);">Academic, Professional, Friendly</div>
+          </div>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="font-size:1.4rem;margin-bottom:8px;">📚</div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Citation Helper</div>
+            <div style="font-size:.8rem;color:var(--ink-2);">APA, MLA, Harvard & more</div>
+          </div>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="font-size:1.4rem;margin-bottom:8px;">📊</div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Writing Analytics</div>
+            <div style="font-size:.8rem;color:var(--ink-2);">Clarity, grammar & readability scores</div>
+          </div>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="font-size:1.4rem;margin-bottom:8px;">⚡</div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Quick Fixes</div>
+            <div style="font-size:.8rem;color:var(--ink-2);">Grammar, clarity, shorten, expand</div>
+          </div>
+        </div>
+        <a href="index.html#tools" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;">Explore Free Tools →</a>
+      </div>
+      <!-- Main Interface -->
+      <div class="db-cols" style="display:none">
+        <!-- Left Panel: Input -->
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Source Text</h2>
+            <button class="btn btn-ghost" id="clearBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round"/></svg>Clear
+            </button>
+          </div>
+          <div class="field" style="margin-bottom: var(--s4)">
+            <textarea class="editor" id="inputText" aria-label="Source text input" placeholder="Paste or type your draft here... (e.g., 'In this study, we are researching how climate change has affected the migration of birds. As shown by Smith (2023), the impact is very high.')" style="min-height: 280px;"></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s4)">
+            <div class="editor-info" style="display:flex; gap: var(--s2); flex-wrap: wrap;">
+              <span class="chip">Words: <b id="inputWords" class="tnum">0</b></span>
+              <span class="chip">Chars: <b id="inputChars" class="tnum">0</b></span>
+              <span class="chip">Sentences: <b id="inputSentences" class="tnum">0</b></span>
+              <span class="chip">Paragraphs: <b id="inputParagraphs" class="tnum">0</b></span>
+              <span class="chip">Read Time: <b id="inputReadTime" class="tnum">0s</b></span>
+            </div>
+          </div>
+          <!-- Advanced Studio Controls Line 1: Tone Selector -->
+          <div class="field" style="margin-bottom: var(--s4)">
+            <label id="toneSelectorLabel" style="margin-bottom: var(--s2)">Tone Selector</label>
+            <div class="tabs" role="tablist" aria-labelledby="toneSelectorLabel">
+              <button class="on" data-mode="Academic">Academic</button>
+              <button data-mode="Professional">Professional</button>
+              <button data-mode="Friendly">Friendly</button>
+              <button data-mode="Persuasive">Persuasive</button>
+              <button data-mode="Neutral">Neutral</button>
+            </div>
+          </div>
+          <!-- Advanced Studio Controls Line 2: Level & Preservation -->
+          <div style="display: flex; gap: var(--s4); margin-bottom: var(--s4); flex-wrap: wrap; align-items: center;">
+            <div class="field" style="flex: 1; min-width: 140px;">
+              <label for="langLevel" style="margin-bottom: var(--s1)">Language Level</label>
+              <select class="select" id="langLevel" style="padding: 8px 12px; height: 38px; border-radius: var(--r-sm) !important;">
+                <option value="Basic">Basic</option>
+                <option value="Intermediate" selected>Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 18px;">
+              <input type="checkbox" id="preserveAcademic" checked style="width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer;">
+              <label for="preserveAcademic" style="font-size: var(--step-sm); font-weight: 500; color: var(--ink-2); cursor: pointer;">Preserve citations & math</label>
+            </div>
+          </div>
+          <button class="sc2-btn sc2-btn-primary btn-lg" id="rewriteBtn" style="width: 100%; justify-content: center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" id="rewriteBtnIcon" style="margin-right:6px"><path d="m12 3-1.6 5.4L5 10l5.4 1.6L12 17l1.6-5.4L19 10l-5.4-1.6L12 3Z"/></svg>
+            <span id="rewriteBtnText">Optimize Writing</span>
+          </button>
+          <!-- Quick Fix Dashboard Module -->
+          <div class="quick-fixes-panel" style="margin-top: var(--s5); border-top: 1px solid var(--border-soft); padding-top: var(--s4);">
+            <label style="display: block; font-size: var(--step-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 10px;">Quick Fixes</label>
+            <div class="sc2-chips" style="gap: 6px; display: flex; flex-wrap: wrap;">
+              <button class="sc2-chip" data-fix="Fix Grammar">✨ Fix Grammar</button>
+              <button class="sc2-chip" data-fix="Improve Clarity">💡 Improve Clarity</button>
+              <button class="sc2-chip" data-fix="Make Academic">🎓 Make Academic</button>
+              <button class="sc2-chip" data-fix="Shorten">✂️ Shorten</button>
+              <button class="sc2-chip" data-fix="Expand">📝 Expand</button>
+              <button class="sc2-chip" data-fix="Simplify">🍃 Simplify</button>
+            </div>
+          </div>
+          <!-- Academic Tools Module (Accordion Panels) -->
+          <div class="academic-tools-panel" style="margin-top: var(--s5); border-top: 1px solid var(--border-soft); padding-top: var(--s4);">
+            <label style="display: block; font-size: var(--step-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 10px;">Academic Helpers</label>
+            <div style="display: flex; gap: var(--s2); margin-bottom: var(--s3); flex-wrap: wrap;">
+              <button class="sc2-chip on" data-tool="Citation">Citation</button>
+              <button class="sc2-chip" data-tool="Title">Title</button>
+              <button class="sc2-chip" data-tool="Thesis">Thesis</button>
+              <button class="sc2-chip" data-tool="Abstract">Abstract</button>
+              <button class="sc2-chip" data-tool="Conclusion">Conclusion</button>
+              <button class="sc2-chip" data-tool="Outline">Outline</button>
+            </div>
+            <!-- Tool-specific sub-panels -->
+            <div id="toolCitationSub" class="tool-sub-panel" style="display: block; margin-bottom: var(--s3);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); margin-bottom: var(--s2);">
+                <div class="field">
+                  <label for="citStyle" style="font-size: var(--step-xs);">Style</label>
+                  <select class="select" id="citStyle" style="padding: 4px 8px; height: 32px; border-radius: var(--r-sm) !important;">
+                    <option value="APA 7">APA 7th</option>
+                    <option value="MLA 9">MLA 9th</option>
+                    <option value="Harvard">Harvard</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="IEEE">IEEE</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="citSourceType" style="font-size: var(--step-xs);">Type</label>
+                  <select class="select" id="citSourceType" style="padding: 4px 8px; height: 32px; border-radius: var(--r-sm) !important;">
+                    <option value="Book">Book</option>
+                    <option value="Journal Article">Journal Article</option>
+                    <option value="Website">Website</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field" style="margin-bottom: var(--s2);">
+                <input class="input" id="citSourceDetails" placeholder="Author, Year, Title, Publisher, URL..." style="padding: 8px 12px; height: 34px;" aria-label="Citation source details">
+              </div>
+            </div>
+            <div id="toolTitleSub" class="tool-sub-panel" style="display: none; margin-bottom: var(--s3);">
+              <div class="field">
+                <input class="input" id="titleTopic" placeholder="Topic description (or leaves blank to use input)..." style="padding: 8px 12px; height: 34px;" aria-label="Title topic description">
+              </div>
+            </div>
+            <div id="toolThesisSub" class="tool-sub-panel" style="display: none; margin-bottom: var(--s3);">
+              <div class="field" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2);">
+                <input class="input" id="thesisTopic" placeholder="Thesis Topic..." style="padding: 8px 12px; height: 34px;" aria-label="Thesis topic">
+                <input class="input" id="thesisStance" placeholder="Your Stance (Optional)..." style="padding: 8px 12px; height: 34px;" aria-label="Your thesis stance (optional)">
+              </div>
+            </div>
+            <div id="toolAbstractSub" class="tool-sub-panel" style="display: none; margin-bottom: var(--s3);">
+              <p style="font-size: var(--step-xs); color: var(--ink-3); margin-bottom: 4px;">Generates a comprehensive abstract using your current input draft.</p>
+            </div>
+            <div id="toolConclusionSub" class="tool-sub-panel" style="display: none; margin-bottom: var(--s3);">
+              <p style="font-size: var(--step-xs); color: var(--ink-3); margin-bottom: 4px;">Formulates a strong scholarly conclusion from your input draft.</p>
+            </div>
+            <div id="toolOutlineSub" class="tool-sub-panel" style="display: none; margin-bottom: var(--s3);">
+              <div class="field">
+                <input class="input" id="outlineTopic" placeholder="Outline Topic (or leaves blank to analyze draft)..." style="padding: 8px 12px; height: 34px;" aria-label="Outline topic">
+              </div>
+            </div>
+            <button class="sc2-btn sc2-btn-ghost" id="runAcademicToolBtn" style="width: 100%; justify-content: center; font-size: var(--step-xs); padding: 8px;">
+              Generate Content
+            </button>
+            <!-- Academic Output Box (Hidden until generated) -->
+            <div id="academicOutputBox" style="display: none; margin-top: var(--s3); padding: var(--s3); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md);">
+              <div style="font-size: var(--step-xs); font-weight: 600; text-transform: uppercase; color: var(--gold-strong); margin-bottom: 6px;">Academic helper Result</div>
+              <textarea id="academicOutputText" readonly class="editor" aria-label="Academic helper result" style="min-height: 120px; font-size: var(--step-xs); padding: 8px; line-height: 1.4; margin-bottom: var(--s2);"></textarea>
+              <div style="display: flex; gap: var(--s2); justify-content: flex-end;">
+                <button class="btn btn-ghost" id="insertAcademicBtn" style="font-size: 11px; padding: 4px 8px;">Insert into Input</button>
+                <button class="btn btn-ghost" id="copyAcademicBtn" style="font-size: 11px; padding: 4px 8px;">Copy</button>
+                <button class="btn btn-ghost" id="downloadAcademicBtn" style="font-size: 11px; padding: 4px 8px;">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Output -->
+        <div class="panel">
+          <div class="panel-head">
+            <h2 style="display: flex; align-items: center; gap: 8px;">Polished Text <span id="detectedType" class="sc2-badge" style="display:none; font-size: 11px; background: var(--info-soft); color: var(--info); border: 1px solid oklch(.55 .13 240 / .2);">Detecting...</span></h2>
+            <div class="mini-actions" style="display: flex; flex-wrap: wrap; gap: var(--s2)">
+              <button class="btn btn-ghost" id="undoBtn" disabled title="Undo Last Rewrite">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><path d="M3 7v6h6M21 17a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 13m18-1a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 11" stroke-linecap="round" stroke-linejoin="round"/></svg>Undo
+              </button>
+              <button class="btn btn-ghost" id="printBtn" title="Print-Friendly View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z" stroke-linecap="round" stroke-linejoin="round"/></svg>Print
+              </button>
+              <button class="btn btn-ghost" id="copyBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy
+              </button>
+              <button class="btn btn-ghost" id="downloadBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Save
+              </button>
+            </div>
+          </div>
+          <div class="field" style="margin-bottom: var(--s4)">
+            <textarea class="editor" id="outputText" readonly aria-label="Polished text output" placeholder="Your polished text will appear here..." style="min-height: 280px;"></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s2)">
+            <div class="editor-info" style="display:flex; gap: var(--s2); flex-wrap: wrap;">
+              <span class="chip">Words: <b id="outputWords" class="tnum">0</b></span>
+              <span class="chip">Chars: <b id="outputChars" class="tnum">0</b></span>
+              <span class="chip">Sentences: <b id="outputSentences" class="tnum">0</b></span>
+              <span class="chip">Paragraphs: <b id="outputParagraphs" class="tnum">0</b></span>
+              <span class="chip">Read Time: <b id="outputReadTime" class="tnum">0s</b></span>
+            </div>
+            <button class="btn btn-ghost" id="compareBtn" data-status="off">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><path d="M16 3h5v5M8 21H3v-5M12 12V3h9M12 12v9H3"/></svg>Compare Changes
+            </button>
+          </div>
+          <!-- Advanced Writing Analytics & Quality Module -->
+          <div id="qualityIndicator" style="display: none; margin-top: var(--s4); padding: var(--s4); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); animation: aiPanelIn .22s var(--ease);">
+            <div style="font-size: var(--step-xs); font-weight: 600; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: space-between;">
+              <span>Writing Analytics</span>
+              <span id="detectedTypeAlt" style="font-size: 10px; text-transform: none; font-weight: 500; color: var(--info);"></span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4); text-align: center; margin-bottom: 12px;">
+              <div><div style="font-weight:700; font-size: 1.25rem; color: var(--ok);" id="scoreClarity">--</div><div style="font-size: 10px; color: var(--ink-3); margin-top: 2px;">Clarity Score</div></div>
+              <div><div style="font-weight:700; font-size: 1.25rem; color: var(--info);" id="scoreReadability">--</div><div style="font-size: 10px; color: var(--ink-3); margin-top: 2px;">Readability Score</div></div>
+              <div><div style="font-weight:700; font-size: 1.25rem; color: var(--gold-strong);" id="scoreGrammar">--</div><div style="font-size: 10px; color: var(--ink-3); margin-top: 2px;">Grammar Score</div></div>
+              <div><div style="font-weight:700; font-size: 1.25rem; color: var(--violet);" id="scoreVocab">--</div><div style="font-size: 10px; color: var(--ink-3); margin-top: 2px;">Vocabulary Richness</div></div>
+            </div>
+            <div style="border-top: 1px solid var(--border-soft); padding-top: 12px; text-align: left; display: flex; justify-content: space-between; font-size: var(--step-xs); color: var(--ink-2);">
+              <span>Average Sentence Length: <strong id="statSentenceLen" class="tnum" style="color: var(--ink);">0 words</strong></span>
+              <span id="lenVerdict" style="font-weight: 600;">Good</span>
+            </div>
+          </div>
+          <!-- Smart Writing Assistant suggestions box -->
+          <div id="smartFeedback" style="display: none; margin-top: var(--s4); padding: var(--s4); background: var(--warn-dim); border: 1px solid oklch(.7 .15 65 / .2); border-radius: var(--r-md); animation: aiPanelIn .22s var(--ease);">
+            <div style="font-size: var(--step-xs); font-weight: 600; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              Smart Writing Assistant
+            </div>
+            <div id="feedbackList" style="font-size: var(--step-sm); color: var(--ink-2); display: flex; flex-direction: column; gap: 8px; line-height: 1.5;">
+              <!-- Dynamic suggestions injected via JS -->
+            </div>
+          </div>
+          <!-- Improve further follow-up action button -->
+          <button class="sc2-btn sc2-btn-ghost btn-lg" id="improveFurtherBtn" disabled style="width: 100%; justify-content: center; margin-top: var(--s4)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;margin-right:6px"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.2 8H16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Improve Output Further
+          </button>
+        </div>
+      </div>
+      <!-- Compare Panel (Sentence-by-sentence side-by-side comparison) -->
+      <div class="panel" id="comparePanel" style="display:none; margin-top: var(--s5);">
+        <div class="panel-head">
+          <h3>Sentence Comparison</h3>
+          <button class="btn btn-ghost" id="closeCompareBtn">Close</button>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Original Sentence</th>
+                <th>Paraphrased Sentence</th>
+              </tr>
+            </thead>
+            <tbody id="compareTableBody">
+              <!-- Content loaded via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Rewrite History Panel -->
+      <div class="panel" style="margin-top: var(--s5);" id="historyPanel">
+        <div class="panel-head">
+          <h2>Studio History</h2>
+          <button class="btn btn-ghost" id="clearHistoryBtn" style="font-size: var(--step-xs);">Clear History</button>
+        </div>
+        <div id="historyList" style="display: flex; flex-direction: column; gap: var(--s3); max-height: 320px; overflow-y: auto; padding-right: 6px;">
+          <!-- Dynamic history items loaded via JS -->
+        </div>
+      </div>
+      <!-- Explanatory Information -->
+      <div class="prose" style="margin-top: var(--s6);">
+        <h2>How to Use This AI Paraphraser</h2>
+        <p>The studio is rolling out as a preview — once the interface above is enabled, the full workflow takes under a minute:</p>
+        <ol>
+          <li>Paste your text into the <strong>Source Text</strong> box, or type your draft directly — live counters track your words, sentences, and reading time as you go.</li>
+          <li>Choose your options: pick a tone (Academic, Professional, Friendly, Persuasive, or Neutral), set the Language Level, and keep <strong>Preserve citations &amp; math</strong> ticked to protect references and formulas.</li>
+          <li>Click <strong>Optimize Writing</strong> — or press Ctrl+Enter — to send your draft to the AI.</li>
+          <li>Review the rewritten version in the <strong>Polished Text</strong> panel; open <strong>Compare Changes</strong> for a sentence-by-sentence view and check the Writing Analytics scores.</li>
+          <li>Edit further if needed: apply a Quick Fix such as Fix Grammar, Improve Clarity, Shorten, or Expand, or use <strong>Improve Output Further</strong> for another pass — Undo always brings the previous version back.</li>
+          <li>Copy your final text with the <strong>Copy</strong> button, or <strong>Save</strong> it as a .txt file. Every version also stays in your Studio History until you clear it.</li>
+        </ol>
+        <h2>How AI Paraphrasing Works</h2>
+        <p>When you click Optimize Writing, the AI reads your text as a whole rather than word by word. It analyzes the sentence structure — how subjects, verbs, and clauses fit together — along with the surrounding context, and then generates an alternative wording that expresses the same ideas. The goal is always to preserve your meaning while improving readability: clearer phrasing, smoother transitions, and a voice that matches the tone you selected.</p>
+        <p>No AI is perfect, and paraphrasing is no exception. The output is a strong draft, not a guaranteed final copy — which is why the studio shows you quality scores and a comparison view, and why a human review is always the last step.</p>
+        <p>Each control changes the direction of the rewrite:</p>
+        <ul>
+          <li><strong>Academic:</strong> adapts your writing to a style fit for essays and journals, focusing on precision and formal syntax.</li>
+          <li><strong>Professional:</strong> elevates the tone to a polished standard — great for cover letters and emails.</li>
+          <li><strong>Simplify:</strong> strips down jargon and unnecessary fluff to maximize readability.</li>
+          <li><strong>Shorten:</strong> condenses long-winded arguments into short, impactful assertions.</li>
+          <li><strong>Expand:</strong> helps flesh out raw bullet points into complete, detailed paragraphs.</li>
+        </ul>
+        <p>Paraphrasing is more than swapping words for synonyms. To produce scholarly writing, you must adjust the sentence architecture and logical progression of ideas. High-quality paraphrasing preserves your source's integrity while eliminating redundant phrasing and maintaining an objective, critical voice.</p>
+        <h2>Using AI Responsibly for Academic Work</h2>
+        <p>AI writing tools are most valuable when they support — rather than replace — your own thinking. To get the benefit without the risk, always:</p>
+        <ul>
+          <li><strong>Review AI-generated text</strong> line by line before you use it, and rewrite anything that does not sound like you.</li>
+          <li><strong>Verify factual accuracy</strong> — check names, dates, figures, and quotes against your original sources.</li>
+          <li><strong>Cite sources appropriately</strong>, because paraphrasing someone else’s ideas does not remove the need to credit them.</li>
+          <li><strong>Follow your institution’s academic integrity policies</strong> on AI assistance, which vary between schools and courses.</li>
+        </ul>
+        <h2>Who Should Use This Tool?</h2>
+        <ul>
+          <li><strong>Students</strong> polishing essays, lab reports, and scholarship applications — then keep an eye on the results with the <a href="gpa.html">GPA Calculator</a>.</li>
+          <li><strong>Researchers</strong> clarifying abstracts and tightening journal submissions — schedule focused writing blocks with the <a href="study-schedule.html">Study Planner</a>.</li>
+          <li><strong>Teachers</strong> preparing model rewrites and feedback examples for class — and turning key terms into <a href="premium.html">Flashcards</a> for revision.</li>
+          <li><strong>Bloggers</strong> refreshing older posts and adjusting tone for new audiences — draft in focused sprints with the <a href="pomodoro.html">Pomodoro Timer</a>.</li>
+          <li><strong>Content writers</strong> repurposing copy and testing alternative phrasings — brainstorm angles with the <a href="premium.html">AI Chat</a> before you rewrite.</li>
+          <li><strong>English learners</strong> comparing natural phrasing alternatives side by side and building an instinct for fluent academic style.</li>
+        </ul>
+        <h2>Tips for Better Paraphrasing</h2>
+        <ul>
+          <li><strong>Understand the original text first</strong> — read the passage until you can explain it without looking, so you can judge whether the rewrite keeps its point.</li>
+          <li><strong>Review AI output carefully</strong>, ideally sentence by sentence in the Compare Changes view, instead of accepting everything at once.</li>
+          <li><strong>Preserve the original meaning</strong>: never let a smoother sentence smuggle in a claim the source did not make.</li>
+          <li><strong>Check grammar and citations</strong> after every pass — keep the preservation option on so references and formulas survive the rewrite untouched.</li>
+          <li><strong>Avoid submitting AI output without review</strong>; a final edit in your own words is what makes the result genuinely yours.</li>
+        </ul>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+          <details open><summary>What is an AI Paraphraser?</summary><p>An AI Paraphraser is a tool that uses artificial intelligence to restate text in new wording while keeping the original meaning intact. The Scholarics AI Paraphraser — part of the AI Writing Studio — rebuilds sentences with better structure, vocabulary, and tone, and adds quality scores so you can judge the result. It is designed for drafts of essays, reports, articles, and everyday writing.</p></details>
+          <details><summary>Does paraphrasing remove plagiarism?</summary><p>No. Changing the wording of someone else’s ideas does not make them your own, and paraphrased content can still be flagged as plagiarism. You must always credit the original source with an appropriate citation. Use paraphrasing to clarify and improve your own writing — not to disguise borrowed work — and follow your institution’s academic integrity policy.</p></details>
+          <details><summary>Is the rewritten text always accurate?</summary><p>No. The AI usually preserves meaning and improves flow, but it can occasionally shift nuance, drop a detail, or alter a fact. Always review the output sentence by sentence — the built-in Compare Changes view makes this easy — verify names, numbers, and citations, and edit anything that does not match what you intended to say.</p></details>
+          <details><summary>Can I paraphrase essays?</summary><p>Yes. The studio is built for academic drafts: paste your essay text, choose the Academic tone and a language level, and review the polished result. Keep “Preserve citations & math” enabled so references stay intact. For the best results work section by section, and remember that reviewing and editing the output yourself is what keeps the work authentically yours.</p></details>
+          <details><summary>Can I paraphrase research papers?</summary><p>Yes — researchers use it to clarify abstracts, introductions, and discussion sections of their own drafts. The preservation option keeps citations, data, and formulas in place. Requests currently support up to 12,000 characters, so long papers are best paraphrased a section at a time, and technical claims should always be verified against your sources.</p></details>
+          <details><summary>Is this tool free?</summary><p>Yes. Scholarics is a free platform. The AI Writing Studio is currently rolling out as a preview, and like every Scholarics tool it requires no signup, no account, and no subscription — everything runs in your browser once the studio opens.</p></details>
+          <details><summary>Does it work on mobile?</summary><p>Yes. The studio is fully responsive: the panels, tone controls, and history all adapt to phones and tablets, and a dedicated bottom navigation bar keeps every section one tap away on smaller screens.</p></details>
+          <details><summary>Is my text stored?</summary><p>Your text is sent securely to Scholarics’ servers only to process your request through the AI engine, and it is not saved or retained in our databases. The Studio History you see on the page is kept locally in your own browser, not on our servers, and you can erase it at any time with the Clear History button. Nothing you write is made public.</p></details>
+        </div>
+        <p><strong>Author:</strong> Scholarics Editorial Team<br><strong>Reviewed by:</strong> Academic Content Reviewer<br><strong>Last Updated:</strong> August 2026</p>
+        <p><em>Last Updated: August 2026</em></p>
+      </div>
+      <div class="sec-head" style="margin-top:var(--s6)"><span class="kicker">Keep going</span><h2>Explore more Scholarics tools</h2></div>
+      <div class="tools-grid" style="margin-bottom:var(--s7)">
+        <a href="ai.html" class="tool live">
+          <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+          <h3>AI Chat</h3><p>Ask our AI study tutor</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="flashcards.html" class="tool live">
+          <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg></div>
+          <h3>Flashcards</h3><p>Active recall practice</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="study-schedule.html" class="tool live">
+          <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg></div>
+          <h3>Study Planner</h3><p>Build a study timetable</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="pomodoro.html" class="tool live">
+          <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg></div>
+          <h3>Pomodoro Timer</h3><p>Focus in 25-min sprints</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="gpa.html" class="tool live">
+          <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
+          <h3>GPA Calculator</h3><p>Track your semester GPA</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </main>
+  <footer class="sc2-footer">
+    <div class="sc2-footer-inner">
+      <div class="sc2-footer-grid">
+        <div>
+          <h3>Company</h3>
+          <a href="about.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h3>Legal</h3>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+          <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div>
+          <h3>Popular Tools</h3>
+          <a href="gpa.html">GPA Calculator</a>
+          <a href="gpa-simulator.html">GPA Simulator</a>
+          <a href="gpa-converter.html">GPA Converter</a>
+          <a href="grade-calculator.html">Grade Calculator</a>
+          <a href="academic-resources.html">All Calculators</a>
+        </div>
+        <div>
+          <h3>Resources</h3>
+          <a href="study-guides.html">Study Guides</a>
+          <a href="grading-guide.html">Grading Guide</a>
+          <a href="gpa-help-center.html">GPA Help Center</a>
+          <a href="premium.html">⭐ Premium</a>
+        </div>
+      </div>
+      <div class="sc2-footer-bottom">
+        <span>&copy; 2026 Scholarics. All rights reserved.</span>
+        <span>Free academic tools for students.</span>
+      </div>
+    </div>
+  </footer>
+  </div>
+</div>
+<!-- ============ MOBILE BOTTOM NAV ============ -->
+<nav class="sc2-bottomnav" aria-label="Mobile">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
+  <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
+  <a href="premium.html" class="ai"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>W</span><span>AI</span></a>
+  <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
+  <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
+</nav>
+<!-- Scripts -->
+<script defer src="assets/js/core-shell-person-prem-aisvc.d3c7ca64.js" data-sc-src="script sc-shell personalization premium ai-service"></script>
+<script defer src="assets/js/p-paraphraser.a0a12eaf.js" data-sc-src="paraphraser"></script>
+<script defer src="assets/js/v2feat-ga-consent-email-pwa.1d2253c0.js" data-sc-src="sc-v2-features analytics consent email-capture pwa"></script>
+<script>
+function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');} }
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
+</body>
+  </html> 

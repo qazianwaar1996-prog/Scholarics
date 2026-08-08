@@ -1,0 +1,1 @@
+.calc-kicker{display:inline-flex;align-items:center;gap:7px;padding:4px 14px;border-radius:30px;font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;background:var(--accent-dim);color:var(--accent-strong);border:1px solid rgba(0,0,0,.06)}.calc-kicker svg{width:13px;height:13px;flex-shrink:0}

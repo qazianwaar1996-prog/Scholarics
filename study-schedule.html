@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<title>Free Study Schedule Generator for Students | Scholarics</title>
+<meta name="description" content="Generate a personalised weekly study schedule based on your subjects, priorities, and available time, with instant results and no signup.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scholarics.com/study-schedule.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scholarics">
+<meta property="og:title" content="Free Study Schedule Generator for Students | Scholarics">
+<meta property="og:description" content="Generate a personalised weekly study schedule based on your subjects, priorities, and available time, with instant results and no signup.">
+<meta property="og:url" content="https://scholarics.com/study-schedule.html">
+<meta property="og:image" content="https://scholarics.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:site" content="@scholarics">
+<meta name="twitter:creator" content="@scholarics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://scholarics.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:title" content="Free Study Schedule Generator for Students | Scholarics">
+<meta name="twitter:description" content="Generate a personalised weekly study schedule based on your subjects, priorities, and available time, with instant results and no signup.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Study Schedule Generator","url":"https://scholarics.com/study-schedule.html","applicationCategory":"EducationalApplication","isAccessibleForFree":true,"operatingSystem":"All","description":"Generate a personalised weekly study schedule based on your subjects and available time. Free, instant, no signup."}</script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/calc-ai.c05aaeec.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI Study Planner?","acceptedAnswer":{"@type":"Answer","text":"An AI Study Planner turns your subjects, priorities, and available hours into an organised study schedule. The Scholarics Study Planner works like this: you enter each subject with its difficulty and weekly hours, choose your study days and start time, and it instantly builds a printable weekly timetable that gives the most and earliest attention to your hardest subjects \u2014 free, and with no signup."}},{"@type":"Question","name":"Can it create a personalized study schedule?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything in the timetable comes from your inputs: subject names, difficulty ratings, weekly hours per subject, your preferred start time, and how many days a week you want to study. The planner splits each subject across your study days with 15-minute buffers between sessions, and the result is a schedule built around your week, not a generic template."}},{"@type":"Question","name":"Can I edit my study plan?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can rename subjects, change difficulty levels, adjust weekly hours, add or remove subjects, and change your start time or study days at any point \u2014 then regenerate to get an updated schedule instantly. Your inputs are saved in this browser, so your plan is still there when you return."}},{"@type":"Question","name":"Is the generated schedule accurate?","acceptedAnswer":{"@type":"Answer","text":"The schedule faithfully distributes exactly the hours you enter, so its accuracy depends on your estimates \u2014 and adjusting them is one click away. As a guideline, a difficult 4-credit subject may need about eight hours a week while a lighter review course may need only two or three; start with honest numbers and refine them after your first week."}},{"@type":"Question","name":"Can I use it for multiple subjects?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 add as many subject rows as you need. The planner distributes every subject across all of your study days, because spacing beats massing: studying a subject three times for 40 minutes is more effective than once for two hours, and the timetable spreads your subjects out for you automatically."}},{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Scholarics Study Planner is completely free, with no signup, no account, and nothing to install. It runs entirely in your browser, and you can print your timetable or copy it to share in seconds."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The planner is fully responsive and works in any modern browser on phones, tablets, and desktop computers. Subject rows, settings, and the weekly timetable all adapt to small screens, and printing works the same way."}},{"@type":"Question","name":"How often should I update my study plan?","acceptedAnswer":{"@type":"Answer","text":"Review your plan once a week: shift hours toward subjects with upcoming exams or new difficult topics, and scale back on material you have already covered. Because regenerating takes seconds, your schedule can evolve with every week of the term instead of fossilising in week one."}}]}</script>
+<link rel="stylesheet" href="assets/css/shell.cc3a5b31.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Study Schedule Planner", "url": "https://scholarics.com/study-schedule.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://scholarics.com/"}, {"@type": "ListItem", "position": 2, "name": "Study Schedule", "item": "https://scholarics.com/study-schedule.html"}]}</script>
+
+<style id="logo-override">
+/* ═══ Scholarics Logo Override — Graduation Cap + Data (v2) ═══ */
+
+/* ── Tool pages: header & footer .logo-mark ── */
+.logo-mark {
+  background: #1a1815 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%231a1815%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+}
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+.logo-dot {
+  display: none !important;
+}
+
+/* Footer dark background version */
+.foot .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+.foot .logo-mark::before,
+.foot .logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Dark theme override for header */
+:root[data-theme="dark"] .logo-mark,
+[data-theme="dark"] .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header class="site-head">
+  <nav class="wrap nav">
+    <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Scholarics</a>
+    <div class="nav-links"><a href="study-guides.html">Guides</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="index.html#tools">How it works</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+    </div>
+    <div class="nav-cta">
+      <a href="academic-resources.html" class="btn btn-ghost">All tools</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<main id="main-content">
+<section class="tool-head">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      <span>Study Schedule</span>
+    </nav>
+    <div class="calc-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Study Schedule</div>
+    <h1>Study Schedule Generator</h1>
+    <p>An AI Study Planner turns your subjects, deadlines, and free hours into an organised week of study. That is exactly what the Scholarics Study Planner does in seconds: enter each subject with its difficulty and weekly hours, choose how many days you can study and when you want to start, and it builds a printable weekly timetable — weighted automatically toward your hardest subjects.</p>
+    <p>A personalised study plan quietly improves productivity all term long. It removes the daily “what should I study now?” decision that fuels procrastination, because every session has a subject and a time slot before the week even starts. Committing specific blocks to specific subjects makes you far more likely to follow through, and guaranteed coverage stops your weakest — or least favourite — course from slipping quietly behind until it becomes a crisis. Students who plan their weeks also report finishing work earlier, because boundaries protect study time from everything else competing for it.</p>
+    <p>This AI study schedule organises everything around your inputs: difficult, deadline-pressured subjects take the earliest slots and the largest share of hours, while every subject’s weekly time is distributed across all of your study days with sensible buffers in between. That spacing is deliberate — several shorter sessions beat one marathon for retention — and whenever your priorities change, regenerating the whole week takes one click and zero cost.</p>
+    <p>As an exam study planner it earns its place in revision season, when mapping every paper to weekly hours keeps preparation balanced and stress low, but it works just as well for ordinary weekly time management across a full course load. This study schedule generator is designed for educational purposes first: it runs entirely in your browser, is completely free, and requires no signup — a proper study timetable generator you can print, copy, and reuse every week of the term.</p>
+  </div>
+</section>
+<div class="wrap reveal">
+  <div class="tool-layout wide-rail">
+    <div class="calc-main">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Your Subjects</h2>
+          <button class="btn btn-primary" id="ssAddRow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add Subject</button>
+        </div>
+        <div class="rows-head" style="display:grid;grid-template-columns:1fr 80px 100px 44px;gap:var(--s3);padding:0 var(--s3) var(--s2);font-size:var(--step-xs);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600" aria-hidden="true">
+          <span>Subject</span><span>Difficulty</span><span>Hrs/Week</span><span></span>
+        </div>
+        <div id="ssRows" role="list"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-top:var(--s5)">
+          <div class="field">
+            <label for="ssStartTime">Study Start Time</label>
+            <input class="input" type="time" id="ssStartTime" value="09:00">
+          </div>
+          <div class="field">
+            <label for="ssDays">Study Days / Week</label>
+            <input class="input" type="number" id="ssDays" min="1" max="7" value="5">
+          </div>
+        </div>
+        <div class="calc-actions">
+          <button class="btn btn-primary" id="ssGenerate">Generate Schedule</button>
+          <button class="btn btn-ghost" id="ssReset">Reset</button>
+        </div>
+      </div>
+      <div class="panel" id="ssOutput" style="margin-top:var(--s4);display:none">
+        <h3 style="margin-bottom:var(--s4);font-size:var(--step-md)">Your Weekly Schedule</h3>
+        <div id="ssScheduleGrid"></div>
+        <div class="result-btn-row" style="margin-top:var(--s5)">
+          <button class="btn" id="ssShare" aria-label="Copy schedule"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+          <button class="btn" id="pdfBtn" aria-label="Print PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Print</button>
+        </div>
+      </div>
+      <div class="prose tight" style="margin-top:var(--s6)">
+        <h2>How to Use This AI Study Planner</h2>
+        <p>Five steps stand between you and a balanced weekly timetable:</p>
+        <ol>
+          <li>Enter your subjects: press <strong>Add Subject</strong> for each course and give every row a clear name.</li>
+          <li>Add your priorities: set each subject’s difficulty (Easy, Medium, or Hard) and weekly hours — give deadline-pressured subjects more hours and a Hard rating so they claim the biggest, earliest slots.</li>
+          <li>Specify your available study time: choose the <strong>Study Start Time</strong> your day allows and how many <strong>Study Days / Week</strong> you can honestly commit (1–7).</li>
+          <li>Press <strong>Generate Schedule</strong> to build your weekly timetable, complete with session times and 15-minute buffers between blocks.</li>
+          <li>Follow the plan and adjust it: edit any input and regenerate whenever the term shifts — the rail keeps your total weekly hours and daily average visible, and you can print the timetable or copy it anywhere.</li>
+        </ol>
+        <h2>How AI Study Planning Works</h2>
+        <p>The planner creates a suggested study schedule from the information you provide. It sorts your subjects by difficulty, divides each subject’s weekly hours evenly across your chosen days — harder subjects land earlier and larger — and then lays the sessions out from your start time with short buffers between them. The whole computation happens instantly, right in your browser.</p>
+        <p>A schedule is a living document, not a contract: as your priorities change through the term, adjust the hours and difficulty ratings and regenerate until the week honestly reflects your workload. Scholarics is also developing a conversational AI Coach that can draft study plans from a chat about your goals — planning, however you do it, is the habit that compounds.</p>
+        <h2>Benefits of a Study Plan</h2>
+        <ul>
+          <li><strong>Better time management:</strong> every study hour gets a job before the week begins, so available time is spent — not negotiated away.</li>
+          <li><strong>Reduced procrastination:</strong> knowing exactly what to study and when removes the friction where procrastination breeds.</li>
+          <li><strong>Balanced revision:</strong> every subject appears across the week, so no course quietly falls behind while a favourite takes over.</li>
+          <li><strong>Less exam stress:</strong> a visible plan replaces vague anxiety about “everything left to do” with one manageable session at a time.</li>
+          <li><strong>Consistent learning habits:</strong> a repeatable weekly rhythm turns studying from a series of panics into routine — the single best predictor of strong grades.</li>
+        </ul>
+        <h2>Who Should Use This Tool?</h2>
+        <ul>
+          <li><strong>School students</strong> juggling homework, tests, and activities — run each planned block as a focused sprint with the <a href="pomodoro.html">Pomodoro Timer</a>.</li>
+          <li><strong>College students</strong> balancing full course loads and part-time work — then watch the effort compound on the <a href="gpa.html">GPA Calculator</a>.</li>
+          <li><strong>University students</strong> managing heavy modules and dissertation reading — ask the <a href="premium.html">AI Chat</a> for strategies when a subject needs a smarter approach.</li>
+          <li><strong>Competitive exam candidates</strong> organising high-volume syllabi — put timed test blocks on the plan and generate them with the <a href="ai-quiz-generator.html">AI Quiz Generator</a>.</li>
+          <li><strong>Adult learners</strong> fitting evening study around work and family — brush up academic writing alongside your schedule with the <a href="premium.html">AI Paraphraser</a>.</li>
+        </ul>
+        <h2>Tips for Creating an Effective Study Schedule</h2>
+        <p>An effective study schedule allocates more time to harder subjects and spaces sessions across the week to leverage <strong>spaced repetition</strong> — reviewing material at increasing intervals improves long-term retention by up to 50%.</p>
+        <ul>
+          <li><strong>Set realistic daily goals</strong> you can actually repeat — a timetable you abandon on Wednesday was never realistic.</li>
+          <li><strong>Prioritise difficult subjects</strong> with Hard difficulty ratings and larger weekly hours, so they win the earliest, freshest slots.</li>
+          <li><strong>Schedule regular breaks</strong> — the planner already inserts buffers between sessions; honour them instead of skipping.</li>
+          <li><strong>Review progress every week</strong> and regenerate the plan: move hours toward whatever the coming week actually demands.</li>
+          <li><strong>Stay consistent:</strong> ten average weeks on a plan beat one perfect week of cramming — and use active methods inside each block, like drilling terms with <a href="premium.html">AI Flashcards</a>.</li>
+        </ul>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+          <details open><summary>What is an AI Study Planner?</summary><p>An AI Study Planner turns your subjects, priorities, and available hours into an organised study schedule. The Scholarics Study Planner works like this: you enter each subject with its difficulty and weekly hours, choose your study days and start time, and it instantly builds a printable weekly timetable that gives the most and earliest attention to your hardest subjects — free, and with no signup.</p></details>
+          <details><summary>Can it create a personalized study schedule?</summary><p>Yes. Everything in the timetable comes from your inputs: subject names, difficulty ratings, weekly hours per subject, your preferred start time, and how many days a week you want to study. The planner splits each subject across your study days with 15-minute buffers between sessions, and the result is a schedule built around your week, not a generic template.</p></details>
+          <details><summary>Can I edit my study plan?</summary><p>Yes. You can rename subjects, change difficulty levels, adjust weekly hours, add or remove subjects, and change your start time or study days at any point — then regenerate to get an updated schedule instantly. Your inputs are saved in this browser, so your plan is still there when you return.</p></details>
+          <details><summary>Is the generated schedule accurate?</summary><p>The schedule faithfully distributes exactly the hours you enter, so its accuracy depends on your estimates — and adjusting them is one click away. As a guideline, a difficult 4-credit subject may need about eight hours a week while a lighter review course may need only two or three; start with honest numbers and refine them after your first week.</p></details>
+          <details><summary>Can I use it for multiple subjects?</summary><p>Yes — add as many subject rows as you need. The planner distributes every subject across all of your study days, because spacing beats massing: studying a subject three times for 40 minutes is more effective than once for two hours, and the timetable spreads your subjects out for you automatically.</p></details>
+          <details><summary>Is it free?</summary><p>Yes. The Scholarics Study Planner is completely free, with no signup, no account, and nothing to install. It runs entirely in your browser, and you can print your timetable or copy it to share in seconds.</p></details>
+          <details><summary>Does it work on mobile?</summary><p>Yes. The planner is fully responsive and works in any modern browser on phones, tablets, and desktop computers. Subject rows, settings, and the weekly timetable all adapt to small screens, and printing works the same way.</p></details>
+          <details><summary>How often should I update my study plan?</summary><p>Review your plan once a week: shift hours toward subjects with upcoming exams or new difficult topics, and scale back on material you have already covered. Because regenerating takes seconds, your schedule can evolve with every week of the term instead of fossilising in week one.</p></details>
+        </div>
+        <p><strong>Author:</strong> Scholarics Editorial Team<br><strong>Reviewed by:</strong> Academic Content Reviewer<br><strong>Last Updated:</strong> August 2026</p>
+        <p><em>Last Updated: August 2026</em></p>
+      </div>
+    </div>
+    <div class="result-rail">
+      <div class="res-hero" aria-live="polite">
+        <div class="label">Total Study Hours/Week</div>
+        <div class="res-big tnum" id="ssTotalHours">—</div>
+        <div class="res-sub" id="ssSubOut">Add subjects to begin</div>
+        <div class="gpa-meta">
+          <div><div class="n tnum" id="ssSubjects">0</div><div class="l">Subjects</div></div>
+          <div><div class="n tnum" id="ssDailyAvg">—</div><div class="l">Hrs/Day</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="related" aria-labelledby="relHead">
+  <div class="wrap">
+    <h2 id="relHead" style="font-size:var(--step-md);margin-bottom:var(--s3)">Related Tools</h2>
+    <div class="tools-grid">
+      <a href="study-time.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Study Time Calc</h3><p>How many hours to study</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="pomodoro.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg></div>
+        <h3>Pomodoro Timer</h3><p>Focus session timer</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="credit-hour-planner.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <h3>Credit Planner</h3><p>Plan your semester</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="attendance-calculator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Attendance</h3><p>Track class attendance</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="premium.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+        <h3>AI Chat</h3><p>Ask our AI study tutor</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="premium.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg></div>
+        <h3>AI Flashcards</h3><p>Active recall decks</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="ai-quiz-generator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.5 2.5 0 0 1 4.9.6c0 1.6-2.4 2-2.4 3.6"/><path d="M12 16.8h.01"/></svg></div>
+        <h3>AI Quiz Generator</h3><p>Practice tests from any topic</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="gpa.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>GPA Calculator</h3><p>Track your semester GPA</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+<div id="backToTop" role="button" aria-label="Back to top" tabindex="0">↑</div>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Scholarics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">GPA &amp; Grades</h2>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a><a href="gpa-simulator.html">GPA Simulator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+        <a href="percentage-to-gpa.html">% to GPA</a>
+        <a href="gpa-to-percentage.html">GPA to %</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Grade Tools</h2>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="assignment-weight.html">Assignment Weight</a>
+        <a href="class-average.html">Class Average</a>
+        <a href="percentage-calculator.html">Percentage</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Planning</h2>
+        <a href="attendance-calculator.html">Attendance</a>
+        <a href="study-time.html">Study Time</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="scientific-calculator.html">Scientific Calc</a>
+        <a href="basic-calculator.html">Basic Calc</a>
+        <a href="word-counter.html">Word Counter</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Guides &amp; Company</h2>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="academic-resources.html">Academic Resources</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="premium.html">⭐ Premium</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-and-conditions.html">Terms</a><a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Scholarics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+<script defer src="assets/js/core-shell-person.9c7e8bd6.js" data-sc-src="script sc-shell personalization"></script>
+<script defer src="assets/js/p-study-schedule.c7e85c9d.js" data-sc-src="study-schedule"></script>
+<script defer src="assets/js/g-aea987.4ce8abfd.js" data-sc-src="premium calculators content-platform ai-service ai-assistant analytics consent email-capture pwa"></script>
+<!-- Ad: Rectangle -->
+<div class="ad-slot rect" aria-label="Advertisement">
+  <div class="ad-label">Advertisement</div>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client=""
+    data-ad-slot=""
+    data-ad-format="rectangle"
+    data-full-width-responsive="false"></ins>
+</div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
+</body>
+</html>
