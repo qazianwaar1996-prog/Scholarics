@@ -18,16 +18,20 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Scholarics">
 <meta property="og:title" content="Scholarics Premium — AI Tools for Serious Students">
-<meta property="og:description" content="Unlock Scholarics Premium: AI Tutor, AI Paraphraser, Smart Flashcards, and no ads. Join the early-access waitlist.">
+<meta property="og:description" content="Unlock Scholarics Premium: AI Tutor, AI Paraphraser, Smart Flashcards, and no ads. Built for students who want to study smarter. Join the early-access waitlist.">
 <meta property="og:url" content="https://scholarics.com/premium.html">
 <meta property="og:image" content="https://scholarics.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@scholarics">
 <meta name="twitter:title" content="Scholarics Premium — AI Tools for Serious Students">
-<meta name="twitter:description" content="Unlock Scholarics Premium: AI Tutor, AI Paraphraser, Smart Flashcards, and no ads.">
+<meta name="twitter:description" content="Unlock Scholarics Premium: AI Tutor, AI Paraphraser, Smart Flashcards, and no ads. Built for students who want to study smarter. Join the early-access waitlist.">
 <meta name="twitter:image" content="https://scholarics.com/images/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://scholarics.com/"},{"@type":"ListItem","position":2,"name":"Premium","item":"https://scholarics.com/premium.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Scholarics Premium","url":"https://scholarics.com/premium.html","description":"AI-powered academic tools for students: AI Tutor, AI Paraphraser, Smart Flashcards, and ad-free experience.","brand":{"@type":"Organization","name":"Scholarics","url":"https://scholarics.com/"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"4.99","availability":"https://schema.org/PreOrder","description":"Early-access pricing — join the waitlist for 3 months free"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is included in Scholarics Premium?","acceptedAnswer":{"@type":"Answer","text":"Scholarics Premium includes three AI-powered tools: an AI Academic Tutor for instant subject help, an AI Paraphraser for rewriting essays and notes, and Smart Flashcards with AI-generated study cards. Premium members also get an ad-free experience across all 27+ calculators."}},{"@type":"Question","name":"When will Scholarics Premium launch?","acceptedAnswer":{"@type":"Answer","text":"We are building the Premium features now and plan to launch to waitlist members first. Early subscribers get 3 months free when we go live."}},{"@type":"Question","name":"Will the free calculators stay free?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. All 27+ calculators, study planner, country guides, and blog content remain 100% free forever. Premium adds AI tools on top — it does not lock away anything that is currently free."}},{"@type":"Question","name":"How much will Scholarics Premium cost?","acceptedAnswer":{"@type":"Answer","text":"We plan to price Scholarics Premium at around $4.99 per month — less than a coffee. Waitlist members get an exclusive early-bird discount and 3 free months on launch."}},{"@type":"Question","name":"Is the AI Tutor different from ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Scholarics AI Tutor is specifically trained on academic contexts and is directly connected to your GPA data, calculator history, and study goals. It gives contextual advice based on your actual academic situation, not generic answers."}}]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
@@ -1000,8 +1004,7 @@
   <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</a>
 </nav>
 
-<script defer src="assets/js/core-shell-person.9c7e8bd6.js" data-sc-src="script sc-shell personalization"></script>
-<script defer src="assets/js/g-5d0ea2.f3509f55.js" data-sc-src="analytics consent email-capture pwa"></script>
+<script defer src="assets/js/core-shell-person-ga-consent-email-pwa.d6163256.js" data-sc-src="script sc-shell personalization analytics consent email-capture pwa"></script>
 <script>
   // Theme toggle
   function sc2Theme() {
@@ -1040,13 +1043,6 @@
     s.style.display = 'flex';
     // GA4 event
     try { if (typeof gtag === 'function') gtag('event', 'premium_waitlist_signup', { event_category: 'engagement', event_label: 'premium_page', value: 1 }); } catch(e) {}
-    // Also open mailto as a backup to capture the email
-    try {
-      var subject = encodeURIComponent('Scholarics Premium Waitlist');
-      var body = encodeURIComponent('Email: ' + email + '\nSource: Premium Page Waitlist');
-      // Silent - don't force open mailto, just log
-      console.log('Waitlist signup:', email);
-    } catch(e) {}
   }
 
   // FAQ accordion
