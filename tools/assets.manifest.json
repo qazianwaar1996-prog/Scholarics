@@ -1,0 +1,2140 @@
+{
+  "generated": "2026-08-05",
+  "sharedJs": [
+    "js/ai-assistant.js",
+    "js/ai-service.js",
+    "js/analytics.js",
+    "js/calculators.js",
+    "js/consent.js",
+    "js/content-platform.js",
+    "js/country-selector.js",
+    "js/email-capture.js",
+    "js/grading-systems.js",
+    "js/personalization.js",
+    "js/premium.js",
+    "js/pwa.js",
+    "js/sc-shell.js",
+    "js/sc-v2-features.js",
+    "js/script.js"
+  ],
+  "pages": {
+    "404.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/pwa.js"
+      ],
+      "print": null,
+      "bundles": {
+        "css": [
+          "core-3",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person-prem-ga-consent-pwa"
+        ]
+      }
+    },
+    "about.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-3eb054"
+        ]
+      }
+    },
+    "academic-resources.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "admission-gpa-guide-uk.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "admission-gpa-guide-usa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "ai.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-bb0caf"
+        ]
+      }
+    },
+    "assignment-weight.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/assignment-weight.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-assignment-weight",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "attendance-calculator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/share-links.js",
+        "js/attendance-calculator.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-attendance-calculator",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "attendance-goal.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/attendance-goal.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-attendance-goal",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "attendance-percentage.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/attendance-percentage.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-attendance-percentage",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "basic-calculator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/basic-calculator.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-basic-calculator",
+          "prem-calc-content-ga-consent-email-pwa"
+        ]
+      }
+    },
+    "blog.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-3eb054"
+        ]
+      }
+    },
+    "cgpa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/share-links.js",
+        "js/cgpa.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-cgpa",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "class-average.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/class-average.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-class-average",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "contact.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-3b5cb4"
+        ]
+      }
+    },
+    "credit-hour-planner.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/credit-hour-planner.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-credit-hour-planner",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "dashboard.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/dashboard.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/dashboard.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-shell.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core-3",
+          "dash-content",
+          "shell"
+        ],
+        "js": [
+          "core",
+          "p-dashboard",
+          "g-9e103f"
+        ]
+      }
+    },
+    "disclaimer.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-3b5cb4"
+        ]
+      }
+    },
+    "final-exam-calculator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/share-links.js",
+        "js/final-exam.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-final-exam-calculator",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "final-grade.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/final-grade.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-final-grade",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "flashcards.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core-3",
+          "shell"
+        ],
+        "js": [
+          "g-5d2528"
+        ]
+      }
+    },
+    "gpa-converter.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/gpa-converter.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/gpa-converter.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-gpaconv-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-gpa-converter",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "gpa-help-center.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "gpa-improvement-planner.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/gpa-improvement-planner.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-gpa-improvement-planner",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "gpa-simulator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/share-links.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-shell.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js",
+        "js/gpa-simulator-core.js",
+        "js/gpa-simulator.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-ai",
+          "shell"
+        ],
+        "js": [
+          "core",
+          "p-gpa-simulator",
+          "g-9e103f",
+          "p-gpa-simulator-2"
+        ]
+      }
+    },
+    "gpa-to-percentage.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/gpa-to-percentage.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-gpa-to-percentage",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "gpa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/share-links.js",
+        "js/gpa.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-gpa",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "grade-calculator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/grade-calculator.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-grade-calculator",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "grade-predictor.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/grade-predictor.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-grade-predictor",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "grading-guide.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/grading-guide.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person-grading-country",
+          "p-grading-guide",
+          "prem-calc-content-ga-consent-email-pwa"
+        ]
+      }
+    },
+    "grading-system-australia.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "grading-system-canada.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "grading-system-india.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "grading-system-pakistan.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "grading-system-uk.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "grading-system-usa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "guide-attendance-rules-explained.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "guide-final-exam-prep-checklist.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "guide-gpa-scale-explained.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "guide-how-to-raise-your-gpa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "index.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-shell.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-ca0b60"
+        ]
+      }
+    },
+    "notes.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core-3",
+          "shell"
+        ],
+        "js": [
+          "g-5d2528"
+        ]
+      }
+    },
+    "paraphraser.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/ai-service.js",
+        "js/paraphraser.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person-prem-aisvc",
+          "p-paraphraser",
+          "v2feat-ga-consent-email-pwa"
+        ]
+      }
+    },
+    "percentage-calculator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/percentage-calculator.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-percentage-calculator",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "percentage-to-gpa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/percentage-to-gpa.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-percentage-to-gpa",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "pomodoro.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/pomodoro.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-pomodoro",
+          "prem-calc-content-ga-consent-email-pwa"
+        ]
+      }
+    },
+    "privacy-policy.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-3b5cb4"
+        ]
+      }
+    },
+    "profile.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/scholarics-v2.css",
+        "css/consent.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/sc-shell.js",
+        "js/sc-v2-features.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core-3",
+          "shell"
+        ],
+        "js": [
+          "g-ca0b60"
+        ]
+      }
+    },
+    "required-marks.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/required-marks.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-required-marks",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "scientific-calculator.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/scientific-calculator.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-scientific-calculator",
+          "prem-calc-content-ga-consent-email-pwa"
+        ]
+      }
+    },
+    "semester-gpa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/semester-gpa.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-semester-gpa",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "study-guides.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-a24dd9"
+        ]
+      }
+    },
+    "study-schedule.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/study-schedule.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-study-schedule",
+          "g-aea987"
+        ]
+      }
+    },
+    "study-time.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/study-time.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-study-time",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "target-gpa.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/calculators.css",
+        "css/country-selector.css",
+        "css/ai-assistant.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/target-gpa.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/calculators.js",
+        "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-assistant.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "calc-country-ai",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-target-gpa",
+          "g-5d0ea2"
+        ]
+      }
+    },
+    "terms-and-conditions.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "g-3b5cb4"
+        ]
+      }
+    },
+    "word-counter.html": {
+      "css": [
+        "css/style.css",
+        "css/premium.css",
+        "css/personalization.css",
+        "css/content-platform.css",
+        "css/consent.css",
+        "css/scholarics-v2.css",
+        "css/sc-prelaunch-fixes.css"
+      ],
+      "js": [
+        "js/script.js",
+        "js/sc-shell.js",
+        "js/personalization.js",
+        "js/word-counter.js",
+        "js/grading-systems.js",
+        "js/country-selector.js",
+        "js/premium.js",
+        "js/content-platform.js",
+        "js/analytics.js",
+        "js/consent.js",
+        "js/email-capture.js",
+        "js/pwa.js"
+      ],
+      "print": "css/print.css",
+      "bundles": {
+        "css": [
+          "core",
+          "shell"
+        ],
+        "js": [
+          "core-shell-person",
+          "p-word-counter",
+          "g-9403d6"
+        ]
+      }
+    }
+  }
+}

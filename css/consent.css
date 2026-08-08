@@ -1,0 +1,159 @@
+/* ============================================================
+   consent.css — Cookie Consent Banner  (Phase 9.1)
+   Uses existing design tokens from style.css.
+   ============================================================ */
+
+/* ── Banner ──────────────────────────────────────────────────── */
+#consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 24px oklch(0 0 0 / .08);
+  padding: var(--s4) var(--s5);
+  transform: translateY(100%);
+  transition: transform .32s cubic-bezier(.22,1,.36,1);
+}
+#consent-banner.visible {
+  transform: translateY(0);
+}
+
+.consent-inner {
+  max-width: var(--wrap, 1200px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  flex-wrap: wrap;
+}
+
+.consent-text {
+  flex: 1;
+  min-width: 240px;
+  font-size: var(--step-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.consent-text strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.consent-text a {
+  color: var(--accent-strong);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent-actions {
+  display: flex;
+  gap: var(--s3);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.consent-btn-accept {
+  padding: 9px 20px;
+  border-radius: var(--r-md);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--step-sm);
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background .15s, transform .12s;
+}
+.consent-btn-accept:hover {
+  background: var(--accent-strong);
+  color: var(--accent-fg);
+}
+.consent-btn-accept:active { transform: scale(.96); }
+
+.consent-btn-decline {
+  padding: 9px 16px;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--ink-3);
+  font-size: var(--step-sm);
+  font-weight: 500;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.consent-btn-decline:hover {
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+
+/* ── Ad slot — real ads ──────────────────────────────────────── */
+/* Override the dashed placeholder once AdSense loads */
+.ad-slot ins.adsbygoogle {
+  display: block;
+  width: 100%;
+}
+
+/* Leaderboard (728×90 desktop, responsive) */
+.ad-slot.leaderboard .ad-inner {
+  min-height: 90px;
+}
+
+/* Rectangle / Medium (300×250) */
+.ad-slot.rect .ad-inner {
+  min-height: 250px;
+}
+
+/* In-article / native */
+.ad-slot.in-article .ad-inner {
+  min-height: 120px;
+}
+
+/* Label above every ad unit */
+.ad-label {
+  font-size: .65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--ink-3);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* Hide ad slot when no ad fills it (avoids blank white blocks) */
+.ad-slot:empty,
+.ad-slot ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .consent-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s3);
+  }
+  .consent-actions {
+    justify-content: flex-end;
+  }
+  /* Collapse leaderboard to rectangle on mobile */
+  .ad-slot.leaderboard .ad-inner {
+    min-height: 250px;
+  }
+}
+
+/* ── Mobile bottom-nav clearance ─────────────────────────────── */
+/* On sc2-shell pages the fixed mobile bottom-nav (≤640 px) sits at bottom:0.
+   Push the consent banner above it so it doesn't cover the nav. */
+@media (max-width: 640px) {
+  body.sc2-shell #consent-banner {
+    bottom: 64px; /* approx height of .sc2-bottomnav (icons + safe-area) */
+    border-radius: var(--r-md, 14px) var(--r-md, 14px) 0 0;
+    border-top: 1px solid var(--border);
+  }
+}

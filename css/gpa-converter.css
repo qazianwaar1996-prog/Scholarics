@@ -1,0 +1,294 @@
+.mode-seg {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 4px;
+  gap: 2px;
+}
+
+.mode-seg button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: var(--step-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: all 0.2s var(--ease);
+}
+
+.mode-seg button svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+}
+
+.mode-seg button.on {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  font-weight: 600;
+}
+
+.mode-seg button.on svg {
+  opacity: 1;
+  color: var(--accent-strong);
+}
+
+.conv-toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--s4);
+  flex-wrap: wrap;
+  margin-bottom: var(--s5);
+}
+
+.conv-toolbar .field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.ref-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 12px oklch(0 0 0 / 0.03);
+}
+
+.ref-head {
+  padding: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ref-head h3 {
+  font-size: var(--step-sm);
+  font-weight: 700;
+  margin: 0;
+}
+
+.ref-head .badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--accent-strong);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.ref-scroll {
+  max-height: 380px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step-sm);
+}
+
+.ref-table th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-align: left;
+  font-size: var(--step-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-3);
+  padding: 12px var(--s5);
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-2);
+}
+
+.ref-table td {
+  padding: 12px var(--s5);
+  border-bottom: 1px solid var(--border-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.ref-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ref-table tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.conv-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: var(--s4);
+}
+
+.bd-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--s3);
+  border-radius: var(--r-sm);
+  font-size: var(--step-sm);
+  background: var(--surface-2);
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.bd-row:hover {
+  border-color: var(--border);
+}
+
+.bd-row .bd-name {
+  color: var(--ink-2);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bd-row .bd-qp {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.rev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, min-max(180px, 1fr));
+  gap: var(--s4);
+}
+
+.rev-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s5);
+  transition: transform 0.2s var(--ease), border-color 0.2s;
+}
+
+.rev-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-3);
+}
+
+.rev-card .sys {
+  font-size: var(--step-xs);
+  font-weight: 700;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rev-card .val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-lg);
+  color: var(--accent-strong);
+  margin: 6px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.rev-card .desc {
+  font-size: var(--step-xs);
+  color: var(--ink-2);
+}
+
+.rev-input-big {
+  text-align: center;
+  padding: var(--s8) var(--s5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.rev-input-big label {
+  display: block;
+  font-size: var(--step-md);
+  font-weight: 600;
+  margin-bottom: var(--s4);
+  color: var(--ink-2);
+}
+
+.rev-input-big input {
+  max-width: 100%;
+  width: 220px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.5rem;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid var(--border-soft);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.3s var(--ease);
+}
+
+.rev-input-big input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.rev-input-big .scalemax {
+  font-size: var(--step-sm);
+  color: var(--ink-3);
+  margin-top: var(--s3);
+  font-weight: 500;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#report {
+  display: none;
+}
+
+@media print {
+  body > *:not(#report) {
+    display: none !important;
+  }
+  #report {
+    display: block !important;
+    padding: 0;
+    background: #fff;
+  }
+  @page {
+    margin: 15mm;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media (max-width: 480px) {
+  .rev-input-big input {
+    font-size: 2.5rem;
+    width: 160px;
+  }
+}
+
+/* ── GPA Converter Premium Overrides ── */
+body.premium .conv-ref { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 16px; }
+body.premium #refBody tr:hover td { background: rgba(124,58,237,.08); }
+body.premium #refBody td, body.premium .ref-table th { border-color: rgba(255,255,255,.05); color: var(--p-ink-2); }
+body.premium .breakdown { background: transparent; }
+body.premium .bd-row { border-bottom: 1px solid rgba(255,255,255,.04); }
+body.premium .bd-name { color: var(--p-ink-2); }
+body.premium .bd-qp { color: #a78bfa; font-weight: 600; }
+body.premium #gpaOut { 
+  background: linear-gradient(135deg,#fff,#a78bfa);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}

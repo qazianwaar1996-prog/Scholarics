@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<title>Free Online Study Notes &amp; Academic Notebook | Scholarics</title>
+<meta name="description" content="Create, search, and organise personal study notes in your browser with a private academic notebook that works without an account or signup.">
+<link rel="canonical" href="https://scholarics.com/notes.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<meta property="og:site_name" content="Scholarics">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Online Study Notes &amp; Academic Notebook | Scholarics">
+<meta property="og:description" content="Create, search, and organise personal study notes in your browser with a private academic notebook that works without an account or signup.">
+<meta property="og:url" content="https://scholarics.com/notes.html">
+<meta property="og:image" content="https://scholarics.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:site" content="@scholarics">
+<meta name="twitter:creator" content="@scholarics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Study Notes &amp; Academic Notebook | Scholarics">
+<meta name="twitter:description" content="Create, search, and organise personal study notes in your browser with a private academic notebook that works without an account or signup.">
+<meta name="twitter:image" content="https://scholarics.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="robots" content="index, follow">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core-3.06a13263.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/shell.cc3a5b31.css">
+<style>
+/* ── Notes App Layout ── */
+.notes-app{display:grid;grid-template-columns:300px 1fr;gap:0;height:calc(100vh - 66px);overflow:hidden}
+@media(max-width:900px){.notes-app{grid-template-columns:1fr;height:auto}}
+/* Sidebar */
+.notes-sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--panel,#fff)}
+.notes-sidebar-head{padding:16px 16px 12px;border-bottom:1px solid var(--border);flex:none}
+.notes-sidebar-head h2{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.notes-search-wrap{position:relative}
+.notes-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--ink-3)}
+.notes-search{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--border);border-radius:10px;font-size:13px;background:var(--card-2,#faf9f5);color:var(--ink);box-sizing:border-box}
+.notes-search:focus{outline:none;border-color:var(--gold-line,var(--gold));box-shadow:0 0 0 3px var(--gold-soft)}
+.notes-list{flex:1;overflow-y:auto;padding:8px}
+.notes-list::-webkit-scrollbar{width:4px}
+.notes-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.notes-item{padding:11px 13px;border-radius:11px;cursor:pointer;transition:background .12s;border:1px solid transparent;margin-bottom:4px}
+.notes-item:hover{background:var(--card-2,#faf9f5)}
+.notes-item.active{background:var(--gold-soft);border-color:var(--gold-line,var(--gold))}
+.notes-item-title{font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notes-item-preview{font-size:12px;color:var(--ink-3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notes-item-meta{display:flex;align-items:center;gap:8px;margin-top:5px}
+.notes-item-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--info-dim,rgba(47,111,224,.12));color:var(--info,#2f6fe0)}
+.notes-item-date{font-size:10.5px;color:var(--ink-3)}
+/* Editor */
+.notes-editor{display:flex;flex-direction:column;overflow:hidden;background:var(--app-bg,#f6f5f2)}
+.notes-editor-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--panel,#fff);flex:none}
+.notes-title-input{flex:1;border:none;background:transparent;font-size:18px;font-weight:700;color:var(--ink);font-family:inherit;outline:none}
+.notes-title-input::placeholder{color:var(--ink-3)}
+.notes-tag-select{padding:5px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;background:var(--card-2,#faf9f5);color:var(--ink);cursor:pointer;outline:none}
+.notes-tag-select:focus{border-color:var(--gold)}
+.notes-toolbar{padding:8px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:4px;background:var(--panel,#fff);flex:none;flex-wrap:wrap}
+.notes-tb-btn{padding:5px 9px;border-radius:7px;border:none;background:transparent;cursor:pointer;font-size:13px;color:var(--ink-2);font-family:inherit;font-weight:600;transition:background .12s;line-height:1.2}
+.notes-tb-btn:hover{background:var(--card-2,#faf9f5);color:var(--ink)}
+.notes-tb-sep{width:1px;height:16px;background:var(--border);margin:0 4px}
+.notes-body{flex:1;overflow-y:auto;padding:20px}
+.notes-textarea{width:100%;min-height:100%;border:none;background:transparent;font-size:14.5px;color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.7;resize:none;outline:none;box-sizing:border-box}
+.notes-textarea::placeholder{color:var(--ink-3)}
+.notes-footer{padding:10px 20px;border-top:1px solid var(--border);font-size:11.5px;color:var(--ink-3);display:flex;align-items:center;gap:16px;background:var(--panel,#fff);flex:none}
+/* Empty state */
+.notes-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--ink-3);padding:40px}
+.notes-empty svg{width:56px;height:56px;margin-bottom:16px;opacity:.4}
+.notes-empty h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.notes-empty p{font-size:13.5px;line-height:1.6;max-width:300px}
+/* Mobile: hide editor pane initially */
+@media(max-width:900px){
+  .notes-sidebar{height:auto;min-height:0}
+  .notes-editor{min-height:500px}
+  .notes-app{gap:0}
+}
+/* v2 shell override for notes page */
+body.sc2-shell .notes-app{height:calc(100vh - 126px)}
+body.sc2-shell main#main-content{padding:0}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Study Notes", "url": "https://scholarics.com/notes.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI Notes Summarizer?","acceptedAnswer":{"@type":"Answer","text":"An AI Notes Summarizer is a study tool that uses artificial intelligence to condense long notes, chapters, or articles into a short brief of the key ideas. On Scholarics, that capability is rolling out as a preview inside a full notes workspace, where you can already write, paste, format, tag, search, copy, and print notes \u2014 everything the summary workflow is built on \u2014 with your work saved privately in your own browser, free and without an account."}},{"@type":"Question","name":"Can it summarize long notes?","acceptedAnswer":{"@type":"Answer","text":"The workspace comfortably holds long material \u2014 full lecture notes or multi-page readings stay editable and searchable. For AI-generated summaries of very long text, work section by section: paste one passage at a time into the Scholarics AI Chat and ask for a summary, then collect the pieces in a note here. Condensing in parts also makes it much easier to check every piece against the source for completeness."}},{"@type":"Question","name":"Will important information be removed?","acceptedAnswer":{"@type":"Answer","text":"Summarization is selection: a summary keeps the most important ideas and may leave out supporting detail, and something your teacher considers essential can occasionally be dropped. Your original text is never changed \u2014 the full note stays intact for comparison \u2014 so you can always restore anything a summary missed. Treat every summary as a draft to verify against the source, not as a verdict."}},{"@type":"Question","name":"Is the summary always accurate?","acceptedAnswer":{"@type":"Answer","text":"No summarizer \u2014 human or AI \u2014 is perfectly accurate, and AI is no exception. Summaries are usually faithful to the source, but they can occasionally over-compress, miss a nuance, or misphrase a detail. Skim any summary for the big picture, then spot-check the original before you rely on a specific line, and edit anything that does not match your course materials."}},{"@type":"Question","name":"Can I summarize study material?","acceptedAnswer":{"@type":"Answer","text":"Absolutely \u2014 that is exactly what this page is for. Lecture notes, textbook chapters, revision guides, lab instructions, slide handouts, and article excerpts all work well, and very long or highly technical texts are best condensed one section at a time so key definitions and formulas survive. Scholarics is designed for educational purposes, so its tools are built for schoolwork, courses, and exam preparation."}},{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Scholarics notes workspace is completely free, with no signup and no account. Open the page, click New, and start writing or pasting \u2014 your notes are saved automatically in this browser and are still there when you come back. There is no word cap on what you write and no part of the editor sits behind a paywall."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page is fully responsive: on phones and tablets the note list stacks above the editor, panels scroll internally, and the toolbar, search, copy, and print controls all work with touch. The bottom navigation keeps Home, Calculators, AI, Dashboard, and Profile one tap away, so reviewing a condensed summary on the way to class is as easy as on a laptop."}},{"@type":"Question","name":"Is my text stored?","acceptedAnswer":{"@type":"Answer","text":"Only on your own device. Notes you write or paste here are saved in your browser's local storage \u2014 they are not uploaded to Scholarics servers while you type, and clearing your browser data removes them. Formatting, search, copy, and print all happen locally too. If you separately paste text into a Scholarics AI tool such as the AI Chat, that text is sent to the AI provider so it can be processed."}}]}</script>
+</head>
+<body class="sc2">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="sc2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
+<div class="sc2-app">
+<aside class="sc2-side">
+    <a href="index.html" class="sc2-brand">
+      <span class="sc2-logo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9l8-4 8 4-8 4z" fill="#f8fafc"/><path d="M12 13v4" stroke="#f8fafc" stroke-width="1.1" stroke-linecap="round"/><path d="M18 9v3" stroke="#e6bd63" stroke-width="1.1" stroke-linecap="round"/><circle cx="18" cy="13" r="1.2" fill="#e6bd63"/><rect x="5" y="18" width="2" height="3.5" rx="0.6" fill="#e6bd63"/><rect x="9" y="16" width="2" height="5.5" rx="0.6" fill="#e6bd63" opacity="0.85"/><rect x="13" y="17" width="2" height="4.5" rx="0.6" fill="#e6bd63" opacity="0.7"/><path d="M6 17.5l4-2 4 1" stroke="#f8fafc" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </span>Scholarics
+    </a>
+    <nav class="sc2-nav" aria-label="Primary">
+      <a href="index.html" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg> Home</a>
+      <a href="academic-resources.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> All Calculators</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg> Dashboard</a>
+      <a href="premium.html"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;color:var(--gold-strong,#e6bd63)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg> <span style="color:var(--gold-strong,#e6bd63)">Premium</span> <span class="sc2-badge">EARLY</span></a>
+      <a href="ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg> AI Tutor <span class="sc2-badge">NEW</span></a>
+      <a href="paraphraser.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> AI Paraphraser <span class="sc2-badge">NEW</span></a>
+      <a href="study-schedule.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg> Study Planner</a>
+      <a href="notes.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg> Notes</a>
+      <a href="flashcards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg> Flashcards</a>
+      <a href="grading-guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Countries &amp; Grades</a>
+      <a href="study-guides.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2 2 0 0 1 6 3.5h13v14H6a2 2 0 0 0-2 2V5.5Z"/><path d="M4 19.5a2 2 0 0 1 2-2h13v3H6a2 2 0 0 1-2-1Z"/></svg> Resources</a>
+      <a href="gpa-improvement-planner.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg> Goals</a>
+      <div class="sc2-nav-sep"></div>
+      <a href="dashboard.html#favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14.6 9l6 .8-4.4 4.2 1.1 6L12 17.2 6.7 20l1.1-6L3.4 9.8 9.4 9 12 3.5Z"/></svg> Favorites</a>
+      <a href="dashboard.html#recent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Recent</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg> Profile</a>
+    </nav>
+    <div class="sc2-side-ai">
+      <div style="font-family:'Bricolage Grotesque','Inter',system-ui,sans-serif;font-size:13px;font-weight:700;line-height:1.1;letter-spacing:-.02em;text-wrap:balance;margin:0;display:flex;align-items:center;gap:6px;color:var(--ink)">Scholarics Premium <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;display:inline;color:var(--gold-strong)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg></div>
+      <p>AI Tutor, Paraphraser &amp; Flashcards — 3 months free for early subscribers.</p>
+      <a href="premium.html" class="sc2-btn sc2-btn-primary">Join Waitlist</a>
+    </div>
+    <div class="sc2-side-foot">
+      <img loading="lazy" src="images/avatar.svg" alt="Scholarics user profile avatar" width="30" height="30" decoding="async">
+      <span class="nm">Profile</span>
+      <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+      <a href="profile.html" class="sc2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
+    </div>
+  </aside>
+  <div class="sc2-main">
+    <header class="sc2-top">
+      <button class="sc2-icon-btn sc2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="sc2-search">
+        <svg class="s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" id="sc2Search" placeholder="Search calculators or tools…" aria-label="Search">
+        <span class="sc2-kbd">⌘K</span>
+      </div>
+      <nav class="sc2-top-nav" aria-label="Secondary">
+        <a href="index.html#tools">Calculators</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="ai.html">AI Tutor</a>
+        <a href="academic-resources.html">Resources</a>
+      </nav>
+      <div class="sc2-top-tools">
+        <button class="sc2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sc2-dot"></span></button>
+        <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+        <img loading="lazy" class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar" width="34" height="34" decoding="async">
+      </div>
+    </header>
+<main id="main-content" class="sc2-content">
+<h1 class="sr-only">Free Online Study Notes &amp; Academic Notebook</h1>
+<div class="notes-app" id="notesApp">
+  <!-- Sidebar: note list -->
+  <aside class="notes-sidebar">
+    <div class="notes-sidebar-head">
+      <div role="heading" aria-level="2" style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between">
+        My Notes
+        <button id="btnNewNote" class="sc2-btn sc2-btn-primary" style="font-size:12px;padding:6px 12px;border-radius:9px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          New
+        </button>
+      </div>
+      <div class="notes-search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" class="notes-search" id="notesSearch" placeholder="Search notes…" aria-label="Search notes">
+      </div>
+    </div>
+    <div class="notes-list" id="notesList" role="list" aria-label="Notes"></div>
+  </aside>
+  <!-- Editor -->
+  <div class="notes-editor" id="notesEditor">
+    <div class="notes-empty" id="notesEmptyState">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg>
+      <h2 style="font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px">No note selected</h2>
+      <p>Select a note from the list or click <strong>New</strong> to create one. Notes are saved automatically to your browser.</p>
+      <button class="sc2-btn sc2-btn-primary" onclick="document.getElementById('btnNewNote').click()" style="margin-top:16px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Create First Note
+      </button>
+    </div>
+    <div id="notesEditorInner" style="display:none;flex-direction:column;height:100%">
+      <div class="notes-editor-head">
+        <input type="text" class="notes-title-input" id="noteTitle" placeholder="Note title…" maxlength="120" aria-label="Note title">
+        <select class="notes-tag-select" id="noteTag" aria-label="Category">
+          <option value=">No tag</option>
+          <option value="Math">Math</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+          <option value="History">History</option>
+          <option value="CS">CS</option>
+          <option value="Physics">Physics</option>
+          <option value="Chemistry">Chemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="Economics">Economics</option>
+          <option value="Other">Other</option>
+        </select>
+        <button id="btnDeleteNote" class="sc2-icon-btn" title="Delete note" aria-label="Delete note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+      <div class="notes-toolbar" role="toolbar" aria-label="Text formatting">
+        <button class="notes-tb-btn" onclick="NotesFmt.exec('bold')" title="Bold"><b>B</b></button>
+        <button class="notes-tb-btn" onclick="NotesFmt.exec('italic')" title="Italic"><i>I</i></button>
+        <button class="notes-tb-btn" onclick="NotesFmt.exec('underline')" title="Underline" style="text-decoration:underline">U</button>
+        <div class="notes-tb-sep"></div>
+        <button class="notes-tb-btn" onclick="NotesFmt.heading()" title="Heading">H1</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.list('ul')" title="Bullet list">• List</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.list('ol')" title="Numbered list">1. List</button>
+        <div class="notes-tb-sep"></div>
+        <button class="notes-tb-btn" onclick="NotesFmt.highlight()" title="Highlight">🖊 Highlight</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.code()" title="Code block">&lt;/&gt;</button>
+        <div class="notes-tb-sep"></div>
+        <button class="notes-tb-btn" onclick="NotesFmt.undo()" title="Undo">↩</button>
+        <button class="notes-tb-btn" onclick="NotesFmt.redo()" title="Redo">↪</button>
+        <div style="flex:1"></div>
+        <button class="notes-tb-btn" onclick="SC2Notes.copyNote()" title="Copy note text">📋 Copy</button>
+        <button class="notes-tb-btn" onclick="SC2Notes.printNote()" title="Print">🖨 Print</button>
+      </div>
+      <div class="notes-body">
+        <div id="noteBody" class="notes-textarea" contenteditable="true"
+             role="textbox" aria-multiline="true" aria-label="Note content"
+             style="min-height:300px;outline:none"
+             data-placeholder="Start writing your note…"></div>
+      </div>
+      <div class="notes-footer">
+        <span id="notesWordCount">0 words</span>
+        <span id="notesCharCount">0 characters</span>
+        <span id="notesSavedAt" style="margin-left:auto">Not saved</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wrap" style="padding-bottom:120px">
+  <div class="prose tight" style="max-width:100%;margin-top:var(--s6)">
+    <p>Keeping up with lectures, textbooks, and research papers means facing far more text than any student can re-read before an exam. An AI Notes Summarizer is a study tool that uses artificial intelligence to condense long material into a short, structured brief — the same job a careful student does with a highlighter, finished in seconds. A good AI Summary Generator does not simply delete words: it detects the ideas a text revolves around — claims, definitions, cause-and-effect chains, worked examples — and preserves them while repetition and padding fall away, so a forty-page chapter becomes a one-page digest that still earns marks.</p>
+    <p>Summary-first studying changes revision for the better. A Study Notes Summarizer turns a semester of accumulated notes into review sheets you can finish the night before an exam, while a Text Summarizer shrinks a dense reading into paragraphs you can scan between classes. Shorter distance to the core ideas means faster revision, a clearer view of how topics connect, reduced reading time, and calmer exam preparation — and it frees hours for the active techniques that move grades, like practice quizzes and flashcards. Summaries are a map, not the territory: the original material keeps the detail, so the strongest workflow pairs a concise digest with the full text for quick checks whenever a line feels too compressed.</p>
+    <p>Scholarics — designed for educational purposes — brings that workflow into a free academic notebook. This page is a complete notes workspace: click New, write or paste your material, shape it with headings, bullet lists, and highlights, tag it by subject, search everything instantly, and copy or print the result, all without an account. AI summarization is rolling out as a preview on this AI Study Summarizer workspace, and while the dedicated Notes Summary Tool controls arrive, the editor above already makes condensing fast — and the Scholarics AI Chat will summarize a passage you paste into it. Everything you write is stored privately in your own browser's local storage: no signup, nothing uploaded while you type, and completely free from start to finish.</p>
+    <h2>How to Use This AI Notes Summarizer</h2>
+    <p>The notebook above is live and ready — AI summary generation is rolling out on top of it as a preview. The complete workflow:</p>
+    <ol>
+      <li><strong>Create a note:</strong> click <strong>New</strong> in the sidebar, give it a title, and pick a subject tag (Math, Science, English, and more) so related material stays grouped.</li>
+      <li><strong>Paste your notes or text:</strong> drop lecture notes, a textbook section, or an article excerpt straight into the editor — pasted content lands where you click and is autosaved moments after you stop typing.</li>
+      <li><strong>Generate a summary:</strong> condense the material with the toolbar — pull the key lines under a Heading, break them into a bullet list, and Highlight the essentials — or paste a passage into the <a href="ai.html">AI Chat</a> and simply ask for a summary while one-click AI summarization rolls out on this page.</li>
+      <li><strong>Read the summarized version:</strong> re-read your condensed digest end to end; the live word and character counters in the footer show exactly how much shorter it is than the source.</li>
+      <li><strong>Compare with the original:</strong> keep the full text above a heading and your summary below it in the same note — or as two tagged notes — and use sidebar search to jump between related material while you verify coverage.</li>
+      <li><strong>Edit if necessary:</strong> refine the wording with bold, italics, and lists, restore any detail the summary dropped, then Copy the text or Print a clean copy for class.</li>
+    </ol>
+    <h2>How AI Summarization Works</h2>
+    <p>AI summarizers read the way a student skims: at scale, and without getting tired. Language models score sentences by importance — a sentence that states a definition, introduces a claim, or repeats a theme that runs through the text ranks high, while filler, restatements, and decorative examples rank low. Extractive approaches lift the top-ranked sentences out whole; abstractive approaches rewrite the same ideas into tighter new sentences. Either way, the output keeps what the text is about and lets go of what it can afford to lose.</p>
+    <p>Keep two limits in mind. First, “less important” is a judgment call, and detail that feels expendable to a model may be exactly what your teacher plans to test — so summaries should always be reviewed against the original for completeness. Second, no summarizer is perfectly accurate: an AI can occasionally over-compress or misphrase a nuance. The safest habit is simple — skim the summary for the big picture, then spot-check the source before you rely on any single line.</p>
+    <h2>Benefits of Summarizing Your Notes</h2>
+    <p>A concise summary is not just shorter — it changes how you study:</p>
+    <ul>
+      <li><strong>Faster revision:</strong> a one-page digest of each chapter turns the night-before review from a re-reading marathon into a focused pass over what actually matters.</li>
+      <li><strong>Better understanding:</strong> condensing forces structure — arguments, definitions, and relationships become visible at a glance instead of hiding inside paragraphs.</li>
+      <li><strong>Reduced reading time:</strong> skim the summary first and spend full-text attention only on the sections that genuinely need it.</li>
+      <li><strong>Easier exam preparation:</strong> short summaries slot straight into decks on the <a href="flashcards.html">AI Flashcards</a> page and practice sets from the <a href="ai-quiz-generator.html">AI Quiz Generator</a>, turning passive review into self-testing.</li>
+      <li><strong>Improved study efficiency:</strong> summaries show you what you do not know yet, so the hours you plan stop going to material you already own.</li>
+    </ul>
+    <h2>Who Should Use This Tool?</h2>
+    <ul>
+      <li><strong>School students</strong> turning long chapters into revision sheets — and revising them in focused sprints with the <a href="pomodoro.html">Pomodoro Timer</a>.</li>
+      <li><strong>College students</strong> keeping weekly lectures condensed and searchable — paste a passage into the <a href="ai.html">AI Chat</a> whenever you want an instant second pair of eyes on a summary.</li>
+      <li><strong>University students</strong> compressing dense readings and seminar notes — polish the wording of your own paraphrased lines with the <a href="paraphraser.html">AI Paraphraser</a>.</li>
+      <li><strong>Teachers</strong> distilling units into class handouts and review sheets — then spark retrieval practice with a set from the <a href="ai-quiz-generator.html">AI Quiz Generator</a>.</li>
+      <li><strong>Researchers</strong> triaging papers and meeting notes — convert a finished digest into lasting memory with the <a href="flashcards.html">AI Flashcards</a>.</li>
+    </ul>
+    <h2>How to Use Summaries Effectively</h2>
+    <ul>
+      <li><strong>Read the original material first when possible:</strong> a summary makes far more sense — and sticks far better — when you already know the shape of the full text.</li>
+      <li><strong>Use summaries for revision, not as a replacement:</strong> exams test detail, so let the digest guide you back into the original chapters rather than stand in for them.</li>
+      <li><strong>Highlight key concepts:</strong> mark definitions, formulas, and dates with the Highlight button in the toolbar above so the essentials catch your eye on every re-read.</li>
+      <li><strong>Combine summaries with flashcards and quizzes:</strong> turn each summary into a deck on the <a href="flashcards.html">AI Flashcards</a> page and a practice set on the <a href="ai-quiz-generator.html">AI Quiz Generator</a> — self-testing is what locks content in.</li>
+      <li><strong>Review regularly before exams:</strong> short spaced passes beat one long cram — block the review sessions into your week with the <a href="study-schedule.html">Study Planner</a>.</li>
+    </ul>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+        <details open><summary>What is an AI Notes Summarizer?</summary><p>An AI Notes Summarizer is a study tool that uses artificial intelligence to condense long notes, chapters, or articles into a short brief of the key ideas. On Scholarics, that capability is rolling out as a preview inside a full notes workspace, where you can already write, paste, format, tag, search, copy, and print notes — everything the summary workflow is built on — with your work saved privately in your own browser, free and without an account.</p></details>
+        <details><summary>Can it summarize long notes?</summary><p>The workspace comfortably holds long material — full lecture notes or multi-page readings stay editable and searchable. For AI-generated summaries of very long text, work section by section: paste one passage at a time into the Scholarics AI Chat and ask for a summary, then collect the pieces in a note here. Condensing in parts also makes it much easier to check every piece against the source for completeness.</p></details>
+        <details><summary>Will important information be removed?</summary><p>Summarization is selection: a summary keeps the most important ideas and may leave out supporting detail, and something your teacher considers essential can occasionally be dropped. Your original text is never changed — the full note stays intact for comparison — so you can always restore anything a summary missed. Treat every summary as a draft to verify against the source, not as a verdict.</p></details>
+        <details><summary>Is the summary always accurate?</summary><p>No summarizer — human or AI — is perfectly accurate, and AI is no exception. Summaries are usually faithful to the source, but they can occasionally over-compress, miss a nuance, or misphrase a detail. Skim any summary for the big picture, then spot-check the original before you rely on a specific line, and edit anything that does not match your course materials.</p></details>
+        <details><summary>Can I summarize study material?</summary><p>Absolutely — that is exactly what this page is for. Lecture notes, textbook chapters, revision guides, lab instructions, slide handouts, and article excerpts all work well, and very long or highly technical texts are best condensed one section at a time so key definitions and formulas survive. Scholarics is designed for educational purposes, so its tools are built for schoolwork, courses, and exam preparation.</p></details>
+        <details><summary>Is it free?</summary><p>Yes. The Scholarics notes workspace is completely free, with no signup and no account. Open the page, click New, and start writing or pasting — your notes are saved automatically in this browser and are still there when you come back. There is no word cap on what you write and no part of the editor sits behind a paywall.</p></details>
+        <details><summary>Does it work on mobile?</summary><p>Yes. The page is fully responsive: on phones and tablets the note list stacks above the editor, panels scroll internally, and the toolbar, search, copy, and print controls all work with touch. The bottom navigation keeps Home, Calculators, AI, Dashboard, and Profile one tap away, so reviewing a condensed summary on the way to class is as easy as on a laptop.</p></details>
+        <details><summary>Is my text stored?</summary><p>Only on your own device. Notes you write or paste here are saved in your browser's local storage — they are not uploaded to Scholarics servers while you type, and clearing your browser data removes them. Formatting, search, copy, and print all happen locally too. If you separately paste text into a Scholarics AI tool such as the AI Chat, that text is sent to the AI provider so it can be processed.</p></details>
+    </div>
+    <p><strong>Author:</strong> Scholarics Editorial Team<br><strong>Reviewed by:</strong> Academic Content Reviewer<br><strong>Last Updated:</strong> August 2026</p>
+    <p><em>Last Updated: August 2026</em></p>
+  </div>
+  <div class="sec-head" style="margin-top:var(--s6)"><span class="kicker">Keep going</span><h2>Explore more Scholarics tools</h2></div>
+  <div class="tools-grid" style="margin-bottom:var(--s7)">
+      <a href="ai.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+        <h3>AI Chat</h3><p>Ask our AI study tutor</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="paraphraser.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <h3>AI Paraphraser</h3><p>Polish academic writing</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="flashcards.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg></div>
+        <h3>AI Flashcards</h3><p>Decks from topics or notes</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="ai-quiz-generator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.5 2.5 0 0 1 4.9.6c0 1.6-2.4 2-2.4 3.6"/><path d="M12 16.8h.01"/></svg></div>
+        <h3>AI Quiz Generator</h3><p>Practice tests from any topic</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="study-schedule.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg></div>
+        <h3>Study Planner</h3><p>Build a study timetable</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="pomodoro.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg></div>
+        <h3>Pomodoro Timer</h3><p>Focus in 25-min sprints</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+  </div>
+</div>
+</main>
+</div>
+</div>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Scholarics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">GPA &amp; Grades</h2>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a><a href="gpa-simulator.html">GPA Simulator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Grade Tools</h2>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="attendance-calculator.html">Attendance</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Productivity</h2>
+        <a href="notes.html">Notes</a>
+        <a href="flashcards.html">Flashcards</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="ai.html">AI Tutor</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Resources</h2>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Scholarics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+<script defer src="assets/js/g-5d2528.a39f50fe.js" data-sc-src="script sc-shell personalization premium sc-v2-features analytics consent email-capture pwa"></script>
+<script>
+function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
+/* ── Notes App Logic ── */
+window.SC2Notes = (function(){
+  'use strict';
+  var NOTES_KEY = 'sc2_notes';
+  var store = {
+    get: function(k,fb){ try{var v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;} },
+    set: function(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+  };
+  var notes = [];
+  var activeId = null;
+  var saveTimer = null;
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+  function load(){ notes = store.get(NOTES_KEY, []); }
+  function save(){ store.set(NOTES_KEY, notes); }
+  function getActive(){ return notes.find(function(n){return n.id===activeId;}); }
+  function renderList(filter){
+    var list = document.getElementById('notesList');
+    if(!list) return;
+    filter = (filter||'').toLowerCase();
+    var visible = filter ? notes.filter(function(n){
+      return (n.title+' '+(n.body||'')).toLowerCase().indexOf(filter) !== -1;
+    }) : notes.slice();
+    if(!visible.length){
+      list.innerHTML = '<div style="padding:20px;text-align:center;font-size:13px;color:var(--ink-3)">' + (filter ? 'No matching notes' : 'No notes yet — click New to create one') + '</div>';
+      return;
+    }
+    list.innerHTML = visible.map(function(n){
+      var preview = (n.body||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,80);
+      var date = new Date(n.updated).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      return '<div class="notes-item'+(n.id===activeId?' active':'')+'" data-id="'+n.id+'" role="listitem" tabindex="0" aria-selected="'+(n.id===activeId)+'">'
+        +'<div class="notes-item-title">'+(n.title||'Untitled')+'</div>'
+        +(preview?'<div class="notes-item-preview">'+preview+'</div>':'')
+        +'<div class="notes-item-meta">'
+        +(n.tag?'<span class="notes-item-tag">'+n.tag+'</span>':'')
+        +'<span class="notes-item-date">'+date+'</span>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+    list.querySelectorAll('.notes-item').forEach(function(el){
+      el.addEventListener('click',function(){openNote(el.dataset.id);});
+      el.addEventListener('keydown',function(e){if(e.key==='Enter')openNote(el.dataset.id);});
+    });
+  }
+  function openNote(id){
+    activeId = id;
+    var n = getActive();
+    if(!n) return;
+    document.getElementById('notesEmptyState').style.display='none';
+    var inner = document.getElementById('notesEditorInner');
+    inner.style.display='flex';
+    document.getElementById('noteTitle').value = n.title||'';
+    document.getElementById('noteTag').value = n.tag||'';
+    var body = document.getElementById('noteBody');
+    body.innerHTML = n.body||'';
+    updateCounts();
+    renderList(document.getElementById('notesSearch').value);
+  }
+  function newNote(){
+    var n = {id:uid(),title:'',body:'',tag:'',created:Date.now(),updated:Date.now()};
+    notes.unshift(n);
+    save();
+    openNote(n.id);
+    document.getElementById('noteTitle').focus();
+  }
+  function scheduleAutosave(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(autosave, 800);
+  }
+  function autosave(){
+    var n = getActive(); if(!n) return;
+    n.title = document.getElementById('noteTitle').value.trim()||'Untitled';
+    n.body  = document.getElementById('noteBody').innerHTML;
+    n.tag   = document.getElementById('noteTag').value;
+    n.updated = Date.now();
+    // move to top
+    notes = [n].concat(notes.filter(function(x){return x.id!==n.id;}));
+    save();
+    renderList(document.getElementById('notesSearch').value);
+    var el = document.getElementById('notesSavedAt');
+    if(el) el.textContent = 'Saved ' + new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  }
+  function deleteNote(){
+    var n = getActive(); if(!n) return;
+    if(!confirm('Delete "' + (n.title||'Untitled') + '"? This cannot be undone.')) return;
+    notes = notes.filter(function(x){return x.id!==n.id;});
+    save(); activeId = null;
+    document.getElementById('notesEmptyState').style.display='';
+    document.getElementById('notesEditorInner').style.display='none';
+    renderList();
+  }
+  function updateCounts(){
+    var body = document.getElementById('noteBody');
+    if(!body) return;
+    var text = body.innerText||body.textContent||'';
+    var words = text.trim().split(/\s+/).filter(function(w){return w;}).length;
+    var el1 = document.getElementById('notesWordCount');
+    var el2 = document.getElementById('notesCharCount');
+    if(el1) el1.textContent = words + ' word' + (words!==1?'s':'');
+    if(el2) el2.textContent = text.length + ' char' + (text.length!==1?'s':'');
+  }
+  function copyNote(){
+    var body = document.getElementById('noteBody');
+    var n = getActive();
+    if(!body||!n) return;
+    var text = (n.title||'Untitled') + '\n\n' + (body.innerText||body.textContent||'');
+    navigator.clipboard && navigator.clipboard.writeText(text).then(function(){
+      if(window.SC) SC.toast('Note copied to clipboard!','success');
+    }).catch(function(){
+      var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');if(window.SC)SC.toast('Copied!','success');}catch(e){}
+      ta.remove();
+    });
+  }
+  function printNote(){
+    var n = getActive();
+    var body = document.getElementById('noteBody');
+    if(!n||!body) return;
+    var w = window.open('','_blank','width=700,height=600');
+    w.document.write('<html><head><title>'+((n.title||'Note')).replace(/</g,'&lt;')+'</title></head><body style="font-family:Georgia,serif;max-width:700px;margin:40px auto;line-height:1.7;color:#111"><h1 style="font-size:22px;border-bottom:1px solid #ddd;padding-bottom:10px">'+((n.title||'Untitled')).replace(/</g,'&lt;')+'</h1>'+body.innerHTML+'<script src="js/pwa.js?v=3.0" defer><\/script>\n</body></html>');
+    w.document.close(); w.print();
+  }
+  function init(){
+    load();
+    renderList();
+    var btnNew    = document.getElementById('btnNewNote');
+    var btnDelete = document.getElementById('btnDeleteNote');
+    var searchEl  = document.getElementById('notesSearch');
+    var titleEl   = document.getElementById('noteTitle');
+    var tagEl     = document.getElementById('noteTag');
+    var bodyEl    = document.getElementById('noteBody');
+    if(btnNew)    btnNew.addEventListener('click',newNote);
+    if(btnDelete) btnDelete.addEventListener('click',deleteNote);
+    if(searchEl)  searchEl.addEventListener('input',function(){renderList(this.value);});
+    if(titleEl)   titleEl.addEventListener('input',scheduleAutosave);
+    if(tagEl)     tagEl.addEventListener('change',scheduleAutosave);
+    if(bodyEl){
+      bodyEl.addEventListener('input',function(){updateCounts();scheduleAutosave();});
+      // Placeholder
+      bodyEl.addEventListener('focus',function(){if(!this.innerHTML.trim())this.innerHTML='';});
+      if(!bodyEl.innerHTML) bodyEl.setAttribute('data-empty','1');
+    }
+    // placeholder via CSS
+    var style = document.createElement('style');
+    style.textContent='#noteBody:empty:before{content:attr(data-placeholder);color:var(--ink-3);pointer-events:none}';
+    document.head.appendChild(style);
+    // Open most recent note if exists
+    if(notes.length) openNote(notes[0].id);
+  }
+  document.addEventListener('DOMContentLoaded',init);
+  return { copyNote:copyNote, printNote:printNote };
+})();
+/* ── Formatting commands ── */
+window.NotesFmt = {
+  exec: function(cmd){ document.execCommand(cmd,false,null); document.getElementById('noteBody').focus(); },
+  heading: function(){
+    var sel=window.getSelection();
+    var text=sel&&sel.toString();
+    if(text) document.execCommand('formatBlock',false,'h3');
+    else document.execCommand('insertHTML',false,'<h3>Heading</h3><p><br></p>');
+    document.getElementById('noteBody').focus();
+  },
+  list: function(type){ document.execCommand(type==='ol'?'insertOrderedList':'insertUnorderedList',false,null); document.getElementById('noteBody').focus(); },
+  highlight: function(){ document.execCommand('hiliteColor',false,'#fff3b0'); document.getElementById('noteBody').focus(); },
+  code: function(){ document.execCommand('insertHTML',false,'<code style="background:var(--card-2,#f0efea);padding:2px 6px;border-radius:5px;font-family:monospace;font-size:.9em">code</code>'); document.getElementById('noteBody').focus(); },
+  undo: function(){ document.execCommand('undo'); document.getElementById('noteBody').focus(); },
+  redo: function(){ document.execCommand('redo'); document.getElementById('noteBody').focus(); },
+};
+</script>
+<nav class="sc2-bottomnav" aria-label="Mobile">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
+  <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
+  <a href="ai.html" class="ai"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>W</span><span>AI</span></a>
+  <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
+  <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
+</nav>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
+</body>
+</html>
