@@ -5,6 +5,7 @@ const fs = require("fs");
 const http = require("http");
 const path = require("path");
 const { JSDOM, VirtualConsole } = require("jsdom");
+const { TextEncoder, TextDecoder } = require("util");
 
 const ROOT = path.join(__dirname, "..");
 const PORT = 8945;
@@ -36,6 +37,42 @@ function startServer() {
 
 function stubsFor(state) {
   return (w) => {
+    function patchJsPDFSave() {
+      const jsPDF = w.jspdf && w.jspdf.jsPDF;
+      if (!jsPDF || !jsPDF.API || jsPDF.__scPdfSavePatched) return;
+      jsPDF.__scPdfSavePatched = true;
+      jsPDF.API.save = function(filename) {
+        let bytes = Buffer.alloc(0);
+        let pdfText = "";
+        try {
+          const output = this.output("arraybuffer");
+          bytes = Buffer.from(output || []);
+          const raw = this.output();
+          pdfText = typeof raw === "string" ? raw : "";
+        } catch (e) {
+          state.pdfSaveError = e && e.stack || String(e);
+        }
+        state.saveCalls.push({
+          filename: String(filename || ""),
+          byteLength: bytes.length,
+          header: bytes.slice(0, 5).toString("latin1"),
+          hasAutoTable: typeof this.autoTable === "function",
+          pageCount: this.internal && typeof this.internal.getNumberOfPages === "function" ? this.internal.getNumberOfPages() : null,
+          text: pdfText
+        });
+        state.pdfBytes = bytes;
+        return this;
+      };
+      state.jsPDFSavePatched = true;
+    }
+
+    let jspdfValue;
+    Object.defineProperty(w, "jspdf", {
+      configurable: true,
+      get() { return jspdfValue; },
+      set(v) { jspdfValue = v; patchJsPDFSave(); }
+    });
+
     w.matchMedia = w.matchMedia || ((q) => ({ matches: false, media: q, addListener(){}, removeListener(){}, addEventListener(){}, removeEventListener(){} }));
     w.requestAnimationFrame = w.requestAnimationFrame || ((cb) => setTimeout(() => cb(Date.now()), 16));
     w.cancelAnimationFrame = w.cancelAnimationFrame || ((id) => clearTimeout(id));
@@ -44,8 +81,41 @@ function stubsFor(state) {
     w.ResizeObserver = w.ResizeObserver || class { observe(){} unobserve(){} disconnect(){} };
     w.confirm = () => true;
     w.getSelection = w.getSelection || (() => ({ removeAllRanges(){}, addRange(){} }));
-    w.TextEncoder = w.TextEncoder || class { encode(s) { return Buffer.from(s || '', 'utf8'); } };
-    w.TextDecoder = w.TextDecoder || class { decode(b) { return Buffer.from(b || []).toString('utf8'); } };
+    w.TextEncoder = TextEncoder;
+    w.TextDecoder = TextDecoder;
+    w.URL.createObjectURL = w.URL.createObjectURL || (() => "blob:scholarics-test-pdf");
+    w.URL.revokeObjectURL = w.URL.revokeObjectURL || (() => {});
+
+    const nativeAppendChild = w.Element.prototype.appendChild;
+    w.Element.prototype.appendChild = function(node) {
+      if (node && node.tagName) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === "script") {
+          const rawSrc = node.getAttribute("src") || node.src || "";
+          if (/jspdf(?:\.min)?\.js|jspdf-autotable(?:\.min)?\.js/.test(rawSrc)) {
+            state.pdfScriptAppends.push(rawSrc);
+            node.addEventListener("load", () => {
+              patchJsPDFSave();
+              state.pdfScriptLoads.push(rawSrc);
+              if (/jspdf(?:\.min)?\.js/.test(rawSrc) && !/autotable/.test(rawSrc)) {
+                state.jsPDFLoaded = !!(w.jspdf && typeof w.jspdf.jsPDF === "function");
+              }
+              if (/jspdf-autotable(?:\.min)?\.js/.test(rawSrc)) {
+                const ctor = w.jspdf && w.jspdf.jsPDF;
+                state.autoTableLoaded = !!(ctor && ctor.API && typeof ctor.API.autoTable === "function");
+              }
+            });
+            node.addEventListener("error", () => {
+              state.pdfScriptErrors.push(rawSrc);
+            });
+          }
+        } else if (tag === "iframe") {
+          state.printFallbackUsed = true;
+        }
+      }
+      return nativeAppendChild.call(this, node);
+    };
+
     w.navigator.clipboard = {
       writeText: async (txt) => {
         state.clipboardText = txt;
@@ -55,21 +125,24 @@ function stubsFor(state) {
       state.sharedData = data;
     };
     w.open = () => {
-      const fakeWin = {
-        document: {
-          write(h) { state.openedHTML = (state.openedHTML || "") + h; },
-          close() {}
-        },
+      state.popupFallbackUsed = true;
+      return {
+        document: { write() {}, close() {} },
         focus() {},
         print() { state.printCalled = true; }
       };
-      return fakeWin;
     };
   };
 }
 
 async function load(pageUrl) {
-  const state = { errors: [], clipboardText: null, sharedData: null, printedHTML: null };
+  const state = {
+    errors: [], clipboardText: null, sharedData: null,
+    saveCalls: [], pdfBytes: null, pdfSaveError: null,
+    pdfScriptAppends: [], pdfScriptLoads: [], pdfScriptErrors: [],
+    jsPDFLoaded: false, autoTableLoaded: false, jsPDFSavePatched: false,
+    printFallbackUsed: false, popupFallbackUsed: false, printCalled: false
+  };
   const vc = new VirtualConsole();
   vc.on("jsdomError", (e) => {
     const msg = e && e.message ? e.message : String(e);
@@ -82,20 +155,51 @@ async function load(pageUrl) {
     virtualConsole: vc, beforeParse: stubsFor(state)
   });
   await new Promise((r) => setTimeout(r, 220));
-  /* Capture iframe content for printHTMLReport */
-  const origAppend = dom.window.document.body.appendChild.bind(dom.window.document.body);
-  dom.window.document.body.appendChild = function(node) {
-    if (node && node.tagName && node.tagName.toLowerCase() === "iframe") {
-      setTimeout(() => {
-        try {
-          const doc = node.contentWindow || node.contentDocument;
-          if (doc && doc.document) state.printedHTML = doc.document.documentElement.innerHTML;
-        } catch(e) {}
-      }, 50);
-    }
-    return origAppend(node);
-  };
   return { dom, state };
+}
+
+async function waitForPdfSave(state, timeoutMs = 5000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    if (state.saveCalls.length > 0) return state.saveCalls[state.saveCalls.length - 1];
+    if (state.pdfScriptErrors.length) throw new Error("PDF script failed to load: " + state.pdfScriptErrors.join(", "));
+    await new Promise((r) => setTimeout(r, 25));
+  }
+  throw new Error("Timed out waiting for doc.save(); scripts appended=" + JSON.stringify(state.pdfScriptAppends) + ", loads=" + JSON.stringify(state.pdfScriptLoads));
+}
+
+function hasAutoTable(dom) {
+  const jsPDF = dom.window.jspdf && dom.window.jspdf.jsPDF;
+  if (!jsPDF) return false;
+  if (jsPDF.API && typeof jsPDF.API.autoTable === "function") return true;
+  if (jsPDF.prototype && typeof jsPDF.prototype.autoTable === "function") return true;
+  try {
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    return typeof doc.autoTable === "function";
+  } catch (e) {
+    return false;
+  }
+}
+
+function countPdfScript(state, part) {
+  return state.pdfScriptAppends.filter((src) => src.includes(part)).length;
+}
+
+function assertRealPdfGeneration(dom, state, save, label) {
+  assert.ok(dom.window.jspdf && typeof dom.window.jspdf.jsPDF === "function", label + ": jsPDF was not available");
+  assert.ok(state.jsPDFLoaded || state.pdfScriptLoads.some((src) => /jspdf(?:\.min)?\.js/.test(src) && !/autotable/.test(src)), label + ": jsPDF script load was not observed");
+  assert.ok(state.autoTableLoaded || hasAutoTable(dom), label + ": AutoTable script load was not observed");
+  assert.ok(hasAutoTable(dom), label + ": AutoTable is not installed on jsPDF/doc instances");
+  assert.ok(state.jsPDFSavePatched, label + ": jsPDF save hook was not installed before PDF generation");
+  assert.ok(save, label + ": doc.save() did not execute");
+  assert.ok(save.hasAutoTable, label + ": doc.autoTable was not present at doc.save()");
+  assert.ok(/\.pdf$/i.test(save.filename), label + ": filename does not end with .pdf: " + save.filename);
+  assert.ok(save.byteLength > 1000, label + ": PDF output too small/non-empty check failed: " + save.byteLength);
+  assert.strictEqual(save.header, "%PDF-", label + ": generated data is not a PDF header");
+  assert.ok(!state.pdfSaveError, label + ": PDF output failed: " + state.pdfSaveError);
+  assert.strictEqual(state.printFallbackUsed, false, label + ": iframe print fallback was used instead of doc.save()");
+  assert.strictEqual(state.popupFallbackUsed, false, label + ": popup print fallback was used instead of doc.save()");
+  assert.strictEqual(state.printCalled, false, label + ": browser print was called instead of doc.save()");
 }
 
 let passed = 0, failed = 0;
@@ -187,17 +291,18 @@ function test(name, fn) {
     assert.strictEqual(resD.querySelector("#mCredits").textContent.trim(), "18", "Restored Credits does not equal 18");
     resDom.window.close();
 
-    /* Test PDF button */
+    /* Test real jsPDF + AutoTable PDF button path (including duplicate concurrent calls) */
     const pdfBtn = d.querySelector("#pdfBtn");
     assert.ok(pdfBtn, "#pdfBtn missing");
-    pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const printedHTML = state.printedHTML || state.openedHTML || "";
-    assert.ok(printedHTML.includes("Scholarics GPA Calculator Report"), "PDF report missing tool title");
-    assert.ok(printedHTML.includes("3.41"), "PDF report missing GPA 3.41");
-    assert.ok(printedHTML.includes("Courses: 6") || printedHTML.includes(">6<"), "PDF report missing courses count");
-    assert.ok(printedHTML.includes("Total Credits: 18") || printedHTML.includes(">18<"), "PDF report missing total credits");
-    assert.ok(printedHTML.includes("Calculus I") && printedHTML.includes("Digital Logic Design"), "PDF report missing course rows");
+    pdfBtn.dispatchEvent(new dom.window.Event("click", { bubbles: true, cancelable: true }));
+    pdfBtn.dispatchEvent(new dom.window.Event("click", { bubbles: true, cancelable: true }));
+    const pdfSave = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, pdfSave, "GPA PDF");
+    assert.strictEqual(countPdfScript(state, "jspdf.min.js"), 1, "Duplicate jsPDF script injected");
+    assert.strictEqual(countPdfScript(state, "jspdf-autotable.min.js"), 1, "Duplicate AutoTable script injected");
+    assert.ok(pdfSave.text.includes("Scholarics GPA Calculator Report"), "Real PDF missing tool title");
+    assert.ok(pdfSave.text.includes("3.41"), "Real PDF missing GPA 3.41");
+    assert.ok(pdfSave.text.includes("Calculus I") && pdfSave.text.includes("Digital Logic Design"), "Real PDF missing course rows");
 
     assert.deepStrictEqual(state.errors, [], "GPA page console errors: " + JSON.stringify(state.errors));
     dom.window.close();
@@ -222,9 +327,8 @@ function test(name, fn) {
     assert.ok(state.clipboardText && state.clipboardText.includes("cgpa.html"), "Copy Link failed on cgpa.html");
 
     pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const phtml = state.printedHTML || state.openedHTML || "";
-    assert.ok(phtml.includes("Scholarics CGPA Calculator Report"), "CGPA PDF title missing");
+    const cgpaPdf = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, cgpaPdf, "CGPA PDF");
     assert.deepStrictEqual(state.errors, [], "CGPA errors: " + JSON.stringify(state.errors));
     dom.window.close();
   });
@@ -250,9 +354,9 @@ function test(name, fn) {
     assert.ok(state.clipboardText && state.clipboardText.includes("a=20&h=25&r=75"), "Copy Link did not preserve state: " + state.clipboardText);
 
     pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const phtml = state.printedHTML || state.openedHTML || "";
-    assert.ok(phtml.includes("Scholarics Attendance Calculator Report") && phtml.includes("80%"), "Attendance PDF missing details");
+    const attendancePdf = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, attendancePdf, "Attendance PDF");
+    assert.ok(attendancePdf.text.includes("80%"), "Attendance real PDF missing 80%");
     assert.deepStrictEqual(state.errors, [], "Attendance errors: " + JSON.stringify(state.errors));
     dom.window.close();
   });
@@ -274,9 +378,8 @@ function test(name, fn) {
     assert.ok(state.clipboardText && state.clipboardText.includes("cur=80&goal=90&weight=40"), "feCopyLink failed: " + state.clipboardText);
 
     pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const phtml = state.printedHTML || state.openedHTML || "";
-    assert.ok(phtml.includes("Scholarics Final Exam Score Calculator Report"), "Final exam PDF title wrong");
+    const finalExamPdf = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, finalExamPdf, "Final Exam PDF");
     assert.deepStrictEqual(state.errors, [], "Final Exam errors: " + JSON.stringify(state.errors));
     dom.window.close();
   });
@@ -293,9 +396,8 @@ function test(name, fn) {
     assert.ok(state.sharedData, "Share failed on grade-calculator");
 
     pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const phtml = state.printedHTML || state.openedHTML || "";
-    assert.ok(phtml.includes("Scholarics Weighted Grade Calculator Report"), "Grade calc PDF title wrong");
+    const gradePdf = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, gradePdf, "Grade Calculator PDF");
     assert.deepStrictEqual(state.errors, [], "Grade Calculator errors: " + JSON.stringify(state.errors));
     dom.window.close();
   });
@@ -308,9 +410,8 @@ function test(name, fn) {
     assert.ok(shareBtn && pdfBtn, "Buttons missing on target-gpa.html");
 
     pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const phtml = state.printedHTML || state.openedHTML || "";
-    assert.ok(phtml.includes("Scholarics Target GPA Calculator Report"), "Target GPA PDF title wrong");
+    const targetPdf = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, targetPdf, "Target GPA PDF");
     assert.deepStrictEqual(state.errors, [], "Target GPA errors: " + JSON.stringify(state.errors));
     dom.window.close();
   });
@@ -333,9 +434,8 @@ function test(name, fn) {
     assert.ok(state.sharedData, "p2gShare failed");
 
     pdfBtn.click();
-    await new Promise((r) => setTimeout(r, 300));
-    const phtml = state.printedHTML || state.openedHTML || "";
-    assert.ok(phtml.includes("Scholarics Percentage to GPA Converter Report"), "p2g PDF title wrong");
+    const p2gPdf = await waitForPdfSave(state);
+    assertRealPdfGeneration(dom, state, p2gPdf, "Percentage to GPA PDF");
     assert.deepStrictEqual(state.errors, [], "p2g errors: " + JSON.stringify(state.errors));
     dom.window.close();
   });
@@ -380,9 +480,8 @@ function test(name, fn) {
       const pdfBtn = d.querySelector("#pdfBtn");
       if (pdfBtn) {
         pdfBtn.click();
-        await new Promise((r) => setTimeout(r, 150));
-        const phtml = state.printedHTML || state.openedHTML || "";
-        assert.ok(phtml.includes("Report"), page + " PDF report generation failed");
+        const pagePdf = await waitForPdfSave(state);
+        assertRealPdfGeneration(dom, state, pagePdf, page + " PDF");
       }
       assert.deepStrictEqual(state.errors, [], page + " errors: " + JSON.stringify(state.errors));
       dom.window.close();

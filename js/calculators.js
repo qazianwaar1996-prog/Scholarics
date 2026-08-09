@@ -4,6 +4,7 @@
   var qs  = SC.$;
   var qsa = SC.$$;
   var pRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var jsPDFLoadPromise = null;
   function initFieldActive () {
     qsa('.field').forEach(function (field) {
       var inp = qs('input, select, textarea', field);
@@ -212,34 +213,79 @@
     }, 2000);
   }
 
-  function loadJsPDF() {
+  function hasJsPDF() {
+    return !!(window.jspdf && typeof window.jspdf.jsPDF === 'function');
+  }
+
+  function hasAutoTable(jsPDF) {
+    if (!jsPDF) return false;
+    if (jsPDF.API && typeof jsPDF.API.autoTable === 'function') return true;
+    if (jsPDF.prototype && typeof jsPDF.prototype.autoTable === 'function') return true;
+    try {
+      var probe = new jsPDF({ unit: 'pt', format: 'a4' });
+      return !!(probe && typeof probe.autoTable === 'function');
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function loadScriptOnce(src, isReady, errorMessage) {
     return new Promise(function(resolve, reject) {
-      if (window.jspdf && window.jspdf.jsPDF) {
-        resolve(window.jspdf.jsPDF);
+      if (isReady()) {
+        resolve();
         return;
       }
+
+      var existing = qs('script[data-sc-pdf-src="' + src + '"], script[src="' + src + '"]');
+      if (existing) {
+        existing.addEventListener('load', function() {
+          if (isReady()) resolve();
+          else reject(new Error(errorMessage));
+        }, { once: true });
+        existing.addEventListener('error', function() {
+          reject(new Error(errorMessage));
+        }, { once: true });
+        return;
+      }
+
       var script = document.createElement('script');
-      script.src = '/js/vendor/jspdf.min.js';
+      script.src = src;
+      script.async = true;
+      script.setAttribute('data-sc-pdf-src', src);
       script.onload = function() {
-        if (window.jspdf && window.jspdf.jsPDF) {
-          resolve(window.jspdf.jsPDF);
-          return;
-        }
-        var autoScript = document.createElement('script');
-        autoScript.src = '/js/vendor/jspdf-autotable.min.js';
-        autoScript.onload = function() {
-          if (window.jspdf && window.jspdf.jsPDF) {
-            resolve(window.jspdf.jsPDF);
-          } else {
-            reject(new Error('jsPDF failed to load'));
-          }
-        };
-        autoScript.onerror = function() { reject(new Error('Failed to load jsPDF autotable')); };
-        document.head.appendChild(autoScript);
+        if (isReady()) resolve();
+        else reject(new Error(errorMessage));
       };
-      script.onerror = function() { reject(new Error('Failed to load jsPDF')); };
+      script.onerror = function() { reject(new Error(errorMessage)); };
       document.head.appendChild(script);
     });
+  }
+
+  function loadJsPDF() {
+    if (jsPDFLoadPromise) return jsPDFLoadPromise;
+
+    jsPDFLoadPromise = Promise.resolve()
+      .then(function() {
+        if (hasJsPDF()) return;
+        return loadScriptOnce('/js/vendor/jspdf.min.js', hasJsPDF, 'jsPDF failed to load');
+      })
+      .then(function() {
+        var jsPDF = window.jspdf && window.jspdf.jsPDF;
+        if (!jsPDF) throw new Error('jsPDF failed to load');
+        if (hasAutoTable(jsPDF)) return jsPDF;
+        return loadScriptOnce('/js/vendor/jspdf-autotable.min.js', function() {
+          return hasAutoTable(jsPDF);
+        }, 'jsPDF AutoTable failed to load').then(function() {
+          if (!hasAutoTable(jsPDF)) throw new Error('jsPDF AutoTable failed to load');
+          return jsPDF;
+        });
+      })
+      .catch(function(err) {
+        jsPDFLoadPromise = null;
+        throw err;
+      });
+
+    return jsPDFLoadPromise;
   }
 
   function generatePrintFallbackReport(btn, origHTML) {
@@ -409,6 +455,9 @@
       var resLbl   = labelEl  ? labelEl.textContent.trim()  : 'Result';
 
       var doc = new jsPDF({ unit: 'pt', format: 'a4' });
+      if (!doc || typeof doc.autoTable !== 'function') {
+        throw new Error('jsPDF AutoTable plugin unavailable');
+      }
       var pageWidth = doc.internal.pageSize.getWidth();
       var margin = 40;
       var contentWidth = pageWidth - margin * 2;
