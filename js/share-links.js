@@ -27,11 +27,14 @@
       if (val === undefined || val === null || val === "") return;
       url.searchParams.set(key, val);
     });
-    return url.toString();
+    var finalUrl = url.toString();
+    window.SC_LAST_STATE_URL = finalUrl;
+    return finalUrl;
   }
 
   function copyLink(data) {
     var url = buildUrl(data);
+    window.SC_LAST_STATE_URL = url;
     if (window.SC && typeof SC.copy === "function") {
       SC.copy(url);
     } else if (navigator.clipboard && navigator.clipboard.writeText) {
