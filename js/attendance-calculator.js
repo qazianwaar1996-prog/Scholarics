@@ -143,27 +143,6 @@
         SC.toast("Reset successfully", "info");
       });
     }
-    var shareBtn = $("#shareBtn");
-    if (shareBtn) {
-      shareBtn.addEventListener("click", function() {
-        if (pctEl.textContent === "—") {
-            SC.toast("No results to copy", "info");
-            return;
-        }
-        var text = "My attendance is " + pctEl.textContent + ". Calculated on Scholarics.";
-        SC.copy(text);
-      });
-    }
-    var copyLinkBtn = $("#attCopyLink");
-    if (copyLinkBtn && window.SCShare) {
-      copyLinkBtn.addEventListener("click", function () {
-        SCShare.copyLink({
-          a: attendedInput.value,
-          h: heldInput.value,
-          r: reqInput.value
-        });
-      });
-    }
     calc();
 
     if (sharedFromLink && window.SCShare) {

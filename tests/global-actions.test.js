@@ -44,6 +44,8 @@ function stubsFor(state) {
     w.ResizeObserver = w.ResizeObserver || class { observe(){} unobserve(){} disconnect(){} };
     w.confirm = () => true;
     w.getSelection = w.getSelection || (() => ({ removeAllRanges(){}, addRange(){} }));
+    w.TextEncoder = w.TextEncoder || class { encode(s) { return Buffer.from(s || '', 'utf8'); } };
+    w.TextDecoder = w.TextDecoder || class { decode(b) { return Buffer.from(b || []).toString('utf8'); } };
     w.navigator.clipboard = {
       writeText: async (txt) => {
         state.clipboardText = txt;

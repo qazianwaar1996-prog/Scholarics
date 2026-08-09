@@ -921,6 +921,8 @@
     var undoBtn = $("#simUndoBtn");
     if (undoBtn) undoBtn.addEventListener("click", undoLast);
 
+    window.SCGetSimulatorState = buildShareData;
+
     var shareBtn = $("#simShareBtn");
     if (shareBtn && window.SCShare) {
       shareBtn.addEventListener("click", function () { SCShare.copyLink(buildShareData()); });

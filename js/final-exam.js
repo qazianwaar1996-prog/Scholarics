@@ -144,25 +144,6 @@
         SC.toast("Fields cleared", "info");
       };
     }
-    var shareBtn = $("#feShare");
-    if (shareBtn) {
-      shareBtn.onclick = function () {
-        var val = $("#feNeedOut") ? $("#feNeedOut").textContent : "—";
-        if (val === "—") return SC.toast("Enter values first", "info");
-        SC.copy("I need " + val + " on my final exam to hit my grade goal — calculated on Scholarics (scholarics.com)");
-      };
-    }
-    var copyLinkBtn = $("#feCopyLink");
-    if (copyLinkBtn && window.SCShare) {
-      copyLinkBtn.onclick = function () {
-        var curEl = $("#feCurrentGrade"), goalEl = $("#feTargetGrade"), weightEl = $("#feWeight");
-        SCShare.copyLink({
-          cur: curEl ? curEl.value : "",
-          goal: goalEl ? goalEl.value : "",
-          weight: weightEl ? weightEl.value : ""
-        });
-      };
-    }
     compute();
 
     if (sharedFromLink && window.SCShare) {

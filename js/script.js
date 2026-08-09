@@ -70,25 +70,43 @@
       }, 3000);
     },
     copy: function (text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          SC.toast("Copied to clipboard!", "success");
-        }).catch(function () {
-          SC._copyFallback(text);
-        });
-      } else {
-        SC._copyFallback(text);
-      }
+      return new Promise(function(resolve, reject) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            SC.toast("Copied to clipboard!", "success");
+            resolve(true);
+          }).catch(function () {
+            SC._copyFallback(text).then(function() { resolve(true); }).catch(function(err) { reject(err); });
+          });
+        } else {
+          SC._copyFallback(text).then(function() { resolve(true); }).catch(function(err) { reject(err); });
+        }
+      });
     },
     _copyFallback: function (text) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); SC.toast("Copied!", "success"); }
-      catch (e) { SC.toast("Copy failed", "error"); }
-      ta.remove();
+      return new Promise(function(resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;z-index:-1;';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, 999999);
+        try {
+          var ok = document.execCommand('copy');
+          ta.remove();
+          if (ok) {
+            SC.toast("Copied!", "success");
+            resolve(true);
+          } else {
+            SC.toast("Copy failed", "error");
+            reject(new Error('execCommand copy returned false'));
+          }
+        } catch (e) {
+          ta.remove();
+          SC.toast("Copy failed", "error");
+          reject(e);
+        }
+      });
     },
     trackVisit: function () {
       try {

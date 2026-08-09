@@ -16,5 +16,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8"
   }
 }
