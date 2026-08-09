@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var add=$('#gpAddRow'),rs=$('#gpReset'),sh=$('#gpShare');
   if(add) add.onclick=function(){rows.push({id:uid(),name:'',score:'',weight:''});store.set(KEY,rows);render();SC.toast('Component added','success');};
   if(rs) rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Midterm Exam',score:'78',weight:'30'},{id:uid(),name:'Assignments',score:'85',weight:'20'},{id:uid(),name:'Final Exam',score:'',weight:'50'}];render();SC.toast('Reset','info');};
-  if(sh) sh.onclick=function(){var v=$('#gpPredOut');if(!v||v.textContent==='—')return SC.toast('Enter scores first','info');SC.copy('My predicted grade is '+v.textContent+' ('+$('#gpLetterOut').textContent+') — Scholarics');};
+  /* #gpShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   render();
 });
 })();

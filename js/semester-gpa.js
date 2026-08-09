@@ -97,7 +97,6 @@
     var add1  = $("#sgAddRow");
     var add2  = $("#sgAddRow2");
     var clear = $("#sgClear");
-    var share = $("#sgShare");
     var reset = $("#sgReset");
     if (add1)  add1.onclick  = addCourse;
     if (add2)  add2.onclick  = addCourse;
@@ -121,13 +120,9 @@
         SC.toast("Reset to example data", "info");
       };
     }
-    if (share) {
-      share.onclick = function () {
-        var val = $("#sgGpaOut") ? $("#sgGpaOut").textContent : "—";
-        if (val === "—") return SC.toast("Enter courses first", "info");
-        SC.copy("My semester GPA is " + val + " — calculated on Scholarics (scholarics.com)");
-      };
-    }
+    /* #sgShare is intentionally NOT bound here — the single global
+       calculator action router in js/calculators.js routes it
+       (id$="Share" → Share). No page-level share listener may coexist. */
     render();
   });
 })();

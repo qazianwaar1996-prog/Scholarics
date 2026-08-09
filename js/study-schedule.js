@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(gen) gen.onclick=generate;
   if(days) days.addEventListener('input',updateTotals);
   if(rs){rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Mathematics',diff:'hard',hrs:'4'},{id:uid(),name:'Physics',diff:'medium',hrs:'3'},{id:uid(),name:'English',diff:'easy',hrs:'2'}];render();var o=$('#ssOutput');if(o)o.style.display='none';SC.toast('Reset','info');};}
-  if(sh){sh.onclick=function(){var v=$('#ssTotalHours');if(!v||v.textContent==='—')return SC.toast('Add subjects first','info');SC.copy('My study schedule: '+v.textContent+' per week across '+rows.length+' subjects — Scholarics');};}
+  /* #ssShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   render();
 });
 })();

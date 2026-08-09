@@ -1001,6 +1001,7 @@
       "js": [
         "js/script.js",
         "js/share-links.js",
+        "js/calculators.js",
         "js/personalization.js",
         "js/premium.js",
         "js/sc-shell.js",
@@ -1022,7 +1023,7 @@
         "js": [
           "core",
           "p-gpa-simulator",
-          "g-9e103f",
+          "g-a35680",
           "p-gpa-simulator-2"
         ]
       }

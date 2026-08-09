@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded',function(){
   inputs.forEach(function(sel){var el=$(sel);if(el)el.addEventListener('input',compute);});
   var rs=$('#p2gReset');
   if(rs){rs.onclick=function(){var e=$('#p2gPct');if(e)e.value='';store.set(KEY,null);compute();SC.toast('Reset','info');};}
-  var sh=$('#p2gShare');
-  if(sh){sh.onclick=function(){var v=$('#p2gOut');if(!v||v.textContent==='—')return SC.toast('Enter a percentage first','info');SC.copy('My '+$('#p2gPct').value+'% converts to '+v.textContent+' GPA — Scholarics');};}
+  /* #p2gShare is intentionally NOT bound here — the single global calculator
+     action router in js/calculators.js routes it (id$="Share" → Share). */
   compute();
 });
 })();

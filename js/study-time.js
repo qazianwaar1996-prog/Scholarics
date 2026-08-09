@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var rs=$('#stReset');
   if(rs){rs.onclick=function(){var c=$('#stCredits');if(c)c.value='15';var m=$('#stMultiplier');if(m)m.value='2';var d=$('#stDaysAvail');if(d)d.value='5';store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#stShare');
-  if(sh){sh.onclick=function(){var v=$('#stWeeklyHours');if(!v||v.textContent==='—')return SC.toast('Enter credits first','info');SC.copy('I should study '+v.textContent+' per week for my '+$('#stCredits').value+'-credit load — Scholarics');};}
+  /* #stShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   compute();
 });
 })();

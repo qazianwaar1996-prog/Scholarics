@@ -141,7 +141,6 @@
     var add1 = $("#addRow");
     var add2 = $("#addRow2");
     var clear = $("#clearAll");
-    var share = $("#shareBtn");
     if (add1) add1.onclick = addItem;
     if (add2) add2.onclick = addItem;
     if (clear) {

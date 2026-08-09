@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(sc) sc.addEventListener('input',compute);
   if(btn) btn.onclick=compute;
   if(rs) rs.onclick=function(){if(sc) sc.value='';compute();SC.toast('Cleared','info');};
-  if(sh) sh.onclick=function(){var v=$('#caMean');if(!v||v.textContent==='—')return SC.toast('Enter scores first','info');SC.copy('Class average: '+v.textContent+' (n='+$('#caStudents').textContent+') — Scholarics');};
+  /* #caShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   compute();
 });
 })();

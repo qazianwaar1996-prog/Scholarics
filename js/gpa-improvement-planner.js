@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var rs=$('#giReset');
   if(rs){rs.onclick=function(){['#giCurrent','#giTarget','#giCreditsEarned','#giCreditsLeft'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#giShare');
-  if(sh){sh.onclick=function(){var v=$('#giRequired');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('I need a '+v.textContent+' GPA for my remaining credits to reach my target — Scholarics');};}
+  /* #giShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   compute();
 });
 })();

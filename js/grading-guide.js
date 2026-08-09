@@ -46,7 +46,6 @@
       var lett  = document.getElementById("ggLetterOut");
       var nat   = document.getElementById("ggNativeOut");
       var unit  = document.getElementById("ggUnit");
-      var share = document.getElementById("ggShare");
       if (!inp) return;
       function convert() {
         var sys = window.SC_COUNTRY ? window.SC_COUNTRY.current() : G.get("us");
@@ -88,14 +87,9 @@
         inp.value = "";
         convert();
       });
-      if (share) {
-        share.onclick = function () {
-          var sys = window.SC_COUNTRY ? window.SC_COUNTRY.current() : G.get("us");
-          var val = us4 ? us4.textContent : "—";
-          if (val === "—" || !sys) return SC.toast("Enter a grade first", "info");
-          SC.copy(sys.flag + " " + sys.name + " grade → US GPA " + val + " — Scholarics (scholarics.com/grading-guide.html)");
-        };
-      }
+      /* #ggShare is intentionally NOT bound here — the single global
+         calculator action router in js/calculators.js routes it
+         (id$="Share" → Share). No page-level share listener may coexist. */
       try {
         var params = new URLSearchParams(window.location.search);
         var qCountry = params.get("country");

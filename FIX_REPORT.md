@@ -186,3 +186,83 @@ Verified end-to-end in automated tests.
 - `SC.copy()` is now Promise-based, so every caller knows definitively whether copying succeeded.
 - PDF uses **jsPDF** (real PDF file download) with a **graceful fallback** to visible print window.
 - All conflicting `onclick` handlers were removed from `gpa.js`, `cgpa.js`, `attendance-calculator.js`, `final-exam.js`, `final-grade.js`, `grade-calculator.js`, and `target-gpa.js`.
+
+---
+
+# Part 2 — FINAL ROOT-CAUSE FIX: Calculator Action Buttons Receive No Response
+
+**Date:** 2026-08-09
+**Branch:** `arena/019fe6ac-scholarics`
+**Status:** ✅ FIXED & CLICK-PATH VERIFIED
+
+## Root Cause
+
+The Share / Copy Link / PDF click handlers were bound with direct per-button
+listeners inside a global initializer (`initGlobalCalculatorActions()` at the
+very end of a long `init()` chain), guarded by `window.SC_ACTIONS_INITIALIZED`:
+
+    qsa('#shareBtn, [id$="Share"]').forEach(btn => btn.addEventListener('click', …))
+    qsa('#copyLinkBtn, #attCopyLink, #feCopyLink, #simShareBtn, .copy-link-btn').forEach(…)
+    qsa('#pdfBtn, #simPdfBtn').forEach(…)
+
+This design was fatally timing-dependent:
+
+1. It only attached handlers to buttons that existed at init time — any button
+   rendered later, re-rendered, or replaced by a calculator script was dead.
+2. It ran LAST in a chain of 12 initializers; any earlier exception silently
+   skipped the binding entirely.
+3. `SC_ACTIONS_INITIALIZED` could permanently suppress rebinding.
+4. It coexisted with per-page handlers (`#simShareBtn`, `#simPdfBtn`,
+   `#g2pShare`, `#p2gShare`, `#ggShare`, `#rmShare`, `#sgShare`, `#awShare`,
+   `#agShare`, `#apShare`, `#caShare`, `#chShare`, `#giShare`, `#gpShare`,
+   `#ssShare`, `#stShare` and `.copy-link-btn`), so single clicks could fire
+   zero OR two competing handlers depending on load order.
+5. `gpa-simulator.html` did not even load `js/calculators.js`, so the "global"
+   system was not global.
+
+## The Fix — One Delegated Router
+
+`js/calculators.js` now installs exactly ONE document-level delegated click
+listener (`scRouteCalculatorAction`) SYNCHRONOUSLY at script evaluation time
+(before any other init code can throw), guarded only by
+`window.SC_CALC_ACTIONS_ROUTER` (install-once). The old
+`window.SC_ACTIONS_INITIALIZED` guard is removed.
+
+- Target resolution is a safe manual `closest()` walk (text nodes, SVG icons,
+  legacy `matches()` prefixed fallbacks, final `querySelectorAll` scan).
+- Action resolution: explicit `data-sc-action` first, then button ID/class:
+  `#shareBtn` + `[id$="Share"]` (except `#simShareBtn`) → Share;
+  `#copyLinkBtn`, `#attCopyLink`, `#feCopyLink`, `#simShareBtn`, `.copy-link-btn`
+  → Copy Link; `#pdfBtn`, `#simPdfBtn` → PDF.
+- `e.preventDefault()` is called only AFTER the click is confirmed to hit one
+  of these buttons. One click = exactly one action (PDF also re-entrancy-guarded
+  via the generating state).
+- Every conflicting direct per-button handler for the three actions was removed
+  (17 calculator scripts + `content-platform.js`, which still covers non-router
+  content pages for `.copy-link-btn`).
+- `js/calculators.js` is now loaded on `gpa-simulator.html` as well.
+- The Share/clipboard/jsPDF action implementations were NOT changed; only the
+  click delivery was fixed.
+
+## Diagnostic
+
+`console.debug('[Scholarics] calculator action:', action, btn.id)` fires on
+every routed click, gated OFF by default and enabled for development via any of:
+`?scdebug=1` in the URL, `localStorage sc_debug_actions=1`, or
+`window.SC_DEBUG_ACTIONS = true`.
+
+## Verification — actual clicks, not source inspection
+
+New suite `tests/click-router.test.js` dispatches real bubbling `MouseEvent`
+clicks at the buttons (and at the SVG icons inside them, at fresh re-rendered
+clones, and at late-inserted buttons) against the BUILT production bundles:
+
+- CLICK EVENT REACHED HANDLER: **YES** (delegated debug line observed for every action)
+- Share handler executed: **YES** → `getCalculatorSummary()` → `getCalculatorStateUrl()` → `navigator.share` (exactly once per click)
+- Copy Link handler executed: **YES** → `getCalculatorStateUrl()` → `SC.copy()` (exactly once per click; state URL preserved)
+- PDF handler executed: **YES** → immediate generating state (`disabled` + `.btn-loading` + "Generating…") → `generateDynamicPDFReport()` → real jsPDF `doc.save()` (`%PDF-` header)
+- GPA regression with the standard dataset: **3.41 GPA / 6 courses / 18 credits** — unchanged.
+- Obstacle audit: no `pointer-events:none`, no `disabled` attributes, no
+  overlays, no `stopPropagation` interference on the action buttons.
+- Full suite: **150 tests passed, 0 failed** (Core 31, Simulator UI 33, Backend 14, Integration 24, Global Actions 21, Click Router 27).
+- All pages were rebuilt; every bundle is freshly fingerprinted and the service-worker cache name rotates, so no stale bundle/HTML pair can ship.

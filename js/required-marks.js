@@ -166,7 +166,6 @@
     var add1  = $("#rmAddRow");
     var add2  = $("#rmAddRow2");
     var clear = $("#rmClear");
-    var share = $("#rmShare");
     var reset = $("#rmReset");
     var targetEl = $("#rmTarget");
     if (targetEl) targetEl.addEventListener("input", compute);
@@ -194,14 +193,9 @@
         SC.toast("Reset to example", "info");
       };
     }
-    if (share) {
-      share.onclick = function () {
-        var req = $("#rmRequired") ? $("#rmRequired").textContent : "—";
-        if (req === "—") return SC.toast("Enter data first", "info");
-        var tgt = $("#rmTarget") ? $("#rmTarget").value : "";
-        SC.copy("I need " + req + " per subject to reach " + tgt + "% — calculated on Scholarics (scholarics.com)");
-      };
-    }
+    /* #rmShare is intentionally NOT bound here — the single global
+       calculator action router in js/calculators.js routes it
+       (id$="Share" → Share). No page-level share listener may coexist. */
     render();
   });
 })();

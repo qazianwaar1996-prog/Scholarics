@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded',function(){
   ['#g2pGpa','#g2pScale'].forEach(function(s){var e=$(s);if(e)e.addEventListener('input',compute);});
   var rs=$('#g2pReset');
   if(rs){rs.onclick=function(){var e=$('#g2pGpa');if(e)e.value='';store.set(KEY,null);compute();SC.toast('Reset','info');};}
-  var sh=$('#g2pShare');
-  if(sh){sh.onclick=function(){var v=$('#g2pOut');if(!v||v.textContent==='—')return SC.toast('Enter a GPA first','info');SC.copy('My GPA of '+$('#g2pGpa').value+' equals '+v.textContent+' — Scholarics');};}
+  /* #g2pShare is intentionally NOT bound here — the single global calculator
+     action router in js/calculators.js routes it (id$="Share" → Share). */
   compute();
 });
 })();

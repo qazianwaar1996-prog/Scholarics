@@ -11,7 +11,12 @@
     document.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
-  document.querySelectorAll('.copy-link-btn').forEach(function (btn) {
+  /* .copy-link-btn is also routable by the single global calculator action
+     router (js/calculators.js, signalled by SC_CALC_ACTIONS_ROUTER). The
+     router always wins: these direct per-button listeners are only attached
+     on guide/content pages where the router is not loaded, so a click can
+     never be handled twice. */
+  if (!window.SC_CALC_ACTIONS_ROUTER) document.querySelectorAll('.copy-link-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var url = btn.getAttribute('data-url') || window.location.href;
       var done = function () {

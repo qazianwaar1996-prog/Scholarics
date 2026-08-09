@@ -4,7 +4,7 @@
    offline fallback page for navigation failures.
    ============================================================ */
 
-var CACHE_NAME = 'scholarics-shell-b607b49c'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
+var CACHE_NAME = 'scholarics-shell-fd128d3a'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
 var OFFLINE_URL = '/404.html';
 
 /* Assets to pre-cache on install (the app shell).
@@ -18,8 +18,8 @@ var OFFLINE_URL = '/404.html';
      /assets/css/calc-ai.c05aaeec.css  ←  /css/calculators.css, /css/ai-assistant.css
      /assets/js/core.c4f97f67.js  ←  /js/script.js
      /assets/js/p-gpa-simulator.a69a812f.js  ←  /js/share-links.js
-     /assets/js/g-9e103f.b027f775.js  ←  /js/personalization.js, /js/premium.js, /js/sc-shell.js, /js/sc-v2-features.js, /js/analytics.js, /js/consent.js, /js/email-capture.js, /js/pwa.js
-     /assets/js/p-gpa-simulator-2.8fd69d20.js  ←  /js/gpa-simulator-core.js, /js/gpa-simulator.js
+     /assets/js/g-a35680.7c77dde5.js  ←  /js/calculators.js, /js/personalization.js, /js/premium.js, /js/sc-shell.js, /js/sc-v2-features.js, /js/analytics.js, /js/consent.js, /js/email-capture.js, /js/pwa.js
+     /assets/js/p-gpa-simulator-2.11fa7c13.js  ←  /js/gpa-simulator-core.js, /js/gpa-simulator.js
 */
 var SHELL_ASSETS = [
   '/',
@@ -35,8 +35,8 @@ var SHELL_ASSETS = [
   '/assets/css/calc-ai.c05aaeec.css',
   '/assets/js/core.c4f97f67.js',
   '/assets/js/p-gpa-simulator.a69a812f.js',
-  '/assets/js/g-9e103f.b027f775.js',
-  '/assets/js/p-gpa-simulator-2.8fd69d20.js'
+  '/assets/js/g-a35680.7c77dde5.js',
+  '/assets/js/p-gpa-simulator-2.11fa7c13.js'
 ];
 
 self.addEventListener('install', function (e) {

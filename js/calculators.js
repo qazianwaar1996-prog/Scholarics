@@ -1,5 +1,11 @@
 (function () {
   'use strict';
+  /* Install the ONE global calculator action router FIRST, synchronously at
+     script evaluation time (function declarations are hoisted). The single
+     delegated document click listener therefore always exists — even if any
+     later initializer in this file throws, and regardless of when the
+     buttons themselves are rendered. */
+  installGlobalCalculatorActions();
   if (typeof window.SC === 'undefined') return;
   var qs  = SC.$;
   var qsa = SC.$$;
@@ -625,87 +631,171 @@
     });
   }
 
-  function initGlobalCalculatorActions() {
-    if (window.SC_ACTIONS_INITIALIZED) return;
-    window.SC_ACTIONS_INITIALIZED = true;
+  /* ======================================================================
+     GLOBAL CALCULATOR ACTION ROUTER — one delegated click listener
+     ----------------------------------------------------------------------
+     A single document-level click listener routes Share, Copy Link and PDF
+     clicks for every calculator. Because it uses event delegation it works
+     no matter WHEN the button appeared:
+       • the button existed at page load
+       • the button was dynamically rendered later
+       • the calculator re-rendered its result area (fresh button nodes)
+       • another calculator-specific script replaced the button
+     No per-calculator registration, no querySelectorAll during init, and no
+     per-button addEventListener that can be lost on re-render.
+     ====================================================================== */
 
-    function fallbackShare(summary, url, btn) {
-      var textToCopy = summary + ' — ' + url;
-      SC.copy(textToCopy).then(function() {
-        showButtonSuccess(btn, 'Copied!');
-        announceSr('Result copied to clipboard.');
-      }).catch(function() {
-        SC.toast('Copy failed', 'error');
-      });
+  /* Selector identifying every known calculator action button. */
+  var SC_ACTION_SELECTOR =
+    '#shareBtn, #copyLinkBtn, #attCopyLink, #feCopyLink, #simShareBtn, #simPdfBtn, #pdfBtn, ' +
+    '.copy-link-btn, [id$="Share"], ' +
+    '[data-sc-action="share"], [data-sc-action="copylink"], [data-sc-action="pdf"]';
+
+  /* matches() with graceful fallbacks (SVG nodes, legacy browsers). */
+  function scActionMatches(el, selector) {
+    if (!el || el.nodeType !== 1) return false;
+    var proto = window.Element && Element.prototype;
+    var fn = proto && (proto.matches || proto.webkitMatchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector || proto.oMatchesSelector);
+    if (fn) {
+      try { return !!fn.call(el, selector); } catch (e) { /* fall through to scan */ }
     }
+    /* Very old browsers: scan the document for candidates manually. */
+    var doc = el.ownerDocument || document;
+    var candidates = doc.querySelectorAll(selector);
+    for (var i = 0; i < candidates.length; i++) {
+      if (candidates[i] === el) return true;
+    }
+    return false;
+  }
 
-    /* 1. Share Buttons */
-    qsa('#shareBtn, [id$="Share"]').forEach(function (btn) {
-      if (btn.id === 'simShareBtn') return;
-      if (btn.getAttribute('data-sc-action')) return;
-      btn.setAttribute('data-sc-action', 'share');
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var summary = getCalculatorSummary();
-        if (!summary) {
-          SC.toast('Enter values first', 'info');
-          return;
-        }
-        var url = getCalculatorStateUrl();
-        if (navigator.share) {
-          navigator.share({
-            title: getToolName(),
-            text: summary,
-            url: url
-          }).then(function () {
-            showButtonSuccess(btn, 'Shared!');
-            announceSr('Result shared.');
-          }).catch(function (err) {
-            if (err && err.name !== 'AbortError') {
-              fallbackShare(summary, url, btn);
-            }
-          });
-        } else {
-          fallbackShare(summary, url, btn);
+  /* Safe closest(): walks up from the event target (text nodes included)
+     until a calculator action button is found. Never throws. */
+  function scClosestActionButton(node) {
+    var el = node;
+    if (el && el.nodeType === 3) el = el.parentNode; /* text node inside the button */
+    while (el && el.nodeType === 1) {
+      if (scActionMatches(el, SC_ACTION_SELECTOR)) return el;
+      el = el.parentElement || el.parentNode;
+    }
+    return null;
+  }
+
+  /* Development-gated diagnostic (off in production unless explicitly on):
+       ?scdebug=1 in the URL, localStorage sc_debug_actions=1,
+       or window.SC_DEBUG_ACTIONS = true */
+  function scActionDebugEnabled() {
+    try {
+      if (window.SC_DEBUG_ACTIONS) return true;
+      if (window.location && /[?&]scdebug=1(&|$)/.test(window.location.search || '')) return true;
+      if (window.localStorage && window.localStorage.getItem('sc_debug_actions') === '1') return true;
+    } catch (e) { /* storage blocked — debug stays off */ }
+    return false;
+  }
+
+  /* Resolve which action a button triggers:
+       1. an explicit data-sc-action attribute wins
+       2. otherwise fall back to the button's ID / class */
+  function scResolveCalculatorAction(btn) {
+    var declared = ((btn.getAttribute && btn.getAttribute('data-sc-action')) || '').toLowerCase();
+    if (declared === 'share' || declared === 'copylink' || declared === 'pdf') return declared;
+    var id = btn.id || '';
+    if (id === 'pdfBtn' || id === 'simPdfBtn') return 'pdf';
+    if (id === 'copyLinkBtn' || id === 'attCopyLink' || id === 'feCopyLink' || id === 'simShareBtn') return 'copylink';
+    if (id === 'shareBtn' || (id.slice(-5) === 'Share' && id !== 'simShareBtn')) return 'share';
+    if (btn.classList && btn.classList.contains('copy-link-btn')) return 'copylink';
+    return null;
+  }
+
+  function scFallbackShare(summary, url, btn) {
+    var textToCopy = summary + ' — ' + url;
+    SC.copy(textToCopy).then(function() {
+      showButtonSuccess(btn, 'Copied!');
+      announceSr('Result copied to clipboard.');
+    }).catch(function() {
+      SC.toast('Copy failed', 'error');
+    });
+  }
+
+  /* Share: getCalculatorSummary() → getCalculatorStateUrl() → navigator.share
+     with a clipboard fallback. */
+  function scRunShareAction(btn) {
+    var summary = getCalculatorSummary();
+    if (!summary) {
+      SC.toast('Enter values first', 'info');
+      return;
+    }
+    var url = getCalculatorStateUrl();
+    if (navigator.share) {
+      navigator.share({
+        title: getToolName(),
+        text: summary,
+        url: url
+      }).then(function () {
+        showButtonSuccess(btn, 'Shared!');
+        announceSr('Result shared.');
+      }).catch(function (err) {
+        if (err && err.name !== 'AbortError') {
+          scFallbackShare(summary, url, btn);
         }
       });
-    });
+    } else {
+      scFallbackShare(summary, url, btn);
+    }
+  }
 
-    /* 2. Copy Link Buttons */
-    qsa('#copyLinkBtn, #attCopyLink, #feCopyLink, #simShareBtn, .copy-link-btn').forEach(function (btn) {
-      if (btn.getAttribute('data-sc-action')) return;
-      btn.setAttribute('data-sc-action', 'copylink');
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var url = getCalculatorStateUrl();
-        if (!url) {
-          SC.toast('No link to copy', 'info');
-          return;
-        }
-        SC.copy(url).then(function() {
-          showButtonSuccess(btn, 'Copied link!');
-          SC.toast('Link copied to clipboard!', 'success');
-          announceSr('Link copied to clipboard.');
-        }).catch(function() {
-          SC.toast('Failed to copy link', 'error');
-        });
-      });
+  /* Copy Link: getCalculatorStateUrl() → SC.copy(). An explicit data-url
+     (used by article-level copy buttons) is honoured verbatim. */
+  function scRunCopyLinkAction(btn) {
+    var url = (btn.getAttribute && btn.getAttribute('data-url')) || getCalculatorStateUrl();
+    if (!url) {
+      SC.toast('No link to copy', 'info');
+      return;
+    }
+    SC.copy(url).then(function() {
+      showButtonSuccess(btn, 'Copied link!');
+      SC.toast('Link copied to clipboard!', 'success');
+      announceSr('Link copied to clipboard.');
+    }).catch(function() {
+      SC.toast('Failed to copy link', 'error');
     });
+  }
 
-    /* 3. PDF Buttons */
-    qsa('#pdfBtn, #simPdfBtn').forEach(function (btn) {
-      if (btn.getAttribute('data-sc-action')) return;
-      btn.setAttribute('data-sc-action', 'pdf');
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        try {
-          generateDynamicPDFReport(btn);
-        } catch (err) {
-          console.error('PDF export error:', err);
-          SC.toast('Unable to generate PDF report', 'error');
-        }
-      });
-    });
+  /* PDF: generateDynamicPDFReport(). A button already in its generating
+     state can never start a second concurrent report. */
+  function scRunPdfAction(btn) {
+    if (btn.disabled) return;
+    try {
+      generateDynamicPDFReport(btn);
+    } catch (err) {
+      console.error('PDF export error:', err);
+      SC.toast('Unable to generate PDF report', 'error');
+    }
+  }
+
+  /* THE single click router. Runs exactly one action per click and only
+     calls preventDefault() AFTER the target is confirmed to be one of the
+     calculator action buttons. */
+  function scRouteCalculatorAction(e) {
+    var btn = scClosestActionButton(e.target);
+    if (!btn) return;
+    var action = scResolveCalculatorAction(btn);
+    if (!action) return;
+    if (typeof window.SC === 'undefined') return;
+    e.preventDefault();
+    if (scActionDebugEnabled()) {
+      try { console.debug('[Scholarics] calculator action:', action, btn.id || '(no id)'); } catch (err) {}
+    }
+    if (action === 'share') scRunShareAction(btn);
+    else if (action === 'copylink') scRunCopyLinkAction(btn);
+    else if (action === 'pdf') scRunPdfAction(btn);
+  }
+
+  /* Install the single delegated listener exactly once, no matter how many
+     times this script (or a rebuilt bundle containing it) is evaluated. */
+  function installGlobalCalculatorActions() {
+    if (window.SC_CALC_ACTIONS_ROUTER) return;
+    window.SC_CALC_ACTIONS_ROUTER = true;
+    document.addEventListener('click', scRouteCalculatorAction);
   }
   function initVerdictAnim () {
     if (pRM) return;
@@ -784,7 +874,8 @@
       setTimeout(function () { btn.classList.remove('btn-spring'); }, 400);
     });
   }
-  /* initCopyFeedback removed (handled by initGlobalCalculatorActions) */
+  /* initCopyFeedback handled by the delegated global action router
+     (installGlobalCalculatorActions, installed at script evaluation time) */
   function initScaleNoteLinks () {
     qsa('.scale-note a').forEach(function (link) {
       link.addEventListener('click', function () {
@@ -830,7 +921,9 @@
     initResetBtnAnim();
     initScaleNoteLinks();
     initPercentageIcons();
-    initGlobalCalculatorActions();
+    /* Share / Copy Link / PDF are NOT initialised here: they are routed by
+       the single delegated document listener installed when this script was
+       evaluated (see installGlobalCalculatorActions above). */
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

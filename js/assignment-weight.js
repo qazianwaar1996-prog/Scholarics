@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(add) add.onclick=function(){rows.push({id:uid(),name:'',score:'',max:'100'});store.set(KEY,rows);render();SC.toast('Added','success');};
   if(rs) rs.onclick=function(){store.set(KEY,null);rows=[{id:uid(),name:'Homework 1',score:'18',max:'20'},{id:uid(),name:'Homework 2',score:'15',max:'20'},{id:uid(),name:'Quiz 1',score:'9',max:'10'}];render();SC.toast('Reset','info');};
   if(tw) tw.addEventListener('input',compute);
-  if(sh) sh.onclick=function(){var v=$('#awAvgOut');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('Assignment average: '+v.textContent+' — Scholarics');};
+  /* #awShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   render();
 });
 })();

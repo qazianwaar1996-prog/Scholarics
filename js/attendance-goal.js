@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var rs=$('#agReset');
   if(rs){rs.onclick=function(){['#agAttended','#agTotal','#agRemaining'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#agShare');
-  if(sh){sh.onclick=function(){var v=$('#agMustAttend');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('I must attend '+v.textContent+' more classes to reach my attendance goal — Scholarics');};}
+  /* #agShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   compute();
 });
 })();

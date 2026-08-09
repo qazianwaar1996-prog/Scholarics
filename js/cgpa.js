@@ -159,7 +159,6 @@
     var addBtn1 = $("#addRow");
     var addBtn2 = $("#addRow2");
     var clearBtn = $("#clearAll");
-    var shareBtn = $("#shareBtn");
     if (addBtn1) addBtn1.onclick = addSem;
     if (addBtn2) addBtn2.onclick = addSem;
     if (clearBtn) {

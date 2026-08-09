@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var rs=$('#chReset');
   if(rs){rs.onclick=function(){store.set(KEY,null);location.reload();};}
   var sh=$('#chShare');
-  if(sh){sh.onclick=function(){var s=$('#chSemOut');if(!s||s.textContent==='—')return SC.toast('Enter details first','info');SC.copy('I have '+$('#chRemaining').textContent+' credits left and '+s.textContent+' semesters to go — Scholarics');};}
+  /* #chShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   compute();
 });
 })();

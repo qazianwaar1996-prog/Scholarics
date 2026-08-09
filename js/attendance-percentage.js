@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var rs=$('#apReset');
   if(rs){rs.onclick=function(){['#apAttended','#apTotal'].forEach(function(s){var e=$(s);if(e)e.value='';});store.set(KEY,null);compute();SC.toast('Reset','info');};}
   var sh=$('#apShare');
-  if(sh){sh.onclick=function(){var v=$('#apPctOut');if(!v||v.textContent==='—')return SC.toast('Enter data first','info');SC.copy('My attendance is '+v.textContent+' — Scholarics');};}
+  /* #apShare is routed by the single global calculator action router in
+     js/calculators.js (id$="Share" → Share). No page-level share listener. */
   compute();
 });
 })();
