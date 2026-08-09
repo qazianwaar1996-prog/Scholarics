@@ -85,14 +85,6 @@
         SC.toast("Fields reset", "info");
       };
     }
-    var shareBtn = $("#shareBtn");
-    if (shareBtn) {
-      shareBtn.onclick = function() {
-        var score = ne.textContent;
-        if (score === "—") return SC.toast("Enter numbers first", "error");
-        SC.copy("I need a " + score + " on my final to reach my goal! Calculated on Scholarics.");
-      };
-    }
     calc();
   });
 })();

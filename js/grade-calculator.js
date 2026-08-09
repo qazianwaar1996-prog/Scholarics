@@ -154,13 +154,6 @@
         }
       };
     }
-    if (share) {
-      share.onclick = function() {
-        var g = $("#gradeOut") ? $("#gradeOut").textContent : "—";
-        if (g === "—") return SC.toast("Enter items first", "error");
-        SC.copy("My current course grade is " + g + "! Calculated on Scholarics.");
-      };
-    }
     render();
   });
 })();

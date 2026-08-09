@@ -192,20 +192,6 @@
         }
       };
     }
-    var share = $("#shareBtn");
-    if (share) {
-      share.onclick = function() {
-        var g = $("#gpaOut") ? $("#gpaOut").textContent : "0.00";
-        SC.copy("My GPA is " + g + "! Calculated on Scholarics.");
-      };
-    }
-    var copyLink = $("#copyLinkBtn");
-    if (copyLink && window.SCShare) {
-      copyLink.onclick = function () {
-        var compact = rows.map(function (r) { return [r.name, r.grade, r.credits]; });
-        SCShare.copyLink({ scale: scale, rows: JSON.stringify(compact) });
-      };
-    }
     render();
     setScaleNote();
 

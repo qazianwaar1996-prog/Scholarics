@@ -99,14 +99,6 @@
         SC.toast("Reset to defaults", "info");
       };
     }
-    var shareBtn = $("#shareBtn");
-    if (shareBtn) {
-      shareBtn.onclick = function() {
-        var val = ne ? ne.textContent : "—";
-        if (val === "—") return;
-        SC.copy("I need to average a " + val + " to reach my goal! Check yours on Scholarics.");
-      };
-    }
     if (goalSlideValEl && goalGpaEl) {
         goalSlideValEl.textContent = (parseFloat(goalGpaEl.value) || 0).toFixed(2);
     }

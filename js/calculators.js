@@ -130,38 +130,73 @@
 
   function getCalculatorStateUrl() {
     if (window.SC_LAST_STATE_URL) return window.SC_LAST_STATE_URL;
-    if (window.SCShare && typeof SCShare.buildUrl === 'function') {
-      var path = window.location.pathname;
-      if (/gpa\.html/i.test(path)) {
-        var scale = (qs('#scale') && qs('#scale').value) || 'letter';
-        var rows = [];
-        qsa('#rows .crow').forEach(function (r) {
-          var name = (qs('[data-f="name"]', r) && qs('[data-f="name"]', r).value) || '';
-          var grade = (qs('[data-f="grade"]', r) && qs('[data-f="grade"]', r).value) || 'A';
-          var credits = parseFloat((qs('[data-f="credits"]', r) && qs('[data-f="credits"]', r).value) || '3') || 0;
-          rows.push([name, grade, credits]);
-        });
-        if (rows.length) return SCShare.buildUrl({ scale: scale, rows: JSON.stringify(rows) });
-      } else if (/cgpa\.html/i.test(path)) {
-        if (window.SC && SC.store) {
-          var cgRows = SC.store.get('sc_cgpa_rows', []);
-          if (cgRows && cgRows.length) {
-            var compact = cgRows.map(function (r) { return [r.name, r.gpa, r.credits]; });
-            return SCShare.buildUrl({ rows: JSON.stringify(compact) });
-          }
-        }
-      } else if (/attendance-calculator\.html/i.test(path)) {
-        var a = qs('#attended') ? qs('#attended').value : (qs('#att') ? qs('#att').value : '');
-        var h = qs('#held') ? qs('#held').value : '';
-        var r = qs('#req') ? qs('#req').value : '';
-        if (a || h || r) return SCShare.buildUrl({ a: a, h: h, r: r });
-      } else if (/final-exam-calculator\.html/i.test(path)) {
-        var cur = qs('#feCurrentGrade') ? qs('#feCurrentGrade').value : '';
-        var goal = qs('#feTargetGrade') ? qs('#feTargetGrade').value : '';
-        var weight = qs('#feWeight') ? qs('#feWeight').value : '';
-        if (cur || goal || weight) return SCShare.buildUrl({ cur: cur, goal: goal, weight: weight });
-      }
+    if (!window.SCShare || typeof SCShare.buildUrl !== 'function') {
+      return window.location.href.split('#')[0];
     }
+    var path = window.location.pathname;
+    var page = path.replace(/^\/|\/$/g, '').replace(/\.html$/i, '');
+
+    if (page === 'gpa') {
+      var scale = (qs('#scale') && qs('#scale').value) || 'letter';
+      var rows = [];
+      qsa('#rows .crow').forEach(function (r) {
+        var name = (qs('[data-f="name"]', r) && qs('[data-f="name"]', r).value) || '';
+        var grade = (qs('[data-f="grade"]', r) && qs('[data-f="grade"]', r).value) || 'A';
+        var credits = parseFloat((qs('[data-f="credits"]', r) && qs('[data-f="credits"]', r).value) || '3') || 0;
+        rows.push([name, grade, credits]);
+      });
+      if (rows.length) return SCShare.buildUrl({ scale: scale, rows: JSON.stringify(rows) });
+    } else if (page === 'cgpa') {
+      if (window.SC && SC.store) {
+        var cgRows = SC.store.get('sc_cgpa_rows', []);
+        if (cgRows && cgRows.length) {
+          var compact = cgRows.map(function (r) { return [r.name, r.gpa, r.credits]; });
+          return SCShare.buildUrl({ rows: JSON.stringify(compact) });
+        }
+      }
+    } else if (page === 'attendance-calculator') {
+      var a = qs('#attended') ? qs('#attended').value : (qs('#att') ? qs('#att').value : '');
+      var h = qs('#held') ? qs('#held').value : '';
+      var r = qs('#req') ? qs('#req').value : '';
+      if (a || h || r) return SCShare.buildUrl({ a: a, h: h, r: r });
+    } else if (page === 'final-exam-calculator') {
+      var cur = qs('#feCurrentGrade') ? qs('#feCurrentGrade').value : '';
+      var goal = qs('#feTargetGrade') ? qs('#feTargetGrade').value : '';
+      var weight = qs('#feWeight') ? qs('#feWeight').value : '';
+      if (cur || goal || weight) return SCShare.buildUrl({ cur: cur, goal: goal, weight: weight });
+    } else if (page === 'grade-calculator') {
+      if (window.SC && SC.store) {
+        var gRows = SC.store.get('sc_grade_rows', []);
+        if (gRows && gRows.length) {
+          var compact = gRows.map(function (r) { return [r.name, r.score, r.weight]; });
+          return SCShare.buildUrl({ rows: JSON.stringify(compact) });
+        }
+      }
+    } else if (page === 'final-grade') {
+      var curVal = qs('#cur') ? qs('#cur').value : '';
+      var goalVal = qs('#goal') ? qs('#goal').value : '';
+      var wVal = qs('#weight') ? qs('#weight').value : '';
+      if (curVal || goalVal || wVal) return SCShare.buildUrl({ cur: curVal, goal: goalVal, w: wVal });
+    } else if (page === 'target-gpa') {
+      var curGpa = qs('#curGpa') ? qs('#curGpa').value : '';
+      var curCred = qs('#curCredits') ? qs('#curCredits').value : '';
+      var remCred = qs('#remCredits') ? qs('#remCredits').value : '';
+      var goalGpa = qs('#goalGpa') ? qs('#goalGpa').value : '';
+      if (curGpa || curCred || remCred || goalGpa) return SCShare.buildUrl({ cur: curGpa, cc: curCred, rc: remCred, goal: goalGpa });
+    } else if (page === 'gpa-simulator' && window.SCGetSimulatorState) {
+      return SCShare.buildUrl(window.SCGetSimulatorState());
+    }
+
+    var data = {};
+    var hasData = false;
+    qsa('input:not([type="hidden"]):not([type="submit"]):not([type="button"]), select, textarea').forEach(function(el) {
+      if (el.id && el.value && el.value !== el.placeholder && el.value !== '') {
+        data[el.id] = el.value;
+        hasData = true;
+      }
+    });
+    if (hasData) return SCShare.buildUrl(data);
+
     return window.location.href.split('#')[0];
   }
 
@@ -177,48 +212,37 @@
     }, 2000);
   }
 
-  function printHTMLReport(htmlContent) {
-    var iframe = document.createElement('iframe');
-    iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;';
-    document.body.appendChild(iframe);
-
-    var doc = iframe.contentWindow || iframe.contentDocument;
-    if (doc && doc.document) doc = doc.document;
-
-    if (doc) {
-      doc.open();
-      doc.write(htmlContent);
-      doc.close();
-    }
-
-    setTimeout(function () {
-      try {
-        if (iframe.contentWindow) {
-          iframe.contentWindow.focus();
-          iframe.contentWindow.print();
-        }
-      } catch (e) {
-        var win = window.open('', '_blank', 'width=800,height=600');
-        if (win) {
-          win.document.write(htmlContent);
-          win.document.close();
-          win.focus();
-          setTimeout(function () { win.print(); }, 400);
-        } else {
-          SC.toast('Allow popups to download PDF report', 'error');
-        }
+  function loadJsPDF() {
+    return new Promise(function(resolve, reject) {
+      if (window.jspdf && window.jspdf.jsPDF) {
+        resolve(window.jspdf.jsPDF);
+        return;
       }
-      setTimeout(function () {
-        if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
-      }, 3000);
-    }, 350);
+      var script = document.createElement('script');
+      script.src = '/js/vendor/jspdf.min.js';
+      script.onload = function() {
+        if (window.jspdf && window.jspdf.jsPDF) {
+          resolve(window.jspdf.jsPDF);
+          return;
+        }
+        var autoScript = document.createElement('script');
+        autoScript.src = '/js/vendor/jspdf-autotable.min.js';
+        autoScript.onload = function() {
+          if (window.jspdf && window.jspdf.jsPDF) {
+            resolve(window.jspdf.jsPDF);
+          } else {
+            reject(new Error('jsPDF failed to load'));
+          }
+        };
+        autoScript.onerror = function() { reject(new Error('Failed to load jsPDF autotable')); };
+        document.head.appendChild(autoScript);
+      };
+      script.onerror = function() { reject(new Error('Failed to load jsPDF')); };
+      document.head.appendChild(script);
+    });
   }
 
-  function generateDynamicPDFReport(btn) {
-    var origHTML = btn.innerHTML;
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Printing…';
-    btn.classList.add('btn-loading');
-
+  function generatePrintFallbackReport(btn, origHTML) {
     var toolName = getToolName();
     var summary  = getCalculatorSummary() || (toolName + ' Report');
     var dateStr  = new Date().toLocaleDateString();
@@ -346,33 +370,233 @@
       '<div class="footer">Generated by Scholarics · scholarics.com · Free academic calculators &amp; tools for students</div>' +
       '</body></html>';
 
-    printHTMLReport(fullHTML);
-
+    var iframe = document.createElement('iframe');
+    iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;';
+    document.body.appendChild(iframe);
+    var doc = iframe.contentWindow || iframe.contentDocument;
+    if (doc && doc.document) doc = doc.document;
+    if (doc) { doc.open(); doc.write(fullHTML); doc.close(); }
     setTimeout(function () {
-      btn.innerHTML = origHTML;
-      btn.classList.remove('btn-loading');
-    }, 800);
+      try {
+        if (iframe.contentWindow) { iframe.contentWindow.focus(); iframe.contentWindow.print(); }
+      } catch (e) {
+        var win = window.open('', '_blank', 'width=800,height=600');
+        if (win) { win.document.write(fullHTML); win.document.close(); win.focus(); setTimeout(function () { win.print(); }, 400); }
+        else { SC.toast('Allow popups to download PDF report', 'error'); }
+      }
+      setTimeout(function () { if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe); }, 3000);
+    }, 350);
+
+    btn.innerHTML = origHTML;
+    btn.classList.remove('btn-loading');
+    btn.disabled = false;
+  }
+
+  function generateDynamicPDFReport(btn) {
+    var origHTML = btn.innerHTML;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Generating…';
+    btn.classList.add('btn-loading');
+    btn.disabled = true;
+
+    loadJsPDF().then(function(jsPDF) {
+      var toolName = getToolName();
+      var summary  = getCalculatorSummary() || (toolName + ' Report');
+      var dateStr  = new Date().toLocaleDateString();
+
+      var resultEl = qs('.gpa-big, .res-big, .grade-big, .gauge-num .n, .ring .pct, #caMean, #g2pOut, #p2gOut, #ssTotalHours, #stWeeklyHours, #need, #feNeedOut, #awAvgOut, #agMustAttend, #apPctOut, #chSemOut, #giRequired, #gpPredOut, #rmReqOut, #sgOut');
+      var labelEl  = qs('.gpa-hero .label, .res-hero .label, .grade-hero .label, .gauge-label, .ring-status, .result-box .label, .label');
+      var resVal   = resultEl ? resultEl.textContent.trim() : '—';
+      var resLbl   = labelEl  ? labelEl.textContent.trim()  : 'Result';
+
+      var doc = new jsPDF({ unit: 'pt', format: 'a4' });
+      var pageWidth = doc.internal.pageSize.getWidth();
+      var margin = 40;
+      var contentWidth = pageWidth - margin * 2;
+      var y = margin;
+
+      doc.setFillColor(26, 24, 21);
+      doc.rect(0, 0, pageWidth, 60, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(18);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Scholarics', margin, 38);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text('scholarics.com', pageWidth - margin, 38, { align: 'right' });
+
+      y = 80;
+      doc.setTextColor(26, 24, 21);
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text(toolName + ' Report', margin, y);
+      y += 18;
+      doc.setFontSize(10);
+      doc.setTextColor(107, 114, 128);
+      doc.text(dateStr, margin, y);
+      y += 30;
+
+      doc.setFillColor(248, 250, 252);
+      doc.setDrawColor(226, 232, 240);
+      doc.rect(margin, y, contentWidth, 70, 'FD');
+      doc.setDrawColor(124, 58, 237);
+      doc.setLineWidth(3);
+      doc.line(margin, y, margin, y + 70);
+      doc.setTextColor(71, 85, 105);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.text(resLbl.toUpperCase(), margin + 12, y + 18);
+      doc.setTextColor(26, 24, 21);
+      doc.setFontSize(28);
+      doc.text(resVal, margin + 12, y + 50);
+      y += 90;
+
+      var metaItems = [];
+      qsa('.gpa-meta div, .res-meta div, .stats div, .hero-stats div, .res-sub, .gpa-sub, .grade-letter, .ring-status').forEach(function (m) {
+        var nEl = qs('.n, .val', m);
+        var lEl = qs('.l, .lbl', m);
+        if (nEl && lEl) {
+          metaItems.push([lEl.textContent.trim(), nEl.textContent.trim()]);
+        } else if (m.textContent && !nEl) {
+          var txt = m.textContent.trim();
+          if (txt && txt !== '—' && txt !== 'Enter values first' && txt !== 'Add a course to begin' && txt !== 'Add a semester to begin') {
+            metaItems.push(['Details', txt]);
+          }
+        }
+      });
+
+      if (metaItems.length > 0) {
+        doc.autoTable({
+          startY: y,
+          margin: { left: margin, right: margin },
+          body: metaItems,
+          theme: 'plain',
+          styles: { fontSize: 10, cellPadding: 4 },
+          columnStyles: { 0: { fontStyle: 'bold', textColor: [71, 85, 105] } }
+        });
+        y = doc.lastAutoTable.finalY + 10;
+      }
+
+      var scaleSelect = qs('#scale, #scaleSel, select[id*="scale"]');
+      if (scaleSelect && scaleSelect.options && scaleSelect.selectedIndex >= 0) {
+        doc.setFontSize(10);
+        doc.setTextColor(71, 85, 105);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Grading scale: ', margin, y);
+        doc.setFont('helvetica', 'normal');
+        doc.text(scaleSelect.options[scaleSelect.selectedIndex].textContent.trim(), margin + 70, y);
+        y += 20;
+      }
+
+      var rowsContainer = qs('#rows, #awRows, #cgpaRows, .rows-gpa');
+      var crows = rowsContainer ? qsa('.crow', rowsContainer) : [];
+      var tableData = [];
+      var tableHeaders = [];
+
+      if (crows.length > 0) {
+        qsa('.rows-head span, thead th').forEach(function (th) {
+          var t = th.textContent.trim();
+          if (t) tableHeaders.push(t);
+        });
+        if (tableHeaders.length === 0) {
+          tableHeaders = ['Name', 'Grade / Value', 'Credits / Weight'];
+        }
+        crows.forEach(function (row) {
+          var rowData = [];
+          var cols = 0;
+          qsa('input:not([type="hidden"]), select', row).forEach(function (field) {
+            if (cols >= tableHeaders.length) return;
+            var val = '';
+            if (field.tagName.toLowerCase() === 'select') {
+              val = field.options && field.selectedIndex >= 0 ? field.options[field.selectedIndex].textContent.trim() : '';
+            } else {
+              val = field.value ? field.value.trim() : '';
+            }
+            rowData.push(val || '—');
+            cols++;
+          });
+          if (rowData.length) tableData.push(rowData);
+        });
+      } else {
+        qsa('.field, .form-group, .input-wrap').forEach(function (field) {
+          var lblEl = qs('label', field);
+          var inpEl = qs('input:not([type="hidden"]), select', field);
+          if (lblEl && inpEl) {
+            var labelTxt = lblEl.textContent.trim();
+            var valTxt = '';
+            if (inpEl.tagName.toLowerCase() === 'select') {
+              valTxt = inpEl.options && inpEl.selectedIndex >= 0 ? inpEl.options[inpEl.selectedIndex].textContent.trim() : '';
+            } else {
+              valTxt = inpEl.value ? inpEl.value.trim() : '';
+            }
+            if (labelTxt && valTxt) {
+              tableData.push([labelTxt, valTxt]);
+            }
+          }
+        });
+        if (tableData.length > 0) {
+          tableHeaders = ['Parameter', 'Value'];
+        }
+      }
+
+      if (tableData.length > 0) {
+        doc.setFontSize(12);
+        doc.setTextColor(26, 24, 21);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Calculation Details', margin, y);
+        y += 14;
+        doc.autoTable({
+          startY: y,
+          head: [tableHeaders],
+          body: tableData,
+          margin: { left: margin, right: margin },
+          theme: 'grid',
+          headStyles: { fillColor: [26, 24, 21], textColor: [255, 255, 255], fontStyle: 'bold' },
+          styles: { fontSize: 9, cellPadding: 5 },
+          alternateRowStyles: { fillColor: [248, 250, 252] }
+        });
+        y = doc.lastAutoTable.finalY + 10;
+      }
+
+      var pageCount = doc.internal.getNumberOfPages();
+      for (var i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(156, 163, 175);
+        doc.text('Generated by Scholarics · scholarics.com · Free academic calculators & tools for students', pageWidth / 2, doc.internal.pageSize.getHeight() - 20, { align: 'center' });
+      }
+
+      var safeName = toolName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+      doc.save(safeName + '_report.pdf');
+
+      showButtonSuccess(btn, 'PDF saved!');
+      announceSr('PDF report downloaded.');
+    }).catch(function(err) {
+      console.warn('jsPDF failed, falling back to print:', err);
+      generatePrintFallbackReport(btn, origHTML);
+    });
   }
 
   function initGlobalCalculatorActions() {
+    if (window.SC_ACTIONS_INITIALIZED) return;
+    window.SC_ACTIONS_INITIALIZED = true;
+
     function fallbackShare(summary, url, btn) {
       var textToCopy = summary + ' — ' + url;
-      if (window.SC && typeof SC.copy === 'function') {
-        SC.copy(textToCopy);
-      } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textToCopy);
-      }
-      showButtonSuccess(btn, 'Copied!');
-      announceSr('Result copied to clipboard.');
+      SC.copy(textToCopy).then(function() {
+        showButtonSuccess(btn, 'Copied!');
+        announceSr('Result copied to clipboard.');
+      }).catch(function() {
+        SC.toast('Copy failed', 'error');
+      });
     }
 
     /* 1. Share Buttons */
     qsa('#shareBtn, [id$="Share"]').forEach(function (btn) {
       if (btn.id === 'simShareBtn') return;
-      btn.onclick = null;
+      if (btn.getAttribute('data-sc-action')) return;
+      btn.setAttribute('data-sc-action', 'share');
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        e.stopImmediatePropagation();
         var summary = getCalculatorSummary();
         if (!summary) {
           SC.toast('Enter values first', 'info');
@@ -395,58 +619,43 @@
         } else {
           fallbackShare(summary, url, btn);
         }
-      }, true);
+      });
     });
 
     /* 2. Copy Link Buttons */
     qsa('#copyLinkBtn, #attCopyLink, #feCopyLink, #simShareBtn, .copy-link-btn').forEach(function (btn) {
-      btn.onclick = null;
+      if (btn.getAttribute('data-sc-action')) return;
+      btn.setAttribute('data-sc-action', 'copylink');
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        e.stopImmediatePropagation();
         var url = getCalculatorStateUrl();
         if (!url) {
           SC.toast('No link to copy', 'info');
           return;
         }
-        function onCopySuccess() {
+        SC.copy(url).then(function() {
           showButtonSuccess(btn, 'Copied link!');
           SC.toast('Link copied to clipboard!', 'success');
           announceSr('Link copied to clipboard.');
-        }
-        function onCopyFail() {
+        }).catch(function() {
           SC.toast('Failed to copy link', 'error');
-        }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(url).then(onCopySuccess).catch(function () {
-            if (window.SC && typeof SC.copy === 'function') {
-              try { SC.copy(url); onCopySuccess(); } catch(err) { onCopyFail(); }
-            } else {
-              onCopyFail();
-            }
-          });
-        } else if (window.SC && typeof SC.copy === 'function') {
-          try { SC.copy(url); onCopySuccess(); } catch(err) { onCopyFail(); }
-        } else {
-          onCopyFail();
-        }
-      }, true);
+        });
+      });
     });
 
     /* 3. PDF Buttons */
-    qsa('#pdfBtn').forEach(function (btn) {
-      btn.onclick = null;
+    qsa('#pdfBtn, #simPdfBtn').forEach(function (btn) {
+      if (btn.getAttribute('data-sc-action')) return;
+      btn.setAttribute('data-sc-action', 'pdf');
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        e.stopImmediatePropagation();
         try {
           generateDynamicPDFReport(btn);
-          announceSr('PDF report generated.');
         } catch (err) {
           console.error('PDF export error:', err);
           SC.toast('Unable to generate PDF report', 'error');
         }
-      }, true);
+      });
     });
   }
   function initVerdictAnim () {

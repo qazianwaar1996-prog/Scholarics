@@ -172,19 +172,6 @@
         }
       };
     }
-    if (shareBtn) {
-      shareBtn.onclick = function() {
-        var result = $("#cgpaOut") ? $("#cgpaOut").textContent : "0.00";
-        SC.copy("My Cumulative GPA is " + result + ". Calculated on Scholarics!");
-      };
-    }
-    var copyLinkBtn = $("#copyLinkBtn");
-    if (copyLinkBtn && window.SCShare) {
-      copyLinkBtn.onclick = function () {
-        var compact = rows.map(function (r) { return [r.name, r.gpa, r.credits]; });
-        SCShare.copyLink({ rows: JSON.stringify(compact) });
-      };
-    }
     render();
 
     if (sharedFromLink && window.SCShare) {
