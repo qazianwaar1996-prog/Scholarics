@@ -348,33 +348,10 @@
     setTimeout(function () { updateRing(gpaBig.textContent); }, 400);
   }
   function initPDFButton () {
-    var btn = qs('#pdfBtn');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var orig = btn.innerHTML;
-      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Printing…';
-      btn.classList.add('btn-loading');
-      setTimeout(function () {
-        window.print();
-        setTimeout(function () {
-          btn.innerHTML = orig;
-          btn.classList.remove('btn-loading');
-        }, 800);
-      }, 200);
-    });
+    /* Handled globally by initGlobalCalculatorActions in js/calculators.js */
   }
   function initShareButtons () {
-    qsa('#shareBtn, #copyBtn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var orig = btn.innerHTML;
-        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Copied!';
-        btn.classList.add('btn-copied');
-        setTimeout(function () {
-          btn.innerHTML = orig;
-          btn.classList.remove('btn-copied');
-        }, 2000);
-      });
-    });
+    /* Handled globally by initGlobalCalculatorActions in js/calculators.js */
   }
   function initIconAnims () {
     if (pRM) return;

@@ -9,7 +9,8 @@ const suites = [
   { file: "core.test.js",            label: "Core maths (scales, GPA, needed-grade, sanitise)" },
   { file: "simulator-ui.test.js",    label: "Simulator UI (jsdom, full page)" },
   { file: "backend.test.js",         label: "Backend API (wrangler, AI mock)" },
-  { file: "integration.test.js",     label: "Site integration (links, search, SEO, footer)" }
+  { file: "integration.test.js",     label: "Site integration (links, search, SEO, footer)" },
+  { file: "global-actions.test.js",  label: "Global Calculator Actions (Share, Copy Link, PDF, State Restoration)" }
 ];
 
 let failed = 0;
