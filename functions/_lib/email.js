@@ -19,8 +19,8 @@ export async function deliver(env, message) {
   var key = env.RESEND_API_KEY;
   var to = env.EMAIL_TO || message.fallbackTo;
 
-  // 1. Resend
-  if (key) {
+  // 1. Resend — never call the API without a recipient
+  if (key && to) {
     var payload = {
       from: env.EMAIL_FROM || 'Scholarics <no-reply@scholarics.com>',
       to: to,

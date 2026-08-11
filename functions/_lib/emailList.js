@@ -178,9 +178,14 @@ export function createEmailListEndpoint(config) {
     try {
       emailResult = await deliver(env, notificationFor(config, signup, timestamp));
     } catch (e) {
-      /* The list entry is durable already, so notification failure is non-fatal. */
+      /* Signup is stored, but a delivery exception is not a successful notification. */
       logFailure(config.scope, 'notification_failed', e && (e.code || e.message));
-      emailResult = { delivered: false };
+      return json({
+        ok: false,
+        stored: true,
+        delivered: false,
+        error: 'Could not send the notification email. Please try again later.'
+      }, 502);
     }
 
     return json({

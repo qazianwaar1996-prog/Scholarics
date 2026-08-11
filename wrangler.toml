@@ -15,7 +15,7 @@ pages_build_output_dir = "."
 # is unset (see functions/_lib/email.js).
 [vars]
 EMAIL_FROM = "Scholarics <no-reply@scholarics.com>"
-EMAIL_TO = ""
+EMAIL_TO = "scholarics.team@gmail.com"
 
 # KV Namespaces
 
