@@ -1,0 +1,227 @@
+/* ============================================================
+   Scholarics — Global Bug Fixes (sc-global-fixes.css)
+   Loaded on every calculator page AFTER core styles.
+   DO NOT redesign — these are surgical, targeted fixes only.
+   ============================================================ */
+
+/* ────────────────────────────────────────────────────────────
+   1. MOBILE — result-hero ::after overlay blocks buttons
+   The decorative gradient pseudo-element sits at z-index auto
+   on top of all sibling content. All direct children of
+   .res-hero / .gpa-hero / .grade-hero that need to receive
+   pointer events must establish their own stacking context.
+   ──────────────────────────────────────────────────────────── */
+.result-btn-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: var(--s3);
+  margin-top: var(--s5);
+  flex-wrap: wrap;
+}
+
+/* Buttons inside the result hero need their own stacking context
+   so they appear above the ::after gradient overlay */
+.res-hero .btn,
+.gpa-hero .btn,
+.grade-hero .btn {
+  position: relative;
+  z-index: 1;
+  /* Visible against dark background */
+  color: oklch(.99 .01 74);
+  border-color: oklch(.5 .01 74 / .5);
+  background: oklch(.32 .015 55);
+}
+.res-hero .btn:hover,
+.gpa-hero .btn:hover,
+.grade-hero .btn:hover {
+  background: oklch(.42 .015 55);
+  border-color: oklch(.7 .01 74 / .6);
+}
+
+/* sc-conv-result inside hero must also be above the ::after overlay */
+.sc-conv-result {
+  position: relative;
+  z-index: 1;
+}
+
+/* ────────────────────────────────────────────────────────────
+   2. MOBILE — Grade Predictor & Required Marks inline-grid rows
+   grade-predictor.js and required-marks.js both render .crow
+   with inline style="grid-template-columns:1fr 90px 90px 44px"
+   (and the .rows-head divs in HTML have matching inline styles).
+   Inline styles win over class selectors but lose to !important.
+   At ≤560px we force a stacked mobile layout for those specific
+   ad-hoc column patterns so the first input is never tiny.
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  /* Grade Predictor rows: 1fr 90px 90px 44px → stacked */
+  #gpRows .crow,
+  #gpRows .crow[style] {
+    grid-template-columns: 1fr 44px !important;
+    grid-template-areas:
+      "name del"
+      "score score"
+      "weight weight" !important;
+  }
+  #gpRows .crow [data-f="name"]    { grid-area: name; }
+  #gpRows .crow [data-del]         { grid-area: del; }
+  #gpRows .crow [data-f="score"]   { grid-area: score; }
+  #gpRows .crow [data-f="weight"]  { grid-area: weight; }
+
+  /* Hide Grade Predictor header row (labels replaced by placeholders) */
+  .rows-head[style*="grid-template-columns:1fr 90px 90px 44px"],
+  .rows-head[style*="grid-template-columns: 1fr 90px 90px 44px"] {
+    display: none !important;
+  }
+
+  /* Required Marks rows: 1fr 110px 90px 44px 44px → stacked */
+  #rmRows .crow,
+  #rmRows .crow[style] {
+    grid-template-columns: 1fr 44px !important;
+    grid-template-areas:
+      "name status"
+      "obtained obtained"
+      "maxmarks maxmarks" !important;
+  }
+  /* Required Marks header suppression */
+  .rows-head[style*="grid-template-columns:1fr 110px 90px 44px 44px"],
+  .rows-head[style*="grid-template-columns: 1fr 110px 90px 44px 44px"] {
+    display: none !important;
+  }
+
+  /* panel-head on narrow screens: stack vertically, not side-by-side */
+  .panel-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .panel-head .calc-actions {
+    width: 100%;
+    margin-top: var(--s3);
+  }
+
+  /* Prevent calc-actions from overflowing panel at narrow widths */
+  .calc-actions {
+    flex-wrap: wrap;
+  }
+
+  /* Shrink panel padding on very narrow phones */
+  .panel {
+    padding: var(--s4);
+  }
+
+  /* Ensure wrap padding doesn't contribute to overflow at 360px */
+  .wrap {
+    padding-left: var(--s4);
+    padding-right: var(--s4);
+  }
+}
+
+/* Extra safety at 430px — keep calc-actions buttons legible */
+@media (max-width: 430px) {
+  .calc-actions .btn {
+    flex: 1 1 auto;
+    min-width: 80px;
+    justify-content: center;
+  }
+  /* If there's a label + input combo in panel-head actions, stack them */
+  .panel-head .calc-actions > .field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   3. MOBILE — required-marks: Target % field in panel-head
+   At 430px the flex row with "Target % [input]" + [Add] + [Reset]
+   collapses badly. Force it to stack.
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .panel-head .calc-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s3);
+  }
+  /* The Target % field inside calc-actions: keep it inline */
+  .panel-head .calc-actions .field[style*="flex-direction:row"],
+  .panel-head .calc-actions .field[style*="flex-direction: row"] {
+    flex-direction: row !important;
+    align-items: center;
+    width: 100%;
+  }
+  /* Action buttons after the field: put them back in a row */
+  .panel-head .calc-actions .btn {
+    align-self: auto;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   4. GLOBAL — ensure all .btn inside dark hero cards are
+   reachable (pointer-events not blocked by the ::after layer).
+   This is belt-and-suspenders alongside rule 1.
+   ──────────────────────────────────────────────────────────── */
+.res-hero > *,
+.gpa-hero > *,
+.grade-hero > * {
+  position: relative;
+  z-index: 1;
+}
+/* Keep the ::after decorative gradient but prevent it from
+   capturing pointer events */
+.res-hero::after,
+.gpa-hero::after,
+.grade-hero::after {
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────────────────
+   5. MOBILE — gpa-meta stays in a row, never wraps weirdly
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 360px) {
+  .gpa-meta {
+    gap: var(--s3);
+  }
+  .gpa-big, .res-big, .grade-big {
+    font-size: 2.8rem;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   6. MOBILE — Assignment Weight rows: 1fr 100px 100px 44px
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  /* Hide the inline-styled rows-head for assignment-weight */
+  .rows-head[style*="grid-template-columns:1fr 100px 100px 44px"],
+  .rows-head[style*="grid-template-columns: 1fr 100px 100px 44px"] {
+    display: none !important;
+  }
+
+  /* Stack assignment-weight crow rows */
+  #awRows .crow,
+  #awRows .crow[style] {
+    grid-template-columns: 1fr 44px !important;
+    grid-template-areas:
+      "name del"
+      "score score"
+      "max max" !important;
+  }
+  #awRows .crow input[data-f="name"]  { grid-area: name; }
+  #awRows .crow button[data-del]      { grid-area: del; }
+  #awRows .crow input[data-f="score"] { grid-area: score; }
+  #awRows .crow input[data-f="max"]   { grid-area: max; }
+
+  /* Study Schedule rows: 1fr 80px 100px 44px → stacked */
+  .rows-head[style*="grid-template-columns:1fr 80px 100px 44px"],
+  .rows-head[style*="grid-template-columns: 1fr 80px 100px 44px"] {
+    display: none !important;
+  }
+  #ssRows .crow,
+  #ssRows .crow[style] {
+    grid-template-columns: 1fr 44px !important;
+    grid-template-areas:
+      "name del"
+      "a a"
+      "b b" !important;
+  }
+}
