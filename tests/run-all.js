@@ -9,6 +9,7 @@ const suites = [
   { file: "core.test.js",            label: "Core maths (scales, GPA, needed-grade, sanitise)" },
   { file: "simulator-ui.test.js",    label: "Simulator UI (jsdom, full page)" },
   { file: "backend.test.js",         label: "Backend API (wrangler, AI mock)" },
+  { file: "ai-quota.test.js",        label: "AI quota, burst limit & kill switch (wrangler)" },
   { file: "integration.test.js",     label: "Site integration (links, search, SEO, footer)" },
   { file: "global-actions.test.js",  label: "Global Calculator Actions (Share, Copy Link, PDF, State Restoration)" },
   { file: "click-router.test.js",    label: "Calculator Action Router (delegated click path, real bubbling clicks)" }

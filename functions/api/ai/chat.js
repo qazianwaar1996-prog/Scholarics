@@ -20,4 +20,4 @@ export const onRequestPost = withApi(async ({ body, env }) => {
     generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
   });
   return json({ reply });
-});
+}, { aiTool: 'chat' });

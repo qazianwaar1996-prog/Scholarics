@@ -108,6 +108,36 @@
         }
       });
     },
+    /* Anonymous device id used only to apply the free daily AI allowance.
+       It is a random opaque token — no name, email, account or tracking
+       profile — and the server never trusts it on its own (it is always
+       combined with a hashed IP bucket). */
+    visitorId: function () {
+      var KEY = 'sc_vid';
+      var id = '';
+      try { id = localStorage.getItem(KEY) || ''; } catch (e) {}
+      if (!/^[A-Za-z0-9_-]{8,64}$/.test(id)) {
+        id = '';
+        try {
+          if (window.crypto && crypto.getRandomValues) {
+            var a = new Uint8Array(16);
+            crypto.getRandomValues(a);
+            for (var i = 0; i < a.length; i++) id += a[i].toString(36);
+            id = id.slice(0, 32);
+          }
+        } catch (e2) {}
+        if (id.length < 8) id = (Date.now().toString(36) + Math.random().toString(36).slice(2)).slice(0, 32);
+        try { localStorage.setItem(KEY, id); } catch (e3) {}
+      }
+      /* Mirror into a first-party cookie so the request carries it even when a
+         fetch is made without custom headers. SameSite=Lax, no cross-site use. */
+      try {
+        if (document.cookie.indexOf('sc_vid=') === -1) {
+          document.cookie = 'sc_vid=' + id + ';path=/;max-age=31536000;SameSite=Lax';
+        }
+      } catch (e4) {}
+      return id;
+    },
     trackVisit: function () {
       try {
         var url = location.pathname.split('/').pop() || 'index.html';

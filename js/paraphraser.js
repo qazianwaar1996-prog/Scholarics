@@ -654,6 +654,13 @@ window.SC2Paraphraser = (function () {
   // The Gemini API key lives ONLY on the server — it is never read from
   // localStorage or exposed to the browser.
   async function makeAIRequest(promptText) {
+    /* Route through SCAI so the free-usage headers and the anonymous visitor id
+       are handled in exactly one place (js/ai-service.js). */
+    if (window.SCAI && typeof SCAI.paraphrase === 'function') {
+      var reply = await SCAI.paraphrase({ prompt: promptText });
+      if (!reply) throw new Error('No response from the AI. Please try again.');
+      return reply;
+    }
     var response = await fetch('/api/ai/paraphrase', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

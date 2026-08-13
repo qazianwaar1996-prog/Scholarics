@@ -26,4 +26,4 @@ export const onRequestPost = withApi(async ({ body, env }) => {
     : [];
   if (!cards.length) throw badErr('The AI returned no usable flashcards. Please try again.');
   return json({ flashcards: cards });
-});
+}, { aiTool: 'flashcards' });

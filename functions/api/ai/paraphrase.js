@@ -30,4 +30,4 @@ export const onRequestPost = withApi(async ({ body, env }) => {
     generationConfig: { temperature: 0.6, maxOutputTokens: 2048 }
   });
   return json({ reply });
-});
+}, { aiTool: 'paraphrase' });

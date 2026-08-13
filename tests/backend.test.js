@@ -86,6 +86,13 @@ async function portFree(ms) {
   const proc = spawn("npx", ["wrangler", "pages", "dev", ".", "--port", String(PORT),
     "--binding", "AI_MOCK=1", "--binding", "GEMINI_API_KEY=mock",
     "--binding", "RATE_LIMIT=1000", /* the suite makes ~15 requests */
+    /* This suite tests endpoint behaviour, not the free-usage limits — raise
+       the AI burst + daily allowances so they never mask a real failure.
+       The limits themselves are covered by tests/ai-quota.test.js. */
+    "--binding", "AI_RATE_LIMIT=1000", "--binding", "AI_DAILY_GLOBAL=1000",
+    "--binding", "AI_IP_MULTIPLIER=1000",
+    "--binding", "AI_DAILY_COACH=1000", "--binding", "AI_DAILY_CHAT=1000",
+    "--binding", "AI_DAILY_STUDY_PLAN=1000",
     "--compatibility-date=2024-11-01"],
     { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"], detached: true });
   let log = "";

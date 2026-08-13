@@ -24,4 +24,4 @@ export const onRequestPost = withApi(async ({ body, env }) => {
     generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
   });
   return json({ plan });
-});
+}, { aiTool: 'study-plan' });

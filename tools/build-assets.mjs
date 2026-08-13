@@ -364,13 +364,17 @@ for (const page of pages) {
     /* positional refresh: the Nth asset tag on the page is the Nth bundle, so a
        rebuild survives fingerprint *and* bundle-name changes */
     const printTag = info.styles.find((s) => s.media && s.media.includes('print'));
-    const cssTags = info.styles.filter((s) => s !== printTag);
-    if (cssTags.length !== cssGroups.length || info.scripts.length !== jsGroups.length) {
-      throw new Error(`${page}: expected ${cssGroups.length} css + ${jsGroups.length} js bundle tags, found ${cssTags.length} + ${info.scripts.length}. Revert the page and rebuild.`);
+    /* only assets/ tags are bundle slots — pages may also carry a handful of
+       un-bundled source tags (css/sc-global-fixes.css, js/sc-pdf-preview.js);
+       those are left exactly as they are */
+    const cssTags = info.styles.filter((s) => s !== printTag && s.href.startsWith('assets/'));
+    const jsTags = info.scripts.filter((s) => s.src.startsWith('assets/'));
+    if (cssTags.length !== cssGroups.length || jsTags.length !== jsGroups.length) {
+      throw new Error(`${page}: expected ${cssGroups.length} css + ${jsGroups.length} js bundle tags, found ${cssTags.length} + ${jsTags.length}. Revert the page and rebuild.`);
     }
     cssTags.forEach((s, i) => edits.push([s.start, s.end, cssTagFor(cssGroups[i].bundle)]));
     if (printTag && printBundle) edits.push([printTag.start, printTag.end, cssTagFor(printBundle, 'print')]);
-    info.scripts.forEach((s, i) => edits.push([s.start, s.end, jsTagFor(jsGroups[i].bundle)]));
+    jsTags.forEach((s, i) => edits.push([s.start, s.end, jsTagFor(jsGroups[i].bundle)]));
     edits.sort((a, b) => b[0] - a[0]);
     for (const [start, end, text] of edits) html = html.slice(0, start) + text + html.slice(end);
   } else {

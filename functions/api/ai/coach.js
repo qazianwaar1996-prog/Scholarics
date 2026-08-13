@@ -38,7 +38,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
     generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
   });
   return json({ coach: normalizeReport(report) });
-});
+}, { aiTool: 'coach' });
 
 /* ── Server-side analytics (mirrors gpa-simulator-core.js) ────────────── */
 

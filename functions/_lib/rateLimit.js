@@ -11,7 +11,7 @@ var mem = new Map();
 export async function rateLimit(env, key, opts) {
   opts = opts || {};
   var limit = opts.limit || (parseInt(env.RATE_LIMIT, 10) || 20);
-  var windowMs = parseInt(env.RATE_WINDOW_MS, 10) || 60 * 1000;
+  var windowMs = opts.windowMs || (parseInt(env.RATE_WINDOW_MS, 10) || 60 * 1000);
   var now = Date.now();
   var kv = env && env.RATE_LIMIT_KV;
 

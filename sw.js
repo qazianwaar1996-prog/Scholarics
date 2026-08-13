@@ -4,7 +4,7 @@
    offline fallback page for navigation failures.
    ============================================================ */
 
-var CACHE_NAME = 'scholarics-shell-fd128d3a'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
+var CACHE_NAME = 'scholarics-shell-d7ad447c'; /* rebrand to Scholarics: new cache name force-evicts all legacy caches on activate */
 var OFFLINE_URL = '/404.html';
 
 /* Assets to pre-cache on install (the app shell).
@@ -12,11 +12,11 @@ var OFFLINE_URL = '/404.html';
    Fingerprinted bundles contain:
      /assets/css/core.a1dcaabc.css  ←  /css/style.css, /css/premium.css, /css/personalization.css, /css/content-platform.css
      /assets/css/shell.cc3a5b31.css  ←  /css/consent.css, /css/scholarics-v2.css, /css/sc-prelaunch-fixes.css
-     /assets/js/g-ca0b60.f937edff.js  ←  /js/script.js, /js/personalization.js, /js/premium.js, /js/sc-shell.js, /js/sc-v2-features.js, /js/analytics.js, /js/consent.js, /js/email-capture.js, /js/pwa.js
+     /assets/js/g-ca0b60.b6d910de.js  ←  /js/script.js, /js/personalization.js, /js/premium.js, /js/sc-shell.js, /js/sc-v2-features.js, /js/analytics.js, /js/consent.js, /js/email-capture.js, /js/pwa.js
      /assets/css/core-3.06a13263.css  ←  /css/style.css, /css/premium.css, /css/personalization.css
-     /assets/js/core-shell-person-prem-ga-consent-pwa.dce06e08.js  ←  /js/script.js, /js/sc-shell.js, /js/personalization.js, /js/premium.js, /js/analytics.js, /js/consent.js, /js/pwa.js
+     /assets/js/core-shell-person-prem-ga-consent-pwa.f136b6c8.js  ←  /js/script.js, /js/sc-shell.js, /js/personalization.js, /js/premium.js, /js/analytics.js, /js/consent.js, /js/pwa.js
      /assets/css/calc-ai.c05aaeec.css  ←  /css/calculators.css, /css/ai-assistant.css
-     /assets/js/core.c4f97f67.js  ←  /js/script.js
+     /assets/js/core.d3fc79e1.js  ←  /js/script.js
      /assets/js/p-gpa-simulator.a69a812f.js  ←  /js/share-links.js
      /assets/js/g-a35680.7c77dde5.js  ←  /js/calculators.js, /js/personalization.js, /js/premium.js, /js/sc-shell.js, /js/sc-v2-features.js, /js/analytics.js, /js/consent.js, /js/email-capture.js, /js/pwa.js
      /assets/js/p-gpa-simulator-2.11fa7c13.js  ←  /js/gpa-simulator-core.js, /js/gpa-simulator.js
@@ -29,11 +29,11 @@ var SHELL_ASSETS = [
   '/images/favicon.svg',
   '/assets/css/core.a1dcaabc.css',
   '/assets/css/shell.cc3a5b31.css',
-  '/assets/js/g-ca0b60.f937edff.js',
+  '/assets/js/g-ca0b60.b6d910de.js',
   '/assets/css/core-3.06a13263.css',
-  '/assets/js/core-shell-person-prem-ga-consent-pwa.dce06e08.js',
+  '/assets/js/core-shell-person-prem-ga-consent-pwa.f136b6c8.js',
   '/assets/css/calc-ai.c05aaeec.css',
-  '/assets/js/core.c4f97f67.js',
+  '/assets/js/core.d3fc79e1.js',
   '/assets/js/p-gpa-simulator.a69a812f.js',
   '/assets/js/g-a35680.7c77dde5.js',
   '/assets/js/p-gpa-simulator-2.11fa7c13.js'

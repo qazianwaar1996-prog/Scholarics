@@ -83,6 +83,22 @@
   background-size: cover !important;
 }
 
+/* AI Study Plan panel */
+.sp-ai-hint{font-size:var(--step-xs,12.5px);color:var(--ink-3);line-height:1.55;margin:0}
+.sp-ai-area{min-height:80px;resize:vertical;line-height:1.55;font:inherit}
+.sp-ai-note{font-size:12px;color:var(--ink-3);margin:var(--s3,12px) 0 0}
+.calc-actions .sp-ai-note{margin:0;align-self:center}
+.sp-ai-msg{margin-top:12px;padding:11px 13px;border-radius:10px;font-size:13px;line-height:1.5;display:none}
+.sp-ai-msg.show{display:block}
+.sp-ai-msg.err{background:rgba(209,80,60,.1);color:#a63a29;border:1px solid rgba(209,80,60,.28)}
+.sp-ai-msg.ok{background:var(--gold-soft,rgba(245,197,66,.12));color:var(--ink);border:1px solid var(--border)}
+.sp-ai-plan{margin-top:var(--s4,16px);border-top:1px solid var(--border);padding-top:var(--s4,16px);font-size:14.5px;line-height:1.65;color:var(--ink)}
+.sp-ai-plan h3{font-size:15px;font-weight:700;margin:16px 0 6px}
+.sp-ai-plan h3:first-child{margin-top:0}
+.sp-ai-plan p{margin:0 0 10px}
+.sp-ai-plan ul{margin:0 0 12px;padding-left:20px}
+.sp-ai-plan li{margin-bottom:5px}
+@media (max-width:600px){.sp-ai [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
 </style>
 <link rel="stylesheet" href="css/sc-global-fixes.css">
 </head>
@@ -157,6 +173,33 @@
           <button class="btn" id="pdfBtn" aria-label="Print PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Print</button>
         </div>
       </div>
+      <div class="panel sp-ai" id="spAi" style="margin-top:var(--s4)">
+        <div class="panel-head">
+          <h2>AI Study Plan</h2>
+        </div>
+        <p class="sp-ai-hint">Your timetable above sets the hours. Ask the AI to turn those subjects into a week-by-week plan — what to cover, in what order, and how to revise it. Review it against your syllabus before you commit.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-top:var(--s4)">
+          <div class="field">
+            <label for="spGoal">Your goal</label>
+            <input class="input" type="text" id="spGoal" maxlength="160" placeholder="e.g. Pass my June physics exam" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="spTimeframe">Timeframe</label>
+            <input class="input" type="text" id="spTimeframe" maxlength="60" placeholder="e.g. 6 weeks" autocomplete="off">
+          </div>
+        </div>
+        <div class="field" style="margin-top:var(--s4)">
+          <label for="spNotes">Anything else the AI should know (optional)</label>
+          <textarea class="input sp-ai-area" id="spNotes" maxlength="2000" placeholder="Topics you struggle with, exam dates, other commitments&hellip;"></textarea>
+        </div>
+        <div class="calc-actions">
+          <button class="btn btn-primary" id="spGenerate">Generate AI Study Plan</button>
+          <span id="spQuota" class="sp-ai-note"></span>
+        </div>
+        <div id="spMsg" class="sp-ai-msg" role="status" aria-live="polite"></div>
+        <div id="spPlan" class="sp-ai-plan" hidden></div>
+        <p class="sp-ai-note">Free AI runs are limited each day so the tool stays free for everyone. Nothing you type is stored on our servers.</p>
+      </div>
       <div class="prose tight" style="margin-top:var(--s6)">
         <h2>How to Use This AI Study Planner</h2>
         <p>Five steps stand between you and a balanced weekly timetable:</p>
@@ -182,9 +225,9 @@
         <ul>
           <li><strong>School students</strong> juggling homework, tests, and activities — run each planned block as a focused sprint with the <a href="pomodoro.html">Pomodoro Timer</a>.</li>
           <li><strong>College students</strong> balancing full course loads and part-time work — then watch the effort compound on the <a href="gpa.html">GPA Calculator</a>.</li>
-          <li><strong>University students</strong> managing heavy modules and dissertation reading — ask the <a href="premium.html">AI Chat</a> for strategies when a subject needs a smarter approach.</li>
+          <li><strong>University students</strong> managing heavy modules and dissertation reading — ask the <a href="ai.html">AI Chat</a> for strategies when a subject needs a smarter approach.</li>
           <li><strong>Competitive exam candidates</strong> organising high-volume syllabi — put timed test blocks on the plan and generate them with the <a href="ai-quiz-generator.html">AI Quiz Generator</a>.</li>
-          <li><strong>Adult learners</strong> fitting evening study around work and family — brush up academic writing alongside your schedule with the <a href="premium.html">AI Paraphraser</a>.</li>
+          <li><strong>Adult learners</strong> fitting evening study around work and family — brush up academic writing alongside your schedule with the <a href="paraphraser.html">AI Paraphraser</a>.</li>
         </ul>
         <h2>Tips for Creating an Effective Study Schedule</h2>
         <p>An effective study schedule allocates more time to harder subjects and spaces sessions across the week to leverage <strong>spaced repetition</strong> — reviewing material at increasing intervals improves long-term retention by up to 50%.</p>
@@ -193,7 +236,7 @@
           <li><strong>Prioritise difficult subjects</strong> with Hard difficulty ratings and larger weekly hours, so they win the earliest, freshest slots.</li>
           <li><strong>Schedule regular breaks</strong> — the planner already inserts buffers between sessions; honour them instead of skipping.</li>
           <li><strong>Review progress every week</strong> and regenerate the plan: move hours toward whatever the coming week actually demands.</li>
-          <li><strong>Stay consistent:</strong> ten average weeks on a plan beat one perfect week of cramming — and use active methods inside each block, like drilling terms with <a href="premium.html">AI Flashcards</a>.</li>
+          <li><strong>Stay consistent:</strong> ten average weeks on a plan beat one perfect week of cramming — and use active methods inside each block, like drilling terms with <a href="flashcards.html">AI Flashcards</a>.</li>
         </ul>
         <h2>Frequently Asked Questions</h2>
         <div class="faq">
@@ -243,11 +286,11 @@
         <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
         <h3>Attendance</h3><p>Track class attendance</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="premium.html" class="tool live">
+      <a href="ai.html" class="tool live">
         <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg></div>
         <h3>AI Chat</h3><p>Ask our AI study tutor</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="premium.html" class="tool live">
+      <a href="flashcards.html" class="tool live">
         <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg></div>
         <h3>AI Flashcards</h3><p>Active recall decks</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -341,9 +384,105 @@
     </div>
   </div>
 </footer>
-<script defer src="assets/js/core-shell-person.a98bfe3d.js" data-sc-src="script sc-shell personalization"></script>
+<script>
+/* ═══ AI Study Plan (study-schedule.html) ═══
+   Uses SCAI (js/ai-service.js) to call /api/ai/study-plan. The Gemini key is
+   server-side only and the daily free-usage limit is enforced by the server;
+   this panel just renders whatever friendly message comes back. */
+(function(){
+  function esc(v){ return String(v==null?'':v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function msg(text,kind){
+    var el=document.getElementById('spMsg'); if(!el) return;
+    el.textContent=text||'';
+    el.className='sp-ai-msg'+(text?(' show '+(kind||'ok')):'');
+  }
+  function renderQuota(q){
+    var el=document.getElementById('spQuota');
+    if(!el||!q||q.toolRemaining==null) return;
+    el.textContent=q.toolRemaining+' of '+q.tool+' free AI plans left today';
+  }
+  /* Reads the subject rows the planner already stores in localStorage so the
+     AI plan matches the timetable above instead of asking for them twice. */
+  function subjects(){
+    var rows=[];
+    try{ rows=JSON.parse(localStorage.getItem('sc_ss')||'[]')||[]; }catch(e){ rows=[]; }
+    if(!rows.length) return '';
+    return rows.filter(function(r){return r&&r.name;}).map(function(r){
+      return r.name+' ('+(r.diff||'medium')+', '+(r.hrs||'?')+'h/week)';
+    }).join(', ');
+  }
+  function availability(){
+    var days=(document.getElementById('ssDays')||{}).value;
+    var start=(document.getElementById('ssStartTime')||{}).value;
+    var bits=[];
+    if(days) bits.push(days+' study days per week');
+    if(start) bits.push('sessions starting around '+start);
+    return bits.join(', ');
+  }
+  /* Minimal markdown -> HTML: headings, bullets, bold. Everything is escaped
+     first, so model output can never inject markup. */
+  function toHtml(plan){
+    var out=[],list=false;
+    esc(plan).split(/\r?\n/).forEach(function(line){
+      var t=line.trim();
+      if(!t){ if(list){out.push('</ul>');list=false;} return; }
+      t=t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      var h=t.match(/^#{1,4}\s+(.*)$/);
+      if(h){ if(list){out.push('</ul>');list=false;} out.push('<h3>'+h[1]+'</h3>'); return; }
+      var b=t.match(/^(?:[-*\u2022]|\d+\.)\s+(.*)$/);
+      if(b){ if(!list){out.push('<ul>');list=true;} out.push('<li>'+b[1]+'</li>'); return; }
+      if(list){out.push('</ul>');list=false;}
+      out.push('<p>'+t+'</p>');
+    });
+    if(list) out.push('</ul>');
+    return out.join('');
+  }
+  function generate(){
+    var btn=document.getElementById('spGenerate');
+    var goal=(document.getElementById('spGoal').value||'').trim();
+    var timeframe=(document.getElementById('spTimeframe').value||'').trim();
+    var notes=(document.getElementById('spNotes').value||'').trim();
+    var courses=subjects();
+    if(!goal&&!courses&&!notes){ msg('Add a goal, or a few subjects in the planner above, first.','err'); return; }
+    if(!window.SCAI||typeof SCAI.studyPlan!=='function'){ msg('The AI service is unavailable right now. Your timetable above still works.','err'); return; }
+    var label=btn.textContent;
+    btn.disabled=true; btn.textContent='Generating…';
+    msg('Building your study plan…','ok');
+    var payload={};
+    if(goal) payload.goal=goal;
+    if(!goal&&courses) payload.subject=courses.split(',')[0].trim();
+    if(timeframe) payload.timeframe=timeframe;
+    if(courses) payload.courses=courses;
+    var avail=availability();
+    if(avail) payload.availability=avail;
+    if(notes) payload.notes=notes;
+    SCAI.studyPlan(payload).then(function(plan){
+      if(!plan) throw new Error('No plan came back. Please try again.');
+      var out=document.getElementById('spPlan');
+      out.innerHTML=toHtml(plan);
+      out.hidden=false;
+      msg('Here is your plan. Check it against your syllabus and exam dates before you follow it.','ok');
+      renderQuota(SCAI.quota&&SCAI.quota());
+    }).catch(function(err){
+      msg((err&&err.message)||'Something went wrong. Please try again.','err');
+      renderQuota(SCAI.quota&&SCAI.quota());
+    }).then(function(){
+      btn.disabled=false; btn.textContent=label;
+    });
+  }
+  function init(){
+    var btn=document.getElementById('spGenerate');
+    if(!btn) return;
+    btn.addEventListener('click',generate);
+    document.addEventListener('sc:ai-quota',function(e){ renderQuota(e.detail); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+<script defer src="assets/js/core-shell-person.99e0f27d.js" data-sc-src="script sc-shell personalization"></script>
 <script defer src="assets/js/p-study-schedule.ded33b7a.js" data-sc-src="study-schedule"></script>
-<script defer src="assets/js/g-aea987.82ae31fb.js" data-sc-src="premium calculators content-platform ai-service ai-assistant analytics consent email-capture pwa"></script>
+<script defer src="assets/js/g-aea987.aba5919e.js" data-sc-src="premium calculators content-platform ai-service ai-assistant analytics consent email-capture pwa"></script>
 <!-- Ad: Rectangle -->
 <div class="ad-slot rect" aria-label="Advertisement">
   <div class="ad-label">Advertisement</div>

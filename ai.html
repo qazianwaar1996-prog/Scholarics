@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-// Route to Premium page
-(function(){
-  var path = window.location.pathname;
-  var aiPages = ['ai.html','paraphraser.html','flashcards.html'];
-  var page = path.split('/').pop();
-  if(aiPages.indexOf(page) !== -1){
-    window.location.replace('premium.html');
-  }
-})();
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
@@ -47,10 +36,11 @@
 <link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
 <link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
+<link rel="stylesheet" href="assets/css/ai-chat.e59f659c.css">
 <link rel="stylesheet" href="assets/css/shell.cc3a5b31.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Scholarics AI Tutor", "url": "https://scholarics.com/ai.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://scholarics.com/"}, {"@type": "ListItem", "position": 2, "name": "Scholarics AI", "item": "https://scholarics.com/ai.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is AI Chat?","acceptedAnswer":{"@type":"Answer","text":"AI Chat is Scholarics\u2019 conversational study assistant \u2014 an academic coach you can message in plain language. Ask about GPA planning, study schedules, exam preparation, time management, or subject strategies, and it replies with step-by-step guidance and one concrete action to take next. It is purpose-built for education, stays within academic topics, and is currently rolling out as a preview on this page."}},{"@type":"Question","name":"Can AI help me study?","acceptedAnswer":{"@type":"Answer","text":"Yes. AI can explain concepts in simpler terms, build revision timetables, generate practice questions, suggest memory techniques, and help you prioritise weak topics. It works best when you share specifics \u2014 your subjects, grades, deadlines, and available hours \u2014 and it should complement, not replace, your own reading and practice."}},{"@type":"Question","name":"Can AI solve homework?","acceptedAnswer":{"@type":"Answer","text":"It can help you understand homework \u2014 explaining methods, walking through examples, and breaking big questions into steps \u2014 so you can solve the problems yourself. Treat its answers as guidance rather than final submissions: work through the solution, check it against your course materials, and follow your school\u2019s rules on AI assistance."}},{"@type":"Question","name":"Is AI always correct?","acceptedAnswer":{"@type":"Answer","text":"No. AI can misread a question, make calculation slips, or state outdated information with complete confidence. Always verify important facts, formulas, and deadlines against your textbook, teacher, or official sources before relying on them \u2014 especially for anything that affects your grades."}},{"@type":"Question","name":"Is my conversation private?","acceptedAnswer":{"@type":"Answer","text":"Your questions are sent to Scholarics\u2019 servers only to generate a response through Google Gemini, and conversations are not saved in any Scholarics database. Even so, treat it like any online service: avoid sharing personal or sensitive information in your messages, and clear the conversation when you finish on a shared device."}},{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Scholarics is a free platform, and the AI Coach follows the same model: no signup, no account, and no subscription. It is launching as a preview on this page, free to use like every other Scholarics tool."}},{"@type":"Question","name":"Can I use it on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page is fully responsive, so the chat window, suggestion chips, and sidebar all adapt to phones and tablets \u2014 you can ask questions between classes from any modern browser."}},{"@type":"Question","name":"How should students use AI responsibly?","acceptedAnswer":{"@type":"Answer","text":"Use AI as a learning assistant, not a substitute for learning: ask it to explain and demonstrate, then do the work yourself. Verify important information, write final answers in your own words, credit sources where required, and follow your school\u2019s academic integrity policy at all times."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is AI Chat?","acceptedAnswer":{"@type":"Answer","text":"AI Chat is Scholarics\u2019 conversational study assistant \u2014 an academic coach you can message in plain language. Ask about GPA planning, study schedules, exam preparation, time management, or subject strategies, and it replies with step-by-step guidance and one concrete action to take next. It is purpose-built for education, stays within academic topics, and is free to use on this page."}},{"@type":"Question","name":"Can AI help me study?","acceptedAnswer":{"@type":"Answer","text":"Yes. AI can explain concepts in simpler terms, build revision timetables, generate practice questions, suggest memory techniques, and help you prioritise weak topics. It works best when you share specifics \u2014 your subjects, grades, deadlines, and available hours \u2014 and it should complement, not replace, your own reading and practice."}},{"@type":"Question","name":"Can AI solve homework?","acceptedAnswer":{"@type":"Answer","text":"It can help you understand homework \u2014 explaining methods, walking through examples, and breaking big questions into steps \u2014 so you can solve the problems yourself. Treat its answers as guidance rather than final submissions: work through the solution, check it against your course materials, and follow your school\u2019s rules on AI assistance."}},{"@type":"Question","name":"Is AI always correct?","acceptedAnswer":{"@type":"Answer","text":"No. AI can misread a question, make calculation slips, or state outdated information with complete confidence. Always verify important facts, formulas, and deadlines against your textbook, teacher, or official sources before relying on them \u2014 especially for anything that affects your grades."}},{"@type":"Question","name":"Is my conversation private?","acceptedAnswer":{"@type":"Answer","text":"Your questions are sent to Scholarics\u2019 servers only to generate a response through Google Gemini, and conversations are not saved in any Scholarics database. Even so, treat it like any online service: avoid sharing personal or sensitive information in your messages, and clear the conversation when you finish on a shared device."}},{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Scholarics is a free platform, and the AI Coach follows the same model: no signup, no account, and no subscription. It is free to use on this page, with a small daily usage limit so it stays free for everyone."}},{"@type":"Question","name":"Can I use it on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page is fully responsive, so the chat window, suggestion chips, and sidebar all adapt to phones and tablets \u2014 you can ask questions between classes from any modern browser."}},{"@type":"Question","name":"How should students use AI responsibly?","acceptedAnswer":{"@type":"Answer","text":"Use AI as a learning assistant, not a substitute for learning: ask it to explain and demonstrate, then do the work yourself. Verify important information, write final answers in your own words, credit sources where required, and follow your school\u2019s academic integrity policy at all times."}}]}</script>
 
 <style id="logo-override">
 /* ═══ Scholarics Logo Override — Graduation Cap + Data (v2) ═══ */
@@ -137,46 +127,13 @@
         <p>Scholarics AI Chat is your personal AI study assistant — a conversational academic coach built specifically for students. Instead of digging through pages of generic advice, you simply ask a question and get a focused, step-by-step answer in return: how to raise a GPA, how to plan a study week, or how to prepare for an exam that is three days away. Because it is an educational AI chat, it stays deliberately on topic, coaching you through academic questions rather than chatting about everything else.</p>
         <p>This study AI can explain difficult concepts in plain language, walk through problems step by step, brainstorm ideas for essays, and help you organise revision around your real deadlines. As a homework AI assistant it shows you how to approach a question — explaining the method behind an answer so you can solve similar problems yourself — instead of simply handing you something to copy. That keeps the learning exactly where it belongs: in your head. You can also ask it to quiz you with practice questions, suggest mnemonics for stubborn facts, or turn a chaotic reading list into a structured revision plan.</p>
         <p>Used responsibly, a student AI chat is one of the most effective study partners available. Ask follow-up questions until an idea clicks, request worked examples, and share your actual grades and targets for specific, numerical guidance rather than vague tips. Just remember that no AI is perfect: always verify important facts, dates, and formulas against your textbook or teacher, and treat every answer as a starting point for your own understanding.</p>
-        <p>Scholarics is designed for educational use first — free tools, no clutter, and no dark patterns. The AI Coach runs on Google Gemini, is completely free, and requires no signup or account. It is currently rolling out as a preview on this page; when the chat window opens, academic coaching is one question away. Until then, every calculator and study tool linked below is live right now.</p>
+        <p>Scholarics is designed for educational use first — free tools, no clutter, and no dark patterns. The AI Coach runs on Google Gemini, is completely free, and requires no signup or account. It is live on this page right now, with a small daily usage limit that keeps it free for everyone. Every calculator and study tool linked below is free to use too.</p>
       </div>
     </div>
   </div>
 </section>
-<!-- ── Coming Soon Banner ───────────────────────────────────────────── -->
 <div class="wrap reveal">
-  <div style="max-width:680px;margin:0 auto 80px;text-align:center;padding:60px 24px;">
-    <div style="display:inline-flex;align-items:center;gap:8px;background:oklch(.95 .08 280/.15);border:1px solid oklch(.6 .19 280/.3);border-radius:999px;padding:6px 18px;margin-bottom:28px;">
-      <span style="width:8px;height:8px;border-radius:50%;background:#a78bfa;display:inline-block;animation:pulse 2s infinite"></span>
-      <span style="font-size:.8rem;font-weight:600;color:#a78bfa;letter-spacing:.05em;text-transform:uppercase">Coming Soon</span>
-    </div>
-    <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;">AI Coach is almost here</h2>
-    <p style="font-size:1rem;color:var(--ink-2);line-height:1.7;margin-bottom:36px;">We're putting the finishing touches on your personal academic coach — powered by Google Gemini. It will help you build GPA improvement plans, study schedules, exam strategies, and much more.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:48px;text-align:left;">
-      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">📈</div>
-        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">GPA Planning</div>
-        <div style="font-size:.8rem;color:var(--ink-2);">Personalised improvement roadmaps</div>
-      </div>
-      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">📅</div>
-        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Study Schedules</div>
-        <div style="font-size:.8rem;color:var(--ink-2);">Smart weekly plans built for you</div>
-      </div>
-      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">✍️</div>
-        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Exam Prep</div>
-        <div style="font-size:.8rem;color:var(--ink-2);">Targeted strategies per subject</div>
-      </div>
-      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">⏱️</div>
-        <div style="font-weight:600;font-size:.9rem;margin-bottom:4px;">Time Management</div>
-        <div style="font-size:.8rem;color:var(--ink-2);">Balance work, study, and life</div>
-      </div>
-    </div>
-    <p style="font-size:.85rem;color:var(--ink-3);margin-bottom:24px;">Meanwhile, explore our free calculators and study tools below 👇</p>
-    <a href="index.html#tools" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;">Explore Free Tools →</a>
-  </div>
-  <div class="ai-layout" style="display:none">
+  <div class="ai-layout">
     <!-- Main chat panel -->
     <div class="ai-main">
       <!-- Chat window -->
@@ -348,7 +305,7 @@
 <div class="wrap reveal">
   <div class="prose" style="padding-bottom:var(--s3)">
     <h2>How to Use AI Chat</h2>
-    <p>The AI Coach is rolling out as a preview — once the chat window above opens, this is the workflow:</p>
+    <p>The AI Coach is live in the chat window above — this is the workflow:</p>
     <ol>
       <li><strong>Ask a question.</strong> Type into the message box at the bottom of the chat window — or tap a suggestion chip such as “Build my GPA improvement plan” — then press Enter to send (Shift + Enter adds a new line).</li>
       <li><strong>Provide context.</strong> Include your real grades, credit hours, deadlines, and country. The coach turns specifics into numerical, personal advice instead of generic tips.</li>
@@ -373,7 +330,7 @@
     <h3>Concept Explanations</h3>
     <p>Ask for any concept to be explained at your level — with analogies, worked examples, or a simpler version of a textbook definition. If the first explanation does not click, ask for a different one: that is exactly what follow-up questions are for.</p>
     <h3>Essay Brainstorming</h3>
-    <p>Generate topic angles, thesis candidates, outlines, and counter-arguments before you write. The ideas are a springboard — the words and the argument must be yours — and when your own draft is ready, you can polish its tone with the free <a href="premium.html">AI Paraphraser</a>.</p>
+    <p>Generate topic angles, thesis candidates, outlines, and counter-arguments before you write. The ideas are a springboard — the words and the argument must be yours — and when your own draft is ready, you can polish its tone with the free <a href="paraphraser.html">AI Paraphraser</a>.</p>
     <h3>Research Assistance</h3>
     <p>Use the coach to frame research questions, define key terms, and suggest search keywords and angles for your literature review. Always locate and read the original sources yourself — AI is excellent at direction, but citations and data must be verified first-hand.</p>
     <h3>Exam Preparation</h3>
@@ -382,7 +339,7 @@
     <ul>
       <li><strong>School students</strong> getting unstuck on homework and building strong study habits early — and as grades come in, the <a href="gpa.html">GPA Calculator</a> shows exactly where you stand.</li>
       <li><strong>College students</strong> juggling full course loads, part-time work, and exam seasons who need structure and prioritisation.</li>
-      <li><strong>University students</strong> working through advanced modules, dissertations, and placement preparation — drill the key terminology between sessions with <a href="premium.html">Flashcards</a>.</li>
+      <li><strong>University students</strong> working through advanced modules, dissertations, and placement preparation — drill the key terminology between sessions with <a href="flashcards.html">Flashcards</a>.</li>
       <li><strong>Teachers</strong> collecting alternative explanations and worked examples for class, and modelling how to use AI transparently and ethically.</li>
       <li><strong>Lifelong learners</strong> studying without a formal classroom, who want the structure, feedback, and accountability a coach provides.</li>
     </ul>
@@ -396,12 +353,12 @@
     </ul>
     <h2>Frequently Asked Questions</h2>
       <div class="faq">
-        <details open><summary>What is AI Chat?</summary><p>AI Chat is Scholarics’ conversational study assistant — an academic coach you can message in plain language. Ask about GPA planning, study schedules, exam preparation, time management, or subject strategies, and it replies with step-by-step guidance and one concrete action to take next. It is purpose-built for education, stays within academic topics, and is currently rolling out as a preview on this page.</p></details>
+        <details open><summary>What is AI Chat?</summary><p>AI Chat is Scholarics’ conversational study assistant — an academic coach you can message in plain language. Ask about GPA planning, study schedules, exam preparation, time management, or subject strategies, and it replies with step-by-step guidance and one concrete action to take next. It is purpose-built for education, stays within academic topics, and is free to use on this page.</p></details>
         <details><summary>Can AI help me study?</summary><p>Yes. AI can explain concepts in simpler terms, build revision timetables, generate practice questions, suggest memory techniques, and help you prioritise weak topics. It works best when you share specifics — your subjects, grades, deadlines, and available hours — and it should complement, not replace, your own reading and practice.</p></details>
         <details><summary>Can AI solve homework?</summary><p>It can help you understand homework — explaining methods, walking through examples, and breaking big questions into steps — so you can solve the problems yourself. Treat its answers as guidance rather than final submissions: work through the solution, check it against your course materials, and follow your school’s rules on AI assistance.</p></details>
         <details><summary>Is AI always correct?</summary><p>No. AI can misread a question, make calculation slips, or state outdated information with complete confidence. Always verify important facts, formulas, and deadlines against your textbook, teacher, or official sources before relying on them — especially for anything that affects your grades.</p></details>
         <details><summary>Is my conversation private?</summary><p>Your questions are sent to Scholarics’ servers only to generate a response through Google Gemini, and conversations are not saved in any Scholarics database. Even so, treat it like any online service: avoid sharing personal or sensitive information in your messages, and clear the conversation when you finish on a shared device.</p></details>
-        <details><summary>Is this tool free?</summary><p>Yes. Scholarics is a free platform, and the AI Coach follows the same model: no signup, no account, and no subscription. It is launching as a preview on this page, free to use like every other Scholarics tool.</p></details>
+        <details><summary>Is this tool free?</summary><p>Yes. Scholarics is a free platform, and the AI Coach follows the same model: no signup, no account, and no subscription. It is free to use on this page, with a small daily usage limit so it stays free for everyone.</p></details>
         <details><summary>Can I use it on mobile?</summary><p>Yes. The page is fully responsive, so the chat window, suggestion chips, and sidebar all adapt to phones and tablets — you can ask questions between classes from any modern browser.</p></details>
         <details><summary>How should students use AI responsibly?</summary><p>Use AI as a learning assistant, not a substitute for learning: ask it to explain and demonstrate, then do the work yourself. Verify important information, write final answers in your own words, credit sources where required, and follow your school’s academic integrity policy at all times.</p></details>
       </div>
@@ -493,7 +450,9 @@
     </div>
   </div>
 </footer>
-<script defer src="assets/js/g-bb0caf.43f0b776.js" data-sc-src="script sc-shell personalization premium content-platform sc-v2-features analytics consent email-capture pwa"></script>
+<script defer src="assets/js/core-shell-person-prem-content-aisvc.377dc694.js" data-sc-src="script sc-shell personalization premium content-platform ai-service"></script>
+<script defer src="assets/js/p-ai.ef38dadb.js" data-sc-src="ai-chat"></script>
+<script defer src="assets/js/v2feat-ga-consent-email-pwa.1d2253c0.js" data-sc-src="sc-v2-features analytics consent email-capture pwa"></script>
 <script>
 function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
 </script>

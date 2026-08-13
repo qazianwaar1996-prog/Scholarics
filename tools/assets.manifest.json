@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-09",
+  "generated": "2026-08-13",
   "sharedJs": [
     "js/ai-assistant.js",
     "js/ai-service.js",
@@ -13,6 +13,7 @@
     "js/personalization.js",
     "js/premium.js",
     "js/pwa.js",
+    "js/sc-pdf-preview.js",
     "js/sc-shell.js",
     "js/sc-v2-features.js",
     "js/script.js"
@@ -217,6 +218,7 @@
         "js/sc-shell.js",
         "js/personalization.js",
         "js/premium.js",
+        "js/ai-service.js",
         "js/sc-v2-features.js",
         "js/analytics.js",
         "js/consent.js",
@@ -230,7 +232,7 @@
           "shell"
         ],
         "js": [
-          "g-5d2528"
+          "g-efcd33"
         ]
       }
     },
@@ -240,6 +242,7 @@
         "css/premium.css",
         "css/personalization.css",
         "css/content-platform.css",
+        "css/ai-chat.css",
         "css/consent.css",
         "css/scholarics-v2.css",
         "css/sc-prelaunch-fixes.css"
@@ -250,6 +253,8 @@
         "js/personalization.js",
         "js/premium.js",
         "js/content-platform.js",
+        "js/ai-service.js",
+        "js/ai-chat.js",
         "js/sc-v2-features.js",
         "js/analytics.js",
         "js/consent.js",
@@ -260,10 +265,13 @@
       "bundles": {
         "css": [
           "core",
+          "ai-chat",
           "shell"
         ],
         "js": [
-          "g-bb0caf"
+          "core-shell-person-prem-content-aisvc",
+          "p-ai",
+          "v2feat-ga-consent-email-pwa"
         ]
       }
     },
@@ -849,6 +857,7 @@
         "js/sc-shell.js",
         "js/personalization.js",
         "js/premium.js",
+        "js/ai-service.js",
         "js/sc-v2-features.js",
         "js/analytics.js",
         "js/consent.js",
@@ -862,7 +871,7 @@
           "shell"
         ],
         "js": [
-          "g-5d2528"
+          "g-efcd33"
         ]
       }
     },

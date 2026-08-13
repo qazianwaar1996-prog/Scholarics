@@ -32,4 +32,4 @@ export const onRequestPost = withApi(async ({ body, env }) => {
     : [];
   if (!quiz.length) throw badErr('The AI returned no usable questions. Please try again.');
   return json({ quiz });
-});
+}, { aiTool: 'quiz' });
