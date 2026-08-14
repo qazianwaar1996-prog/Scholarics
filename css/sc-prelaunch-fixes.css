@@ -1,0 +1,320 @@
+/* =============================================================
+   Scholarics — Pre-Launch Fix Patch
+   Applied: 2026-08-03
+   Scope: Mobile modal, card titles, overflow, responsiveness
+   DO NOT REMOVE — supplements style.css and premium.css
+   ============================================================= */
+
+/* ─── 1. PREMIUM MODAL — Mobile Email + Button Stack ─────────── */
+/* Force vertical stacking of the email input + Notify Me button
+   on screens below 600px so neither element overflows the modal */
+@media (max-width: 600px) {
+  #sc2modalPremium .pm-email-row {
+    flex-direction: column !important;
+  }
+  #sc2modalPremium .pm-email-row input[type="email"],
+  #sc2modalPremium .pm-email-row button {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+}
+
+/* ─── 2. CARD TITLES — Prevent Cut-Off, Allow 2-Line Wrap ────── */
+.tool h3 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  /* Allow up to 2 lines; prevents overflow while keeping height stable */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  /* Equal card height already handled by flex layout */
+}
+
+@media (max-width: 560px) {
+  .tool h3 {
+    font-size: 1.05rem; /* Slightly reduced from step-md (1.25rem) on mobile */
+    line-height: 1.3;
+  }
+}
+
+/* ─── 2b. SC2 HOMEPAGE TOOL CARDS — Eliminate Text Overlap ───── */
+/* Each sc2-tool card is a flex column. Lock the icon and title
+   heights so text in sibling cards can never visually collide. */
+.sc2-tool {
+  /* Equal-height siblings via grid parent already; ensure flex
+     children stack cleanly and content never overflows the box */
+  min-height: 0;           /* let the grid stretch it */
+  overflow: hidden;        /* hard boundary: nothing bleeds out */
+}
+
+/* Icon block — fixed dimensions, no shrink */
+.sc2-tool-ico {
+  flex-shrink: 0;
+}
+
+/* Title: wrap to 2 lines max, never clip into the description */
+.sc2-tool h3 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.35;
+  /* Reserve at most 2 lines so all cards align their description
+     at the same vertical position */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  min-height: calc(1.35em * 2); /* always tall enough for 2 lines */
+  margin-bottom: 5px;
+}
+
+/* Description: allow wrapping, never overflow the card */
+.sc2-tool p {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* Mobile: tighten up so cards fit on narrow screens without overlap */
+@media (max-width: 640px) {
+  .sc2-tool h3 {
+    min-height: calc(1.35em * 1); /* allow single-line at xs */
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .sc2-tool p {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* Very small screens (≤ 360px): single-column, full width */
+@media (max-width: 360px) {
+  .sc2-tools {
+    grid-template-columns: 1fr !important;
+  }
+  .sc2-tool h3 {
+    font-size: 14px;
+    min-height: auto;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+  }
+  .sc2-tool p {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+  }
+}
+
+/* ─── 3. HORIZONTAL OVERFLOW GUARDS ──────────────────────────── */
+/* Prevent any element from causing horizontal scroll */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100%;
+}
+
+/* Tables on mobile */
+table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* Prevent long words/URLs from blowing out containers */
+.prose, .legal, .panel, .tool, .testi, .rel-card,
+.hiw-step, .value, .verdict, .weight-note,
+.scale-note, .scenarios, .faq p {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ─── 4. FOOTER NEWSLETTER ROW — Mobile Overflow Fix ─────────── */
+@media (max-width: 480px) {
+  .foot-news {
+    flex-direction: column !important;
+    max-width: 100% !important;
+    gap: 8px;
+  }
+  .foot-news .input {
+    width: 100% !important;
+  }
+  .foot-news .btn {
+    width: 100% !important;
+    justify-content: center;
+  }
+}
+
+/* ─── 5. CALC ROW GRID — Prevent Overflow on Very Small Screens ─ */
+@media (max-width: 380px) {
+  /* GPA rows: collapse grade & credit columns to single-column */
+  .rows-gpa .rows-head,
+  .rows-credits .rows-head,
+  .rows-weight .rows-head,
+  .rows-conv .rows-head {
+    display: none;
+  }
+  .rows-gpa .crow {
+    grid-template-columns: 1fr 38px !important;
+  }
+  .rows-credits .crow,
+  .rows-weight .crow {
+    grid-template-columns: 1fr 38px !important;
+  }
+  .rows-conv .crow {
+    grid-template-columns: 1fr 38px !important;
+  }
+  /* Ensure panels don't overflow at 320px */
+  .panel {
+    padding: 14px !important;
+  }
+  .panel-lg {
+    padding: 14px !important;
+  }
+}
+
+/* ─── 6. NAVIGATION — Mobile Overflow + z-index Safety ────────── */
+@media (max-width: 860px) {
+  .nav-cta {
+    flex-shrink: 0;
+    min-width: 0;
+  }
+  .logo span:last-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+  }
+  /* FIX: .wrap has overflow-x:clip which clips the absolute nav-links dropdown.
+     Override to visible on the header's .wrap.nav so the dropdown is not clipped. */
+  .site-head .wrap.nav {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+  /* Make the nav a positioning context for the dropdown */
+  .site-head .nav {
+    position: relative;
+  }
+  /* Ensure mobile nav dropdown is above all content and not clipped */
+  .nav-links.open {
+    max-height: calc(100vh - 68px);
+    overflow-y: auto;
+    z-index: 60;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .menu-toggle {
+    z-index: 61;
+    position: relative;
+  }
+}
+
+/* ─── 7. BUTTONS & INPUTS — Full Width Safety on Very Small ───── */
+@media (max-width: 360px) {
+  .calc-actions {
+    flex-direction: column;
+  }
+  .calc-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Prevent tab overflow */
+  .tabs {
+    width: 100%;
+  }
+  .tabs button {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 8px 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* Section header: shrink h2 slightly so "View all tools" link
+     never wraps or crowds on a 360px viewport */
+  .sc2-sec-head h2 {
+    font-size: 17px;
+  }
+}
+
+/* ─── 8. INPUT ERROR STATE ────────────────────────────────────── */
+/* Shown by JS validation — user-friendly inline error messages */
+.input-error {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px var(--danger-dim) !important;
+}
+.field-error-msg {
+  display: block;
+  font-size: var(--step-xs);
+  color: var(--danger);
+  margin-top: 4px;
+  animation: fadeInDown 0.2s ease;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Premium dark theme support for error state */
+body.premium .input-error {
+  border-color: var(--p-danger) !important;
+  box-shadow: 0 0 0 3px rgba(239,68,68,.2) !important;
+}
+body.premium .field-error-msg {
+  color: #fca5a5;
+}
+
+/* ─── 9. MODAL OVERFLOW SAFETY ───────────────────────────────── */
+/* Ensure all dynamically-injected modals respect viewport */
+[id$="modal"],
+[id*="Modal"],
+.modal-overlay {
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+/* ─── 10. IMAGES & MEDIA — Always Bounded ───────────────────── */
+img, video, iframe, embed, object, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── 11. TOAST — Don't overflow on narrow screens ──────────── */
+@media (max-width: 400px) {
+  .toast {
+    left: 12px !important;
+    right: 12px !important;
+    transform: translateY(20px) !important;
+    width: auto !important;
+  }
+  .toast.show {
+    transform: translateY(0) !important;
+  }
+}
+
+/* ─── 12. BACK-TO-TOP — Mobile safe zone ────────────────────── */
+@media (max-width: 480px) {
+  #backToTop {
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ─── 13. SC2 STAT CARDS — Hide picture wrapper from grid ─────── */
+/* The <picture> element wrapping sc2-hero-illu lives inside
+   .sc2-statcards. When .sc2-statcards switches to display:grid,
+   the <picture> still occupies a grid slot unless hidden. */
+@media (max-width: 1024px) {
+  .sc2-statcards picture {
+    display: none !important;
+  }
+}

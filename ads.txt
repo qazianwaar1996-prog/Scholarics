@@ -1,0 +1,11 @@
+# Scholarics — ads.txt
+# Required by Google AdSense before monetisation can begin.
+#
+# After your AdSense account is approved, replace the placeholder line below
+# with your real publisher ID (the "ca-pub-…" number from AdSense → Account
+# settings → Account information). The line must use exactly this format:
+#
+#   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#
+# Lines beginning with "#" are comments and are ignored by crawlers.
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

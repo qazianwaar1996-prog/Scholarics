@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Hero illustration, desktop only (it is display:none below 1025px) -->
+<link rel="preload" as="image" href="images/hero-illustration-300.webp" imagesrcset="images/hero-illustration-300.webp 1x, images/hero-illustration-600.webp 2x" type="image/webp" media="(min-width:1025px)" fetchpriority="high">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<title>Scholarics — Free Tools &amp; Calculators for Students</title>
+<meta name="description" content="30+ free academic calculators: GPA, CGPA, grade calculator, attendance tracker, final exam planner, study schedule, and more. No signup required.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scholarics.com/">
+  <link rel="alternate" hreflang="en" href="https://scholarics.com/">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scholarics">
+<meta property="og:title" content="Scholarics — Free Tools &amp; Calculators for Students">
+<meta property="og:description" content="30+ free academic calculators: GPA, CGPA, grade calculator, attendance tracker, final exam planner, study schedule, and more. No signup required.">
+<meta property="og:url" content="https://scholarics.com/">
+<meta property="og:image" content="https://scholarics.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:site" content="@scholarics">
+<meta name="twitter:creator" content="@scholarics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Scholarics — Free Tools &amp; Calculators for Students">
+<meta name="twitter:description" content="30+ free academic calculators: GPA, CGPA, grade calculator, attendance tracker, final exam planner, study schedule, and more. Instant results, no signup required.">
+<meta name="twitter:image" content="https://scholarics.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Scholarics","url":"https://scholarics.com/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://scholarics.com/academic-resources.html?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Scholarics really free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every calculator on Scholarics is completely free, with no signup, subscription, or usage limits. The site is supported by unobtrusive advertising, not by charging students."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No. None of our tools require an account or login. Open any calculator and start entering your grades — your results appear instantly."}},{"@type":"Question","name":"Which countries' grading scales are supported?","acceptedAnswer":{"@type":"Answer","text":"The Global GPA Converter supports 30+ national and university grading scales, including percentage, letter-grade, and 4.0/5.0/10.0-point systems, converting in both directions."}},{"@type":"Question","name":"Is my data stored or shared with anyone?","acceptedAnswer":{"@type":"Answer","text":"No. Your grades and calculations are processed entirely in your browser and are never sent to a server or stored by us."}},{"@type":"Question","name":"How accurate are the calculators?","acceptedAnswer":{"@type":"Answer","text":"Each tool follows the standard weighting and conversion formulas most universities use, though it's worth double-checking anything official against your own institution's grading policy."}},{"@type":"Question","name":"Can I use these tools on my phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every calculator is built mobile-first and works the same on phones, tablets, and desktops."}}]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<!-- Non-Critical Consent Banner CSS Loaded Asynchronously -->
+<link rel="stylesheet" href="assets/css/shell.cc3a5b31.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
+
+<style id="logo-override">
+/* ═══ Scholarics Logo Override — Graduation Cap + Data (v2) ═══ */
+
+/* ── Tool pages: header & footer .logo-mark ── */
+.logo-mark {
+  background: #1a1815 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%231a1815%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+}
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+.logo-dot {
+  display: none !important;
+}
+
+/* Footer dark background version */
+.foot .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+.foot .logo-mark::before,
+.foot .logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Dark theme override for header */
+:root[data-theme="dark"] .logo-mark,
+[data-theme="dark"] .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+
+</style>
+</head>
+<body class="sc2">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="sc2-scrim" onclick="document.body.classList.remove('nav-open')"></div>
+<div class="sc2-app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sc2-side">
+    <a href="index.html" class="sc2-brand">
+      <span class="sc2-logo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9l8-4 8 4-8 4z" fill="#f8fafc"/><path d="M12 13v4" stroke="#f8fafc" stroke-width="1.1" stroke-linecap="round"/><path d="M18 9v3" stroke="#e6bd63" stroke-width="1.1" stroke-linecap="round"/><circle cx="18" cy="13" r="1.2" fill="#e6bd63"/><rect x="5" y="18" width="2" height="3.5" rx="0.6" fill="#e6bd63"/><rect x="9" y="16" width="2" height="5.5" rx="0.6" fill="#e6bd63" opacity="0.85"/><rect x="13" y="17" width="2" height="4.5" rx="0.6" fill="#e6bd63" opacity="0.7"/><path d="M6 17.5l4-2 4 1" stroke="#f8fafc" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </span>Scholarics
+    </a>
+    <nav class="sc2-nav" aria-label="Primary">
+      <a href="index.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg> Home</a>
+      <a href="academic-resources.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> All Calculators</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg> Dashboard</a>
+      <a href="premium.html"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;color:var(--gold-strong,#e6bd63)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg> <span style="color:var(--gold-strong,#e6bd63)">Premium</span> <span class="sc2-badge">EARLY</span></a>
+      <a href="ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg> AI Tutor</a>
+      <a href="paraphraser.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> AI Paraphraser <span class="sc2-badge">NEW</span></a>
+      <a href="study-schedule.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3M8 13h4M8 16.5h6"/></svg> Study Planner</a>
+      <a href="notes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h9l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V9h5M8 13h8M8 16.5h5"/></svg> Notes</a>
+      <a href="flashcards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h11a2.5 2.5 0 0 1 2.5 2.5v9"/></svg> Flashcards</a>
+      <a href="grading-guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Countries &amp; Grades</a>
+      <a href="study-guides.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2 2 0 0 1 6 3.5h13v14H6a2 2 0 0 0-2 2V5.5Z"/><path d="M4 19.5a2 2 0 0 1 2-2h13v3H6a2 2 0 0 1-2-1Z"/></svg> Resources</a>
+      <a href="gpa-improvement-planner.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg> Goals</a>
+      <div class="sc2-nav-sep"></div>
+      <a href="dashboard.html#favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14.6 9l6 .8-4.4 4.2 1.1 6L12 17.2 6.7 20l1.1-6L3.4 9.8 9.4 9 12 3.5Z"/></svg> Favorites</a>
+      <a href="dashboard.html#recent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Recent</a>
+    </nav>
+    <div class="sc2-side-ai">
+      <div style="font-family:'Bricolage Grotesque','Inter',system-ui,sans-serif;font-size:13px;font-weight:700;line-height:1.1;letter-spacing:-.02em;text-wrap:balance;margin:0;display:flex;align-items:center;gap:6px;color:var(--ink)">Scholarics Premium <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;display:inline;color:var(--gold-strong)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg></div>
+      <p>AI Tutor, Paraphraser &amp; Flashcards — 3 months free for early subscribers.</p>
+      <a href="premium.html" class="sc2-btn sc2-btn-primary">Join Waitlist</a>
+    </div>
+    <div class="sc2-side-foot">
+      <img src="images/avatar.svg" alt="Scholarics user profile avatar" width="30" height="30" decoding="async">
+      <span class="nm">Profile</span>
+      <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme" title="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+      <a href="profile.html" class="sc2-icon-btn" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 6.9 3.6l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-.3 1.8Z"/></svg></a>
+    </div>
+  </aside>
+  <!-- ============ MAIN ============ -->
+  <div class="sc2-main">
+    <!-- topbar -->
+    <header class="sc2-top">
+      <button class="sc2-icon-btn sc2-hamburger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="sc2-search">
+        <svg class="s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input type="search" id="sc2Search" placeholder="Search calculators or tools…" aria-label="Search">
+        <span class="sc2-kbd">⌘K</span>
+      </div>
+      <nav class="sc2-top-nav" aria-label="Secondary">
+        <a href="index.html#tools">Calculators</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="premium.html">⭐ Premium</a>
+        <a href="academic-resources.html">Resources</a>
+      </nav>
+      <div class="sc2-top-tools">
+        <button class="sc2-icon-btn" style="position:relative" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="sc2-dot"></span></button>
+        <button class="sc2-icon-btn sc-theme-toggle" onclick="sc2Theme()" aria-label="Toggle theme"><svg class="sc-theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></button>
+        <img class="sc2-avatar" src="images/avatar.svg" alt="Scholarics user profile avatar" width="34" height="34" decoding="async">
+      </div>
+    </header>
+    <main id="main-content" class="sc2-content">
+      <!-- ============ HERO ============ -->
+      <section class="sc2-hero sc2-rev d1">
+        <div class="sc2-hero-l">
+          <h1>Excellence is<br><span class="g">Calculated.</span></h1>
+          <p>Smart academic calculators &amp; AI tools to help you learn better, achieve more, and reach your goals.</p>
+          <div class="sc2-hero-cta">
+            <a href="index.html#tools" class="sc2-btn sc2-btn-primary">Explore Calculators <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+            <a href="premium.html" class="sc2-btn sc2-btn-ghost"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:16px;height:16px;color:var(--gold-strong)"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z"/></svg> Explore Premium</a>
+          </div>
+          <div class="sc2-pop">
+            <div class="sc2-pop-lbl">Popular Searches:</div>
+            <div class="sc2-chips">
+              <a href="gpa.html" class="sc2-chip">GPA Calculator</a>
+              <a href="cgpa.html" class="sc2-chip">CGPA Calculator</a>
+              <a href="gpa-simulator.html" class="sc2-chip">GPA Simulator</a>
+              <a href="target-gpa.html" class="sc2-chip">Target GPA</a>
+              <a href="premium.html" class="sc2-chip">⭐ Premium</a>
+            </div>
+          </div>
+        </div>
+        <div class="sc2-hero-r">
+          <div class="sc2-statcards">
+            <!-- Optimized Critical Hero Image Load -->
+            <!-- Hero illustration. css/scholarics-v2.css hides .sc2-hero-illu below
+                 1025px, so a zero-byte placeholder is served there instead of a
+                 wasted high-priority download. Desktop gets WebP sized for the
+                 300px display box (1x / 2x); the PNG stays as the legacy fallback. -->
+            <picture>
+              <source media="(max-width:1024px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+              <source media="(min-width:1025px)" type="image/webp" srcset="images/hero-illustration-300.webp 1x, images/hero-illustration-600.webp 2x">
+              <img class="sc2-hero-illu" src="images/hero-illustration-600.png" alt="Stacked study books beside a potted succulent" width="945" height="463" fetchpriority="high" decoding="async">
+            </picture>
+            <div class="sc2-statcard sc2-statcard-primary">
+              <div class="sc2-sc-top"><span>GPA</span> <svg viewBox="0 0 130 44" fill="none" aria-hidden="true" style="width:120px;height:38px"><polyline points="2,38 18,30 32,34 48,22 64,26 80,14 96,18 112,6 128,10" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--spark-gold)"/><circle cx="128" cy="10" r="2.6" fill="var(--gold)"/></svg></div>
+              <div class="sc2-sc-val">3.75</div>
+              <div class="sc2-sc-label">Excellent</div>
+              <div class="sc2-sc-delta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg> 0.15</div>
+            </div>
+            <div class="sc2-statcard mid">
+              <div class="sc2-sc-top"><span>CGPA</span> <svg viewBox="0 0 60 26" fill="none" aria-hidden="true" style="width:56px;height:22px"><polyline points="2,22 12,16 22,18 32,10 42,13 58,4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--spark-up)"/></svg></div>
+              <div class="sc2-sc-val">3.62</div>
+              <div class="sc2-sc-label">Very Good</div>
+              <div class="sc2-sc-delta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg> 0.12</div>
+            </div>
+            <div class="sc2-statcard mid2">
+              <div class="sc2-sc-top"><span>Target GPA</span> <svg viewBox="0 0 60 26" fill="none" aria-hidden="true" style="width:56px;height:22px"><polyline points="2,22 12,16 22,18 32,10 42,13 58,4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--spark-up)"/></svg></div>
+              <div class="sc2-sc-val">3.80</div>
+              <div class="sc2-sc-label">On Track</div>
+              <div class="sc2-sc-delta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg> 0.20</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ============ EXPLORE TOOLS ============ -->
+      <div class="sc2-sec-head" id="tools">
+        <h2>Explore Our Tools</h2>
+        <a href="academic-resources.html" class="sc2-link">View all tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="sc2-tools">
+        <a href="gpa.html" class="sc2-tool sc2-rev d1">
+          <span class="sc2-tool-ico ico-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 14.5h.01M12 14.5h.01M16 14.5v3M8 17.5h4"/></svg></span>
+          <h3>GPA Calculator</h3><p>Calculate your semester GPA instantly</p>
+        </a>
+        <a href="cgpa.html" class="sc2-tool sc2-rev d2">
+          <span class="sc2-tool-ico ico-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 14.5h.01M12 14.5h.01M16 14.5v3M8 17.5h4"/></svg></span>
+          <h3>CGPA Calculator</h3><p>Cumulative GPA across semesters</p>
+        </a>
+        <a href="target-gpa.html" class="sc2-tool sc2-rev d3">
+          <span class="sc2-tool-ico ico-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+          <h3>Target GPA</h3><p>Find the grades you need to reach your goal</p>
+        </a>
+        <a href="gpa-simulator.html" class="sc2-tool sc2-rev d4">
+          <span class="sc2-tool-ico ico-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 12 4-4 4 4 4-6"/></svg></span>
+          <h3>GPA Simulator</h3><p>Model semesters &amp; simulate what-if grades</p>
+        </a>
+        <a href="paraphraser.html" class="sc2-tool sc2-rev d5">
+          <span class="sc2-tool-ico ico-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+          <h3>AI Paraphraser</h3><p>Rewrite text in professional academic styles</p>
+        </a>
+        <a href="academic-resources.html" class="sc2-tool sc2-rev d5">
+          <span class="sc2-tool-ico ico-ink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></span>
+          <h3>All Tools</h3><p>Explore 27+ academic tools</p>
+        </a>
+      </div>
+      <!-- ============ STATS ============ -->
+      <div class="sc2-stats sc2-rev d2">
+        <div class="sc2-stat"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M7 16V9M12 16V5M17 16v-4"/></svg> 1M+</div><div class="l">Calculations Performed</div></div>
+        <div class="sc2-stat"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6M17.5 19a5.5 5.5 0 0 0-2-4.3"/></svg> 200K+</div><div class="l">Students Helped</div></div>
+        <div class="sc2-stat"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg> 50+</div><div class="l">Academic Tools</div></div>
+        <div class="sc2-stat"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.6 1.2c0 1.7-2.6 2-2.6 3.3"/><path d="M12 17h.01"/></svg> 100%</div><div class="l">Free Forever</div></div>
+        <div class="sc2-stat"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg> Global</div><div class="l">Trusted by students worldwide</div></div>
+      </div>
+      <!-- ============ PANELS ============ -->
+      <div class="sc2-panels">
+        <!-- Recently Used -->
+        <section class="sc2-card sc2-panel sc2-rev d1">
+          <div class="sc2-panel-head"><h3>Recently Used</h3></div>
+          <div class="sc2-rec">
+            <a href="gpa.html"><span class="sc2-rec-ico ico-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 14.5h.01M12 14.5h.01M16 14.5v3M8 17.5h4"/></svg></span><span class="nm">GPA Calculator</span><span class="tm">2 min ago</span></a>
+            <a href="target-gpa.html"><span class="sc2-rec-ico ico-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span><span class="nm">Target GPA</span><span class="tm">1 hour ago</span></a>
+            <a href="cgpa.html"><span class="sc2-rec-ico ico-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 14.5h.01M12 14.5h.01M16 14.5v3M8 17.5h4"/></svg></span><span class="nm">CGPA Calculator</span><span class="tm">3 hours ago</span></a>
+            <a href="grade-calculator.html"><span class="sc2-rec-ico ico-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4.5" width="12" height="16" rx="2.5"/><path d="M9 4.5a3 3 0 0 1 6 0"/><path d="M9 11h6M9 14.5h4"/></svg></span><span class="nm">Grade Calculator</span><span class="tm">Yesterday</span></a>
+          </div>
+          <a href="dashboard.html#recent" class="sc2-rec-foot">View all recent <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        </section>
+        <!-- Study Streak -->
+        <section class="sc2-card sc2-panel sc2-rev d2">
+          <div class="sc2-panel-head"><h3>Your Study Streak</h3></div>
+          <div class="sc2-streak-num">
+            <span class="d">12</span><span class="u">Days</span>
+            <svg class="sc2-flame" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3c1 4-2 6-2 9 0 2 1 3 1 3s-3-1-3-4c0 0-4 3-4 8a8 8 0 0 0 16 0c0-5-4-8-4-11 0-2-1-4-1-4-1 3-3 4-3 6 0 0-1-3 3-7Z" fill="#f0902e"/><path d="M16 12c1 2 3 3 3 6a3 3 0 0 1-6 0c0-2 2-3 3-6Z" fill="#ffd23f"/></svg>
+          </div>
+          <p class="sc2-streak-copy">Keep it up! Consistency builds success.</p>
+          <div class="sc2-week">
+            <div class="sc2-day on"><div class="dl">M</div><div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7"/></svg></div></div>
+            <div class="sc2-day on"><div class="dl">T</div><div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7"/></svg></div></div>
+            <div class="sc2-day on"><div class="dl">W</div><div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7"/></svg></div></div>
+            <div class="sc2-day on"><div class="dl">T</div><div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7"/></svg></div></div>
+            <div class="sc2-day on"><div class="dl">F</div><div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7"/></svg></div></div>
+            <div class="sc2-day off"><div class="dl">S</div><div class="dc"></div></div>
+            <div class="sc2-day off"><div class="dl">S</div><div class="dc"></div></div>
+          </div>
+        </section>
+        <!-- AI Tutor -->
+        <section class="sc2-card sc2-panel sc2-rev d3">
+          <div class="sc2-panel-head"><h3>AI Tutor</h3><span class="sc2-pill-badge">BETA</span></div>
+          <p class="sc2-ai-copy">Get instant help with concepts, problems, and study advice.</p>
+          <form class="sc2-ai-input" action="ai.html" method="get">
+            <input type="text" name="q" placeholder="Ask me anything…" aria-label="Ask AI">
+            <button class="sc2-ai-send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12 20 5l-4 15-4-6-7-2Z"/></svg></button>
+          </form>
+          <div class="sc2-ai-pop">Popular: <a href="gpa-improvement-planner.html">How to improve GPA?</a> · <a href="study-guides.html">Study tips</a></div>
+        </section>
+      </div>
+      <!-- ============ PREMIUM ============ -->
+      <section class="sc2-premium sc2-rev d2">
+        <span class="sc2-premium-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 5-9 13L3 8l3-5Z"/><path d="M3 8h18M9 3 7 8l5 13 5-13-2-5M8 8l4 13 4-13"/></svg></span>
+        <div class="sc2-premium-txt">
+          <h3>Premium Experience</h3>
+          <p>Unlock advanced features, ad-free experience &amp; priority AI support.</p>
+        </div>
+        <button onclick="openPremium()" class="sc2-btn sc2-btn-gold">Go Premium <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+      </section>
+    </main>
+  <footer class="sc2-footer">
+    <div class="sc2-footer-inner">
+      <div class="sc2-footer-grid">
+        <div>
+          <h3>Company</h3>
+          <a href="about.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h3>Legal</h3>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+          <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div>
+          <h3>Popular Tools</h3>
+          <a href="gpa.html">GPA Calculator</a>
+          <a href="gpa-simulator.html">GPA Simulator</a>
+          <a href="gpa-converter.html">GPA Converter</a>
+          <a href="grade-calculator.html">Grade Calculator</a>
+          <a href="academic-resources.html">All Calculators</a>
+        </div>
+        <div>
+          <h3>Resources</h3>
+          <a href="study-guides.html">Study Guides</a>
+          <a href="grading-guide.html">Grading Guide</a>
+          <a href="gpa-help-center.html">GPA Help Center</a>
+          <a href="premium.html">⭐ Premium</a>
+        </div>
+      </div>
+      <div class="sc2-footer-bottom">
+        <span>&copy; 2026 Scholarics. All rights reserved.</span>
+        <span>Free academic tools for students.</span>
+      </div>
+    </div>
+  </footer>
+  </div>
+</div>
+<!-- ============ MOBILE BOTTOM NAV ============ -->
+<nav class="sc2-bottomnav" aria-label="Mobile">
+  <a href="index.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></a>
+  <a href="index.html#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg><span>Calculators</span></a>
+  <a href="ai.html" class="ai"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.9 7l2.1 1.2M17 15.8 19.1 17M4.9 17 7 15.8M17 8.2 19.1 7"/><circle cx="12" cy="12" r="3.4"/></svg>W</span><span>AI</span></a>
+  <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="2"/><rect x="3" y="16" width="8" height="5" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/></svg><span>Dashboard</span></a>
+  <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>Profile</span></a>
+</nav>
+<script>
+function sc2Theme(){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('sc_theme',n);}catch(e){}if(window.SC&&SC.toast){SC.toast(n==='dark'?'🌙 Dark mode on':'☀️ Light mode on','info');}}
+function openPremium(){
+  var existing=document.getElementById('sc2modalPremium');
+  if(existing){existing.remove();return;}
+  var html='<div style="padding:28px 28px 24px">'
+    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">'
+    +'<h2 style="margin:0;font-size:18px;font-weight:700;color:var(--ink)">⭐ Premium Experience</h2>'
+    +'<button onclick="document.getElementById(\'sc2modalPremium\').remove()" style="background:none;border:none;cursor:pointer;font-size:22px;color:var(--ink-3);line-height:1" aria-label="Close">×</button>'
+    +'</div>'
+    +'<p style="font-size:14px;color:var(--ink-2);margin:0 0 20px;line-height:1.6">Scholarics is completely free. Premium features are coming soon — sign up below to be first in line when we launch.</p>'
+    +'<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">'
+    +'<div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)"><span style="color:var(--gold-strong);font-size:16px">✓</span> Ad-free experience across all tools</div>'
+    +'<div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)"><span style="color:var(--gold-strong);font-size:16px">✓</span> Priority AI Tutor responses</div>'
+    +'<div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)"><span style="color:var(--gold-strong);font-size:16px">✓</span> Advanced analytics &amp; GPA forecasting</div>'
+    +'<div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)"><span style="color:var(--gold-strong);font-size:16px">✓</span> Cloud sync across devices</div>'
+    +'<div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)"><span style="color:var(--gold-strong);font-size:16px">✓</span> Export reports as PDF</div>'
+    +'</div>'
+    +'<div style="background:var(--card-2,#faf9f5);border:1px solid var(--border);border-radius:14px;padding:16px">'
+    +'<p style="font-size:12.5px;font-weight:600;color:var(--ink-3);margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em">Get Early Access</p>'
+    +'<form id="premiumWaitlistForm" onsubmit="submitPremiumEmail();return false" novalidate>'
+    +'<input id="premiumGotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">'
+    +'<div class="pm-email-row" style="display:flex;gap:8px;flex-wrap:wrap">'
+    +'<input id="premiumEmail" type="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required style="flex:1;min-width:160px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:13.5px;background:var(--card);color:var(--ink);font-family:inherit">'
+    +'<button id="premiumNotifyButton" type="submit" style="padding:10px 16px;background:var(--gold);color:#1a1509;border:none;border-radius:10px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0">Notify Me</button>'
+    +'</div>'
+    +'<p id="premiumWaitlistStatus" role="status" aria-live="polite" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.45"></p>'
+    +'</form>'
+    +'</div>'
+    +'</div>';
+  var overlay=document.createElement('div');
+  overlay.id='sc2modalPremium';
+  overlay.style.cssText='position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:16px';
+  var box=document.createElement('div');
+  box.style.cssText='background:var(--panel,#fff);border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.24);border:1px solid var(--border);width:100%;max-width:460px;max-height:90vh;overflow-y:auto';
+  box.innerHTML=html;
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  var form=document.getElementById('premiumWaitlistForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      submitPremiumEmail();
+    });
+  }
+  var btn=document.getElementById('premiumNotifyButton');
+  if(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      submitPremiumEmail();
+    });
+  }
+  overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove();});
+  document.addEventListener('keydown',function onEsc(e){if(e.key==='Escape'){overlay.remove();document.removeEventListener('keydown',onEsc);}});
+  setTimeout(function(){var ei=document.getElementById('premiumEmail');if(ei)ei.focus();},100);
+}
+function showPremiumWaitlistMessage(message,type){
+  var status=document.getElementById('premiumWaitlistStatus');
+  if(status){
+    status.textContent=message;
+    status.style.display='block';
+    status.style.color=type==='success'?'var(--ok,#2f9e5b)':'var(--danger,#d33)';
+  }
+  if(window.SC&&window.SC.toast)window.SC.toast(message,type);
+}
+function resetPremiumWaitlistForm(inp,btn){
+  if(btn){btn.disabled=false;btn.removeAttribute('aria-busy');btn.textContent='Notify Me';}
+  if(inp){inp.disabled=false;inp.focus();}
+}
+function submitPremiumEmail(){
+  var inp=document.getElementById('premiumEmail');
+  var gotcha=document.getElementById('premiumGotcha');
+  var btn=document.getElementById('premiumNotifyButton');
+  if(!inp)return;
+  if(inp.disabled)return;
+  var email=(inp.value||'').trim();
+  var valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!valid){showPremiumWaitlistMessage('Please enter a valid email address.','error');inp.focus();return;}
+  if(btn){btn.disabled=true;btn.setAttribute('aria-busy','true');btn.textContent='Sending\u2026';}
+  inp.disabled=true;
+  fetch('/api/waitlist',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      email:email,
+      page:window.location.pathname,
+      source:'premium-modal',
+      _gotcha:gotcha?gotcha.value:''
+    })
+  }).then(function(res){
+    return res.json().catch(function(){return {};}).then(function(data){
+      var isDuplicate=res.status===409||data.duplicate===true;
+      if(res.ok||isDuplicate){
+        var message=isDuplicate
+          ? 'You\'re already on the waitlist! \uD83C\uDF89'
+          : 'You\'re on the waitlist! We\'ll notify you when this feature launches.';
+        showPremiumWaitlistMessage(message,'success');
+        try{localStorage.setItem('sc_notify_waitlist_joined','1');}catch(e){}
+        var overlay=document.getElementById('sc2modalPremium');
+        if(overlay)setTimeout(function(){overlay.remove();},2800);
+        return;
+      }
+      showPremiumWaitlistMessage(data.error||'Something went wrong — please try again.','error');
+      resetPremiumWaitlistForm(inp,btn);
+    });
+  }).catch(function(){
+    showPremiumWaitlistMessage('Network error — please try again.','error');
+    resetPremiumWaitlistForm(inp,btn);
+  });
+}
+document.body.classList.remove('premium');
+try{new MutationObserver(function(){if(document.body.classList.contains('premium'))document.body.classList.remove('premium');}).observe(document.body,{attributes:true,attributeFilter:['class']});}catch(e){}
+</script>
+<script defer src="assets/js/g-ca0b60.b6d910de.js" data-sc-src="script personalization premium sc-shell sc-v2-features analytics consent email-capture pwa"></script>
+<!-- Optimized Script Loads (Removed Redundant country data & content platform scripts on the homepage) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
+</body>
+                                                                                                                                                                                                                                                                                                                     </html> 

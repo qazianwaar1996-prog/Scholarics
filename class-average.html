@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('sc_theme');if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<title>Class Average Calculator — Mean, Median & Grade Stats | Scholarics</title>
+<meta name="description" content="Calculate the mean, median, highest, and lowest grade for any class. Enter student scores and get clear, instant class statistics online.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scholarics.com/class-average.html">
+  <link rel="alternate" hreflang="en" href="https://scholarics.com/class-average.html">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scholarics">
+<meta property="og:title" content="Class Average Calculator — Mean, Median & Grade Stats | Scholarics">
+<meta property="og:description" content="Calculate the mean, median, highest, and lowest grade for any class. Enter student scores and get clear, instant class statistics online.">
+<meta property="og:url" content="https://scholarics.com/class-average.html">
+<meta property="og:image" content="https://scholarics.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:site" content="@scholarics">
+<meta name="twitter:creator" content="@scholarics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://scholarics.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Scholarics — Free Academic Calculators and Tools for Students">
+<meta name="twitter:title" content="Free Class Average Calculator for Grades | Scholarics">
+<meta name="twitter:description" content="Calculate the mean, median, highest, and lowest grade for any class. Enter student scores and get clear, instant class statistics online.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Class Average Calculator", "url": "https://scholarics.com/class-average.html", "applicationCategory": "EducationalApplication", "isAccessibleForFree": true, "operatingSystem": "All", "description": "Calculate the mean, median, highest, and lowest grade for a class. Enter all student scores and get instant statistics.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;450;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.a1dcaabc.css">
+<link rel="stylesheet" href="assets/css/print.a4d4d908.css" media="print">
+<link rel="stylesheet" href="assets/css/calc-country-ai.a5a811c9.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/", "logo": "https://scholarics.com/images/favicon.svg", "sameAs": ["https://www.linkedin.com/company/scholarics/", "https://www.youtube.com/@Scholarics", "https://x.com/Scholarics", "https://www.facebook.com/Scholarics", "https://www.reddit.com/user/Scholarics/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why use median instead of mean?", "acceptedAnswer": {"@type": "Answer", "text": "If a few students score very high or very low, the mean gets pulled toward those outliers. For example, if 19 students score around 70% and one student scores 100%, the mean is pulled up to about 71.5% — giving a slightly misleading picture. The median stays at 70%, which better represents the typical student. Use median when the distribution is skewed; use mean for normally distributed scores."}}, {"@type": "Question", "name": "What is a good class average?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the course and institution, but most instructors aim for a class average in the 70–80% range on a well-calibrated exam. Below 60% usually signals the exam was too difficult and a curve may be applied. Above 90% may indicate the assessment was too easy to differentiate student performance effectively."}}, {"@type": "Question", "name": "How do I calculate standard deviation manually?", "acceptedAnswer": {"@type": "Answer", "text": "1) Find the mean. 2) Subtract the mean from each score and square the result. 3) Average those squared differences. 4) Take the square root. For large classes, this is tedious — paste all scores into this calculator and it computes SD instantly."}}, {"@type": "Question", "name": "Can I use this calculator for non-exam data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — any set of numbers works. You can calculate the mean, median, and SD of assignment marks, participation scores, quiz results, or any numeric data. Just enter the values separated by commas or one per line."}}]}</script>
+<link rel="stylesheet" href="assets/css/shell.cc3a5b31.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Class Average Calculator", "url": "https://scholarics.com/class-average.html", "isPartOf": {"@type": "WebSite", "url": "https://scholarics.com/"}, "publisher": {"@type": "Organization", "name": "Scholarics", "url": "https://scholarics.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://scholarics.com/"}, {"@type": "ListItem", "position": 2, "name": "Class Average", "item": "https://scholarics.com/class-average.html"}]}</script>
+
+<style id="logo-override">
+/* ═══ Scholarics Logo Override — Graduation Cap + Data (v2) ═══ */
+
+/* ── Tool pages: header & footer .logo-mark ── */
+.logo-mark {
+  background: #1a1815 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%231a1815%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+}
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+.logo-dot {
+  display: none !important;
+}
+
+/* Footer dark background version */
+.foot .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+.foot .logo-mark::before,
+.foot .logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Dark theme override for header */
+:root[data-theme="dark"] .logo-mark,
+[data-theme="dark"] .logo-mark {
+  background-color: #0f0d06 !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%229%22%20fill%3D%22%230f0d06%22%2F%3E%3Cpath%20d%3D%22M5%2013l12-6%2012%206-12%206z%22%20fill%3D%22%23f8fafc%22%2F%3E%3Cpath%20d%3D%22M17%2019v5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M25%2013v4%22%20stroke%3D%22%23f5c542%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2218%22%20r%3D%221.8%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%2F%3E%3Crect%20x%3D%2214.5%22%20y%3D%2222.5%22%20width%3D%223%22%20height%3D%227.5%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.85%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22%23f5c542%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M10.5%2024.5l6-3%206%201.5%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: cover !important;
+}
+
+</style>
+<link rel="stylesheet" href="css/sc-global-fixes.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header class="site-head">
+  <nav class="wrap nav">
+    <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Scholarics</a>
+    <div class="nav-links"><a href="study-guides.html">Guides</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="index.html#tools">How it works</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+    </div>
+    <div class="nav-cta">
+      <a href="academic-resources.html" class="btn btn-ghost">All tools</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<main id="main-content">
+<section class="tool-head">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      <span>Class Average</span>
+    </nav>
+    <div class="calc-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Class Average</div>
+    <h1>Class Average Calculator</h1>
+    <p>Enter all student scores to get mean, median, highest, lowest, and grade distribution. Great for teachers and students.</p>
+  </div>
+</section>
+<div class="wrap reveal">
+  <div class="tool-layout">
+    <div class="calc-main">
+      <div class="panel">
+        <div class="panel-head"><h2>Enter Scores</h2></div>
+        <div class="field">
+          <label for="caScores">Student Scores (one per line or comma-separated)</label>
+          <textarea class="input editor" id="caScores" rows="8" placeholder="78&#10;85&#10;92&#10;67&#10;88&#10;73&#10;95&#10;61" aria-label="Enter scores" style="font-family:var(--font-body);resize:vertical"></textarea>
+          <span class="hint">Enter percentage scores between 0 and 100</span>
+        </div>
+        <div class="calc-actions">
+          <button class="btn btn-primary" id="caCalculate">Calculate</button>
+          <button class="btn btn-danger" id="caReset">Reset</button>
+        </div>
+        <div class="prose tight" style="margin-top:var(--s6)">
+          <h2>Statistics Explained</h2>
+          <p><strong>Mean:</strong> The arithmetic average — sum all scores and divide by the count. Pulled toward outliers.</p>
+          <p><strong>Median:</strong> The middle value when scores are sorted. Better than mean when a few very high or very low scores skew the distribution.</p>
+          <p><strong>Standard Deviation (SD):</strong> How spread out scores are. A low SD means scores cluster tightly around the mean; a high SD means wide variation. An SD of 5 on a mean of 72 means most students scored between 67 and 77.</p>
+
+          <h2>How to interpret your class average</h2>
+          <p>Class averages let you gauge where individual scores fall relative to the group — useful for students, instructors, and TAs alike. Key benchmarks:</p>
+          <table style="width:100%;border-collapse:collapse;margin:var(--s3) 0;font-size:0.875rem">
+            <thead><tr style="background:var(--surface-2)">
+              <th style="padding:8px 10px;text-align:left;border:1px solid var(--border)">Class average</th>
+              <th style="padding:8px 10px;text-align:left;border:1px solid var(--border)">What it typically means</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="padding:7px 10px;border:1px solid var(--border)">85%+</td><td style="padding:7px 10px;border:1px solid var(--border)">Exam was straightforward; high performers dominate</td></tr>
+              <tr><td style="padding:7px 10px;border:1px solid var(--border)">70–84%</td><td style="padding:7px 10px;border:1px solid var(--border)">Good spread; well-calibrated assessment</td></tr>
+              <tr><td style="padding:7px 10px;border:1px solid var(--border)">55–69%</td><td style="padding:7px 10px;border:1px solid var(--border)">Exam was challenging; curve often applied</td></tr>
+              <tr><td style="padding:7px 10px;border:1px solid var(--border)">Below 55%</td><td style="padding:7px 10px;border:1px solid var(--border)">Exam may have been too hard; grading review common</td></tr>
+            </tbody>
+          </table>
+          <p>When an instructor "curves" grades, they often add a fixed number of points to every score, or scale scores proportionally so the mean hits a target (e.g., 70%). If your class average is 58% and the professor curves to 70%, everyone gets +12 points — but relative rankings stay the same.</p>
+
+          <h2>Standard deviation and grading on a curve</h2>
+          <p>Some instructors use SD-based grading: an A goes to students scoring above the mean + 1 SD, B to mean to mean + 1 SD, C to mean − 1 SD to mean, and so on. In a class with mean 65 and SD 10:</p>
+          <ul>
+            <li>A: 75+ (mean + 1 SD)</li>
+            <li>B: 65–74</li>
+            <li>C: 55–64</li>
+            <li>D: 45–54</li>
+          </ul>
+          <p>This normalises grades to a bell-curve distribution regardless of absolute difficulty — useful for large lecture courses where exam difficulty varies year to year.</p>
+
+          <div class="faq">
+            <details open><summary>Why use median instead of mean?</summary><p>If a few students score very high or very low, the mean gets pulled toward those outliers. For example, if 19 students score around 70% and one student scores 100%, the mean is pulled up to about 71.5% — giving a slightly misleading picture. The median stays at 70%, which better represents the typical student. Use median when the distribution is skewed; use mean for normally distributed scores.</p></details>
+            <details><summary>What is a good class average?</summary><p>It depends on the course and institution, but most instructors aim for a class average in the 70–80% range on a well-calibrated exam. Below 60% usually signals the exam was too difficult and a curve may be applied. Above 90% may indicate the assessment was too easy to differentiate student performance effectively.</p></details>
+            <details><summary>How do I calculate standard deviation manually?</summary><p>1) Find the mean. 2) Subtract the mean from each score and square the result. 3) Average those squared differences. 4) Take the square root. For large classes, this is tedious — paste all scores into this calculator and it computes SD instantly.</p></details>
+            <details><summary>Can I use this calculator for non-exam data?</summary><p>Yes — any set of numbers works. You can calculate the mean, median, and SD of assignment marks, participation scores, quiz results, or any numeric data. Just enter the values separated by commas or one per line.</p></details>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="result-rail">
+      <div class="res-hero" aria-live="polite">
+        <div class="label">Class Mean</div>
+        <div class="res-big tnum" id="caMean">—</div>
+        <div class="res-sub" id="caLetter"></div>
+        <div class="gpa-meta">
+          <div><div class="n tnum" id="caStudents">0</div><div class="l">Students</div></div>
+          <div><div class="n tnum" id="caMedian">—</div><div class="l">Median</div></div>
+        </div>
+        <div class="result-btn-row">
+          <button class="btn" id="caShare" data-sc-action="copylink" aria-label="Copy result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+          <button class="btn" id="pdfBtn" aria-label="Print PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>
+        </div>
+        <div id="scConvResult" class="sc-conv-result" aria-live="polite" aria-label="Equivalent grade in your country"></div>
+      </div>
+      <div class="panel" style="padding:var(--s4)" aria-live="polite">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);text-align:center">
+          <div><div class="n tnum" id="caHigh" style="font-family:var(--font-display);font-weight:700;font-size:var(--step-lg);color:var(--ok)">—</div><div style="font-size:var(--step-xs);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em">Highest</div></div>
+          <div><div class="n tnum" id="caLow" style="font-family:var(--font-display);font-weight:700;font-size:var(--step-lg);color:var(--danger)">—</div><div style="font-size:var(--step-xs);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em">Lowest</div></div>
+          <div><div class="n tnum" id="caStdDev" style="font-family:var(--font-display);font-weight:700;font-size:var(--step-md)">—</div><div style="font-size:var(--step-xs);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em">Std Dev</div></div>
+          <div><div class="n tnum" id="caRange" style="font-family:var(--font-display);font-weight:700;font-size:var(--step-md)">—</div><div style="font-size:var(--step-xs);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em">Range</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="related" aria-labelledby="relHead">
+  <div class="wrap">
+    <h2 id="relHead" style="font-size:var(--step-md);margin-bottom:var(--s3)">Related Tools</h2>
+    <div class="tools-grid">
+      <a href="grade-calculator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></div>
+        <h3>Grade Calculator</h3><p>Individual grade weighting</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="percentage-calculator.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+        <h3>Percentage Calc</h3><p>Marks to percentage</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="grade-predictor.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Grade Predictor</h3><p>Predict final grade</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="assignment-weight.html" class="tool live">
+        <div class="tool-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <h3>Assignment Weight</h3><p>Component weight check</p><span class="tool-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+<div class="wrap reveal">
+  <div class="sec-head" style="margin-bottom:var(--s3)"><span class="kicker">Keep reading</span><h2>Related guides &amp; tools</h2></div>
+  <div class="guide-grid">
+    <a href="grade-calculator.html" class="guide-card">
+      <span class="tag">Tool</span>
+      <h3>Grade Calculator</h3>
+      <p>Track your own grades with weights to see your live course percentage.</p>
+    </a>
+    <a href="percentage-calculator.html" class="guide-card">
+      <span class="tag">Tool</span>
+      <h3>Percentage Calculator</h3>
+      <p>Convert marks to percentages and calculate increases or decreases.</p>
+    </a>
+    <a href="grade-predictor.html" class="guide-card">
+      <span class="tag">Tool</span>
+      <h3>Grade Predictor</h3>
+      <p>Forecast your final course grade based on what you have earned so far.</p>
+    </a>
+  </div>
+</div>
+
+</main>
+<div id="backToTop" role="button" aria-label="Back to top" tabindex="0">↑</div>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><span class="logo-dot"></span></span>Scholarics</a>
+        <p>Free academic tools and study guides for students. No accounts, no clutter.</p>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">GPA &amp; Grades</h2>
+        <a href="gpa-converter.html">GPA Converter</a>
+        <a href="gpa.html">GPA Calculator</a><a href="gpa-simulator.html">GPA Simulator</a>
+        <a href="semester-gpa.html">Semester GPA</a>
+        <a href="cgpa.html">CGPA Calculator</a>
+        <a href="gpa-improvement-planner.html">GPA Planner</a>
+        <a href="percentage-to-gpa.html">% to GPA</a>
+        <a href="gpa-to-percentage.html">GPA to %</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Grade Tools</h2>
+        <a href="grade-calculator.html">Grade Calculator</a>
+        <a href="final-exam-calculator.html">Final Exam</a>
+        <a href="required-marks.html">Required Marks</a>
+        <a href="grade-predictor.html">Grade Predictor</a>
+        <a href="assignment-weight.html">Assignment Weight</a>
+        <a href="class-average.html">Class Average</a>
+        <a href="percentage-calculator.html">Percentage</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Planning</h2>
+        <a href="attendance-calculator.html">Attendance</a>
+        <a href="study-time.html">Study Time</a>
+        <a href="pomodoro.html">Pomodoro Timer</a>
+        <a href="study-schedule.html">Study Schedule</a>
+        <a href="scientific-calculator.html">Scientific Calc</a>
+        <a href="basic-calculator.html">Basic Calc</a>
+        <a href="word-counter.html">Word Counter</a>
+      </div>
+      <div class="foot-col">
+        <h2 style="font-size:var(--step-sm);font-weight:600;margin-bottom:var(--s3);color:var(--bg)">Guides &amp; Company</h2>
+        <a href="study-guides.html">Study Guides</a>
+        <a href="gpa-help-center.html">GPA Help Center</a>
+        <a href="academic-resources.html">Academic Resources</a>
+        <a href="grading-guide.html">Grading Guide</a>
+        <a href="premium.html">⭐ Premium</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-and-conditions.html">Terms</a><a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Scholarics. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+<script defer src="assets/js/core-shell-person.99e0f27d.js" data-sc-src="script sc-shell personalization"></script>
+<script defer src="assets/js/p-class-average.bfbf1a70.js" data-sc-src="class-average"></script>
+<script defer src="assets/js/g-5d0ea2.71a7dbb0.js" data-sc-src="grading-systems country-selector premium calculators content-platform ai-service ai-assistant analytics consent email-capture pwa"></script>
+<!-- Ad: Rectangle -->
+<div class="ad-slot rect" aria-label="Advertisement">
+  <div class="ad-label">Advertisement</div>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client=""
+    data-ad-slot=""
+    data-ad-format="rectangle"
+    data-full-width-responsive="false"></ins>
+</div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8E8T88FX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X8E8T88FX8');
+</script>
+<script src="js/sc-pdf-preview.js" defer></script>
+</body>
+</html>
