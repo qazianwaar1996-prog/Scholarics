@@ -102,12 +102,21 @@ async function portFree(ms) {
   try {
     await waitForServer(proc, 90000);
 
-    await test("health endpoint reports AI availability", async () => {
+    await test("health endpoint reports safe AI deployment diagnostics", async () => {
       const res = await fetch(BASE + "/api/ai/health");
       assert.strictEqual(res.status, 200);
       const j = await res.json();
       assert.strictEqual(j.ok, true);
       assert.strictEqual(j.aiAvailable, true);
+      assert.strictEqual(j.gemini.configured, true);
+      assert.strictEqual(j.gemini.model, "gemini-3.6-flash");
+      assert.strictEqual(j.aiGlobalEnabled, true);
+      for (const route of ["chat", "paraphrase", "study-plan", "coach", "flashcards", "quiz"]) {
+        assert.strictEqual(j.endpoints[route].available, true, route + " not available");
+        assert.strictEqual(j.endpoints[route].method, "POST");
+      }
+      assert.ok(JSON.stringify(j).indexOf("GEMINI_API_KEY") === -1);
+      assert.ok(JSON.stringify(j).indexOf("mock") === -1);
     });
 
     await test("API rejects request bodies above the configured limit", async () => {
@@ -214,6 +223,24 @@ async function portFree(ms) {
       assert.strictEqual(res.status, 200);
       const j = await res.json();
       assert.ok(j.reply && j.reply.length > 0);
+    });
+
+    await test("paraphrase endpoint returns the frontend reply shape", async () => {
+      const res = await post("/api/ai/paraphrase", { prompt: "Rewrite: Cells produce energy." });
+      assert.strictEqual(res.status, 200);
+      assert.strictEqual(typeof (await res.json()).reply, "string");
+    });
+
+    await test("quiz endpoint returns the frontend quiz shape", async () => {
+      const res = await post("/api/ai/quiz", { topic: "Arithmetic", count: 1 });
+      assert.strictEqual(res.status, 200);
+      assert.ok(Array.isArray((await res.json()).quiz));
+    });
+
+    await test("flashcards endpoint returns the frontend flashcards shape", async () => {
+      const res = await post("/api/ai/flashcards", { topic: "Biology", count: 2 });
+      assert.strictEqual(res.status, 200);
+      assert.ok(Array.isArray((await res.json()).flashcards));
     });
 
     await test("static page is served by wrangler", async () => {

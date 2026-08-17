@@ -5,6 +5,8 @@
  */
 import { aiError } from './errors.js';
 
+export var DEFAULT_GEMINI_MODEL = 'gemini-3.6-flash';
+
 var SAFETY_SETTINGS = [
   { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
   { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
@@ -12,9 +14,31 @@ var SAFETY_SETTINGS = [
   { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
 ];
 
+/** Return the configured model without ever inspecting or exposing the key. */
+export function getGeminiModel(env, override) {
+  var model = String(override || (env && env.GEMINI_MODEL) || DEFAULT_GEMINI_MODEL).trim();
+  /* Model is inserted into a URL path. Reject malformed configuration rather
+     than allowing an environment value to alter the upstream URL. */
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(model)) {
+    throw aiError('AI_MODEL_INVALID');
+  }
+  return model;
+}
+
 function endpoint(env, model) {
-  var base = env.GEMINI_API_BASE || 'https://generativelanguage.googleapis.com/v1beta';
-  return base + '/models/' + (model || env.GEMINI_MODEL || 'gemini-2.0-flash') + ':generateContent';
+  /* GEMINI_API_BASE exists for isolated local tests. Production uses Google's
+     v1beta REST endpoint below; the API key is sent only as a request header. */
+  var base = String((env && env.GEMINI_API_BASE) || 'https://generativelanguage.googleapis.com/v1beta').replace(/\/+$/, '');
+  return base + '/models/' + encodeURIComponent(getGeminiModel(env, model)) + ':generateContent';
+}
+
+function upstreamError(status) {
+  if (status === 400) return aiError('AI_REQUEST_REJECTED');
+  if (status === 401 || status === 403) return aiError('AI_AUTH_FAILED');
+  if (status === 404) return aiError('AI_MODEL_NOT_FOUND');
+  if (status === 429) return aiError('AI_RATE_LIMITED');
+  if (status >= 500) return aiError('AI_UPSTREAM_UNAVAILABLE');
+  return aiError('AI_UPSTREAM');
 }
 
 /**
@@ -22,12 +46,13 @@ function endpoint(env, model) {
  * opts: { systemInstruction, contents, generationConfig, jsonMode, model }
  */
 export async function generate(env, opts) {
+  env = env || {};
   opts = opts || {};
 
-  // Test mode (set AI_MOCK=1) — never contact Gemini.
-  if (env.AI_MOCK === '1' || env.GEMINI_API_KEY === 'mock') return mockReply(opts);
+  // Explicit test mode only — never enable AI_MOCK in production.
+  if (env.AI_MOCK === '1') return mockReply(opts);
 
-  var key = env.GEMINI_API_KEY;
+  var key = typeof env.GEMINI_API_KEY === 'string' ? env.GEMINI_API_KEY.trim() : '';
   if (!key) throw aiError('AI_NOT_CONFIGURED');
 
   var body = {
@@ -40,28 +65,44 @@ export async function generate(env, opts) {
 
   var res;
   try {
-    res = await fetch(endpoint(env, opts.model) + '?key=' + encodeURIComponent(key), {
+    res = await fetch(endpoint(env, opts.model), {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': key
+      },
       body: JSON.stringify(body)
     });
-  } catch (netErr) {
-    throw aiError('AI_UNREACHABLE', netErr.message);
+  } catch (e) {
+    /* Do not retain the fetch error text: it can contain a URL or runtime
+       detail and must never be reflected by an API response. */
+    throw aiError('AI_UNREACHABLE');
   }
 
   if (!res.ok) {
-    var msg = 'Gemini HTTP ' + res.status;
-    try { var j = await res.json(); if (j && j.error && j.error.message) msg = j.error.message; } catch (e) {}
-    throw aiError(res.status === 429 ? 'AI_RATE_LIMITED' : 'AI_UPSTREAM', msg);
+    /* Deliberately do not return Google's body. Provider errors can contain
+       project/configuration details and are not needed by the browser. */
+    throw upstreamError(res.status);
   }
 
-  var data = await res.json();
-  var cand = data && data.candidates && data.candidates[0];
-  if (!cand) throw aiError('AI_EMPTY');
-  var reason = cand.finishReason || '';
-  if (/SAFETY|RECITATION|BLOCK/i.test(reason)) throw aiError('AI_BLOCKED', reason);
+  var data;
+  try {
+    data = await res.json();
+  } catch (e) {
+    throw aiError('AI_BAD_RESPONSE');
+  }
 
-  var text = (cand.content && cand.content.parts || []).map(function (p) { return p.text || ''; }).join('').trim();
+  var cand = data && Array.isArray(data.candidates) && data.candidates[0];
+  if (!cand) {
+    var blockReason = data && data.promptFeedback && data.promptFeedback.blockReason;
+    if (blockReason) throw aiError('AI_BLOCKED');
+    throw aiError('AI_EMPTY');
+  }
+  var reason = cand.finishReason || '';
+  if (/SAFETY|RECITATION|BLOCK/i.test(reason)) throw aiError('AI_BLOCKED');
+
+  var parts = cand.content && Array.isArray(cand.content.parts) ? cand.content.parts : [];
+  var text = parts.map(function (p) { return p && typeof p.text === 'string' ? p.text : ''; }).join('').trim();
   if (!text) throw aiError('AI_EMPTY');
   return text;
 }
@@ -90,22 +131,20 @@ export async function generateJSON(env, opts) {
 }
 
 export function safeParseJSON(text) {
-  if (!text) throw aiError('AI_BAD_JSON', 'Empty JSON from model');
+  if (!text) throw aiError('AI_BAD_JSON');
   var cleaned = String(text).trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
   var first = cleaned.indexOf('{'), last = cleaned.lastIndexOf('}');
   if (first > 0 && last > first) cleaned = cleaned.slice(first, last + 1);
   try { return JSON.parse(cleaned); }
-  catch (e) { throw aiError('AI_BAD_JSON', e.message); }
+  catch (e) { throw aiError('AI_BAD_JSON'); }
 }
 
-/* Mock reply for offline testing (AI_MOCK=1). */
+/* Mock reply for offline testing (AI_MOCK=1). Never used unless explicitly set. */
 function mockReply(opts) {
   var last = opts.contents && opts.contents[opts.contents.length - 1];
   var q = (last && last.parts && last.parts[0] && last.parts[0].text) || '';
   if (opts.jsonMode) {
     if (q.indexOf('GPA analytics') !== -1 || q.indexOf('coaching report') !== -1) {
-      /* Echo the analytics embedded in the prompt so local tests exercise
-         the real numbers (regex-safe: the prompt is built by our code). */
       var cur = parseFloat((q.match(/Current CGPA: ([0-9.]+|not available)/) || [])[1]);
       var tgt = parseFloat((q.match(/Target: ([0-9.]+|not set)/) || [])[1]);
       var pct = parseInt((q.match(/Progress toward target: ([0-9]+)%/) || [])[1], 10);
@@ -130,12 +169,12 @@ function mockReply(opts) {
     if (q.indexOf('flashcards') !== -1) {
       return Promise.resolve(JSON.stringify({ flashcards: [
         { front: 'What is photosynthesis?', back: 'The process by which plants convert light into chemical energy.' },
-        { front: 'Define mitochondria.', back: 'The organelle that produces most of the cell\u2019s ATP.' }
+        { front: 'Define mitochondria.', back: 'The organelle that produces most of the cell’s ATP.' }
       ] }));
     }
     if (q.indexOf('quiz') !== -1) {
       return Promise.resolve(JSON.stringify({ quiz: [
-        { question: 'What is 7 \u00d7 8?', options: ['54', '56', '58', '64'], answer: '56', explanation: '7 times 8 equals 56.' }
+        { question: 'What is 7 × 8?', options: ['54', '56', '58', '64'], answer: '56', explanation: '7 times 8 equals 56.' }
       ] }));
     }
     return Promise.resolve('{}');

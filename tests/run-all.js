@@ -6,6 +6,7 @@ const { spawnSync } = require("child_process");
 const path = require("path");
 
 const suites = [
+  { file: "gemini.test.js",         label: "Gemini Worker client (auth, model, safe errors)" },
   { file: "core.test.js",            label: "Core maths (scales, GPA, needed-grade, sanitise)" },
   { file: "simulator-ui.test.js",    label: "Simulator UI (jsdom, full page)" },
   { file: "backend.test.js",         label: "Backend API (wrangler, AI mock)" },

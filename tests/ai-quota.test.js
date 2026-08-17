@@ -340,6 +340,30 @@ function num(res, header) {
       assert.strictEqual(j.aiAvailable, false);
     });
 
+    /* ── Server 6: missing Gemini configuration ─────────────────────────── */
+    console.error("[ai-quota] booting missing-config server...");
+    const missing = await startServer({
+      RATE_LIMIT: "10000", AI_RATE_LIMIT: "10000", AI_IP_MULTIPLIER: "1000",
+      AI_QUOTA_SALT: "test-salt"
+    });
+    servers.push(missing);
+
+    await test("missing key is reported safely by health and every AI endpoint", async () => {
+      const health = await (await fetch(missing.base + "/api/ai/health")).json();
+      assert.strictEqual(health.aiAvailable, false);
+      assert.strictEqual(health.gemini.configured, false);
+      assert.strictEqual(health.gemini.model, "gemini-3.6-flash");
+      const routes = ["chat", "paraphrase", "study-plan", "coach", "flashcards", "quiz"];
+      for (const route of routes) {
+        const r = await missing.post("/api/ai/" + route, PAYLOAD[route], visitor("missing"));
+        assert.strictEqual(r.status, 503, route + " returned " + r.status);
+        const j = await r.json();
+        assert.strictEqual(j.code, "AI_NOT_CONFIGURED");
+        const text = JSON.stringify(j);
+        assert.ok(!/stack|GEMINI_API_KEY|api[_-]?key|at .*\.js:/i.test(text), route + " leaked details: " + text);
+      }
+    });
+
     /* ── I: nothing the browser downloads contains the key ──────────────── */
     await test("I: the Gemini API key is absent from every client-side file", async () => {
       const files = [];
