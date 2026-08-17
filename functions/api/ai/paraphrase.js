@@ -27,7 +27,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
   const reply = await generate(env, {
     systemInstruction: PARAPHRASE_SYSTEM,
     contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-    generationConfig: { temperature: 0.6, maxOutputTokens: 2048 }
+    generationConfig: { maxOutputTokens: 2048 }
   });
   return json({ reply });
 }, { aiTool: 'paraphrase' });
