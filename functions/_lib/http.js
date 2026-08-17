@@ -40,8 +40,20 @@ export function withApi(handler, opts) {
   opts = opts || {};
   var aiTool = opts.aiTool || null;
   return async function (context) {
+    try {
+      return await runRequest(context);
+    } catch (err) {
+      /* This outer boundary also covers middleware/configuration failures. A
+         Workers runtime exception must become controlled JSON, never a raw 502
+         page, stack trace, provider response, or secret-bearing error string. */
+      var mapped = toHttpError(err);
+      return json({ error: mapped.message, code: mapped.code }, mapped.status);
+    }
+  };
+
+  async function runRequest(context) {
     var request = context.request;
-    var env = context.env;
+    var env = context.env || {};
     var ip = getClientIP(request);
 
     var allowed = await rateLimit(env, (opts.scope || 'api') + ':' + ip, opts.limit && { limit: opts.limit });
@@ -112,7 +124,7 @@ export function withApi(handler, opts) {
       return res;
     } catch (err) {
       var mapped = toHttpError(err);
-      return json({ error: mapped.message }, mapped.status);
+      return json({ error: mapped.message, code: mapped.code }, mapped.status);
     }
-  };
+  }
 }
