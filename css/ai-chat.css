@@ -516,6 +516,8 @@
   .chat-messages { min-height: 360px; max-height: 420px; }
 }
 @media (max-width: 600px) {
+  ol { padding-left: 1.5rem; }
+  ul { padding-left: 1.5rem; }
   .ai-hero-inner { flex-direction: column; gap: var(--s3); }
   .chat-suggestions { flex-direction: column; align-items: stretch; }
   .chat-suggestion { text-align: center; }
@@ -614,6 +616,8 @@
 
 /* ── Responsive adjustments ─────────────────────────────────── */
 @media (max-width: 640px) {
+  ol { padding-left: 1.5rem; }
+  ul { padding-left: 1.5rem; }
   .coach-topics {
     gap: 6px;
   }
