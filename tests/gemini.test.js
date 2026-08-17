@@ -37,6 +37,64 @@ async function test(name, fn) {
       assert.ok(seen.init.body.indexOf(secret) === -1);
     });
 
+    await test("strips deprecated temperature, topP, top_p, topK, top_k from request", async () => {
+      let seenBody;
+      global.fetch = async (url, init) => {
+        seenBody = JSON.parse(init.body);
+        return new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: "ok" }] } }] }), {
+          status: 200, headers: { "Content-Type": "application/json" }
+        });
+      };
+      await gemini.generate({ GEMINI_API_KEY: "test-key" }, {
+        contents: [{ role: "user", parts: [{ text: "hello" }] }],
+        generationConfig: {
+          temperature: 0.7,
+          topP: 0.95,
+          top_p: 0.95,
+          topK: 40,
+          top_k: 40,
+          candidateCount: 1,
+          candidate_count: 1,
+          thinkingBudget: 0,
+          thinking_budget: 0,
+          maxOutputTokens: 2048
+        }
+      });
+      assert.strictEqual(seenBody.generationConfig.maxOutputTokens, 2048);
+      assert.strictEqual(seenBody.generationConfig.temperature, undefined);
+      assert.strictEqual(seenBody.generationConfig.topP, undefined);
+      assert.strictEqual(seenBody.generationConfig.top_p, undefined);
+      assert.strictEqual(seenBody.generationConfig.topK, undefined);
+      assert.strictEqual(seenBody.generationConfig.top_k, undefined);
+      assert.strictEqual(seenBody.generationConfig.candidateCount, undefined);
+      assert.strictEqual(seenBody.generationConfig.candidate_count, undefined);
+      assert.strictEqual(seenBody.generationConfig.thinkingBudget, undefined);
+      assert.strictEqual(seenBody.generationConfig.thinking_budget, undefined);
+      assert.ok(!("temperature" in seenBody.generationConfig));
+      assert.ok(!("topP" in seenBody.generationConfig));
+      assert.ok(!("top_p" in seenBody.generationConfig));
+      assert.ok(!("topK" in seenBody.generationConfig));
+      assert.ok(!("top_k" in seenBody.generationConfig));
+    });
+
+    await test("jsonMode sets responseMimeType without sampling parameters", async () => {
+      let seenBody;
+      global.fetch = async (url, init) => {
+        seenBody = JSON.parse(init.body);
+        return new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: '{"result":"ok"}' }] } }] }), {
+          status: 200, headers: { "Content-Type": "application/json" }
+        });
+      };
+      const jsonRes = await gemini.generateJSON({ GEMINI_API_KEY: "test-key" }, {
+        userContent: "return json",
+        generationConfig: { temperature: 0.5, maxOutputTokens: 3072 }
+      });
+      assert.deepStrictEqual(jsonRes, { result: "ok" });
+      assert.strictEqual(seenBody.generationConfig.responseMimeType, "application/json");
+      assert.strictEqual(seenBody.generationConfig.maxOutputTokens, 3072);
+      assert.strictEqual("temperature" in seenBody.generationConfig, false);
+    });
+
     await test("missing configuration is controlled and does not fetch", async () => {
       let called = false;
       global.fetch = async () => { called = true; throw new Error("should not fetch"); };
@@ -52,7 +110,7 @@ async function test(name, fn) {
         });
         await assert.rejects(
           () => gemini.generate({ GEMINI_API_KEY: "test-key" }, { contents: [] }),
-          (e) => e.code === pair[1] && !e.detail && e.message.indexOf("secret provider detail") === -1
+          (e) => e.code === pair[1] && e.upstreamStatus === pair[0] && !e.detail && e.message.indexOf("secret provider detail") === -1
         );
       });
     }

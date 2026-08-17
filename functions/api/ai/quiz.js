@@ -17,7 +17,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
   const obj = await generateJSON(env, {
     systemInstruction: QUIZ_SYSTEM,
     userContent: userPrompt,
-    generationConfig: { temperature: 0.5, maxOutputTokens: 3072 }
+    generationConfig: { maxOutputTokens: 3072 }
   });
 
   const quiz = Array.isArray(obj.quiz)

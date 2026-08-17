@@ -14,6 +14,47 @@ var SAFETY_SETTINGS = [
   { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
 ];
 
+/* Unsupported/deprecated parameters for Gemini 3.6 Flash.
+   These MUST NOT be present in generationConfig (can cause HTTP 400). */
+var DISALLOWED_GENERATION_PARAMS = [
+  'temperature',
+  'topP',
+  'top_p',
+  'topK',
+  'top_k',
+  'candidateCount',
+  'candidate_count',
+  'thinkingBudget',
+  'thinking_budget'
+];
+
+/**
+ * Defensively clean and build generationConfig for Gemini 3.6 Flash.
+ * Strips sampling and thinking parameters that are deprecated/unsupported.
+ */
+export function cleanGenerationConfig(config, jsonMode) {
+  var out = {};
+  if (config && typeof config === 'object') {
+    for (var k in config) {
+      if (Object.prototype.hasOwnProperty.call(config, k)) {
+        if (DISALLOWED_GENERATION_PARAMS.indexOf(k) === -1 && config[k] !== undefined && config[k] !== null) {
+          out[k] = config[k];
+        }
+      }
+    }
+  }
+  if (typeof out.maxOutputTokens === 'string') {
+    out.maxOutputTokens = parseInt(out.maxOutputTokens, 10);
+  }
+  if (typeof out.maxOutputTokens !== 'number' || !Number.isFinite(out.maxOutputTokens) || out.maxOutputTokens <= 0) {
+    out.maxOutputTokens = 1024;
+  }
+  if (jsonMode) {
+    out.responseMimeType = 'application/json';
+  }
+  return out;
+}
+
 /** Return the configured model without ever inspecting or exposing the key. */
 export function getGeminiModel(env, override) {
   var model = String(override || (env && env.GEMINI_MODEL) || DEFAULT_GEMINI_MODEL).trim();
@@ -33,12 +74,15 @@ function endpoint(env, model) {
 }
 
 function upstreamError(status) {
-  if (status === 400) return aiError('AI_REQUEST_REJECTED');
-  if (status === 401 || status === 403) return aiError('AI_AUTH_FAILED');
-  if (status === 404) return aiError('AI_MODEL_NOT_FOUND');
-  if (status === 429) return aiError('AI_RATE_LIMITED');
-  if (status >= 500) return aiError('AI_UPSTREAM_UNAVAILABLE');
-  return aiError('AI_UPSTREAM');
+  var err;
+  if (status === 400) err = aiError('AI_REQUEST_REJECTED');
+  else if (status === 401 || status === 403) err = aiError('AI_AUTH_FAILED');
+  else if (status === 404) err = aiError('AI_MODEL_NOT_FOUND');
+  else if (status === 429) err = aiError('AI_RATE_LIMITED');
+  else if (status >= 500) err = aiError('AI_UPSTREAM_UNAVAILABLE');
+  else err = aiError('AI_UPSTREAM');
+  err.upstreamStatus = status;
+  return err;
 }
 
 /**
@@ -55,12 +99,14 @@ export async function generate(env, opts) {
   var key = typeof env.GEMINI_API_KEY === 'string' ? env.GEMINI_API_KEY.trim() : '';
   if (!key) throw aiError('AI_NOT_CONFIGURED');
 
+  var selectedModel = getGeminiModel(env, opts.model);
+  var genConfig = cleanGenerationConfig(opts.generationConfig, !!opts.jsonMode);
+
   var body = {
     contents: opts.contents || [],
-    generationConfig: Object.assign({ temperature: 0.7, topP: 0.95, maxOutputTokens: 1024 }, opts.generationConfig || {}),
+    generationConfig: genConfig,
     safetySettings: SAFETY_SETTINGS
   };
-  if (opts.jsonMode) body.generationConfig.responseMimeType = 'application/json';
   if (opts.systemInstruction) body.system_instruction = { parts: [{ text: opts.systemInstruction }] };
 
   var res;
@@ -74,15 +120,41 @@ export async function generate(env, opts) {
       body: JSON.stringify(body)
     });
   } catch (e) {
-    /* Do not retain the fetch error text: it can contain a URL or runtime
-       detail and must never be reflected by an API response. */
+    /* Server-side diagnostic log without exposing secret values */
+    console.error('[Gemini Network Error]', JSON.stringify({
+      model: selectedModel,
+      keyConfigured: !!key,
+      error: 'Could not reach Gemini endpoint'
+    }));
     throw aiError('AI_UNREACHABLE');
   }
 
   if (!res.ok) {
-    /* Deliberately do not return Google's body. Provider errors can contain
-       project/configuration details and are not needed by the browser. */
-    throw upstreamError(res.status);
+    var upstreamMessage = '';
+    try {
+      var errData = await res.json();
+      if (errData && errData.error && typeof errData.error.message === 'string') {
+        upstreamMessage = errData.error.message;
+      }
+    } catch (_) {
+      try {
+        upstreamMessage = (await res.text()).slice(0, 300);
+      } catch (_) {}
+    }
+
+    /* Safe server-side diagnostic log: captures status, message, model, key presence */
+    console.error('[Gemini Upstream Failure]', JSON.stringify({
+      upstreamStatus: res.status,
+      upstreamMessage: upstreamMessage,
+      model: selectedModel,
+      keyConfigured: !!key
+    }));
+
+    var err = upstreamError(res.status);
+    err.upstreamStatus = res.status;
+    err.upstreamMessage = upstreamMessage;
+    err.model = selectedModel;
+    throw err;
   }
 
   var data;

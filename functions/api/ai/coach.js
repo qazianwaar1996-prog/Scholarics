@@ -35,7 +35,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
   const report = await generateJSON(env, {
     systemInstruction: GPA_COACH_SYSTEM,
     userContent: userPrompt,
-    generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
+    generationConfig: { maxOutputTokens: 2048 }
   });
   return json({ coach: normalizeReport(report) });
 }, { aiTool: 'coach' });

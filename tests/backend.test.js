@@ -93,6 +93,9 @@ async function portFree(ms) {
     "--binding", "AI_IP_MULTIPLIER=1000",
     "--binding", "AI_DAILY_COACH=1000", "--binding", "AI_DAILY_CHAT=1000",
     "--binding", "AI_DAILY_STUDY_PLAN=1000",
+    "--binding", "AI_DAILY_PARAPHRASE=1000",
+    "--binding", "AI_DAILY_QUIZ=1000",
+    "--binding", "AI_DAILY_FLASHCARDS=1000",
     "--compatibility-date=2024-11-01"],
     { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"], detached: true });
   let log = "";

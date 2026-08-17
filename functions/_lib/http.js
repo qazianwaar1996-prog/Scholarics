@@ -47,7 +47,9 @@ export function withApi(handler, opts) {
          Workers runtime exception must become controlled JSON, never a raw 502
          page, stack trace, provider response, or secret-bearing error string. */
       var mapped = toHttpError(err);
-      return json({ error: mapped.message, code: mapped.code }, mapped.status);
+      var payload = { error: mapped.message, code: mapped.code };
+      if (mapped.upstreamStatus) payload.upstreamStatus = mapped.upstreamStatus;
+      return json(payload, mapped.status);
     }
   };
 
@@ -124,7 +126,9 @@ export function withApi(handler, opts) {
       return res;
     } catch (err) {
       var mapped = toHttpError(err);
-      return json({ error: mapped.message, code: mapped.code }, mapped.status);
+      var payload = { error: mapped.message, code: mapped.code };
+      if (mapped.upstreamStatus) payload.upstreamStatus = mapped.upstreamStatus;
+      return json(payload, mapped.status);
     }
   }
 }

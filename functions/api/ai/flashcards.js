@@ -16,7 +16,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
   const obj = await generateJSON(env, {
     systemInstruction: FLASHCARDS_SYSTEM,
     userContent: userPrompt,
-    generationConfig: { temperature: 0.5, maxOutputTokens: 2048 }
+    generationConfig: { maxOutputTokens: 2048 }
   });
 
   const cards = Array.isArray(obj.flashcards)

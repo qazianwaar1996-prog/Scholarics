@@ -21,7 +21,7 @@ export const onRequestPost = withApi(async ({ body, env }) => {
   const plan = await generate(env, {
     systemInstruction: STUDY_PLAN_SYSTEM,
     contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-    generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
+    generationConfig: { maxOutputTokens: 2048 }
   });
   return json({ plan });
 }, { aiTool: 'study-plan' });
