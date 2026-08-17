@@ -470,8 +470,8 @@
     var s = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     s = s.replace(/```([^`]*?)```/gs, function(_, c){ return '<pre>' + c.trim() + '</pre>'; });
     s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
-    s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    s = s.replace(/\*\*(.+?)\*\*/gs, '<strong>$1</strong>');
+    s = s.replace(/\*(.+?)\*/gs, '<em>$1</em>');
     s = s.replace(/^### (.+)$/gm, '<h3>$1</h3>');
     s = s.replace(/^## (.+)$/gm, '<h2>$1</h2>');
     s = s.replace(/^[*\-] (.+)$/gm, '<li>$1</li>');
