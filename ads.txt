@@ -5,7 +5,7 @@
 # with your real publisher ID (the "ca-pub-…" number from AdSense → Account
 # settings → Account information). The line must use exactly this format:
 #
-#   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#   google.com, ca-pub-4697202213511383, DIRECT, f08c47fec0942fa0
 #
 # Lines beginning with "#" are comments and are ignored by crawlers.
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# google.com, ca-pub-4697202213511383, DIRECT, f08c47fec0942fa0
