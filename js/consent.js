@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var PUB_ID   = ''; // ← set your AdSense publisher ID (e.g. 'ca-pub-1234567890123456') to enable ads
+  var PUB_ID   = 'ca-pub-4697202213511383'; // ← set your AdSense publisher ID (e.g. 'ca-pub-1234567890123456') to enable ads
   var KEY      = 'sc_cookie_consent';
   var ACCEPTED = 'accepted';
   var DECLINED = 'declined';
