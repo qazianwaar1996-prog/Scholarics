@@ -130,6 +130,36 @@
 
 }
 
+
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.prose table thead tr {
+  background: var(--surface-2);
+}
+
+.prose table th,
+.prose table td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+@media (max-width: 640px) {
+  .prose table th,
+  .prose table td {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+}
 </style>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4697202213511383" crossorigin="anonymous"></script>
@@ -540,6 +570,21 @@ Sincerely,
 
   </div>
 
+</div>
+
+<div class="wrap reveal">
+  <div class="author-bio" style="display:flex;align-items:center;
+    gap:var(--s4);padding:var(--s5);background:var(--surface-2);
+    border-radius:var(--radius-lg);margin-top:var(--s6);">
+    <div>
+      <p style="font-weight:600;margin-bottom:4px;">Anwaar Ahmad</p>
+      <p style="font-size:var(--step-sm);color:var(--text-2);margin:0;">
+        Founder of Scholarics and creator of its 25+ free academic tools.
+        Anwaar writes practical guides on GPA, grading systems, and academic
+        policy to help students navigate college with clarity.
+      </p>
+    </div>
+  </div>
 </div>
 
 </main>
