@@ -209,6 +209,36 @@
 
 }
 
+
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.prose table thead tr {
+  background: var(--surface-2);
+}
+
+.prose table th,
+.prose table td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+@media (max-width: 640px) {
+  .prose table th,
+  .prose table td {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+}
 </style>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4697202213511383" crossorigin="anonymous"></script>
