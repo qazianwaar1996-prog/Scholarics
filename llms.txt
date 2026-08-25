@@ -1,0 +1,64 @@
+# Scholarics
+> Free academic calculators and study tools for college students. No signup, no paywalls, no clutter. 25+ tools covering GPA, grades, attendance, study planning, and an AI tutor.
+
+## About
+Scholarics (scholarics.com) is a free student tools platform founded by Anwaar Ahmad. It provides 25+ free academic calculators, study guides, and an AI tutor to help college and university students calculate GPA, track attendance, predict grades, plan study schedules, and navigate academic challenges. All tools are free, instant, and require no account.
+
+## Core GPA Tools
+- [GPA Calculator](https://scholarics.com/gpa.html): Calculate weighted GPA instantly on the 4.0 scale. Supports multiple grading scales and credit hours.
+- [CGPA Calculator](https://scholarics.com/cgpa.html): Calculate cumulative GPA across all semesters.
+- [Semester GPA Calculator](https://scholarics.com/semester-gpa.html): Calculate GPA for a single semester.
+- [GPA Simulator](https://scholarics.com/gpa-simulator.html): Model future semesters with what-if scenarios. Find exactly what grades you need to hit your target GPA.
+- [Target GPA Calculator](https://scholarics.com/target-gpa.html): Calculate the semester GPA needed to reach a cumulative GPA goal.
+- [GPA Improvement Planner](https://scholarics.com/gpa-improvement-planner.html): Build a realistic plan to raise your GPA over multiple semesters.
+- [GPA Converter](https://scholarics.com/gpa-converter.html): Convert GPA across 30+ country grading scales.
+- [Percentage to GPA Converter](https://scholarics.com/percentage-to-gpa.html): Convert percentage grades to GPA on 4.0, 5.0, and 10-point scales.
+- [GPA to Percentage Converter](https://scholarics.com/gpa-to-percentage.html): Convert GPA back to percentage.
+
+## Grade Calculators
+- [Grade Calculator](https://scholarics.com/grade-calculator.html): Weighted live course grade tracker.
+- [Final Exam Score Calculator](https://scholarics.com/final-exam-calculator.html): Find the score needed on your final exam to achieve a target course grade.
+- [Grade Predictor](https://scholarics.com/grade-predictor.html): Predict your final grade based on current scores and remaining assessments.
+- [Required Marks Calculator](https://scholarics.com/required-marks.html): Calculate marks needed to pass or achieve a target grade.
+- [Assignment Weight Calculator](https://scholarics.com/assignment-weight.html): Understand how each assignment affects your final grade.
+- [Class Average Calculator](https://scholarics.com/class-average.html): Calculate the class average from a set of grades.
+- [Percentage Calculator](https://scholarics.com/percentage-calculator.html): General-purpose percentage calculator for academic use.
+
+## Attendance & Planning Tools
+- [Attendance Calculator](https://scholarics.com/attendance-calculator.html): Skip counter, recovery planner, and attendance shortage calculator.
+- [Study Time Calculator](https://scholarics.com/study-time.html): Calculate recommended study hours based on course load and goals.
+- [Pomodoro Timer](https://scholarics.com/pomodoro.html): Free browser-based Pomodoro study timer. No download required.
+- [Study Schedule Generator](https://scholarics.com/study-schedule.html): Build a personalised weekly study schedule.
+- [Scientific Calculator](https://scholarics.com/scientific-calculator.html): Full-featured scientific calculator for students.
+- [Word Counter](https://scholarics.com/word-counter.html): Count words, characters, and sentences for essays and assignments.
+
+## AI Tutor
+- [AI Tutor](https://scholarics.com/ai.html): Free AI-powered academic tutor for homework help, concept explanation, and study support.
+
+## Study Guides
+- [What is a Good GPA in College?](https://scholarics.com/guide-what-is-a-good-gpa.html): GPA benchmarks for scholarships, grad school, med school, law school, and employers.
+- [Weighted vs Unweighted GPA](https://scholarics.com/guide-weighted-vs-unweighted-gpa.html): How each is calculated, which colleges look at, and when each matters.
+- [GPA Scale Explained](https://scholarics.com/guide-gpa-scale-explained.html): How letter grades map to grade points and the exact GPA formula.
+- [How to Raise Your GPA](https://scholarics.com/guide-how-to-raise-your-gpa.html): Realistic semester-by-semester math behind improving your GPA.
+- [Medical School GPA Requirements 2026](https://scholarics.com/guide-gpa-for-medical-school.html): Average MD and DO GPA, science GPA (BCPM) explained, school-by-school data.
+- [Law School GPA Requirements 2026](https://scholarics.com/guide-gpa-for-law-school.html): T14 medians, CAS GPA explained, LSAT interaction, low GPA strategies.
+- [Cum Laude GPA Requirements 2026](https://scholarics.com/guide-cum-laude-gpa-requirements.html): What GPA you need for cum laude, magna cum laude, and summa cum laude — with real university data.
+- [Academic Probation: What It Means and How to Recover](https://scholarics.com/guide-academic-probation.html): What triggers it, how it affects financial aid, GPA recovery formula, step-by-step plan.
+- [Best Free Study Apps for College Students 2026](https://scholarics.com/guide-best-free-study-apps-2026.html): 15 verified free study apps — flashcards, notes, focus, AI tools, and academic calculators.
+- [Attendance Rules Explained](https://scholarics.com/guide-attendance-rules-explained.html): How attendance policies work and what to do if you're at risk.
+- [Final Exam Prep Checklist](https://scholarics.com/guide-final-exam-prep-checklist.html): Complete checklist for preparing for final exams.
+
+## Grading System Guides by Country
+- [US Grading System](https://scholarics.com/grading-system-usa.html)
+- [UK Grading System](https://scholarics.com/grading-system-uk.html)
+- [India Grading System](https://scholarics.com/grading-system-india.html)
+- [Pakistan Grading System](https://scholarics.com/grading-system-pakistan.html)
+- [Australia Grading System](https://scholarics.com/grading-system-australia.html)
+- [Canada Grading System](https://scholarics.com/grading-system-canada.html)
+
+## GPA Help Center
+- [GPA Help Center](https://scholarics.com/gpa-help-center.html): Every common GPA question answered with links to the right calculator.
+
+## About & Contact
+- [About Scholarics](https://scholarics.com/about.html): Founded by Anwaar Ahmad. Mission: make academic tools free and accessible for every student worldwide.
+- [Contact](https://scholarics.com/contact.html): scholarics.team@gmail.com
