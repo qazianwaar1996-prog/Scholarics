@@ -1,0 +1,77 @@
+# Cloudflare Pages _redirects
+# IMPORTANT: do NOT add "/* /:splat.html 200" — that Netlify-style rule rewrites
+# every request (including css/js/images) by appending ".html", which 404s all
+# static assets on Cloudflare. The site links to *.html directly, so clean-URL
+# rewrites are unnecessary and have been removed.
+
+# Canonical host: redirect www → apex (production domain: scholarics.com)
+https://www.scholarics.com/* https://scholarics.com/:splat 301
+http://www.scholarics.com/* https://scholarics.com/:splat 301
+http://scholarics.com/* https://scholarics.com/:splat 301
+
+# Extensionless → .html redirects (prevents duplicate content from Cloudflare's auto HTML serving)
+# These ensure only the .html URL is canonical; extensionless hits redirect to .html
+/gpa /gpa.html 301
+/gpa-simulator /gpa-simulator.html 301
+/gpa-converter /gpa-converter.html 301
+/gpa-improvement-planner /gpa-improvement-planner.html 301
+/gpa-to-percentage /gpa-to-percentage.html 301
+/gpa-help-center /gpa-help-center.html 301
+/cgpa /cgpa.html 301
+/semester-gpa /semester-gpa.html 301
+/final-exam-calculator /final-exam-calculator.html 301
+/final-grade /final-grade.html 301
+/grade-calculator /grade-calculator.html 301
+/grade-predictor /grade-predictor.html 301
+/required-marks /required-marks.html 301
+/target-gpa /target-gpa.html 301
+/percentage-calculator /percentage-calculator.html 301
+/percentage-to-gpa /percentage-to-gpa.html 301
+/assignment-weight /assignment-weight.html 301
+/class-average /class-average.html 301
+/basic-calculator /basic-calculator.html 301
+/scientific-calculator /scientific-calculator.html 301
+/attendance-calculator /attendance-calculator.html 301
+/attendance-goal /attendance-goal.html 301
+/attendance-percentage /attendance-percentage.html 301
+/credit-hour-planner /credit-hour-planner.html 301
+/study-schedule /study-schedule.html 301
+/study-time /study-time.html 301
+/study-guides /study-guides.html 301
+/pomodoro /pomodoro.html 301
+/word-counter /word-counter.html 301
+/notes /notes.html 301
+/flashcards /flashcards.html 301
+/academic-resources /academic-resources.html 301
+/grading-guide /grading-guide.html 301
+/grading-system-usa /grading-system-usa.html 301
+/grading-system-uk /grading-system-uk.html 301
+/grading-system-india /grading-system-india.html 301
+/grading-system-canada /grading-system-canada.html 301
+/grading-system-pakistan /grading-system-pakistan.html 301
+/grading-system-australia /grading-system-australia.html 301
+/admission-gpa-guide-usa /admission-gpa-guide-usa.html 301
+/admission-gpa-guide-uk /admission-gpa-guide-uk.html 301
+/guide-gpa-scale-explained /guide-gpa-scale-explained.html 301
+/guide-how-to-raise-your-gpa /guide-how-to-raise-your-gpa.html 301
+/guide-what-is-a-good-gpa /guide-what-is-a-good-gpa.html 301
+/guide-gpa-for-medical-school /guide-gpa-for-medical-school.html 301
+/guide-gpa-for-law-school /guide-gpa-for-law-school.html 301
+/guide-cum-laude-gpa-requirements /guide-cum-laude-gpa-requirements.html 301
+/guide-best-free-study-apps-2026 /guide-best-free-study-apps-2026.html 301
+/guide-academic-probation /guide-academic-probation.html 301
+/guide-weighted-vs-unweighted-gpa /guide-weighted-vs-unweighted-gpa.html 301
+/guide-attendance-rules-explained /guide-attendance-rules-explained.html 301
+/guide-final-exam-prep-checklist /guide-final-exam-prep-checklist.html 301
+/ai-quiz-generator /ai-quiz-generator.html 301
+/ai-citation-generator /ai-citation-generator.html 301
+/ai /ai.html 301
+/paraphraser /paraphraser.html 301
+/premium /premium.html 301
+/blog /blog.html 301
+/about /about.html 301
+/contact /contact.html 301
+/privacy-policy /privacy-policy.html 301
+/terms-and-conditions /terms-and-conditions.html 301
+/disclaimer /disclaimer.html 301
+/profile /profile.html 301

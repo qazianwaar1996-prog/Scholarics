@@ -1,0 +1,41 @@
+# ─────────────────────────────────────────────────────────────
+# Cloudflare Pages configuration for Scholarics
+# Static site is served from the repo root; the `functions/` directory
+# provides the edge API (Gemini AI + email + bug report).
+# ─────────────────────────────────────────────────────────────
+
+name = "scholaricsv-2"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "."
+
+# Disable Cloudflare's automatic "serve page.html at /page" behavior.
+# Without this, every .html file is accessible at BOTH /page.html AND /page,
+# creating duplicate content that causes GSC "Alternate page with proper canonical"
+# and "Page with redirect" errors (73+ affected pages).
+# With html_handling = "none", only the explicit .html URL is served;
+# extensionless hits are handled by the redirects in _redirects.
+[build]
+
+[placement]
+
+[pages]
+html_handling = "none"
+
+# Non-secret environment variables.
+# NOTE: set the real inbox in the Cloudflare dashboard (Settings → Environment
+# Variables) or in a local `.dev.vars` file — the value below is a safe default
+# only; contact/bug-report submissions fall back to KV storage when EMAIL_TO
+# is unset (see functions/_lib/email.js).
+[vars]
+EMAIL_FROM = "Scholarics <no-reply@scholarics.com>"
+EMAIL_TO = ""
+
+# KV Namespaces
+
+[[kv_namespaces]]
+binding = "SUBMISSIONS"
+id = "d5c9109022514e09a593dde64815e7ca"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "6a0ac34d4e9f4293b347d1bc064a08ee"
