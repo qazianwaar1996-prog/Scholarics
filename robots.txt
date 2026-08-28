@@ -30,3 +30,28 @@ Sitemap: https://scholarics.com/sitemap.xml
 
 # Host directive
 Host: scholarics.com
+
+# Explicit AI crawler rules
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: GoogleBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
