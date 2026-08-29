@@ -1,0 +1,54 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# ACTIVATION: move this file to .github/workflows/deploy-cloudflare.yml
+#   mkdir -p .github/workflows && git mv tools/deploy-cloudflare.workflow.yml .github/workflows/deploy-cloudflare.yml
+# (kept in tools/ because the Arena sandbox token cannot push workflow files)
+#
+# Deploy Scholarics to Cloudflare Pages (project: scholaricsv-2)
+#
+# Ships the committed files (HTML + fingerprinted assets/ bundles) as a direct
+# upload — the same artifacts `wrangler pages deploy .` would ship locally.
+#
+# One-time setup (repo Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — token with "Cloudflare Pages — Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID  — your Cloudflare account ID
+#
+# NOTE: `npm run build` is intentionally NOT part of this pipeline yet. The
+# committed assets are current, but tools/build-assets.mjs currently throws on
+# gpa-simulator.html ("expected 3 css + 4 js bundle tags, found 3 + 5"), a
+# pre-existing bundle-tag mismatch on that page. Once that page is re-migrated,
+# you can switch the deploy step to `npm run deploy` to build first.
+# ─────────────────────────────────────────────────────────────────────────────
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required secrets are configured
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ]; then
+            echo "::error::Missing repository secrets. Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID under Settings → Secrets and variables → Actions, then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=scholaricsv-2 --branch=main
