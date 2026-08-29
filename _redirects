@@ -10,10 +10,6 @@ https://www.scholarics.com/* https://scholarics.com/:splat 301
 http://www.scholarics.com/* https://scholarics.com/:splat 301
 http://scholarics.com/* https://scholarics.com/:splat 301
 
-# Legacy calculator URL redirects
-/semester-gpa.html /semester-gpa 301
-/final-exam-calculator.html /final-exam-calculator 301
-
 # AI page URL redirects
 /ai-quiz-generator https://scholarics.com/ai-quiz-generator.html 301
 /ai https://scholarics.com/ai.html 301
