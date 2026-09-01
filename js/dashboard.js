@@ -398,7 +398,7 @@
       el.innerHTML = empty(
         'No calculations yet',
         'Use any calculator tool — your results will appear here automatically.',
-        'index.html#tools', 'Browse all tools'
+        '/#tools', 'Browse all tools'
       );
       return;
     }
@@ -426,7 +426,7 @@
       el.innerHTML = empty(
         'No recent activity',
         'Visit any calculator — your history will appear here.',
-        'index.html#tools', 'Browse tools'
+        '/#tools', 'Browse tools'
       );
       return;
     }

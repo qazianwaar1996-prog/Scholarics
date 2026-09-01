@@ -195,7 +195,7 @@
             var match = TOOLS.find(function (t) { return t.name.toLowerCase() === h.toLowerCase(); });
             return match
               ? { name: match.name, url: match.url, icon: '🕐', cat: 'Recent search' }
-              : { name: h, url: 'index.html#tools', icon: '🔍', cat: 'Recent search' };
+              : { name: h, url: '/#tools', icon: '🔍', cat: 'Recent search' };
           });
           var recItems = rec.map(function (t) {
             return { name: t.name, url: t.url, icon: t.icon, cat: 'For you' };
