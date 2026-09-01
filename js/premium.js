@@ -232,7 +232,7 @@
       if (href.startsWith('#') && href.length > 1) {
         id = href;
       }
-      // Same-page link: index.html#tools or just the page#hash
+      // Same-page link: /#tools or just the page#hash
       else if (href.indexOf('#') !== -1) {
         var parts = href.split('#');
         var pagePart = parts[0];

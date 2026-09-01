@@ -110,7 +110,7 @@
       var path = window.location.pathname;
       var currentPage = path.split('/').pop() || 'index.html';
       var links = [
-        { href: 'index.html#tools', label: 'Calculators', match: '' },
+        { href: '/#tools', label: 'Calculators', match: '' },
         { href: 'gpa-simulator.html', label: 'GPA Simulator', match: 'gpa-simulator.html' },
         { href: 'dashboard.html',   label: 'Dashboard',   match: 'dashboard.html' },
         { href: 'ai.html',          label: 'AI Tutor',    match: 'ai.html' },
